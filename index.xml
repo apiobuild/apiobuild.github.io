@@ -11,12 +11,31 @@
     
     
     <item>
+      <title>Privacy Policy</title>
+      <link>www.apiobuild.com/privacy-policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/privacy-policy/</guid>
+      <description>Your privacy is important to us. It is apio&amp;rsquo;s policy to respect your privacy regarding any information we may collect from you through our app, apiobuild.
+We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</description>
+    </item>
+    
+    <item>
       <title>Tell Us More!</title>
       <link>www.apiobuild.com/forms/business/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>www.apiobuild.com/forms/business/</guid>
       <description>We&amp;rsquo;d love to learn more details about you and your project.</description>
+    </item>
+    
+    <item>
+      <title>Terms of Service</title>
+      <link>www.apiobuild.com/terms-of-service/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/terms-of-service/</guid>
+      <description>Terms By accessing our app, apiobuild, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing apiobuild. The materials contained in apiobuild are protected by applicable copyright and trademark law. Use License  Permission is granted to temporarily download one copy of apiobuild per device for personal, non-commercial transitory viewing only.</description>
     </item>
     
   </channel>
