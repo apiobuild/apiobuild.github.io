@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>apio</title>
-    <link>apiobuild.com/</link>
+    <link>/</link>
     <description>Recent content on apio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="apiobuild.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Collect Email Addresses without Email Marketing Tools</title>
-      <link>apiobuild.com/blog/collect-email-addresses-without-email-marketing-tools/</link>
+      <link>/blog/collect-email-addresses-without-email-marketing-tools/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/blog/collect-email-addresses-without-email-marketing-tools/</guid>
+      <guid>/blog/collect-email-addresses-without-email-marketing-tools/</guid>
       <description>Collecting emails from website visitors is one of the most crucial ways to grow your audience, whether you’re looking to convert subscribers to customers or to directly communicate to your clients. Like you, we thought this is easy.
 However, days looking into various platforms (MailChimp, Constant Contacts, OmniSend, etc.), comparing their tiers/plans, and reading through those articles titled &amp;ldquo;Five Best Free Email Marketing Services.&amp;rdquo;
 We&amp;rsquo;ve found the answer is actually&amp;hellip; quite complicated.</description>
@@ -24,29 +24,29 @@ We&amp;rsquo;ve found the answer is actually&amp;hellip; quite complicated.</des
     
     <item>
       <title>Privacy Policy</title>
-      <link>apiobuild.com/privacy-policy/</link>
+      <link>/privacy-policy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/privacy-policy/</guid>
+      <guid>/privacy-policy/</guid>
       <description>Your privacy is important to us. It is apio&amp;rsquo;s policy to respect your privacy regarding any information we may collect from you through our app, apiobuild.
 We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</description>
     </item>
     
     <item>
       <title>Tell Us More!</title>
-      <link>apiobuild.com/forms/business/</link>
+      <link>/forms/business/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/forms/business/</guid>
+      <guid>/forms/business/</guid>
       <description>We&amp;rsquo;d love to learn more details about you and your project.</description>
     </item>
     
     <item>
       <title>Terms of Service</title>
-      <link>apiobuild.com/terms-of-service/</link>
+      <link>/terms-of-service/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/terms-of-service/</guid>
+      <guid>/terms-of-service/</guid>
       <description>Terms By accessing our app, apiobuild, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing apiobuild. The materials contained in apiobuild are protected by applicable copyright and trademark law. Use License  Permission is granted to temporarily download one copy of apiobuild per device for personal, non-commercial transitory viewing only.</description>
     </item>
     

@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on apio</title>
-    <link>apiobuild.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on apio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>announcement</title>
-      <link>apiobuild.com/tags/announcement/</link>
+      <link>/tags/announcement/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/tags/announcement/</guid>
+      <guid>/tags/announcement/</guid>
       <description></description>
     </item>
     
     <item>
       <title>email</title>
-      <link>apiobuild.com/tags/email/</link>
+      <link>/tags/email/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/tags/email/</guid>
+      <guid>/tags/email/</guid>
       <description></description>
     </item>
     
     <item>
       <title>google</title>
-      <link>apiobuild.com/tags/google/</link>
+      <link>/tags/google/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/tags/google/</guid>
+      <guid>/tags/google/</guid>
       <description></description>
     </item>
     
     <item>
       <title>marketing</title>
-      <link>apiobuild.com/tags/marketing/</link>
+      <link>/tags/marketing/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/tags/marketing/</guid>
+      <guid>/tags/marketing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sheets</title>
-      <link>apiobuild.com/tags/sheets/</link>
+      <link>/tags/sheets/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/tags/sheets/</guid>
+      <guid>/tags/sheets/</guid>
       <description></description>
     </item>
     
     <item>
       <title>telescope</title>
-      <link>apiobuild.com/tags/telescope/</link>
+      <link>/tags/telescope/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/tags/telescope/</guid>
+      <guid>/tags/telescope/</guid>
       <description></description>
     </item>
     
     <item>
       <title>waitress</title>
-      <link>apiobuild.com/tags/waitress/</link>
+      <link>/tags/waitress/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>apiobuild.com/tags/waitress/</guid>
+      <guid>/tags/waitress/</guid>
       <description></description>
     </item>
     
