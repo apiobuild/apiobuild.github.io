@@ -24,15 +24,17 @@
     name="twitter:site"
     content="@l1990790120"
   />
-  <link rel="icon" href="./images/favicon.png" type="image/png" sizes="16x16" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="16x16" />
   <link href="../css/fontawesome/fontawesome.css" rel="stylesheet" />
+  <link href="../css/syntax.css" rel="stylesheet" />
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous"
   />
-  <link rel="stylesheet" href="../css/theme.css" />  
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/custom.css" />
   <script defer src="../js/fontawesome/all.js"></script>
   <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -99,6 +101,11 @@ if (!doNotTrack) {
           <a class="nav-link text-capitalize" href="../#team" title="">team</a>
         </li>
         
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../blog" title="">Blog</a>
+        </li>
+        
       </ul>
     </div>
   </nav>
@@ -115,11 +122,12 @@ if (!doNotTrack) {
 
 
     <div id="content" style="min-height: 100%;">
-<div class="container py-5">
-  <div class="row py-5">
+<div class="container offset-md-2 col-md-8 py-5">
+  <div class="container py-5">
     <h1>Terms of Service</h1>
   </div>
-  <ol>
+  <div class="container py-5">
+    <ol>
 <li>Terms
 By accessing our app, apiobuild, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing apiobuild. The materials contained in apiobuild are protected by applicable copyright and trademark law.</li>
 <li>Use License
@@ -155,6 +163,31 @@ These terms and conditions are governed by and construed in accordance with the 
 </ol>
 <p><a href="https://getterms.io/">Terms of Use created with GetTerms.</a></p>
 
+  </div>
+  
+    <div class="conatiner py-5">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "l1990790120" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+	
 </div>
 
     </div><footer class="footer">
@@ -171,7 +204,10 @@ These terms and conditions are governed by and construed in accordance with the 
       </div>
       <div class="row container-fluid">
         <div class="col text-right">
-          <a class="text-secondary" href="https://stories.freepik.com/)"
+          <a
+            class="text-secondary"
+            href="https://stories.freepik.com/"
+            target="_blank"
             >Illustration by Stories by Freepik</a
           >
         </div>

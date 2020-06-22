@@ -6,9 +6,73 @@
     <description>Recent content in Tags on apio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="www.apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>announcement</title>
+      <link>www.apiobuild.com/tags/announcement/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/tags/announcement/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>email</title>
+      <link>www.apiobuild.com/tags/email/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/tags/email/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>google</title>
+      <link>www.apiobuild.com/tags/google/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/tags/google/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>marketing</title>
+      <link>www.apiobuild.com/tags/marketing/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/tags/marketing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sheets</title>
+      <link>www.apiobuild.com/tags/sheets/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/tags/sheets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>telescope</title>
+      <link>www.apiobuild.com/tags/telescope/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/tags/telescope/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>waitress</title>
+      <link>www.apiobuild.com/tags/waitress/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/tags/waitress/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

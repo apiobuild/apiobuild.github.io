@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>google on apio</title>
+    <link>www.apiobuild.com/tags/google/</link>
+    <description>Recent content in google on apio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="www.apiobuild.com/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Collect Email Addresses without Email Marketing Tools</title>
+      <link>www.apiobuild.com/blog/collect-email-addresses-without-email-marketing-tools/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>www.apiobuild.com/blog/collect-email-addresses-without-email-marketing-tools/</guid>
+      <description>Collecting emails from website visitors is one of the most crucial ways to grow your audience, whether you’re looking to convert subscribers to customers or to directly communicate to your clients. Like you, we thought this is easy.
+However, days looking into various platforms (MailChimp, Constant Contacts, OmniSend, etc.), comparing their tiers/plans, and reading through those articles titled &amp;ldquo;Five Best Free Email Marketing Services.&amp;rdquo;
+We&amp;rsquo;ve found the answer is actually&amp;hellip; quite complicated.</description>
+    </item>
+    
+  </channel>
+</rss>
