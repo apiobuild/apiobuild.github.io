@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Forms on apio</title>
-    <link>www.apiobuild.com/forms/</link>
+    <link>apiobuild.com/forms/</link>
     <description>Recent content in Forms on apio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="www.apiobuild.com/forms/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="apiobuild.com/forms/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tell Us More!</title>
-      <link>www.apiobuild.com/forms/business/</link>
+      <link>apiobuild.com/forms/business/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>www.apiobuild.com/forms/business/</guid>
+      <guid>apiobuild.com/forms/business/</guid>
       <description>We&amp;rsquo;d love to learn more details about you and your project.</description>
     </item>
     
