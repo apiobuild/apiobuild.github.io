@@ -1,0 +1,46 @@
+User-agent: *
+
+
+Allow: /
+
+Allow: /tags/announcement/
+
+Allow: /blog/
+
+Allow: /tags/chopin/
+
+Allow: /blog/create-an-online-store-for-free/
+
+Allow: /tags/ecommerce/
+
+Allow: /tags/google/
+
+Allow: /tags/online-store/
+
+Allow: /tags/sheets/
+
+Allow: /tags/
+
+Allow: /tags/telescope/
+
+Allow: /tags/waitress/
+
+Allow: /tags/email/
+
+Allow: /blog/how-to-create-a-simple-email-signup-with-apio/
+
+Allow: /tags/marketing/
+
+Allow: /tags/tutorial/
+
+Allow: /tags/website/
+
+Allow: /blog/collect-email-addresses-without-email-marketing-tools/
+
+Allow: /forms/
+
+Allow: /privacy-policy/
+
+Allow: /forms/business/
+
+Allow: /terms-of-service/
