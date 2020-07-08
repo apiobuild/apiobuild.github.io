@@ -6,10 +6,82 @@
     <description>Recent content in Tags on apio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>announcement</title>
+      <link>https://apiobuild.com/tags/announcement/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/announcement/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chopin</title>
+      <link>https://apiobuild.com/tags/chopin/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/chopin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ecommerce</title>
+      <link>https://apiobuild.com/tags/ecommerce/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/ecommerce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>google</title>
+      <link>https://apiobuild.com/tags/google/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/google/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>online-store</title>
+      <link>https://apiobuild.com/tags/online-store/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/online-store/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sheets</title>
+      <link>https://apiobuild.com/tags/sheets/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/sheets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>telescope</title>
+      <link>https://apiobuild.com/tags/telescope/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/telescope/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>waitress</title>
+      <link>https://apiobuild.com/tags/waitress/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/waitress/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>email</title>
@@ -17,15 +89,6 @@
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/email/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>google</title>
-      <link>https://apiobuild.com/tags/google/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/google/</guid>
       <description></description>
     </item>
     
@@ -39,24 +102,6 @@
     </item>
     
     <item>
-      <title>sheets</title>
-      <link>https://apiobuild.com/tags/sheets/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/sheets/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>telescope</title>
-      <link>https://apiobuild.com/tags/telescope/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/telescope/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tutorial</title>
       <link>https://apiobuild.com/tags/tutorial/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
@@ -66,29 +111,11 @@
     </item>
     
     <item>
-      <title>waitress</title>
-      <link>https://apiobuild.com/tags/waitress/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/waitress/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>website</title>
       <link>https://apiobuild.com/tags/website/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/website/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>announcement</title>
-      <link>https://apiobuild.com/tags/announcement/</link>
-      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/announcement/</guid>
       <description></description>
     </item>
     

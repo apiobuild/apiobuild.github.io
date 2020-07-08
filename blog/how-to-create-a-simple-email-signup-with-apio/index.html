@@ -37,7 +37,6 @@ It only takes five steps to set up email sign up form with Waitress, the lightwe
 />
 <link rel="icon" href="../../images/favicon.png" type="image/png" sizes="16x16" />
 <link href="../../css/fontawesome/fontawesome.css" rel="stylesheet" />
-<link href="../../css/syntax.css" rel="stylesheet" />
 <link
   rel="stylesheet"
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -160,18 +159,19 @@ It only takes five steps to set up email sign up form with Waitress, the lightwe
     
 </div>
   <div class="container py-5">
-    <p>Are you struggling with finding a FREE service to collect emails? Are you overwhelmed by all those fancy features provided by email marketing solutions? In this post, we will show you how to set up subscription sign-up form for your website in <strong>less than 10 minutes</strong> and <strong>without using email marketing platforms</strong>.</p>
-<p>It only takes five steps to set up email sign up form with <strong><a href="https://telescope.apiobuild.com/app/waitress" target="_blank">Waitress</a></strong>, the lightweight API enables you to use Google Sheet as a data store and send subscribers’ data from the sign-up form to Google Sheet.</p>
-<p><a href="https://apiobuild.com/blog/collect-email-addresses-without-email-marketing-tools/" target="_blank">Read more: Why you don’t need email marketing tools (yet) to collect emails?</a></p>
-<h2 id="step-1">Step 1</h2>
-<p>Go to <strong><a href="https://telescope.apiobuild.com/" target="_blank">Telescope (telescope.apiobuild.com)</a></strong>, our app platform of microservices.</p>
+    <div>
+  <p>Are you struggling with finding a FREE service to collect emails? Are you overwhelmed by all those fancy features provided by email marketing solutions? In this post, we will show you how to set up subscription sign-up form for your website in <strong>less than 10 minutes</strong> and <strong>without using email marketing platforms</strong>.</p>
+<p>It only takes five steps to set up email sign up form with <strong><a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress</a></strong>, the lightweight API enables you to use Google Sheet as a data store and send subscribers’ data from the sign-up form to Google Sheet.</p>
+<p><a href="https://apiobuild.com/blog/collect-email-addresses-without-email-marketing-tools/"  target="_blank" >Read more: Why you don’t need email marketing tools (yet) to collect emails?</a></p>
+<h2 id="step-1">Step 1<a href="#step-1" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>Go to <strong><a href="https://telescope.apiobuild.com/"  target="_blank" >Telescope</a></a></strong>, our app platform of microservices.</p>
 <p>Log in through your <strong>existing google account</strong>.</p>
 <img src="../../images/blog/login.png" class="post-img">
-<h2 id="step-2">Step 2</h2>
+<h2 id="step-2">Step 2<a href="#step-2" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>Create a Google Sheet or use an existing Google Sheet file.<br>
 Share editor permission with <strong>Waitress (<code>waitress-dev@apio-277201.iam.gserviceaccount.com</code>)</strong>.</p>
 <img src="../../images/blog/permission.png" class="post-img">
-<h2 id="step-3">Step 3</h2>
+<h2 id="step-3">Step 3<a href="#step-3" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>Go to your account in Telescope and click <strong>View Token</strong>, you will be asked to sign in again for security.<br>
 Add a new token:</p>
 <ul>
@@ -179,15 +179,15 @@ Add a new token:</p>
 <li><strong>Target Audience</strong>: the domain you’ll be calling the API from. If you’re testing locally, you could use <code>http://localhost:8080</code> for example.</li>
 </ul>
 <img src="../../images/blog/addtoken.png" class="post-img">
-<h2 id="step-4">Step 4</h2>
+<h2 id="step-4">Step 4<a href="#step-4" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>Under <strong>Access Policy</strong>, put the following in the <strong>Route</strong> field: <code>waitress/gsheets/&lt;your google sheet id&gt;</code>.<br>
 You can find <strong>your Google Sheet id</strong> in the url, which is the number after <code>spreadsheet/d/</code> and before <code>/edit</code>.</p>
 <p><img src="../../images/blog/gsheetid.png" class="post-img"><br></p>
 <p>In the <strong>Request Method</strong> dropdown, select <strong>POST</strong>.</p>
 <img src="../../images/blog/accesspolicy.png" class="post-img">
-<h2 id="step-5">Step 5</h2>
+<h2 id="step-5">Step 5<a href="#step-5" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>Copy and paste the html form to your website:</p>
-<h4 id="sign-up-form">Sign-up form</h4>
+<h4 id="sign-up-form">Sign-up form<a href="#sign-up-form" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <div class="highlight"><pre style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#2c5dcd;font-weight:bold">div</span> <span style="color:#2c5dcd;font-style:italic">class</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;container py-3&#34;</span>&gt;
  &lt;<span style="color:#2c5dcd;font-weight:bold">div</span> <span style="color:#2c5dcd;font-style:italic">class</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;card&#34;</span>&gt;
    &lt;<span style="color:#2c5dcd;font-weight:bold">div</span> <span style="color:#2c5dcd;font-style:italic">class</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;card-body&#34;</span>&gt;
@@ -209,7 +209,7 @@ You can find <strong>your Google Sheet id</strong> in the url, which is the numb
 &lt;/<span style="color:#2c5dcd;font-weight:bold">div</span>&gt;
 </code></pre></div><p>This will create the form like this:</p>
 <img src="../../images/blog/signupform.png" class="post-img">
-<h4 id="token">Token</h4>
+<h4 id="token">Token<a href="#token" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <ul>
 <li>Insert the <strong>token</strong> you retrieve from Telescope account after <code>let token = Bearer</code>.</li>
 <li>Insert the <strong>Google Sheet id</strong> after <code>/gsheets/</code></li>
@@ -249,6 +249,23 @@ You can find <strong>your Google Sheet id</strong> in the url, which is the numb
 }
 </style>
 
+</div>
+
+<style>
+  .hanchor {
+      font-size: 100%;
+      visibility: hidden;
+      color: silver;
+  }
+
+  h1:hover a,
+  h2:hover a,
+  h3:hover a,
+  h4:hover a {
+      visibility: visible;
+      text-decoration: none;
+  }
+</style>
   </div>
   
     <div class="conatiner py-5">
