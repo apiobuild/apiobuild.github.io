@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  
+<meta property="og:type" content="article" />
+<meta property="og:description" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+Read more: How does Chopin compare to website builders and ecommerce services.
+Step 1: Create Catalog Google Sheet Create a google sheet that you&rsquo;ll be using as your catalog." />
+<meta name="description" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+Read more: How does Chopin compare to website builders and ecommerce services.
+Step 1: Create Catalog Google Sheet Create a google sheet that you&rsquo;ll be using as your catalog." />
+<meta property="og:title" content="How to Create Web Store with Chopin and Waitress" />
+
+<meta name="twitter:card" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+Read more: How does Chopin compare to website builders and ecommerce services.
+Step 1: Create Catalog Google Sheet Create a google sheet that you&rsquo;ll be using as your catalog." />
+
+
+<meta property="og:image" content="https://apiobuild.com/images/blog/chopinwebsite.png" />
+
+
+
+
+<meta name="twitter:card" content="apio: microservices platform to create custom business softwares easily" />
+<meta name="twitter:site" content="@l1990790120" />
+<meta
+  name="twitter:creator"
+  content="@l1990790120"
+/>
+<title>apio: microservices platform to create custom business softwares easily</title>
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+
+<meta property="og:site_name" content="https://apiobuild.com" />
+<meta property="og:url" content="https://apiobuild.com/blog/how-to-create-web-store-with-apio/" />
+
+<link rel="icon" href="../../images/favicon.png" type="image/png" sizes="16x16" />
+<link href="../../css/fontawesome/fontawesome.css" rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="../../css/theme.css" />
+<link rel="stylesheet" href="../../css/custom.css" />
+<script defer src="../../js/fontawesome/all.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
+
+<script data-ad-client="ca-pub-7028718131236613" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-71133003-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<meta property="og:title" content="How to Create Web Store with Chopin and Waitress" />
+<meta property="og:description" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+Read more: How does Chopin compare to website builders and ecommerce services.
+Step 1: Create Catalog Google Sheet Create a google sheet that you&rsquo;ll be using as your catalog." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://apiobuild.com/blog/how-to-create-web-store-with-apio/" />
+<meta property="article:published_time" content="2020-07-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-08T00:00:00+00:00" />
+
+
+</head>
+  <body><div class="container-fluid p-0">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="../../">
+      <img src="../../images/logo.png" alt="apio: microservices platform to create custom business softwares easily" width="60">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#product" title="">product</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#why-us" title="">why us</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#sign-up" title="">sign up</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#team" title="">team</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../blog" title="">Blog</a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<nav class="navbar navbar-default"></nav>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    // nada
+  </div>
+</nav>
+
+
+<div class="container offset-md-2 col-md-8 py-5">
+  <div class="container py-5">
+    <h1>How to Create Web Store with Chopin and Waitress</h1>
+  </div>
+  <div class="container">
+    <p style="color: black;"> 2020-07-08 • 3 min read </p>
+  </div>
+  <div class="container py-1">
+
+<a href="../../tags/chopin" class="badge badge-light">chopin</a>
+     &nbsp; <a href="../../tags/ecommerce" class="badge badge-light">ecommerce</a>
+     &nbsp; <a href="../../tags/google" class="badge badge-light">google</a>
+     &nbsp; <a href="../../tags/google-sheet" class="badge badge-light">google-sheet</a>
+     &nbsp; <a href="../../tags/telescope" class="badge badge-light">telescope</a>
+     &nbsp; <a href="../../tags/tutorial" class="badge badge-light">tutorial</a>
+     &nbsp; <a href="../../tags/waitress" class="badge badge-light">waitress</a>
+     &nbsp; <a href="../../tags/website" class="badge badge-light">website</a>
+    
+</div>
+  <div class="container py-5">
+    
+    <div class="text-center py-3">
+      <img src="../../images/blog/chopinwebsite.png" style="width: 60%" />
+    </div>
+    
+
+    <div>
+  <p><a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin by apio</a> is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using <a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress</a> (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.</p>
+<p><a href="https://apiobuild.com/blog/create-an-online-store-for-free/"  target="_blank" >Read more: How does Chopin compare to website builders and ecommerce services.</a></p>
+<h2 id="step-1-create-catalog-google-sheet">Step 1: Create Catalog Google Sheet<a href="#step-1-create-catalog-google-sheet" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>Create a google sheet that you&rsquo;ll be using as your <strong>catalog</strong>. Copy and paste the following columns to the sheet:</p>
+<div class="row py-2">
+  <div class="table-box table-warning table-responsive px-2 py-2">
+    <table class="center">
+      <tbody>
+        <tr>
+          <td class="wide">name</td>
+          <td class="wide">nickname</td>
+          <td class="wide">description</td>
+          <td class="wide">product_url</td>
+          <td class="wide">image_url</td>
+          <td class="wide">price</td>
+          <td class="wide">max_qty</td>
+          <td class="wide">category</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p>Fields are defined as the following:</p>
+<ul>
+<li>name: unique name/id for each product</li>
+<li>nickname: item names that will appear on the store page</li>
+<li>description <em>(optional)</em>: product description</li>
+<li>product_url <em>(optional)</em>: link to product page</li>
+<li>image_url: url of product image</li>
+<li>price: product price</li>
+<li>max_qty: maximum quantity that one customer can buy. If max_qty = 0, it will show &lsquo;Out of Stock&rsquo;.</li>
+<li>category <em>(optional)</em>: to allow customer to filter products</li>
+</ul>
+<video width="100%" loop="true" autoplay="true" controls style="align: center">
+<source src="../../video/copy-paste-catalog-google-sheet.mp4" type="video/mp4" />
+</video>
+<h2 id="step-2-authorize-catalog-google-sheet-on-telescope">Step 2: Authorize Catalog Google Sheet on Telescope<a href="#step-2-authorize-catalog-google-sheet-on-telescope" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>Go to <strong><a href="https://telescope.apiobuild.com/"  target="_blank" >Telescope(apio microservices platform)</a></strong>. Log in into your <strong>existing google account</strong>.</p>
+<p>Then go to <strong><a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress</a></strong> and follow the instruction in the <strong>configure tab</strong> to authorize your google sheet. After authorization, only you can access your sheet through our API.</p>
+<video width="100%" loop="true" autoplay="true" controls style="align: center">
+<source src="../../video/authorize-catalog-google-sheet.mp4" type="video/mp4" />
+</video>
+<h2 id="step-3-create-order-google-sheet">Step 3: Create Order Google Sheet<a href="#step-3-create-order-google-sheet" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>Repeat <a href="#step-1-create-catalog-google-sheet" >Step 1</a> and <a href="#step-2-authorize-catalog-google-sheet-on-telescope" >Step 2</a> to <strong>create another google sheet</strong> with different header. This sheet will be storing <strong>new order</strong> that customers submitted on your store.</p>
+<p>Copy and paste the following columns to the sheet:</p>
+<div class="row py-2">
+  <div class="table-box table-warning table-responsive px-2 py-2">
+    <table class="center">
+      <tbody>
+        <tr>
+          <td class="wide">order_number</td>
+          <td class="wide">user_name</td>
+          <td class="wide">user_email</td>
+          <td class="wide">user_phone</td>
+          <td class="wide">user_address</td>
+          <td class="wide">order_created</td>
+          <td class="wide">order_subtotal</td>
+          <td class="wide">order_shipping</td>
+          <td class="wide">order_tax_rate</td>
+          <td class="wide">order_tax</td>
+          <td class="wide">order_total</td>
+          <td class="wide">product_name</td>
+          <td class="wide">product_qty</td>
+          <td class="wide">product_price</td>
+          <td class="wide">status_open</td>
+          <td class="wide">status_paid</td>
+          <td class="wide">status_shipped</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<h2 id="step-4-create-the-store">Step 4: Create the Store<a href="#step-4-create-the-store" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>After configuring both catalog and order in google sheet, now we can head to <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> to setup our store. Enter the <strong>store name, logo url, catalog and order APIs</strong>.</p>
+<p><em>Note: In this example, we use <a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress google sheet API</a> as our catalog and order API. Chopin will be making requests to: <code>https://trampoline.apiobuild.com/router/waitress/gsheets/&lt;your catalog and order google sheet id&gt;</code>.<br>
+Google sheet id can be extracted from google sheet url: <code>https://docs.google.com/spreadsheets/d/&lt;sheet-id&gt;</code>.</em></p>
+<video width="100%" loop="true" autoplay="true" controls style="align: center">
+<source src="../../video/chopin-create-store.mp4" type="video/mp4" />
+</video>
+<h2 id="step-5-start-selling">Step 5: Start Selling<a href="#step-5-start-selling" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>Voila, the store is now available at: <a href="https://tinyurl.com/yarc2454"  target="_blank" >https://tinyurl.com/yarc2454</a>. You can use services like <a href="https://tinyurl.com/"  target="_blank" >https://tinyurl.com/</a> to make the raw url (<code>https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C117090713962028193035/56422174-c3bf-4e2e-9524-2ad542d84562</code>) easier to share on facebook, instagram, and you friends.</p>
+<p>Any new order will be updated on the order google sheet you created in <a href="#step-3-create-order-google-sheet" >Step 3</a>. You can also setup <a href="https://support.google.com/docs/answer/91588?co=GENIE.Platform%3DDesktop&amp;hl=en"  target="_blank" >google sheet notification</a> to get real-time updates on new order submission.</p>
+<p>Happy “chopin”! 🛍️</p>
+<p><em>Note: if you have nothing in the catalog, it may return an error:</em></p>
+<img src="../../images/blog/chopin-error.png" class="post-img">
+<style>
+.center {
+  margin-left:auto;
+  margin-right:auto;
+}
+.wide {
+  width: 5%;
+}
+.table-box{
+  color: black;
+  border-left: 6px solid #ffc107;
+}
+.post-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+}
+</style>
+
+</div>
+
+<style>
+  .hanchor {
+      font-size: 100%;
+      visibility: hidden;
+      color: silver;
+  }
+
+  h1:hover a,
+  h2:hover a,
+  h3:hover a,
+  h4:hover a {
+      visibility: visible;
+      text-decoration: none;
+  }
+</style>
+  </div>
+  
+    <div class="conatiner py-5">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "apiobuild-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+	
+</div>
+<footer class="footer">
+  <nav class="navbar sticky-bottom bg-dark">
+    <div class="container-fluid text-light">
+      <div class="row container-fluid">
+        <div class="col">
+          Made by Lulu in her free time.
+        </div>
+        <div class="col text-right">
+          <a class="text-light" href="../../privacy-policy">Privacy Policy</a>
+          <a class="text-light" href="../../terms-of-service">Terms of Service</a>
+        </div>
+      </div>
+      <div class="row container-fluid">
+        <div class="col text-right">
+          <a
+            class="text-secondary"
+            href="https://stories.freepik.com/"
+            target="_blank"
+            >Illustration by Stories by Freepik</a
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+</footer>
+</body>
+</html>
