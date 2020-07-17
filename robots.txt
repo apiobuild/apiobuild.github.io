@@ -7,6 +7,8 @@ Allow: /blog/
 
 Allow: /tags/chopin/
 
+Allow: /tags/documentation/
+
 Allow: /tags/ecommerce/
 
 Allow: /tags/google/
