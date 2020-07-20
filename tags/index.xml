@@ -6,17 +6,80 @@
     <description>Recent content in Tags on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>application</title>
+      <link>https://apiobuild.com/tags/application/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/application/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://apiobuild.com/tags/blog/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>chopin</title>
       <link>https://apiobuild.com/tags/chopin/</link>
-      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/chopin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>custom-solution</title>
+      <link>https://apiobuild.com/tags/custom-solution/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/custom-solution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ecommerce</title>
+      <link>https://apiobuild.com/tags/ecommerce/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/ecommerce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>google-sheet</title>
+      <link>https://apiobuild.com/tags/google-sheet/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/google-sheet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>small-business</title>
+      <link>https://apiobuild.com/tags/small-business/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/small-business/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>website</title>
+      <link>https://apiobuild.com/tags/website/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/website/</guid>
       <description></description>
     </item>
     
@@ -30,29 +93,11 @@
     </item>
     
     <item>
-      <title>ecommerce</title>
-      <link>https://apiobuild.com/tags/ecommerce/</link>
-      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/ecommerce/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>google</title>
       <link>https://apiobuild.com/tags/google/</link>
       <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/google/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>google-sheet</title>
-      <link>https://apiobuild.com/tags/google-sheet/</link>
-      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/google-sheet/</guid>
       <description></description>
     </item>
     
@@ -80,15 +125,6 @@
       <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/waitress/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>website</title>
-      <link>https://apiobuild.com/tags/website/</link>
-      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/website/</guid>
       <description></description>
     </item>
     

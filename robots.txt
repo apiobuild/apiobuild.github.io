@@ -3,29 +3,39 @@ User-agent: *
 
 Allow: /
 
+Allow: /tags/application/
+
 Allow: /blog/
+
+Allow: /tags/blog/
+
+Allow: /blog/build-a-website-for-your-business-what-do-you-need/
 
 Allow: /tags/chopin/
 
-Allow: /tags/documentation/
+Allow: /tags/custom-solution/
 
 Allow: /tags/ecommerce/
 
-Allow: /tags/google/
-
 Allow: /tags/google-sheet/
 
-Allow: /blog/how-to-create-web-store-with-apio/
+Allow: /tags/small-business/
 
 Allow: /tags/
+
+Allow: /tags/website/
+
+Allow: /tags/documentation/
+
+Allow: /tags/google/
+
+Allow: /blog/how-to-create-web-store-with-apio/
 
 Allow: /tags/telescope/
 
 Allow: /tags/tutorial/
 
 Allow: /tags/waitress/
-
-Allow: /tags/website/
 
 Allow: /tags/announcement/
 
