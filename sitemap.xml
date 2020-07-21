@@ -4,20 +4,104 @@
   
   <url>
     <loc>https://apiobuild.com/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/application/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://apiobuild.com/blog/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/chopin/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/chopin-use-case/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/ecommerce/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/facebook/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/google-sheet/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/instagram/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/online-shop/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/small-business/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/blog/starting-an-online-store-with-chopin-and-instagram/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/use-case/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/website/</loc>
+    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/application/</loc>
     <lastmod>2020-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -38,49 +122,7 @@
   </url>
   
   <url>
-    <loc>https://apiobuild.com/tags/chopin/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://apiobuild.com/tags/custom-solution/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/ecommerce/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/google-sheet/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/small-business/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/</loc>
-    <lastmod>2020-07-19T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/website/</loc>
     <lastmod>2020-07-19T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

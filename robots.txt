@@ -3,27 +3,39 @@ User-agent: *
 
 Allow: /
 
-Allow: /tags/application/
-
 Allow: /blog/
+
+Allow: /tags/chopin/
+
+Allow: /tags/chopin-use-case/
+
+Allow: /tags/ecommerce/
+
+Allow: /tags/facebook/
+
+Allow: /tags/google-sheet/
+
+Allow: /tags/instagram/
+
+Allow: /tags/online-shop/
+
+Allow: /tags/small-business/
+
+Allow: /blog/starting-an-online-store-with-chopin-and-instagram/
+
+Allow: /tags/
+
+Allow: /tags/use-case/
+
+Allow: /tags/website/
+
+Allow: /tags/application/
 
 Allow: /tags/blog/
 
 Allow: /blog/build-a-website-for-your-business-what-do-you-need/
 
-Allow: /tags/chopin/
-
 Allow: /tags/custom-solution/
-
-Allow: /tags/ecommerce/
-
-Allow: /tags/google-sheet/
-
-Allow: /tags/small-business/
-
-Allow: /tags/
-
-Allow: /tags/website/
 
 Allow: /tags/documentation/
 
