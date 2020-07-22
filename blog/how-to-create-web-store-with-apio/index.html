@@ -251,9 +251,6 @@ if (!doNotTrack) {
           <td class="wide">product_name</td>
           <td class="wide">product_qty</td>
           <td class="wide">product_price</td>
-          <td class="wide">status_open</td>
-          <td class="wide">status_paid</td>
-          <td class="wide">status_shipped</td>
         </tr>
       </tbody>
     </table>
@@ -261,7 +258,7 @@ if (!doNotTrack) {
 </div>
 <p><em>Note: Don&rsquo;t worry if somehow you can&rsquo;t copy everything, just make sure you have <strong>&lsquo;order_number&rsquo; in the A1 cell</strong>. The rest will magically appear when an order is placed.</em></p>
 <h2 id="step-4-create-the-store">Step 4: Create the Store<a href="#step-4-create-the-store" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
-<p>After configuring both catalog and order in waitress app, we can head to <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> to create our store. Enter the following information to the corresponding fields. You can update this information anytime (except store name and google sheet URLs) and the updates will be reflected in real-time.</p>
+<p>After configuring both catalog and order in waitress app, we can head to <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> to create our store. Enter the following information to the corresponding fields. You can update this information anytime (<strong>except store name and google sheet URLs</strong>) and the updates will be reflected in real-time.</p>
 <p><strong>Customize Your Store</strong></p>
 <ul>
 <li>Store Name: name of your store</li>
@@ -277,6 +274,13 @@ if (!doNotTrack) {
 <li>Tax Rate <em>(optional)</em>: if Tax Rate = 0, it will not be shown on the store page</li>
 <li>Shipping Options <em>(optional)</em>: you can setup multiple options and free shipping minimum</li>
 </ul>
+<p><strong>Payment Options</strong></p>
+<ul>
+<li>PayPal: <a href="https://apiobuild.com/forms/business/"  target="_blank" >contact us</a>, let us help you integrate your <a href="https://www.paypal.com/us/business"  target="_blank" >PayPal business account</a></li>
+<li>Zelle: provide your Zelle email or mobile number</li>
+<li>Venmo: provide your Venmo handle</li>
+</ul>
+<p><em>Note: We view Zelle and Venmo as manual payment methods, which means the payment would be handled outside of the Chopin checkout.</em></p>
 <p><strong>Google Sheet API</strong></p>
 <ul>
 <li>Catalog Google Sheet url: copy and paste the authorized catalog sheet URL from <a href="#step-1-create-catalog-google-sheet" >Step 1</a></li>
@@ -291,31 +295,33 @@ if (!doNotTrack) {
 <p>💡You can use services like <a href="https://tinyurl.com/"  target="_blank" >tinyurl.com</a> to make the raw url easier to share on facebook, instagram, and among you friends.</p>
 <p>💡Any new order will be updated on the order google sheet you created in <a href="#step-3-create-order-google-sheet" >Step 3</a>. You can also setup <a href="https://support.google.com/docs/answer/91588?co=GENIE.Platform%3DDesktop&amp;hl=en"  target="_blank" >google sheet notification</a> to get real-time updates on new order submission.</p>
 <p>Happy “chopin”! 🛍️</p>
-<h1 id="faqs">FAQs<a href="#faqs" class="hanchor" ariaLabel="Anchor">   ¶</a> </h1>
+<h2 id="faqs">FAQs<a href="#faqs" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>If you see error messages or Patrick Star crying (hopefully really rare), let us troubleshoot together! <a href="mailto:apiobuild@gmail.com">Contact us (your favorite developer) if you don&rsquo;t find answers here</a>!</p>
 <img src="../../images/blog/chopin-error.png" class="post-img">
-<h4 id="chopin">Chopin<a href="#chopin" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<h3 id="chopin">Chopin<a href="#chopin" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
 <li>Go to <a href="#step-2-authorize-catalog-google-sheet-on-telescope" >Step 2</a>, check if you authorize both of your google sheets</li>
 </ul>
-<h4 id="google-sheet-data">Google Sheet Data<a href="#google-sheet-data" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<h3 id="google-sheet-data">Google Sheet Data<a href="#google-sheet-data" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
 <li>In catalog sheet, there should be no empty lines between rows.</li>
 <li>In the catalog sheet, <code>name</code> of each product can not be empty nor can be characters other than numbers or alphabets. Product names must be unique.</li>
 </ul>
-<h4 id="browser">Browser<a href="#browser" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<h3 id="browser">Browser<a href="#browser" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
 <li>Pop-up blocker might disrupt the google sheet authorization process. Disable the plug-in, and try again from <a href="#step-2-authorize-catalog-google-sheet-on-telescope" >Step 2</a></li>
 </ul>
-<h4 id="other-questions">Other Questions<a href="#other-questions" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<h5 id="how-to-find-image-url-from-my-website-and-facebook-page">How to find image url from my website and Facebook page?<a href="#how-to-find-image-url-from-my-website-and-facebook-page" class="hanchor" ariaLabel="Anchor">   ¶</a> </h5>
+<h3 id="other-questions">Other Questions<a href="#other-questions" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<h4 id="how-to-find-image-url-from-my-website-and-facebook-pages">How to find image url from my website and Facebook pages?<a href="#how-to-find-image-url-from-my-website-and-facebook-pages" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋Right-click the image &gt; Select &lsquo;Copy Image Address&rsquo;</p>
-<h5 id="how-can-i-get-image-url-for-something-i-didn-t-post-online">How can I get image url for something I didn&rsquo;t post online?<a href="#how-can-i-get-image-url-for-something-i-didn-t-post-online" class="hanchor" ariaLabel="Anchor">   ¶</a> </h5>
+<h4 id="how-can-i-get-image-url-for-something-i-didn-t-post-online">How can I get image url for something I didn&rsquo;t post online?<a href="#how-can-i-get-image-url-for-something-i-didn-t-post-online" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋Try image hosting services, like <a href="https://imgbb.com/"  target="_blank" >Imgbb</a>.</p>
-<h5 id="how-can-i-get-notification-when-someone-places-a-new-order">How can I get notification when someone places a new order?<a href="#how-can-i-get-notification-when-someone-places-a-new-order" class="hanchor" ariaLabel="Anchor">   ¶</a> </h5>
+<h4 id="why-the-images-are-not-shown-properly">Why the images are not shown properly?<a href="#why-the-images-are-not-shown-properly" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>🙋Make sure you copy the image url - the internet address that points directly to a specific image, rather than an entire index, webpage or website. You can put url in address bar to test it out. If you can see the image and only the image, then that&rsquo;s a working url.</p>
+<h4 id="how-can-i-get-notification-when-someone-places-a-new-order">How can I get notification when someone places a new order?<a href="#how-can-i-get-notification-when-someone-places-a-new-order" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋At the top of your Order google sheet, click Tools and then Notification rules. Select &ldquo;when&rdquo; you want to receive notifications. <a href="https://support.google.com/docs/answer/91588?co=GENIE.Platform%3DDesktop&amp;hl=en"  target="_blank" >Read more</a></p>
-<h5 id="how-can-i-shrink-my-store-url">How can I shrink my store URL?<a href="#how-can-i-shrink-my-store-url" class="hanchor" ariaLabel="Anchor">   ¶</a> </h5>
-<p>🙋Try URL shortener services, like <a href="https://tinyurl.com/"  target="_blank" >tinyurl</a> or<a href="https://bitly.com/"  target="_blank" >Bitly</a> to make your store link easier to share.</p>
+<h4 id="how-can-i-shrink-my-store-url">How can I shrink my store URL?<a href="#how-can-i-shrink-my-store-url" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>🙋Try URL shortener services, like <a href="https://tinyurl.com/"  target="_blank" >tinyurl</a> or <a href="https://bitly.com/"  target="_blank" >Bitly</a> to make your store link easier to share.</p>
 <style>
 .center {
   margin-left:auto;
