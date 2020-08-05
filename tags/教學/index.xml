@@ -17,14 +17,7 @@
       <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/</guid>
-      <description>Chopin by apio 是一個簡單的靜態網路商店生成器，讓你不用會寫程式，只要幾鍵設定即可創建一家網路商店。且只要連結 Google Sheet，即可輕鬆上架商品跟管理訂單。這篇文章我們會教你如何使用 Google Sheet 搭配 Waitress (apio&amp;#39;s google sheet API) 建立自己的網站。跟著我們的教學，開一間自己的網路商店吧！
-🛍️ 示範商店馬上逛
-🛍️ 延伸閱讀：Chopin 與其他電商平台比較
-🛍️ English Tutorial
-Step 1: 新增商品目錄 Google Sheet 開始設立商店前，你會需要準備兩個 google sheet（商品目錄及訂單）。第一步是建立一個用來當作商品目錄的 google sheet。複製以下標題並貼到 google sheet 的標題列，然後按照說明填入你的產品資訊。
-  name nickname description product_url image_url price max_qty category      範例：
- 各儲存格對應的內容：
- name: 每個產品的獨立編碼 (product id)，只能使用英文、數字、連接號(-)或底線(＿)，不能有空格 nickname: 顯示在網站的產品名稱，支援任何語言文字或表情符號 description (非必須): 產品敘述 product_url (非必須): 產品外部連結 image_url: 產品圖片網址 price: 產品價錢 max_qty: 每個顧客可購買的上限，如果設定 max_qty 為0, 會顯示 Out of Stock category (非必須): 不同的產品分類，每個產品可以有多個分類  注意：每列之間不得穿插空白列</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin by apio&lt;/a&gt; 是一個簡單的靜態網路商店生成器，讓你不用會寫程式，只要幾鍵設定即可創建一家網路商店。且只要連結 Google Sheet，即可輕鬆上架商品跟管理訂單。這篇文章我們會教你如何使用 Google Sheet 搭配 &lt;a href=&#34;https://telescope.apiobuild.com/app/waitress&#34;  target=&#34;_blank&#34; &gt;Waitress (apio&amp;#39;s google sheet API)&lt;/a&gt; 建立自己的網站。跟著我們的教學，開一間自己的網路商店吧！&lt;/p&gt;</description>
     </item>
     
   </channel>
