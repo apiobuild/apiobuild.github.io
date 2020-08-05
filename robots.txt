@@ -7,13 +7,35 @@ Allow: /blog/
 
 Allow: /tags/chopin/
 
-Allow: /tags/chopin-use-case/
+Allow: /tags/documentation/
 
 Allow: /tags/ecommerce/
 
-Allow: /tags/facebook/
+Allow: /tags/google/
 
 Allow: /tags/google-sheet/
+
+Allow: /tags/
+
+Allow: /tags/telescope/
+
+Allow: /tags/tutorial/
+
+Allow: /tags/waitress/
+
+Allow: /tags/website/
+
+Allow: /blog/how-to-create-web-store-with-apio-ch/
+
+Allow: /tags/%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C/
+
+Allow: /tags/%E6%95%99%E5%AD%B8/
+
+Allow: /tags/%E7%B6%B2%E8%B7%AF%E9%96%8B%E5%BA%97/
+
+Allow: /tags/chopin-use-case/
+
+Allow: /tags/facebook/
 
 Allow: /tags/instagram/
 
@@ -23,11 +45,7 @@ Allow: /tags/small-business/
 
 Allow: /blog/starting-an-online-store-with-chopin-and-instagram/
 
-Allow: /tags/
-
 Allow: /tags/use-case/
-
-Allow: /tags/website/
 
 Allow: /tags/application/
 
@@ -37,17 +55,7 @@ Allow: /blog/build-a-website-for-your-business-what-do-you-need/
 
 Allow: /tags/custom-solution/
 
-Allow: /tags/documentation/
-
-Allow: /tags/google/
-
 Allow: /blog/how-to-create-web-store-with-apio/
-
-Allow: /tags/telescope/
-
-Allow: /tags/tutorial/
-
-Allow: /tags/waitress/
 
 Allow: /tags/announcement/
 

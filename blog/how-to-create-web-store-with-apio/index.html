@@ -5,16 +5,16 @@
 <title>How to Create Web Store with Chopin and Waitress</title>
 <meta property="og:type" content="article" />
 <meta property="og:title" content="How to Create Web Store with Chopin and Waitress" />
-<meta name="description" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
-🛍️View Demo Store
+<meta name="description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+🛍️ Visit Demo Store
 🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
-<meta property="og:description" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
-🛍️View Demo Store
+<meta property="og:description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+🛍️ Visit Demo Store
 🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
 
 <meta name="twitter:title" content="How to Create Web Store with Chopin and Waitress" />
-<meta name="twitter:twitter:description" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
-🛍️View Demo Store
+<meta name="twitter:twitter:description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+🛍️ Visit Demo Store
 🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
 
 
@@ -85,8 +85,8 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 <meta property="og:title" content="How to Create Web Store with Chopin and Waitress" />
-<meta property="og:description" content="Chopin by apio is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
-🛍️View Demo Store
+<meta property="og:description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
+🛍️ Visit Demo Store
 🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://apiobuild.com/blog/how-to-create-web-store-with-apio/" />
@@ -204,11 +204,13 @@ if (!doNotTrack) {
     
 
     <div>
-  <p><a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin by apio</a> is a simple online store creator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using <a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress</a> (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.</p>
-<p>🛍️View <a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C117090713962028193035/7a8c0376-0fd0-4093-894f-e6d0200444d4"  target="_blank" >Demo Store</a></p>
+  <p><a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin by apio</a> is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using <a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress</a> (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.</p>
+<p>🛍️ <a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C117090713962028193035/7a8c0376-0fd0-4093-894f-e6d0200444d4"  target="_blank" >Visit Demo Store</a></p>
 <p>🛍️<a href="https://apiobuild.com/blog/create-an-online-store-for-free/"  target="_blank" >Read more: How does Chopin compare to website builders and ecommerce services.</a></p>
+<p>🛍️ <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/"  target="_blank" >中文版教學</a></p>
 <h2 id="step-1-create-catalog-google-sheet">Step 1: Create Catalog Google Sheet<a href="#step-1-create-catalog-google-sheet" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
-<p>Create a google sheet that you&rsquo;ll be using as your <strong>catalog</strong>. Copy and paste the following columns to the sheet and input your product information to corresponding cells.</p>
+<p>You will need two google sheets (one served as catalog, another one for collecting order) created before setting up your store.</p>
+<p>Firstly, create a google sheet that you&rsquo;ll be using as your <strong>catalog</strong>. Copy and paste the following columns to the sheet and input your product information to corresponding cells.</p>
 <div class="row py-2">
   <div class="table-box table-warning table-responsive px-2 py-2">
     <table class="center">
@@ -234,32 +236,32 @@ if (!doNotTrack) {
 <ul>
 <li>name: unique name/id contains <strong>only dashes, underscores, and alphanumeric are allowed</strong> for each product</li>
 <li>nickname: item names that will appear on the store page, they can be <strong>any language, symbol, and even emoji</strong></li>
-<li>description <em>(optional)</em>: more information of the product</li>
-<li>product_url <em>(optional)</em>: link to the product website</li>
+<li>description <em>(optional)</em>: more information about the product</li>
+<li>product_url <em>(optional)</em>: link to an external web page</li>
 <li>image_url: url of the product image</li>
 <li>price: product price</li>
 <li>max_qty: maximum quantity that one customer can buy. <strong>If max_qty = 0, it will show &lsquo;Out of Stock&rsquo;</strong>.</li>
-<li>category <em>(optional)</em>: to allow customer to filter products</li>
+<li>category <em>(optional)</em>: to allow customer to filter products. Multiple categories can be separated by comma.</li>
 </ul>
 <p><em>Note: There should not be empty line(s) between rows.</em></p>
 <video width="100%" loop="true" autoplay="true" controls style="align: center">
 <source src="../../video/copy-paste-catalog-google-sheet.mp4" type="video/mp4" />
 </video>
 <h2 id="step-2-authorize-catalog-google-sheet-on-telescope">Step 2: Authorize Catalog Google Sheet on Telescope<a href="#step-2-authorize-catalog-google-sheet-on-telescope" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
-<p>Go to <a href="https://telescope.apiobuild.com/"  target="_blank" >Telescope (apio microservices platform)</a>. Log in into your <strong>existing google account</strong>.</p>
+<p>Go to <a href="https://telescope.apiobuild.com/"  target="_blank" >Telescope (apio microservices platform)</a>. Log in with your <strong>existing google account</strong>.</p>
 <p>Then go to <a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress</a> and follow the instruction on the <strong>configure tab</strong> to authorize your google sheet:</p>
 <ol>
 <li>Click <code>Share</code> at the top right corner of your google sheet</li>
 <li>Add the Waitress as an editor</li>
 <li>Copy and paste your google sheer URL. Hit <code>Authorize</code></li>
 </ol>
-<p>After authorization, only you can access your sheet through our API. Even us cannot edit your google sheets!</p>
+<p>After authorization, only you can access your sheet through our API.</p>
 <video width="100%" loop="true" autoplay="true" controls style="align: center">
 <source src="../../video/authorize-catalog-google-sheet.mp4" type="video/mp4" />
 </video>
 <h2 id="step-3-create-order-google-sheet">Step 3: Create Order Google Sheet<a href="#step-3-create-order-google-sheet" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>Repeat <a href="#step-1-create-catalog-google-sheet" >Step 1</a> and <a href="#step-2-authorize-catalog-google-sheet-on-telescope" >Step 2</a> to <strong>create another google sheet</strong> with different header.</p>
-<p>This sheet will be storing <strong>new orders</strong> that customers submitted to your store. Copy and paste the following columns to the sheet, no need to input additional information.</p>
+<p>Copy and paste the following columns to the sheet, no need to input additional information. This sheet will be storing <strong>new orders</strong> that customers submitted to your store.</p>
 <div class="row py-2">
   <div class="table-box table-warning table-responsive px-2 py-2">
     <table class="center">
@@ -287,13 +289,13 @@ if (!doNotTrack) {
 </div>
 <p><em>Note: Don&rsquo;t worry if somehow you can&rsquo;t copy everything, just make sure you have <strong>&lsquo;order_number&rsquo; in the A1 cell</strong>. The rest will magically appear when an order is placed.</em></p>
 <h2 id="step-4-create-the-store">Step 4: Create the Store<a href="#step-4-create-the-store" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
-<p>After configuring both catalog and order in waitress app, we can head to <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> to create our store. Enter the following information to the corresponding fields. You can update this information anytime (<strong>except store name and google sheet URLs</strong>) and the updates will be reflected in real-time.</p>
+<p>After configuring both catalog and order sheets in waitress app, we can now head to <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> to create our store. Enter the following information to the corresponding fields. You can update this information anytime (<strong>except store name and google sheet URLs</strong>) and the updates will be reflected in real-time.</p>
 <p><strong>Customize Your Store</strong></p>
 <ul>
 <li>Store Name: name of your store</li>
 <li>Logo url <em>(optional)</em>: it can even be a gif</li>
-<li>Announcement <em>(optional)</em>: it will show at the top of your store. You can update it anytime.</li>
-<li>Store Description <em>(optional)</em>: any information you&rsquo;d like to include. Up to 250 characters.</li>
+<li>Announcement <em>(optional)</em>: it will show at the top of your store. You can update it anytime</li>
+<li>Store Description <em>(optional)</em>: any information you&rsquo;d like to include. Up to 250 characters</li>
 <li>Store Background Image url  <em>(optional)</em>: add a background image</li>
 <li>Store Background Color  <em>(optional)</em>: you can easily select color from swatch or <a href="https://htmlcolorcodes.com/"  target="_blank" >hex code</a></li>
 <li>Contact and Social Plug-ins <em>(optional)</em>: currently we support email address, Facebook, Instagram, and Line</li>
@@ -342,13 +344,13 @@ if (!doNotTrack) {
 </ul>
 <h3 id="other-questions">Other Questions<a href="#other-questions" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <h4 id="how-to-find-image-url-from-my-website-and-facebook-pages">How to find image url from my website and Facebook pages?<a href="#how-to-find-image-url-from-my-website-and-facebook-pages" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>🙋Right-click the image &gt; Select &lsquo;Copy Image Address&rsquo;</p>
+<p>🙋Right-click the image &gt; Select <code>Copy Image Address</code></p>
 <h4 id="how-can-i-get-image-url-for-something-i-didn-t-post-online">How can I get image url for something I didn&rsquo;t post online?<a href="#how-can-i-get-image-url-for-something-i-didn-t-post-online" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>🙋Try image hosting services, like <a href="https://imgbb.com/"  target="_blank" >Imgbb</a>.</p>
+<p>🙋Try image hosting services, like <a href="https://imgbb.com/"  target="_blank" >Imgbb</a> or <a href="https://img.onl/"  target="_blank" >img.onl</a>.</p>
 <h4 id="why-the-images-are-not-shown-properly">Why the images are not shown properly?<a href="#why-the-images-are-not-shown-properly" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋Make sure you copy the image url - the internet address that points directly to a specific image, rather than an entire index, webpage or website. You can put url in address bar to test it out. If you can see the image and only the image, then that&rsquo;s a working url.</p>
 <h4 id="how-can-i-get-notification-when-someone-places-a-new-order">How can I get notification when someone places a new order?<a href="#how-can-i-get-notification-when-someone-places-a-new-order" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>🙋At the top of your Order google sheet, click Tools and then Notification rules. Select &ldquo;when&rdquo; you want to receive notifications. <a href="https://support.google.com/docs/answer/91588?co=GENIE.Platform%3DDesktop&amp;hl=en"  target="_blank" >Read more</a></p>
+<p>🙋At the top of your Order google sheet, click <code>Tools</code> and then <code>Notification Rules</code>. Select &ldquo;when&rdquo; you want to receive notifications. <a href="https://support.google.com/docs/answer/91588?co=GENIE.Platform%3DDesktop&amp;hl=en"  target="_blank" >Read more</a></p>
 <h4 id="how-can-i-shrink-my-store-url">How can I shrink my store URL?<a href="#how-can-i-shrink-my-store-url" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋Try URL shortener services, like <a href="https://tinyurl.com/"  target="_blank" >tinyurl</a> or <a href="https://bitly.com/"  target="_blank" >Bitly</a> to make your store link easier to share.</p>
 <style>
