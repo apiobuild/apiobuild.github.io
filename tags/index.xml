@@ -6,7 +6,7 @@
     <description>Recent content in Tags on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,72 @@
     <item>
       <title>chopin</title>
       <link>https://apiobuild.com/tags/chopin/</link>
-      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/chopin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>email</title>
+      <link>https://apiobuild.com/tags/email/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/email/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>email-automation</title>
+      <link>https://apiobuild.com/tags/email-automation/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/email-automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>online-shop</title>
+      <link>https://apiobuild.com/tags/online-shop/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/online-shop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>order-confirmation</title>
+      <link>https://apiobuild.com/tags/order-confirmation/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/order-confirmation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>post-it</title>
+      <link>https://apiobuild.com/tags/post-it/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/post-it/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://apiobuild.com/tags/tutorial/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>use-case</title>
+      <link>https://apiobuild.com/tags/use-case/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/use-case/</guid>
       <description></description>
     </item>
     
@@ -62,15 +125,6 @@
       <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/telescope/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tutorial</title>
-      <link>https://apiobuild.com/tags/tutorial/</link>
-      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/tutorial/</guid>
       <description></description>
     </item>
     
@@ -147,29 +201,11 @@
     </item>
     
     <item>
-      <title>online-shop</title>
-      <link>https://apiobuild.com/tags/online-shop/</link>
-      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/online-shop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>small-business</title>
       <link>https://apiobuild.com/tags/small-business/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/small-business/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>use-case</title>
-      <link>https://apiobuild.com/tags/use-case/</link>
-      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/use-case/</guid>
       <description></description>
     </item>
     
@@ -224,15 +260,6 @@
       <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/sheets/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>email</title>
-      <link>https://apiobuild.com/tags/email/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/email/</guid>
       <description></description>
     </item>
     

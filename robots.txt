@@ -7,6 +7,24 @@ Allow: /blog/
 
 Allow: /tags/chopin/
 
+Allow: /tags/email/
+
+Allow: /tags/email-automation/
+
+Allow: /blog/introducing-post-it-email-automation-service/
+
+Allow: /tags/online-shop/
+
+Allow: /tags/order-confirmation/
+
+Allow: /tags/post-it/
+
+Allow: /tags/
+
+Allow: /tags/tutorial/
+
+Allow: /tags/use-case/
+
 Allow: /tags/documentation/
 
 Allow: /tags/ecommerce/
@@ -15,11 +33,7 @@ Allow: /tags/google/
 
 Allow: /tags/google-sheet/
 
-Allow: /tags/
-
 Allow: /tags/telescope/
-
-Allow: /tags/tutorial/
 
 Allow: /tags/waitress/
 
@@ -39,13 +53,9 @@ Allow: /tags/facebook/
 
 Allow: /tags/instagram/
 
-Allow: /tags/online-shop/
-
 Allow: /tags/small-business/
 
 Allow: /blog/starting-an-online-store-with-chopin-and-instagram/
-
-Allow: /tags/use-case/
 
 Allow: /tags/application/
 
@@ -64,8 +74,6 @@ Allow: /blog/create-an-online-store-for-free/
 Allow: /tags/online-store/
 
 Allow: /tags/sheets/
-
-Allow: /tags/email/
 
 Allow: /blog/how-to-create-a-simple-email-signup-with-apio/
 

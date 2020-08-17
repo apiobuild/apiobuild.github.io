@@ -4,21 +4,84 @@
   
   <url>
     <loc>https://apiobuild.com/</loc>
-    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://apiobuild.com/blog/</loc>
-    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://apiobuild.com/tags/chopin/</loc>
-    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/email/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/email-automation/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/blog/introducing-post-it-email-automation-service/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/online-shop/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/order-confirmation/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/post-it/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/tutorial/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/use-case/</loc>
+    <lastmod>2020-08-16T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -52,21 +115,7 @@
   </url>
   
   <url>
-    <loc>https://apiobuild.com/tags/</loc>
-    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://apiobuild.com/tags/telescope/</loc>
-    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/tutorial/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -136,13 +185,6 @@
   </url>
   
   <url>
-    <loc>https://apiobuild.com/tags/online-shop/</loc>
-    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://apiobuild.com/tags/small-business/</loc>
     <lastmod>2020-07-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -151,13 +193,6 @@
   
   <url>
     <loc>https://apiobuild.com/blog/starting-an-online-store-with-chopin-and-instagram/</loc>
-    <lastmod>2020-07-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/use-case/</loc>
     <lastmod>2020-07-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -222,13 +257,6 @@
   <url>
     <loc>https://apiobuild.com/tags/sheets/</loc>
     <lastmod>2020-07-06T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/email/</loc>
-    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

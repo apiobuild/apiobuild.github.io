@@ -7,15 +7,15 @@
 <meta property="og:title" content="How to Create Web Store with Chopin and Waitress" />
 <meta name="description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
 🛍️ Visit Demo Store
-🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
+🛍️ Read more: How does Chopin compare to website builders and ecommerce services." />
 <meta property="og:description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
 🛍️ Visit Demo Store
-🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
+🛍️ Read more: How does Chopin compare to website builders and ecommerce services." />
 
 <meta name="twitter:title" content="How to Create Web Store with Chopin and Waitress" />
 <meta name="twitter:twitter:description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
 🛍️ Visit Demo Store
-🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
+🛍️ Read more: How does Chopin compare to website builders and ecommerce services." />
 
 
 <meta property="og:image" content="https://apiobuild.com/images/blog/chopinwebsite.png" />
@@ -87,7 +87,7 @@ if (!doNotTrack) {
 <meta property="og:title" content="How to Create Web Store with Chopin and Waitress" />
 <meta property="og:description" content="Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using Waitress (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
 🛍️ Visit Demo Store
-🛍️Read more: How does Chopin compare to website builders and ecommerce services." />
+🛍️ Read more: How does Chopin compare to website builders and ecommerce services." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://apiobuild.com/blog/how-to-create-web-store-with-apio/" />
 <meta property="article:published_time" content="2020-07-08T00:00:00+00:00" />
@@ -181,7 +181,7 @@ if (!doNotTrack) {
     <h1>How to Create Web Store with Chopin and Waitress</h1>
   </div>
   <div class="container">
-    <p style="color: black;"> 2020-07-08 • 5 min read </p>
+    <p style="color: black;"> 2020-07-08 • 6 min read </p>
   </div>
   <div class="container py-1">
 
@@ -206,7 +206,7 @@ if (!doNotTrack) {
     <div>
   <p><a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin by apio</a> is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&rsquo;ll show you how you create an online store with google sheet using <a href="https://telescope.apiobuild.com/app/waitress"  target="_blank" >Waitress</a> (apio&rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.</p>
 <p>🛍️ <a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C117090713962028193035/7a8c0376-0fd0-4093-894f-e6d0200444d4"  target="_blank" >Visit Demo Store</a></p>
-<p>🛍️<a href="https://apiobuild.com/blog/create-an-online-store-for-free/"  target="_blank" >Read more: How does Chopin compare to website builders and ecommerce services.</a></p>
+<p>🛍️ <a href="https://apiobuild.com/blog/create-an-online-store-for-free/"  target="_blank" >Read more: How does Chopin compare to website builders and ecommerce services.</a></p>
 <p>🛍️ <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/"  target="_blank" >中文版教學</a></p>
 <h2 id="step-1-create-catalog-google-sheet">Step 1: Create Catalog Google Sheet<a href="#step-1-create-catalog-google-sheet" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>You will need two google sheets (one served as catalog, another one for collecting order) created before setting up your store.</p>
@@ -298,12 +298,17 @@ if (!doNotTrack) {
 <li>Store Description <em>(optional)</em>: any information you&rsquo;d like to include. Up to 250 characters</li>
 <li>Store Background Image url  <em>(optional)</em>: add a background image</li>
 <li>Store Background Color  <em>(optional)</em>: you can easily select color from swatch or <a href="https://htmlcolorcodes.com/"  target="_blank" >hex code</a></li>
-<li>Contact and Social Plug-ins <em>(optional)</em>: currently we support email address, Facebook, Instagram, and Line</li>
 </ul>
-<p><strong>Tax and Shipping Set-up</strong></p>
+<p><strong>Contacts and Social Plug-ins</strong></p>
 <ul>
-<li>Tax Rate <em>(optional)</em>: if Tax Rate = 0, it will not be shown on the store page</li>
-<li>Shipping Options <em>(optional)</em>: you can setup multiple options and free shipping minimum</li>
+<li>Email: it will be your google email by default, but you can change it to a different email. If you&rsquo;ve authorized your email through <a href="https://telescope.apiobuild.com/app/post-it/"  target="_blank" >Post-it</a>, you can enable the automated email delivery feature by checking the  <code>Send Automated Order Confirmation</code> box</li>
+</ul>
+<p>📫 <a href="https://apiobuild.com/blog/introducing-post-it-email-automation-service/#tutorial"  target="_blank" >Check out this article to set up automated email confirmation with Post-it</a></p>
+<ul>
+<li>Facebook: full url to your facebook page (eg. <a href="https://www.facebook.com/apiobuild">https://www.facebook.com/apiobuild</a>)</li>
+<li>Phone Number: start with country code (US: +1) and without dash nor brackets (eg. +17181234567)</li>
+<li>Line: link to your line account or line group</li>
+<li>Instagram: instagram handle without @, not the full url (eg. apiobuild)</li>
 </ul>
 <p><strong>Payment Options</strong></p>
 <ul>
@@ -312,6 +317,11 @@ if (!doNotTrack) {
 <li>Venmo: provide your Venmo handle</li>
 </ul>
 <p><em>Note: We view Zelle and Venmo as manual payment methods, which means the payment would be handled outside of the Chopin checkout.</em></p>
+<p><strong>Tax and Shipping Set-up</strong></p>
+<ul>
+<li>Tax Rate <em>(optional)</em>: if Tax Rate = 0, it will not be shown on the store page</li>
+<li>Shipping Options <em>(optional)</em>: you can setup multiple options and free shipping minimum</li>
+</ul>
 <p><strong>Google Sheet API</strong></p>
 <ul>
 <li>Catalog Google Sheet url: copy and paste the authorized catalog sheet URL from <a href="#step-1-create-catalog-google-sheet" >Step 1</a></li>
@@ -352,7 +362,7 @@ if (!doNotTrack) {
 <h4 id="how-can-i-get-notification-when-someone-places-a-new-order">How can I get notification when someone places a new order?<a href="#how-can-i-get-notification-when-someone-places-a-new-order" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋At the top of your Order google sheet, click <code>Tools</code> and then <code>Notification Rules</code>. Select &ldquo;when&rdquo; you want to receive notifications. <a href="https://support.google.com/docs/answer/91588?co=GENIE.Platform%3DDesktop&amp;hl=en"  target="_blank" >Read more</a></p>
 <h4 id="how-can-i-shrink-my-store-url">How can I shrink my store URL?<a href="#how-can-i-shrink-my-store-url" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>🙋Try URL shortener services, like <a href="https://tinyurl.com/"  target="_blank" >tinyurl</a> or <a href="https://bitly.com/"  target="_blank" >Bitly</a> to make your store link easier to share.</p>
+<p>🙋Try URL shortener services, like <a href="https://bitly.com/"  target="_blank" >Bitly</a>  or <a href="https://tinyurl.com/"  target="_blank" >tinyurl</a> to make your store link easier to share.</p>
 <style>
 .center {
   margin-left:auto;

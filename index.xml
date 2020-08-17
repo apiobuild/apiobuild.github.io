@@ -6,10 +6,20 @@
     <description>Recent content on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introducing Post-It: Communication Automation Service</title>
+      <link>https://apiobuild.com/blog/introducing-post-it-email-automation-service/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/blog/introducing-post-it-email-automation-service/</guid>
+      <description>Announcing our new service: Post-it - a communication automation service. We wrap various communication APIs in one place. You can send pre-templated messages from your own email address and other social accounts over API (we currently support Gmail) with simple configuration. In this post, we will show you how you can use Post-it with Chopin (apio&#39;s online store creator) to send automated order confirmation.
+Use Case: Automated Order Confirmation Order confirmation is a great way to signal customers that the store has received their orders and remind customers if there&amp;rsquo;s any pending actions (for example: payment confirmation, delivery schedule, etc.</description>
+    </item>
     
     <item>
       <title>如何使用Chopin輕鬆建立網路商店</title>
@@ -46,7 +56,7 @@
       <guid>https://apiobuild.com/blog/how-to-create-web-store-with-apio/</guid>
       <description>Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&amp;rsquo;ll show you how you create an online store with google sheet using Waitress (apio&amp;rsquo;s google sheet API microservice). Try now and start selling your products online in just a few clicks.
 🛍️ Visit Demo Store
-🛍️Read more: How does Chopin compare to website builders and ecommerce services.</description>
+🛍️ Read more: How does Chopin compare to website builders and ecommerce services.</description>
     </item>
     
     <item>
