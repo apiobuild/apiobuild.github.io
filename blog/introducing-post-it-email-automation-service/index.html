@@ -251,22 +251,16 @@ Use Case: Automated Order Confirmation Order confirmation is a great way to sign
 <p><em>Note: More templates and action button customization coming soon. Feel free to <a href="https://apiobuild.com/forms/business/"  target="_blank" >drop us a message</a> if you have any genius idea to share!</em></p>
 <h3 id="tutorial">Tutorial<a href="#tutorial" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <p>Below we will show you how to automate the process of sending order notifications to your customers. In this example, we combine Post-it with <a href="https://telescope.apiobuild.com/app/chopin/configure"  target="_blank" >Chopin (apio&#39;s online store creator)</a> to communicate with shoppers.</p>
-<h4 id="step-1-authorize-gmail-account-on-post-it">Step 1: Authorize Gmail Account on Post-it<a href="#step-1-authorize-gmail-account-on-post-it" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>Go to <a href="https://telescope.apiobuild.com/app/post-it/configure"  target="_blank" >Post-it</a> on Telescope, apio&rsquo;s app platform. Follow the video instruction to authorize your gmail account.</p>
+<h4 id="step-1-grant-gmail-access-to-post-it">Step 1: Grant Gmail Access to Post-it<a href="#step-1-grant-gmail-access-to-post-it" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>Go to <a href="https://telescope.apiobuild.com/app/post-it/configure"  target="_blank" >Post-it</a> on Telescope, apio&rsquo;s app platform. Follow the instruction to grant apio access to send email on your behalf.</p>
 <ol>
 <li>Click <code>View Emails</code> and then the plus sign (+) to add an email</li>
 <li>Log in to your google account in the pop-up window</li>
-<li>Click <code>Advance</code> to expand more information</li>
-<li>Click <code>Go to apio (unsafe)</code></li>
-<li>Click <code>Allow</code></li>
+<li>Click <code>Allow</code> to grant apio access to send email on your behalf</li>
 </ol>
-<p><em>Note: This is a preview feature. We are currently working with google to get our app verified. The process may take up to 10 weeks. Your functionality will not be impacted.</em></p>
-<video width="100%" loop="true" autoplay="true" controls style="align: center">
-<source src="../../video/authorize-gmail.mp4" type="video/mp4" />
-</video>
 <h4 id="step-2-turn-on-email-confirmation-feature-on-chopin">Step 2: Turn on Email Confirmation Feature on Chopin<a href="#step-2-turn-on-email-confirmation-feature-on-chopin" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>Then, go to <a href="https://telescope.apiobuild.com/app/chopin/configure"  target="_blank" >Chopin</a> to turn on the email confirmation feature.</p>
-<p>In the <strong>Contacts and Social Plugings</strong> section, check <code>Send Automated Order Confirmation</code> box.</p>
+<p>In the <strong>Order Settings</strong> section, check <code>Send Order Confirmation</code> box.</p>
 <p>Now try place an order with your online store or <a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C117090713962028193035/7a8c0376-0fd0-4093-894f-e6d0200444d4"  target="_blank" > our demo store</a>, you will receive an email confirmation with order details and options to follow up with the owner!</p>
 <video width="100%" loop="true" autoplay="true" controls style="align: center">
 <source src="../../video/turn-on-post-it.mp4" type="video/mp4" />

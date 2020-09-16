@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  
+<title>How to Add Options to Products for a Chopin Store?</title>
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to Add Options to Products for a Chopin Store?" />
+<meta name="description" content="Are you selling products with multiple size and color options? We bring to you an advanced Chopin store that can showcase several product variations. We promise there won&rsquo;t be complex configuration. Just the same catalog google sheet with some more columns, you will be able to sell clothes with different style and size, handmade craft with various patterns, cupcakes with multiple flavors, etc. In this tutorial, we will show you how to set up your catalog google sheet to add multiple options to your products." />
+<meta property="og:description" content="Are you selling products with multiple size and color options? We bring to you an advanced Chopin store that can showcase several product variations. We promise there won&rsquo;t be complex configuration. Just the same catalog google sheet with some more columns, you will be able to sell clothes with different style and size, handmade craft with various patterns, cupcakes with multiple flavors, etc. In this tutorial, we will show you how to set up your catalog google sheet to add multiple options to your products." />
+
+<meta name="twitter:title" content="How to Add Options to Products for a Chopin Store?" />
+<meta name="twitter:twitter:description" content="Are you selling products with multiple size and color options? We bring to you an advanced Chopin store that can showcase several product variations. We promise there won&rsquo;t be complex configuration. Just the same catalog google sheet with some more columns, you will be able to sell clothes with different style and size, handmade craft with various patterns, cupcakes with multiple flavors, etc. In this tutorial, we will show you how to set up your catalog google sheet to add multiple options to your products." />
+
+
+<meta property="og:image" content="https://apiobuild.com/images/blog/option-tutorial.png" />
+<meta name="twitter:image" content="https://apiobuild.com/images/blog/option-tutorial.png" />
+ 
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@l1990790120" />
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+
+<meta property="og:site_name" content="https://apiobuild.com" />
+<meta property="og:url" content="https://apiobuild.com/blog/how-to-add-options-to-products/" />
+
+<link rel="icon" href="../../images/favicon.png" type="image/png" sizes="16x16" />
+<link href="../../css/fontawesome/fontawesome.css" rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="../../css/theme.css" />
+<link rel="stylesheet" href="../../css/custom.css" />
+<script defer src="../../js/fontawesome/all.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
+
+<script
+  data-ad-client="ca-pub-7028718131236613"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+  rel="stylesheet"
+/>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-71133003-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<meta property="og:title" content="How to Add Options to Products for a Chopin Store?" />
+<meta property="og:description" content="Are you selling products with multiple size and color options? We bring to you an advanced Chopin store that can showcase several product variations. We promise there won&rsquo;t be complex configuration. Just the same catalog google sheet with some more columns, you will be able to sell clothes with different style and size, handmade craft with various patterns, cupcakes with multiple flavors, etc. In this tutorial, we will show you how to set up your catalog google sheet to add multiple options to your products." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://apiobuild.com/blog/how-to-add-options-to-products/" />
+<meta property="article:published_time" content="2020-09-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-15T00:00:00+00:00" />
+
+</head>
+  <body><div class="container-fluid p-0">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="../../">
+      <img src="../../images/logo.png" alt="apio: microservices platform to create custom business softwares easily" width="60">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#product" title="">product</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#why-us" title="">why us</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#sign-up" title="">sign up</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#team" title="">team</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../blog" title="">Blog</a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      xfbml: true,
+      version: "v7.0",
+    });
+  };
+
+  (function (d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "facebook-jssdk");
+</script>
+
+
+<div
+  class="fb-customerchat"
+  attribution="setup_tool"
+  page_id="102431958225384"
+  theme_color="#1E96FC"
+></div>
+
+<nav class="navbar navbar-default"></nav>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    // nada
+  </div>
+</nav>
+
+
+<div class="container offset-md-2 col-md-8 py-5">
+  <div class="container py-5">
+    <h1>How to Add Options to Products for a Chopin Store?</h1>
+  </div>
+  <div class="container">
+    <p style="color: black;"> 2020-09-15 • 4 min read </p>
+  </div>
+  <div class="container py-1">
+
+<a href="../../tags/chopin" class="badge badge-light">chopin</a>
+     &nbsp; <a href="../../tags/e-commerce" class="badge badge-light">e-commerce</a>
+     &nbsp; <a href="../../tags/google-sheet" class="badge badge-light">google-sheet</a>
+     &nbsp; <a href="../../tags/product-variants" class="badge badge-light">product-variants</a>
+     &nbsp; <a href="../../tags/telescope" class="badge badge-light">telescope</a>
+     &nbsp; <a href="../../tags/tutorial" class="badge badge-light">tutorial</a>
+    
+</div>
+  <div class="container py-5">
+    
+    <div class="text-center py-3">
+      <img src="../../images/blog/option-tutorial.png" style="width: 60%" />
+    </div>
+    
+
+    <div>
+  <p>Are you selling products with multiple size and color options? We bring to you an advanced Chopin store that can showcase several product variations. We promise there won&rsquo;t be complex configuration. Just the <a href="http://localhost:1313/blog/how-to-create-web-store-with-apio/#step-1-create-catalog-google-sheet"  target="_blank" >same catalog google sheet</a> with some more columns, you will be able to sell clothes with different style and size, handmade craft with various patterns, cupcakes with multiple flavors, etc. In this tutorial, we will show you how to set up your catalog google sheet to add multiple options to your products.</p>
+<p>🛍️ <a href="https://telescope.apiobuild.com/flow/chopin-stores"  target="_blank" >Create your online store for free today!</a></p>
+<p>🛍️ <a href="http://localhost:1313/blog/create-an-online-store-for-free/#introducing-chopin"  target="_blank" >Read more: quick introduction to Chopin&#39;s features</a></p>
+<h2 id="a-demo-clothing-store">A Demo Clothing Store<a href="#a-demo-clothing-store" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>Visit our <a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C106308532747537725517/74c00629-b2a7-4e52-b58a-c35deefa8adf"  target="_blank" >demo boutique shop</a>! We have clothing with multiple colors and sizes as well as accessories with varied styles.</p>
+<video width="100%" loop="true" autoplay="true" controls style="align: center">
+<source src="../../video/boutique-overview.mp4" type="video/mp4" />
+</video>
+<h2 id="three-more-columns">Three More Columns<a href="#three-more-columns" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>The catalog google sheet for products with options is as same as the catalog google sheet used in our basic Chopin store, but with three more columns. Add these columns to your catalog google sheet.</p>
+<div class="row py-2">
+  <div class="table-box table-warning table-responsive px-2 py-2">
+    <table class="center">
+      <tbody>
+        <tr>
+          <td class="wide">option:size</td>
+          <td class="wide">option:color</td>
+          <td class="wide">option:name</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<h4 id="option-size">option:size<a href="#option-size" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>This field doesn&rsquo;t have to be <strong>sizes</strong> (S, M, L or 5.5, 6, 6.5), it can also be different <strong>styles</strong> or <strong>flavors</strong>. The text you put in to the cell will appear below the product image in the <strong>squared box</strong>.</p>
+<h4 id="option-color">option:color<a href="#option-color" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>There are two ways to indicate your product color, which will apprear in <strong>circle</strong>.</p>
+<ol>
+<li>Color Name: Just enter a color (i.e. red, blue, black, etc.) You can refer to <a href="https://htmlcolorcodes.com/color-names/"  target="_blank" >this list</a> to find names for more specific colors (i.e. lightskyblue, olive, and more).</li>
+<li>Hex Code: Enter the 6-digit code with # sign. For example, #556B2F for olive.</li>
+</ol>
+<h4 id="option-name">option:name<a href="#option-name" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>This field indicates how the products are grouped together. For example, a t-shirt comes with two colors - white and yellow. The <code>option:name</code> column for these two rows has to be the same (t-shirt), so the system can identify these <em>two products</em> are actually <em>two options of the same product</em>.</p>
+<p>Remember to follow the same rule of <code>name</code> field - unique name/id contains only dashes, underscores, and alphanumeric. No space is allowed.</p>
+<h2 id="example-a-clothing-store">Example: A Clothing Store<a href="#example-a-clothing-store" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>Now you understand what these three columns mean, let us show you how to set up a product with multiple options.</p>
+<p>For example, I&rsquo;d like to sell this wool coat that comes with two colors (pink, blue) and three sizes (S, M, L) for each color. I will need to create 6 rows of products (2 times 3):</p>
+<ul>
+<li>Pink Coat in S size</li>
+<li>Pink Coat in M size</li>
+<li>Pink Coat in L size</li>
+<li>Blue Coat in S size</li>
+<li>Blue Coat in M size</li>
+<li>Blue Coat in L size</li>
+</ul>
+<img src="../../images/blog/coat.png" class="post-img">
+<h4 id="name">name<a href="#name" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>All these products should have a unique <code>name</code>, so I decided to follow this naming guide: <code>coat-&lt;color&gt;-&lt;size&gt;</code>. Feel free to use sku numbers.</p>
+<img src="../../images/blog/step-1-name.png" class="post-img">
+<h4 id="nickname">nickname<a href="#nickname" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>I want the product title changes to the coresponding color, when customer tap different color options. So I put &ldquo;Wool Coat Pink&rdquo; in the <code>nickname</code> field for all sizes of pink coats, and &ldquo;Wool Coat Blue&rdquo; for all sizes of blue coats.</p>
+<img src="../../images/blog/step-2-nickname.png" class="post-img">
+<h4 id="option-size-1">option:size<a href="#option-size-1" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>There are three sizes available for each color, so I just input &ldquo;S, M, L&rdquo; for the
+<code>option:size</code> field of all pink coat rows. Repeat the same process for blue coats.</p>
+<img src="../../images/blog/step-3-size.png" class="post-img">
+<h4 id="option-color-1">option:color<a href="#option-color-1" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>I refer to <a href="https://htmlcolorcodes.com/color-names/"  target="_blank" >this color name list</a> and think &ldquo;pink&rdquo; and &ldquo;powderblue&rdquo; represent the pink and blue coats perfectly. So I input &ldquo;powderblue&rdquo; in the <code>option:color</code> field for all blue coats and &ldquo;pink&rdquo; for all pink coats respectively.</p>
+<img src="../../images/blog/step-4-color.png" class="post-img">
+<h4 id="option-name-1">option:name<a href="#option-name-1" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>In order to indicate these six rows of product are actually one product with six options. I put &ldquo;coat&rdquo; in the <code>option:name</code> field for all the coats.</p>
+<img src="../../images/blog/step-5-name.png" class="post-img">
+<h4 id="other-fields">Other Fields<a href="#other-fields" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>Now you can showcase different style and sizing for this wool coat!</p>
+<video width="80%" loop="true" autoplay="true" controls style="align: center">
+<source src="../../video/two-coat.mp4" type="video/mp4" />
+</video>
+<p>Then you can continue to finish the other fields (<code>description</code>, <code>product_url</code>, <code>image_url</code>, <code>price</code>, 	<code>max_qty</code>, <code>category</code>). You can keep them all the same or customize for each option depending on whether each option has varied description, image, price, etc.</p>
+<p>🛍️ <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio/#step-1-create-catalog-google-sheet"  target="_blank" >What does these fields mean?</a></p>
+<p><em>Note: Given the product layouts for single option and multiple options look a little different, we suggest you organize all single-option products together and vice versa.</em></p>
+<h2 id="summary">Summary<a href="#summary" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>With Chopin, it&rsquo;s really convenient to manage your product in google sheet. You might need to add product variants in bulk or duplicate it from exiting variants. You don&rsquo;t need to follow complex instructions, just copy and paste the data in your desired way! Try Chopin today and you will be amazed by how smart you are!</p>
+<p>Happy Selling! 💰</p>
+<style>
+.center {
+  margin-left:auto;
+  margin-right:auto;
+}
+.wide {
+  width: 5%;
+}
+.table-box{
+  color: black;
+  border-left: 6px solid #ffc107;
+}
+.post-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+</style><blockquote>
+</blockquote>
+
+</div>
+
+<style>
+  .hanchor {
+      font-size: 100%;
+      visibility: hidden;
+      color: silver;
+  }
+
+  h1:hover a,
+  h2:hover a,
+  h3:hover a,
+  h4:hover a {
+      visibility: visible;
+      text-decoration: none;
+  }
+</style>
+  </div>
+  
+    <div class="conatiner py-5">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "apiobuild-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+	
+</div>
+<footer class="footer">
+  <nav class="navbar sticky-bottom bg-dark">
+    <div class="container text-light font-weight-light">
+      <div class="row no-gutters w-100 justify-content-center py-4">
+        <div class="col w-100 text-center footer-socials">
+            
+<a href="https://www.facebook.com/apiobuild" target="_blank">
+  <i class="fab fa-facebook-square fa-lg" color="white"></i>
+</a>
+ 
+<a href="mailto:apiobuild@gmail.com">
+  <i class="fas fa-envelope fa-lg" color="white"></i>
+</a>
+ 
+<a href="https://www.linkedin.com/company/apiobuild/" target="_blank">
+  <i class="fab fa-linkedin fa-lg" color="white"></i>
+</a>
+ 
+<a href="https://instagram.com/apiobuild/" target="_blank">
+  <i class="fab fa-instagram fa-lg" color="white"></i>
+</a>
+ 
+<a href="https://www.youtube.com/channel/UC3qHVynCMuS4Y7regZRbrtA/" target="_blank">
+  <i class="fab fa-youtube fa-lg" color="white"></i>
+</a>
+ 
+
+        </div>
+      </div>
+      <div class="row no-gutters w-100 justify-content-center py-4">
+        <div class="col w-100 text-center">
+          Made by Lulu with ❤️ and 🍵 in 🗽
+        </div>
+    </div>
+    <div class="row no-gutters w-100">
+      <div class="col-12 col-md-6 text-md-left text-center">
+          <a class="text-light" href="../../privacy-policy">Privacy Policy</a> &
+          <a class="text-light" href="../../terms-of-service">Terms of Service</a>
+        </div>
+      <div class="col-12 col-md-6 text-md-right text-center">
+        <a
+          class="text-secondary"
+          href="https://stories.freepik.com/"
+          target="_blank"
+          >Illustration by Stories by Freepik</a
+        >
+      </div>
+    </div>
+  </nav>
+</footer>
+</body>
+</html>

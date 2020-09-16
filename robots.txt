@@ -7,6 +7,20 @@ Allow: /blog/
 
 Allow: /tags/chopin/
 
+Allow: /tags/e-commerce/
+
+Allow: /tags/google-sheet/
+
+Allow: /blog/how-to-add-options-to-products/
+
+Allow: /tags/product-variants/
+
+Allow: /tags/
+
+Allow: /tags/telescope/
+
+Allow: /tags/tutorial/
+
 Allow: /tags/email/
 
 Allow: /tags/email-automation/
@@ -19,10 +33,6 @@ Allow: /tags/order-confirmation/
 
 Allow: /tags/post-it/
 
-Allow: /tags/
-
-Allow: /tags/tutorial/
-
 Allow: /tags/use-case/
 
 Allow: /tags/documentation/
@@ -30,10 +40,6 @@ Allow: /tags/documentation/
 Allow: /tags/ecommerce/
 
 Allow: /tags/google/
-
-Allow: /tags/google-sheet/
-
-Allow: /tags/telescope/
 
 Allow: /tags/waitress/
 
