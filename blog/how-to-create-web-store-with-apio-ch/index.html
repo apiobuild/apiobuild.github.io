@@ -368,7 +368,8 @@ if (!doNotTrack) {
 </ol>
 <p><a href="https://apiobuild.com/blog/introducing-post-it-email-automation-service/"  target="_blank" >更多 Post-it 或訂單確認信的資訊...</a></p>
 <h4 id="如何取得手邊圖片的網址呢">如何取得手邊圖片的網址呢？<a href="#如何取得手邊圖片的網址呢" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>🙋可以使用圖片網址生成服務，像是 <a href="https://zh-tw.imgbb.com/"  target="_blank" >Imgbb</a> 或 <a href="https://img.onl/"  target="_blank" >img.onl</a> 。成功上傳圖片成功後，會得到一串 image url 或是 direct link</p>
+<p>🙋可以使用圖片網址生成服務，像是 <a href="https://zh-tw.imgbb.com/"  target="_blank" >Imgbb</a> 或 <a href="https://img.onl/"  target="_blank" >img.onl</a> 。成功上傳圖片成功後，會得到一串 <strong>image url</strong> 或是 <strong>direct link</strong> (請參考下圖)</p>
+<img src="../../images/blog/faq-image-link.png" class="post-img">
 <h4 id="為什麼圖片無法顯示">為什麼圖片無法顯示？<a href="#為什麼圖片無法顯示" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋檢查是否貼上完整的圖片網址，還是只是一個外部網頁連結。可以把連結放到瀏覽器網址列試試，如果只有顯示圖片，那就是正確可使用的圖片網址</p>
 <p>🙋把圖片換到圖片網址生成服務，再試試看</p>
@@ -378,10 +379,10 @@ if (!doNotTrack) {
 <p>🙋在商品目錄的 google sheet 中，按一下頂端的<code>工具</code> &gt; <code>通知規則</code>，選取您要接收通知的時間點，<a href="https://support.google.com/docs/answer/91588?co=GENIE.Platform%3DDesktop&amp;hl=zh-Hant"  target="_blank" >參考教學</a></p>
 <h4 id="如何縮網址">如何縮網址？<a href="#如何縮網址" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>🙋可以使用縮網址服務，例如 <a href="https://bitly.com/"  target="_blank" >Bitly</a> 或 <a href="https://tinyurl.com/"  target="_blank" >tinyurl</a></p>
-<h4 id="可以移動或新增訂單-google-sheet-中的欄位嗎">可以移動或新增訂單 google sheet 中的欄位嗎？<a href="#可以移動或新增訂單-google-sheet-中的欄位嗎" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>🙋添加欄位或是移動標題列中的欄位排序都不會影響資料的寫入喔！建議可以在網站流量小的時候操作</p>
+<h4 id="可以移動-新增或隱藏訂單-google-sheet-中的欄位嗎">可以移動、新增或隱藏訂單 google sheet 中的欄位嗎？<a href="#可以移動-新增或隱藏訂單-google-sheet-中的欄位嗎" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<p>🙋添加、隱藏欄位或是移動標題列中的欄位排序都不會影響資料的寫入，也可以自由變更欄位顯示顏色！注意：<code>order_number</code> 一定要是第一個欄位，不能移動或隱藏。建議在網站流量小的時候操作。</p>
 <h4 id="不想看到過去的訂單或是不會再製造的產品怎麼辦">不想看到過去的訂單或是不會再製造的產品怎麼辦？<a href="#不想看到過去的訂單或是不會再製造的產品怎麼辦" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>🙋不建議刪掉任何資料，這些都是之後分析顧客喜好或是成本收益的寶貴資料。可以選擇隱藏過去訂單那幾列 (選取列 &gt; 右鍵 &gt; <code>隱藏列</code>) 或是隱藏某幾項產品 (參考 <a href="#step-1-%e6%96%b0%e5%a2%9e%e5%95%86%e5%93%81%e7%9b%ae%e9%8c%84-google-sheet" >步驟1</a> 的進階選項)</p>
+<p>🙋不建議刪掉任何資料，這些都是之後分析顧客喜好或是成本收益的寶貴資料。可以選擇隱藏過去訂單那幾列 (選取列 &gt; 右鍵 &gt; <code>隱藏列</code>) 或是隱藏某幾項產品 (參考 <a href="#step-1-%e6%96%b0%e5%a2%9e%e5%95%86%e5%93%81%e7%9b%ae%e9%8c%84-google-sheet" >步驟1</a> 的進階選項)。注意：<code>order_number</code> 一定要是第一個欄位，不能移動或隱藏。</p>
 <style>
 .center {
   margin-left:auto;

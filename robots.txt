@@ -7,19 +7,33 @@ Allow: /blog/
 
 Allow: /tags/chopin/
 
-Allow: /tags/e-commerce/
+Allow: /tags/documentation/
+
+Allow: /tags/ecommerce/
+
+Allow: /tags/google/
 
 Allow: /tags/google-sheet/
 
-Allow: /blog/how-to-add-options-to-products/
-
-Allow: /tags/product-variants/
+Allow: /blog/troubleshoot-chopin-store/
 
 Allow: /tags/
 
 Allow: /tags/telescope/
 
 Allow: /tags/tutorial/
+
+Allow: /tags/waitress/
+
+Allow: /tags/website/
+
+Allow: /blog/how-to-configure-chopin-store/
+
+Allow: /tags/e-commerce/
+
+Allow: /blog/how-to-add-options-to-products/
+
+Allow: /tags/product-variants/
 
 Allow: /tags/email/
 
@@ -34,16 +48,6 @@ Allow: /tags/order-confirmation/
 Allow: /tags/post-it/
 
 Allow: /tags/use-case/
-
-Allow: /tags/documentation/
-
-Allow: /tags/ecommerce/
-
-Allow: /tags/google/
-
-Allow: /tags/waitress/
-
-Allow: /tags/website/
 
 Allow: /blog/how-to-create-web-store-with-apio-ch/
 
