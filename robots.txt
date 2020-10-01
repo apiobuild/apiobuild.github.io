@@ -91,6 +91,8 @@ Allow: /tags/marketing/
 
 Allow: /blog/collect-email-addresses-without-email-marketing-tools/
 
+Allow: /pricing/
+
 Allow: /forms/
 
 Allow: /privacy-policy/
