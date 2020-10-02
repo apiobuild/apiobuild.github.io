@@ -184,19 +184,25 @@ Read more: Why you don’t need email marketing tools (yet) to collect emails?" 
   <div class="container">
     <p style="color: black;"> 2020-06-26 • 3 min read </p>
   </div>
-  <div class="container py-1">
+  <div class="container py-1 tags">
 
 <a href="../../tags/email" class="badge badge-light">email</a>
-     &nbsp; <a href="../../tags/google" class="badge badge-light">google</a>
-     &nbsp; <a href="../../tags/google-sheet" class="badge badge-light">google-sheet</a>
-     &nbsp; <a href="../../tags/marketing" class="badge badge-light">marketing</a>
-     &nbsp; <a href="../../tags/sheets" class="badge badge-light">sheets</a>
-     &nbsp; <a href="../../tags/telescope" class="badge badge-light">telescope</a>
-     &nbsp; <a href="../../tags/tutorial" class="badge badge-light">tutorial</a>
-     &nbsp; <a href="../../tags/waitress" class="badge badge-light">waitress</a>
-     &nbsp; <a href="../../tags/website" class="badge badge-light">website</a>
-    
+   &nbsp; <a href="../../tags/google" class="badge badge-light">google</a>
+   &nbsp; <a href="../../tags/google-sheet" class="badge badge-light">google-sheet</a>
+   &nbsp; <a href="../../tags/marketing" class="badge badge-light">marketing</a>
+   &nbsp; <a href="../../tags/sheets" class="badge badge-light">sheets</a>
+   &nbsp; <a href="../../tags/telescope" class="badge badge-light">telescope</a>
+   &nbsp; <a href="../../tags/tutorial" class="badge badge-light">tutorial</a>
+   &nbsp; <a href="../../tags/waitress" class="badge badge-light">waitress</a>
+   &nbsp; <a href="../../tags/website" class="badge badge-light">website</a>
+  
 </div>
+
+<style>
+  .tags {
+    height: 100px
+  }
+</style>
   <div class="container py-5">
     
     <div class="text-center py-3">
@@ -294,7 +300,7 @@ Read more: Why you don’t need email marketing tools (yet) to collect emails?" 
  <span style="color:#2c5dcd;font-weight:bold">let</span> token <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;Bearer &lt;your telescope token&gt;&#34;</span>
  <span style="color:#2c5dcd;font-weight:bold">let</span> url <span style="color:#2c5dcd">=</span>
 <span style="color:#0c6">&#34;https://trampoline.apiobuild.com/router/waitress/gsheets/&lt;your google sheet id&gt;&#34;</span>;
- 
+
  <span style="color:#2c5dcd;font-weight:bold">function</span> submitForm() {
    <span style="color:#2c5dcd;font-weight:bold">var</span> http <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">new</span> XMLHttpRequest();
    http.open(<span style="color:#0c6">&#34;POST&#34;</span>, url, <span style="color:#2c5dcd;font-weight:bold">true</span>);

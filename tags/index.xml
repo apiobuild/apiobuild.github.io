@@ -6,10 +6,37 @@
     <description>Recent content in Tags on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>documentation</title>
+      <link>https://apiobuild.com/tags/documentation/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/documentation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>engineering</title>
+      <link>https://apiobuild.com/tags/engineering/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pricing</title>
+      <link>https://apiobuild.com/tags/pricing/</link>
+      <pubDate>Wed, 30 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/pricing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>chopin</title>
@@ -17,15 +44,6 @@
       <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/chopin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>documentation</title>
-      <link>https://apiobuild.com/tags/documentation/</link>
-      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/documentation/</guid>
       <description></description>
     </item>
     

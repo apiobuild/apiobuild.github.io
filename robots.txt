@@ -5,9 +5,17 @@ Allow: /
 
 Allow: /blog/
 
-Allow: /tags/chopin/
-
 Allow: /tags/documentation/
+
+Allow: /tags/engineering/
+
+Allow: /tags/pricing/
+
+Allow: /tags/
+
+Allow: /blog/whats-api-request/
+
+Allow: /tags/chopin/
 
 Allow: /tags/ecommerce/
 
@@ -16,8 +24,6 @@ Allow: /tags/google/
 Allow: /tags/google-sheet/
 
 Allow: /blog/troubleshoot-chopin-store/
-
-Allow: /tags/
 
 Allow: /tags/telescope/
 
