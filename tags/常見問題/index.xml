@@ -6,18 +6,20 @@
     <description>Recent content in 常見問題 on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>如何使用Chopin輕鬆建立網路商店</title>
-      <link>https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/</link>
-      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <title>Chopin 網路商店設定常見問題</title>
+      <link>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin by apio&lt;/a&gt; 是一個簡單的靜態網路商店生成器，讓你不用會寫程式，只要幾鍵設定即可創建一家網路商店。且只要連結 Google Sheet，即可輕鬆上架商品跟管理訂單。這篇文章我們會教你如何使用 Google Sheet 搭配 &lt;a href=&#34;https://telescope.apiobuild.com/app/waitress&#34;  target=&#34;_blank&#34; &gt;Waitress (apio&amp;#39;s google sheet API)&lt;/a&gt; 建立自己的網站。跟著我們的教學，開一間自己的網路商店吧！&lt;/p&gt;</description>
+      <guid>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</guid>
+      <description>&lt;p&gt;設定 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 網路商店的過程中，如果碰到一些小難題、看到錯誤訊息或是哭哭的派大星，不要緊張，可以參考以下常見問題！&lt;/p&gt;
+&lt;p&gt;如果還是無法解決的話，歡迎直接聯絡我們！可以&lt;a href=&#34;mailto:apiobuild@gmail.com&#34;&gt;寫信&lt;/a&gt;或是使用 &lt;a href=&#34;https://m.me/apiobuild&#34;  target=&#34;_blank&#34; &gt;Facebook 訊息&lt;/a&gt;!&lt;/p&gt;
+&lt;img src=&#34;../../images/blog/chopin-error.png&#34; class=&#34;post-img&#34;&gt;</description>
     </item>
     
   </channel>

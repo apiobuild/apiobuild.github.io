@@ -82,8 +82,8 @@ if (!doNotTrack) {
 <meta property="og:description" content="After creating a Chopin store, you now need to update the catalog google sheet with your own product information. You can also change the store appearance and update various setting (social accounts, discount rule, free shipping threshold, etc.) in Chopin app. In this article, we will breakdown all the google sheet fields as well as explain customization settings. Let us help you create a store tailored for your business needs!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://apiobuild.com/blog/how-to-configure-chopin-store/" />
-<meta property="article:published_time" content="2020-09-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-09-24T00:00:00+00:00" />
+<meta property="article:published_time" content="2020-07-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-09T00:00:00+00:00" />
 
 </head>
   <body><div class="container-fluid p-0">
@@ -178,7 +178,7 @@ if (!doNotTrack) {
     <h1>How to Configure Your Chopin Store</h1>
   </div>
   <div class="container">
-    <p style="color: black;"> 2020-09-24 • 6 min read </p>
+    <p style="color: black;"> 2020-07-09 • 6 min read </p>
   </div>
   <div class="container py-1 tags">
 
@@ -228,7 +228,7 @@ if (!doNotTrack) {
 <p>👗 <a href="https://apiobuild.com/blog/how-to-add-options-to-products/"  target="_blank" >Check out this article if you want to sell products with multiple options</a></p>
 <p><em>Note: There should not be empty line(s) between rows.</em></p>
 <img src="../../images/blog/catalog-sample.png" class="post-img">
-<h2 id="configure-your-store">Configure Your Store<a href="#configure-your-store" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<h2 id="configure-your-store-in-chopin-app">Configure Your Store (in Chopin app)<a href="#configure-your-store-in-chopin-app" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>Customize your store in <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> app, where you can change the layout of your online store or configure various functions. You can update this information anytime (except store name and waitress APIs) and the updates will be reflected in real-time.</p>
 <p>Click <i class="fas fa-save"></i> (save sign) to save your updates. Click <i class="fas fa-trash-alt"></i> (trash can sign) to delete the store completely.</p>
 <h3 id="store-information">Store Information<a href="#store-information" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
@@ -241,8 +241,9 @@ if (!doNotTrack) {
 <h3 id="layout">Layout<a href="#layout" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
 <li>Store Background Image url  <em>(optional)</em>: Add a background image.</li>
-<li>Store Background Color  <em>(optional)</em>: You can easily select color from swatch or enter a<a href="https://htmlcolorcodes.com/"  target="_blank" >hex code</a>.</li>
+<li>Store Background Color <em>(optional)</em>: You can easily select color from swatch or enter a<a href="https://htmlcolorcodes.com/"  target="_blank" >hex code</a>.</li>
 <li>Remove Description Whiteout: To remove the white background of the store description box.</li>
+<li>Message to show when the product has max_qty = 0 <em>(optional)</em>: In catalog google sheet, when the <code>max_qty</code> = 0 that product will show <code>Coming Soon!</code>. A few other alternatives can be <code>Out of Stock</code>, <code>Back in October</code> etc.</li>
 </ul>
 <h3 id="order-settings">Order Settings<a href="#order-settings" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
@@ -257,7 +258,7 @@ if (!doNotTrack) {
 <li>Add Optional Note Section: To add a field for customers to input any notes.
 <em>We recommend using this field to collect customization details (i.e. message to be put on the cake) rather than using as a communication channel</em></li>
 <li>Set Order Minimum: Enter a dollar amount. Your customers&rsquo; purchase has to achieve this minimum amount to be able to submit the order.</li>
-<li>Send Order Confirmation: Enable this feature, so customers can receive a confirmation email after placing an order successfully. If you didn&rsquo;t grant us access to send email on your behalf when <a href="#step-4-add-email-confirmation" >creating store</a>, you can do it in <a href="https://telescope.apiobuild.com/app/post-it/"  target="_blank" >Post-it app</a>.</li>
+<li>Send Order Confirmation: Enable this feature, so customers can receive a confirmation email after placing an order successfully. If you didn&rsquo;t grant us access to send email on your behalf when <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio/#step-4-add-email-confirmation"  target="_blank" >creating store</a>, you can do it in <a href="https://telescope.apiobuild.com/app/post-it/"  target="_blank" >Post-it app</a>.</li>
 </ul>
 <p>📫 <a href="https://apiobuild.com/blog/introducing-post-it-email-automation-service/#tutorial"  target="_blank" >Check out this article to learn more about the automated email confirmation feature and Post-it</a></p>
 <h3 id="contact-information">Contact Information<a href="#contact-information" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
@@ -273,11 +274,12 @@ if (!doNotTrack) {
 <ul>
 <li>Zelle: Provide your Zelle email or mobile number.</li>
 <li>Venmo: Provide your Venmo handle.</li>
+<li>e-transfer: Provide your E-Transfer email or mobile number.</li>
 <li>PayPal: <a href="https://apiobuild.com/forms/business/"  target="_blank" >Contact us</a> and let us help you integrate your <a href="https://www.paypal.com/us/business"  target="_blank" >PayPal business account</a>.</li>
 <li>Pay at Pick-Up: Check this box if you wish to have a button, named &ldquo;Pay at Pick-up&rdquo;.</li>
 </ul>
 <p>If you don&rsquo;t add any payment options, there will be a <strong>&ldquo;Submit Order&rdquo;</strong> button. You can enable as many payment options as you&rsquo;d like. They will replace the &ldquo;Submit Order&rdquo; button. If you don&rsquo;t see your preferred payment methods, <a href="https://apiobuild.com/forms/business/"  target="_blank" >drop us a message</a>!</p>
-<p><em>Note: We view Zelle and Venmo as manual payment methods, which means the payment would be handled outside of the Chopin checkout.</em></p>
+<p><em>Note: We view Zelle, Venmo, and E-Transfer as manual payment methods, which means the payment would be handled outside of the Chopin checkout.</em></p>
 <h3 id="shipping">Shipping<a href="#shipping" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
 <li>Shipping Option: You can setup multiple options and the coresponding shipping cost.</li>
@@ -305,7 +307,6 @@ if (!doNotTrack) {
     max-width: 100%;
 }
 </style>
-
 </div>
 
 <style>

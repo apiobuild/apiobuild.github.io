@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  
+<title>如何設定 Chopin 網路商店</title>
+<meta property="og:type" content="article" />
+<meta property="og:title" content="如何設定 Chopin 網路商店" />
+<meta name="description" content="建立了 Chopin 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！" />
+<meta property="og:description" content="建立了 Chopin 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！" />
+
+<meta name="twitter:title" content="如何設定 Chopin 網路商店" />
+<meta name="twitter:twitter:description" content="建立了 Chopin 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！" />
+
+
+<meta property="og:image" content="https://apiobuild.com/images/blog/setting.png" />
+<meta name="twitter:image" content="https://apiobuild.com/images/blog/setting.png" />
+ 
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@l1990790120" />
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+
+<meta property="og:site_name" content="https://apiobuild.com" />
+<meta property="og:url" content="https://apiobuild.com/blog/how-to-configure-chopin-store-zh/" />
+
+<link rel="icon" href="https://apiobuild.com/images/favicon.png" type="image/png" sizes="16x16" />
+<link href="https://apiobuild.com/css/fontawesome/fontawesome.css" rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="https://apiobuild.com/css/theme.css" />
+<link rel="stylesheet" href="https://apiobuild.com/css/custom.css" />
+<script defer src="https://apiobuild.com/js/fontawesome/all.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
+
+<script
+  data-ad-client="ca-pub-7028718131236613"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+  rel="stylesheet"
+/>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-71133003-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<meta property="og:title" content="如何設定 Chopin 網路商店" />
+<meta property="og:description" content="建立了 Chopin 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://apiobuild.com/blog/how-to-configure-chopin-store-zh/" />
+<meta property="article:published_time" content="2020-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-05T00:00:00+00:00" />
+
+</head>
+  <body><div class="container-fluid p-0">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="../../">
+      <img src="../../images/logo.png" alt="apio: microservices platform to create custom business softwares easily" width="60">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#product" title="">product</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#pricing" title="">pricing</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#why-us" title="">why us</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#sign-up" title="">sign up</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../#team" title="">team</a>
+        </li>
+        
+        <li
+          class="navbar-item ">
+          <a class="nav-link text-capitalize" href="../../blog" title="">Blog</a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      xfbml: true,
+      version: "v7.0",
+    });
+  };
+
+  (function (d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "facebook-jssdk");
+</script>
+
+
+<div
+  class="fb-customerchat"
+  attribution="setup_tool"
+  page_id="102431958225384"
+  theme_color="#1E96FC"
+></div>
+
+<nav class="navbar navbar-default"></nav>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    // nada
+  </div>
+</nav>
+
+
+<div class="container offset-md-2 col-md-8 py-5">
+  <div class="container py-5">
+    <h1>如何設定 Chopin 網路商店</h1>
+  </div>
+  <div class="container">
+    <p style="color: black;"> 2020-08-05 • 2 min read </p>
+  </div>
+  <div class="container py-1 tags">
+
+<a href="../../tags/chopin" class="badge badge-light">chopin</a>
+   &nbsp; <a href="../../tags/documentation" class="badge badge-light">documentation</a>
+   &nbsp; <a href="../../tags/ecommerce" class="badge badge-light">ecommerce</a>
+   &nbsp; <a href="../../tags/google" class="badge badge-light">google</a>
+   &nbsp; <a href="../../tags/google-sheet" class="badge badge-light">google-sheet</a>
+   &nbsp; <a href="../../tags/telescope" class="badge badge-light">telescope</a>
+   &nbsp; <a href="../../tags/tutorial" class="badge badge-light">tutorial</a>
+   &nbsp; <a href="../../tags/waitress" class="badge badge-light">waitress</a>
+   &nbsp; <a href="../../tags/website" class="badge badge-light">website</a>
+   &nbsp; <a href="../../tags/%e6%95%99%e5%ad%b8" class="badge badge-light">教學</a>
+   &nbsp; <a href="../../tags/%e7%b6%b2%e8%b7%af%e9%96%8b%e5%ba%97" class="badge badge-light">網路開店</a>
+  
+</div>
+
+<style>
+  .tags {
+    height: 100px
+  }
+</style>
+  <div class="container py-5">
+    
+    <div class="text-center py-3">
+      <img src="../../images/blog/setting.png" style="width: 60%" />
+    </div>
+    
+
+    <div>
+  <p>建立了 <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！</p>
+<p>🛍️ <a href="https://apiobuild.com/blog/create-an-online-store-for-free-ch/"  target="_blank" >還沒有 Chopin Store? 跟著這篇教學建立商店</a></p>
+<p>🛍️ <a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/"  target="_blank" >參考常見問題</a></p>
+<h2 id="更新商品目錄">更新商品目錄<a href="#更新商品目錄" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>如果你跟著我們的<a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch"  target="_blank" >教學</a>，並且使用提供的範例資料建立商店，你的商店目前應該會長的像<a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C106308532747537725517/3b99cc9c-6c28-45dd-9786-8521fe0a2e47"  target="_blank" >這樣</a>。</p>
+<p>我相信你應該捨不得賣出 Cool Cat 和 Funny Cat，接下來請按照以下說明更新商品目錄 Google Sheet，更新過程中內容會即時反映在網路商店。</p>
+<p>各儲存格對應的內容：</p>
+<ul>
+<li>name: 每個產品的獨立編碼 (product id)，只能使用<strong>英文、數字、連接號(-)或底線(＿)，不能有空格</strong></li>
+<li>nickname: 顯示在網站的產品名稱，支援任何語言文字或表情符號</li>
+<li>description <em>(非必須)</em>: 產品敘述</li>
+<li>product_url <em>(非必須)</em>: 產品外部連結</li>
+<li>image_url: 產品圖片網址或 YouTube 連結。每個產品可以有多個影像網址，以逗號相隔 (,) <a href="#%e5%a6%82%e4%bd%95%e5%8f%96%e5%be%97%e6%89%8b%e9%82%8a%e5%9c%96%e7%89%87%e7%9a%84%e7%b6%b2%e5%9d%80%e5%91%a2" >*如何取得圖片網址</a></li>
+<li>price: 產品價錢，不需輸入金錢符號 ($)</li>
+<li>max_qty: 每個顧客可購買的上限，<strong>如果設定 max_qty 為0, 會顯示 Coming Soon</strong></li>
+<li>category <em>(非必須)</em>: 不同的產品分類。每個產品可以有多個分類，以逗號相隔 (,)</li>
+<li>hide: 在這格打上 &ldquo;x&rdquo; (或是其他字母符號)，該產品即不會顯示在網站上</li>
+<li>no_tax: 在這格打上 &ldquo;x&rdquo; (或是其他字母符號)，該產品不會被計算稅</li>
+</ul>
+<p><em>注意：每列之間不得穿插空白列</em></p>
+<p>👗 <a href="https://apiobuild.com/blog/how-to-add-options-to-products/"  target="_blank" >可以參考這篇文章設定有多個選項的產品</a></p>
+<p>範例：
+<img src="../../images/blog/catalog-sample.png" class="post-img"></p>
+<h2 id="客製化你的商店">客製化你的商店<a href="#客製化你的商店" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>可以從 <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin app</a> 進到商店的設定頁面，除了商店名稱與 Waitress APIs這兩個欄位外，其他設定都可以隨時更改，存檔後更新網路商店頁面即會看到更新內容。</p>
+<p>點擊 <i class="fas fa-save"></i> (儲存符號) 存檔更新內容。點擊 <i class="fas fa-trash-alt"></i> (垃圾桶符號) 可刪除這間網店（刪除後無法回復）。</p>
+<h3 id="商店資訊-store-information">商店資訊 (Store Information)<a href="#商店資訊-store-information" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<ul>
+<li>Store Name: 網路商店的名稱，<a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/#step-1-%e5%bb%ba%e7%ab%8b%e6%96%b0%e5%95%86%e5%ba%97"  target="_blank" >建立商店</a>時已提供，無法更改。</li>
+<li>Logo url <em>(非必須)</em>: logo 圖片網址。 <a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/#%e5%a6%82%e4%bd%95%e5%8f%96%e5%be%97%e6%89%8b%e9%82%8a%e5%9c%96%e7%89%87%e7%9a%84%e7%b6%b2%e5%9d%80%e5%91%a2"  target="_blank" >*什麼是圖片網址？</a></li>
+<li>Store Description <em>(非必須)</em>: 商店敘述，最多250字。</li>
+<li>Announcement <em>(非必須)</em>: 此通知會出現在頁面最上方，每次出現約5秒，可以拿來放特價訊息或其他通知。</li>
+</ul>
+<h3 id="外觀-layout">外觀 (Layout)<a href="#外觀-layout" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<ul>
+<li>Store Background Image url <em>(非必須)</em>: 背景圖案連結。</li>
+<li>Store Background Color <em>(非必須)</em>: 可以從調色盤選取顏色或輸入 <a href="https://htmlcolorcodes.com/"  target="_blank" >hex code</a>。</li>
+<li>Remove Description Whiteout: 移除商片敘述的半透明白色背景。</li>
+<li>Message to show when the product has max_qty = 0 <em>(非必須)</em>: 當商品目錄中的<code>max_qty</code> = 0，該商品在網站上會顯示 <code>Coming Soon!</code>。此欄位供你自由填入適合的字樣，例如 <code>Out of Stock</code>, <code>Back in October</code> 等等。</li>
+</ul>
+<h3 id="訂單設定-order-settings">訂單設定 (Order Settings)<a href="#訂單設定-order-settings" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<ul>
+<li>Required Input in Order Form: 預設只有規定顧客一定要填寫 Email 才能成立訂單，可以在這裡選擇其他必填欄位，包括顧客名、聯絡電話和地址。
+<ul>
+<li>Customer Name</li>
+<li>Customer Phone Number</li>
+<li>Customer Address</li>
+</ul>
+</li>
+<li>Remove Customer Address Field: 如果你販賣虛擬商品或是只提供取貨選項，可以移除訂單中的地址欄位。</li>
+<li>Add Optional Note Section: 可以新增一欄位供顧客填寫備註資訊。
+<em>我們建議你請客人於此提供客製商品資訊（像是蛋糕上的糖霜字樣），而非用來與客人聯繫寄送細節</em></li>
+<li>Set Order Minimum: 輸入顧客成立訂單的最低消費金額。</li>
+<li>Send Order Confirmation: 點選此功能，顧客將在下單成功後收到 email 確認信。如果你沒有在建立商店時提供<a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/#step-4-%e6%96%b0%e5%a2%9e-email-%e7%a2%ba%e8%aa%8d%e4%bf%a1%e5%8a%9f%e8%83%bd"  target="_blank" >此權限</a>，可以到 <a href="https://telescope.apiobuild.com/app/post-it/"  target="_blank" >Post-it app</a> 另行設定。</li>
+</ul>
+<p>📫 <a href="https://apiobuild.com/blog/introducing-post-it-email-automation-service/#tutorial"  target="_blank" >了解更多關於 Post-It 與自動確認信</a></p>
+<h3 id="聯絡方式與社群媒體-contact-information">聯絡方式與社群媒體 (Contact Information)<a href="#聯絡方式與社群媒體-contact-information" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<ul>
+<li>Email: 預設是你登入使用的google email，但也可以更改。</li>
+<li>Facebook: facebook專頁的網址 (例：https://www.facebook.com/apiobuild)</li>
+<li>電話: 請包含＋號和國碼(美國即為 +1)，不用輸入連接號(-)或括號 (例：+17181234567)</li>
+<li>Line: line 的個人或群組專屬網址，可參考<a href="https://www.pkstep.com/archives/5261"  target="_blank" >這篇教學</a></li>
+<li>Instagram: instagram 的帳號非網址，不用輸入 @ (例：apiobuild)</li>
+<li>Phone Number: 電話號碼前請加國碼(美加: +1)，不需加 其他符號分隔 (例： +17181234567)</li>
+</ul>
+<p>點選 <i class="fas fa-plus"></i> (加號) 添加聯絡方式。如果需要編輯，只要點選同一個聯絡方式，輸入新的內容後再按加號，即會更新。也可以按 <i class="fas fa-minus"></i> (減號) 刪除資訊。</p>
+<h3 id="付款方式-payment-methods">付款方式 (Payment Methods)<a href="#付款方式-payment-methods" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<ul>
+<li>Zelle: 填入 Zelle 帳號（電子信箱或電話號碼）</li>
+<li>Venmo: 填入 Venmo 帳號</li>
+<li>e-transfer: 填入 e-transfer 帳號</li>
+<li>PayPal: 如果你打算使用 <a href="https://www.paypal.com/us/business"  target="_blank" >PayPal business account</a>讓顧客付款，<a href="https://apiobuild.com/forms/business/"  target="_blank" >請聯絡我們</a></li>
+<li>Pay at Pick-Up: 勾選此選項，可以同時出現其他付款方式與店取選項。</li>
+</ul>
+<p>如果沒有新增任何付款方式，預設會是以 &ldquo;Submit Order&rdquo; 按鈕送出訂單。可以添加兩樣以上的付款方式。如果有其他付款方式的需求，歡迎<a href="https://apiobuild.com/forms/business/"  target="_blank" >聯絡我們</a>！</p>
+<p><em>注意：Zelle, Venmo, E-Transfer 屬於手動付款，結帳會是在 Chopin 網路商店外線下發生</em></p>
+<h3 id="運費-shipping">運費 (Shipping)<a href="#運費-shipping" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<ul>
+<li>Shipping Option: 可以設立多個運費選項，點選 <i class="fas fa-plus"></i> (加號) 新增。</li>
+<li>Free Shiping: 可設定免運金額標準。</li>
+<li>Delivery Zipcode: 如果你只配送到某些區域，可在此輸入該區域 zipcode 串並以逗號 (,) 分開。顧客填寫地址時，若 zipcode 不在這些範圍時即無法成立訂單。目前只支援美國地址。</li>
+</ul>
+<h3 id="折扣-discount">折扣 (Discount)<a href="#折扣-discount" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<ul>
+<li>Discount Type: 可以選擇要滿額折價 (dollar) 或是打折 (percentage)。</li>
+<li>Discount Category: 如果只想針對某分類產品打折，可以在此填入商品目錄中的分類 (category)。</li>
+<li>Discount Threshold: 設定購物須滿多少額度才享有折扣。</li>
+</ul>
+<h3 id="稅-tax">稅 (Tax)<a href="#稅-tax" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<p>填入你所在城市的消費稅率。如果將 Tax Rate 設為0，即不會顯示稅率。</p>
+<h3 id="waitress-api">Waitress API<a href="#waitress-api" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<p>這些是建立商店時自動填入的，如果需要將商品目錄或訂單 google sheet 更新為新試算表，請<a href="mailto:apiobuild@gmail.com">聯絡我們</a>。</p>
+<h2 id="總結">總結<a href="#總結" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
+<p>新功能持續開發中，並會更新於此篇文章中。如果你有建議或是想客製部分功能，歡迎<a href="mailto:apiobuild@gmail.com">寫信</a>或是使用 <a href="https://m.me/apiobuild"  target="_blank" >Facebook 訊息</a>聯絡我們。不論預算大小， apio 團隊致力於為您提供合適的客製軟體服務 🚀</p>
+<style>
+.post-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+</style>
+</div>
+
+<style>
+  .hanchor {
+      font-size: 100%;
+      visibility: hidden;
+      color: silver;
+  }
+
+  h1:hover a,
+  h2:hover a,
+  h3:hover a,
+  h4:hover a {
+      visibility: visible;
+      text-decoration: none;
+  }
+</style>
+  </div>
+  
+    <div class="conatiner py-5">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "apiobuild-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+	
+</div>
+<footer class="footer">
+  <nav class="navbar sticky-bottom bg-dark">
+    <div class="container text-light font-weight-light">
+      <div class="row no-gutters w-100 justify-content-center py-4">
+        <div class="col w-100 text-center footer-socials">
+            
+<a href="https://www.facebook.com/apiobuild" target="_blank">
+  <i class="fab fa-facebook-square fa-lg" color="white"></i>
+</a>
+ 
+<a href="mailto:apiobuild@gmail.com">
+  <i class="fas fa-envelope fa-lg" color="white"></i>
+</a>
+ 
+<a href="https://www.linkedin.com/company/apiobuild/" target="_blank">
+  <i class="fab fa-linkedin fa-lg" color="white"></i>
+</a>
+ 
+<a href="https://instagram.com/apiobuild/" target="_blank">
+  <i class="fab fa-instagram fa-lg" color="white"></i>
+</a>
+ 
+<a href="https://www.youtube.com/channel/UC3qHVynCMuS4Y7regZRbrtA/" target="_blank">
+  <i class="fab fa-youtube fa-lg" color="white"></i>
+</a>
+ 
+
+        </div>
+      </div>
+      <div class="row no-gutters w-100 justify-content-center py-4">
+        <div class="col w-100 text-center">
+          Made by Lulu with ❤️ and 🍵 in 🗽
+        </div>
+    </div>
+    <div class="row no-gutters w-100">
+      <div class="col-12 col-md-6 text-md-left text-center">
+          <a class="text-light" href="../../privacy-policy">Privacy Policy</a> &
+          <a class="text-light" href="../../terms-of-service">Terms of Service</a>
+        </div>
+      <div class="col-12 col-md-6 text-md-right text-center">
+        <a
+          class="text-secondary"
+          href="https://stories.freepik.com/"
+          target="_blank"
+          >Illustration by Stories by Freepik</a
+        >
+      </div>
+    </div>
+  </nav>
+</footer>
+</body>
+</html>

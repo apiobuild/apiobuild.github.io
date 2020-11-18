@@ -6,10 +6,30 @@
     <description>Recent content in 教學 on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chopin 網路商店設定常見問題</title>
+      <link>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</guid>
+      <description>&lt;p&gt;設定 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 網路商店的過程中，如果碰到一些小難題、看到錯誤訊息或是哭哭的派大星，不要緊張，可以參考以下常見問題！&lt;/p&gt;
+&lt;p&gt;如果還是無法解決的話，歡迎直接聯絡我們！可以&lt;a href=&#34;mailto:apiobuild@gmail.com&#34;&gt;寫信&lt;/a&gt;或是使用 &lt;a href=&#34;https://m.me/apiobuild&#34;  target=&#34;_blank&#34; &gt;Facebook 訊息&lt;/a&gt;!&lt;/p&gt;
+&lt;img src=&#34;../../images/blog/chopin-error.png&#34; class=&#34;post-img&#34;&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何設定 Chopin 網路商店</title>
+      <link>https://apiobuild.com/blog/how-to-configure-chopin-store-zh/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/blog/how-to-configure-chopin-store-zh/</guid>
+      <description>&lt;p&gt;建立了 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>如何使用Chopin輕鬆建立網路商店</title>

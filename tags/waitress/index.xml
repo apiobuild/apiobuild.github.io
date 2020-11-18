@@ -6,29 +6,29 @@
     <description>Recent content in waitress on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/waitress/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Something Went Wrong? Troubleshooting Your Chopin Store</title>
-      <link>https://apiobuild.com/blog/troubleshoot-chopin-store/</link>
-      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      <title>Chopin 網路商店設定常見問題</title>
+      <link>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://apiobuild.com/blog/troubleshoot-chopin-store/</guid>
-      <description>We try our best to design a fool-proof onboarding process, but things happens, if you see error messages or Patrick Star crying (hopefully really rare), let us troubleshoot together! This is a growing list of commonly asked questions regarding apio&#39;s static online store generator Chopin.
-Contact us (aka your favorite developer) via email or Facebook Messenger if you don&amp;rsquo;t find answers here! Bug reports and feebacks are welcomed too!
-🛍️ Doesn&amp;#39;t have a Chopin store yet?</description>
+      <guid>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</guid>
+      <description>&lt;p&gt;設定 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 網路商店的過程中，如果碰到一些小難題、看到錯誤訊息或是哭哭的派大星，不要緊張，可以參考以下常見問題！&lt;/p&gt;
+&lt;p&gt;如果還是無法解決的話，歡迎直接聯絡我們！可以&lt;a href=&#34;mailto:apiobuild@gmail.com&#34;&gt;寫信&lt;/a&gt;或是使用 &lt;a href=&#34;https://m.me/apiobuild&#34;  target=&#34;_blank&#34; &gt;Facebook 訊息&lt;/a&gt;!&lt;/p&gt;
+&lt;img src=&#34;../../images/blog/chopin-error.png&#34; class=&#34;post-img&#34;&gt;</description>
     </item>
     
     <item>
-      <title>How to Configure Your Chopin Store</title>
-      <link>https://apiobuild.com/blog/how-to-configure-chopin-store/</link>
-      <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
+      <title>如何設定 Chopin 網路商店</title>
+      <link>https://apiobuild.com/blog/how-to-configure-chopin-store-zh/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://apiobuild.com/blog/how-to-configure-chopin-store/</guid>
-      <description>After creating a Chopin store, you now need to update the catalog google sheet with your own product information. You can also change the store appearance and update various setting (social accounts, discount rule, free shipping threshold, etc.) in Chopin app. In this article, we will breakdown all the google sheet fields as well as explain customization settings. Let us help you create a store tailored for your business needs!</description>
+      <guid>https://apiobuild.com/blog/how-to-configure-chopin-store-zh/</guid>
+      <description>&lt;p&gt;建立了 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -41,15 +41,30 @@ Contact us (aka your favorite developer) via email or Facebook Messenger if you 
     </item>
     
     <item>
+      <title>Something Went Wrong? Troubleshooting Your Chopin Store</title>
+      <link>https://apiobuild.com/blog/troubleshoot-chopin-store/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/blog/troubleshoot-chopin-store/</guid>
+      <description>&lt;p&gt;We try our best to design a fool-proof onboarding process, but things happens, if you see error messages or Patrick Star crying (hopefully really rare), let us troubleshoot together! This is a growing list of commonly asked questions regarding apio&#39;s static online store generator &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to Configure Your Chopin Store</title>
+      <link>https://apiobuild.com/blog/how-to-configure-chopin-store/</link>
+      <pubDate>Thu, 09 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/blog/how-to-configure-chopin-store/</guid>
+      <description>&lt;p&gt;After creating a &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; store, you now need to update the catalog google sheet with your own product information. You can also change the store appearance and update various setting (social accounts, discount rule, free shipping threshold, etc.) in Chopin app. In this article, we will breakdown all the google sheet fields as well as explain customization settings. Let us help you create a store tailored for your business needs!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>How to Create Web Store with Chopin and Waitress</title>
       <link>https://apiobuild.com/blog/how-to-create-web-store-with-apio/</link>
       <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/blog/how-to-create-web-store-with-apio/</guid>
-      <description>Chopin by apio is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&amp;rsquo;ll show you how you create an online store with google sheet using Waitress (apio&amp;rsquo;s google sheet API microservice). Try now and start selling your products online!
-🛍️ Visit Demo Store
-🛍️ Read more: How does Chopin compare to website builders and ecommerce services
-🛍️ 中文版教學</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin by apio&lt;/a&gt; is a static online store generator that allows you to configure your online store in just a few clicks. In this post, we&amp;rsquo;ll show you how you create an online store with google sheet using &lt;a href=&#34;https://telescope.apiobuild.com/app/waitress&#34;  target=&#34;_blank&#34; &gt;Waitress&lt;/a&gt; (apio&amp;rsquo;s google sheet API microservice). Try now and start selling your products online!&lt;/p&gt;</description>
     </item>
     
     <item>
