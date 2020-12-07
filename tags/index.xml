@@ -6,10 +6,64 @@
     <description>Recent content in Tags on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>application</title>
+      <link>https://apiobuild.com/tags/application/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/application/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>custom-solution</title>
+      <link>https://apiobuild.com/tags/custom-solution/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/custom-solution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>one-page-website</title>
+      <link>https://apiobuild.com/tags/one-page-website/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/one-page-website/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>small-business</title>
+      <link>https://apiobuild.com/tags/small-business/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/small-business/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://apiobuild.com/tags/tutorial/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>website</title>
+      <link>https://apiobuild.com/tags/website/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/website/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>documentation</title>
@@ -80,15 +134,6 @@
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/telescope/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tutorial</title>
-      <link>https://apiobuild.com/tags/tutorial/</link>
-      <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/tutorial/</guid>
       <description></description>
     </item>
     
@@ -174,15 +219,6 @@
     </item>
     
     <item>
-      <title>website</title>
-      <link>https://apiobuild.com/tags/website/</link>
-      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/website/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>常見問題</title>
       <link>https://apiobuild.com/tags/%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C/</link>
       <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
@@ -237,38 +273,11 @@
     </item>
     
     <item>
-      <title>small-business</title>
-      <link>https://apiobuild.com/tags/small-business/</link>
-      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/small-business/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>application</title>
-      <link>https://apiobuild.com/tags/application/</link>
-      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/application/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>blog</title>
       <link>https://apiobuild.com/tags/blog/</link>
       <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>custom-solution</title>
-      <link>https://apiobuild.com/tags/custom-solution/</link>
-      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/custom-solution/</guid>
       <description></description>
     </item>
     

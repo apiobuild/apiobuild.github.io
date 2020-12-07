@@ -3,15 +3,29 @@ User-agent: *
 
 Allow: /
 
+Allow: /tags/application/
+
 Allow: /blog/
+
+Allow: /tags/custom-solution/
+
+Allow: /blog/how-to-set-up-website-with-goldfish/
+
+Allow: /tags/one-page-website/
+
+Allow: /tags/small-business/
+
+Allow: /tags/
+
+Allow: /tags/tutorial/
+
+Allow: /tags/website/
 
 Allow: /tags/documentation/
 
 Allow: /tags/engineering/
 
 Allow: /tags/pricing/
-
-Allow: /tags/
 
 Allow: /blog/whats-api-request/
 
@@ -26,8 +40,6 @@ Allow: /blog/how-to-add-options-to-products/
 Allow: /tags/product-variants/
 
 Allow: /tags/telescope/
-
-Allow: /tags/tutorial/
 
 Allow: /tags/email/
 
@@ -51,8 +63,6 @@ Allow: /tags/google/
 
 Allow: /tags/waitress/
 
-Allow: /tags/website/
-
 Allow: /tags/%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C/
 
 Allow: /tags/%E6%95%99%E5%AD%B8/
@@ -69,17 +79,11 @@ Allow: /tags/facebook/
 
 Allow: /tags/instagram/
 
-Allow: /tags/small-business/
-
 Allow: /blog/starting-an-online-store-with-chopin-and-instagram/
-
-Allow: /tags/application/
 
 Allow: /tags/blog/
 
 Allow: /blog/build-a-website-for-your-business-what-do-you-need/
-
-Allow: /tags/custom-solution/
 
 Allow: /blog/troubleshoot-chopin-store/
 
