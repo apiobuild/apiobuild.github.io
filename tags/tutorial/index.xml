@@ -45,7 +45,8 @@ Use Case: Automated Order Confirmation Order confirmation is a great way to sign
       <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</guid>
-      <description>&lt;p&gt;設定 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 網路商店的過程中，如果碰到一些小難題、看到錯誤訊息或是哭哭的派大星，不要緊張，可以參考以下常見問題！&lt;/p&gt;
+      <description>&lt;p&gt;設定 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 網路商店的過程中，如果碰到一些小難題、看到錯誤訊息或是哭哭的派大星，不要緊張，可以參考&lt;a href=&#34;#checklist&#34; &gt;新手常見錯誤&lt;/a&gt;自行除錯看看！&lt;/p&gt;
+&lt;p&gt;常見問題包括&lt;a href=&#34;#%e5%9c%96%e7%89%87&#34; &gt;圖片顯示&lt;/a&gt;、&lt;a href=&#34;#%e5%95%86%e5%93%81%e7%9b%ae%e9%8c%84%e5%92%8c%e8%a8%82%e5%96%ae&#34; &gt;商品目錄和訂單 google sheet&lt;/a&gt;、&lt;a href=&#34;#%e4%bb%98%e6%ac%be%e6%96%b9%e5%bc%8f&#34; &gt;付款方式&lt;/a&gt;等等，也收錄了&lt;a href=&#34;#%e5%85%b6%e4%bb%96%e5%95%8f%e9%a1%8c&#34; &gt;其他小問題&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;如果還是無法解決的話，歡迎直接聯絡我們！可以&lt;a href=&#34;mailto:apiobuild@gmail.com&#34;&gt;寫信&lt;/a&gt;或是使用 &lt;a href=&#34;https://m.me/apiobuild&#34;  target=&#34;_blank&#34; &gt;Facebook 訊息&lt;/a&gt;!&lt;/p&gt;
 &lt;img src=&#34;../../images/blog/chopin-error.png&#34; class=&#34;post-img&#34;&gt;</description>
     </item>
@@ -56,7 +57,7 @@ Use Case: Automated Order Confirmation Order confirmation is a great way to sign
       <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/blog/how-to-configure-chopin-store-zh/</guid>
-      <description>&lt;p&gt;建立了 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 商店後，接下來需要把商品目錄 google sheet 中的範例資料抽換成你想販賣的商品，並且客製商店外觀和加上其他細節設定。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！&lt;/p&gt;</description>
+      <description>&lt;p&gt;建立了 &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; 商店後，接下來需要 &lt;a href=&#34;#%e6%9b%b4%e6%96%b0%e5%95%86%e5%93%81%e7%9b%ae%e9%8c%84&#34; &gt;1) 抽換商品目錄 google sheet 中的範例資料成你想販賣的商品&lt;/a&gt;，並且 &lt;a href=&#34;#%e5%ae%a2%e8%a3%bd%e5%8c%96%e4%bd%a0%e7%9a%84%e5%95%86%e5%ba%97&#34; &gt;2) 客製商店外觀和加上其他細節設定&lt;/a&gt;。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -74,7 +75,8 @@ Use Case: Automated Order Confirmation Order confirmation is a great way to sign
       <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/blog/troubleshoot-chopin-store/</guid>
-      <description>&lt;p&gt;We try our best to design a fool-proof onboarding process, but things happens, if you see error messages or Patrick Star crying (hopefully really rare), let us troubleshoot together! This is a growing list of commonly asked questions regarding apio&#39;s static online store generator &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;We try our best to design a fool-proof onboarding process, but things happen, if you see error messages or Patrick Star crying (hopefully really rare), let us run this &lt;a href=&#34;#checklist&#34; &gt;checklist&lt;/a&gt; and troubleshoot together!&lt;/p&gt;
+&lt;p&gt;We also feature some commonly asked questions regarding &lt;a href=&#34;#image&#34; &gt;images&lt;/a&gt;, &lt;a href=&#34;#google-sheets&#34; &gt;google sheets&lt;/a&gt;, &lt;a href=&#34;#payment-method&#34; &gt;payment methods&lt;/a&gt;, and &lt;a href=&#34;#and-more&#34; &gt;many more&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -83,7 +85,7 @@ Use Case: Automated Order Confirmation Order confirmation is a great way to sign
       <pubDate>Thu, 09 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/blog/how-to-configure-chopin-store/</guid>
-      <description>&lt;p&gt;After creating a &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; store, you now need to update the catalog google sheet with your own product information. You can also change the store appearance and update various setting (social accounts, discount rule, free shipping threshold, etc.) in Chopin app. In this article, we will breakdown all the google sheet fields as well as explain customization settings. Let us help you create a store tailored for your business needs!&lt;/p&gt;</description>
+      <description>&lt;p&gt;After creating your &lt;a href=&#34;https://telescope.apiobuild.com/app/chopin&#34;  target=&#34;_blank&#34; &gt;Chopin&lt;/a&gt; store, you now need to &lt;a href=&#34;#update-catalog-sheet&#34; &gt;1) update the catalog google sheet&lt;/a&gt; with your own product information; &lt;a href=&#34;#configure-your-store-in-chopin-app&#34; &gt;2) finish setting up your store in Chopin app&lt;/a&gt;, including appearance, social accounts, discount rule, free shipping threshold, etc. In this article, we will breakdown all the google sheet fields as well as explain customization settings. Let us help you create a store tailored for your business needs!&lt;/p&gt;</description>
     </item>
     
     <item>
