@@ -4,20 +4,83 @@
   
   <url>
     <loc>https://apiobuild.com/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/application/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://apiobuild.com/blog/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/chopin/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/documentation/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/ecommerce/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/google-sheet/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/blog/news-support-more-currencies/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/product-updates/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/telescope/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/tutorial/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://apiobuild.com/tags/application/</loc>
     <lastmod>2020-12-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -52,29 +115,8 @@
   </url>
   
   <url>
-    <loc>https://apiobuild.com/tags/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/tutorial/</loc>
-    <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://apiobuild.com/tags/website/</loc>
     <lastmod>2020-12-03T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/documentation/</loc>
-    <lastmod>2020-09-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -101,27 +143,6 @@
   </url>
   
   <url>
-    <loc>https://apiobuild.com/tags/chopin/</loc>
-    <lastmod>2020-09-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/e-commerce/</loc>
-    <lastmod>2020-09-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/google-sheet/</loc>
-    <lastmod>2020-09-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://apiobuild.com/blog/how-to-add-options-to-products/</loc>
     <lastmod>2020-09-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -130,13 +151,6 @@
   
   <url>
     <loc>https://apiobuild.com/tags/product-variants/</loc>
-    <lastmod>2020-09-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/telescope/</loc>
     <lastmod>2020-09-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -193,13 +207,6 @@
   
   <url>
     <loc>https://apiobuild.com/blog/troubleshoot-chopin-store-zh/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://apiobuild.com/tags/ecommerce/</loc>
     <lastmod>2020-08-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

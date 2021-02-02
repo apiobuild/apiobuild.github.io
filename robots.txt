@@ -3,9 +3,27 @@ User-agent: *
 
 Allow: /
 
-Allow: /tags/application/
-
 Allow: /blog/
+
+Allow: /tags/chopin/
+
+Allow: /tags/documentation/
+
+Allow: /tags/ecommerce/
+
+Allow: /tags/google-sheet/
+
+Allow: /blog/news-support-more-currencies/
+
+Allow: /tags/product-updates/
+
+Allow: /tags/
+
+Allow: /tags/telescope/
+
+Allow: /tags/tutorial/
+
+Allow: /tags/application/
 
 Allow: /tags/custom-solution/
 
@@ -15,13 +33,7 @@ Allow: /tags/one-page-website/
 
 Allow: /tags/small-business/
 
-Allow: /tags/
-
-Allow: /tags/tutorial/
-
 Allow: /tags/website/
-
-Allow: /tags/documentation/
 
 Allow: /tags/engineering/
 
@@ -29,17 +41,9 @@ Allow: /tags/pricing/
 
 Allow: /blog/whats-api-request/
 
-Allow: /tags/chopin/
-
-Allow: /tags/e-commerce/
-
-Allow: /tags/google-sheet/
-
 Allow: /blog/how-to-add-options-to-products/
 
 Allow: /tags/product-variants/
-
-Allow: /tags/telescope/
 
 Allow: /tags/email/
 
@@ -56,8 +60,6 @@ Allow: /tags/post-it/
 Allow: /tags/use-case/
 
 Allow: /blog/troubleshoot-chopin-store-zh/
-
-Allow: /tags/ecommerce/
 
 Allow: /tags/google/
 

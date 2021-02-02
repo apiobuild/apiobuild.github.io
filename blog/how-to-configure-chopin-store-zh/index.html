@@ -178,7 +178,7 @@ if (!doNotTrack) {
     <h1>如何設定 Chopin 網路商店</h1>
   </div>
   <div class="container">
-    <p style="color: black;"> 2020-08-05 • 2 min read </p>
+    <p style="color: black;"> 2020-08-05 • 3 min read </p>
   </div>
   <div class="container py-1 tags">
 
@@ -212,6 +212,45 @@ if (!doNotTrack) {
   <p>建立了 <a href="https://telescope.apiobuild.com/app/chopin"  target="_blank" >Chopin</a> 商店後，接下來需要 <a href="#%e6%9b%b4%e6%96%b0%e5%95%86%e5%93%81%e7%9b%ae%e9%8c%84" >1) 抽換商品目錄 google sheet 中的範例資料成你想販賣的商品</a>，並且 <a href="#%e5%ae%a2%e8%a3%bd%e5%8c%96%e4%bd%a0%e7%9a%84%e5%95%86%e5%ba%97" >2) 客製商店外觀和加上其他細節設定</a>。這篇文章會手把手教你 google sheet 每個儲存格代表的意思，以及所有我們支援的設定，讓你輕鬆完成一個適合自己的商店！</p>
 <p>🛍️ <a href="https://apiobuild.com/blog/create-an-online-store-for-free-ch/"  target="_blank" >還沒有 Chopin Store? 跟著這篇教學建立商店</a></p>
 <p>🛍️ <a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/"  target="_blank" >參考常見問題</a></p>
+<div class="table-box table-warning table-responsive px-2 py-2">
+<table class="center">
+  <tbody>
+    <tr>
+   內容：
+<ul>
+<li><a href="#%e6%9b%b4%e6%96%b0%e5%95%86%e5%93%81%e7%9b%ae%e9%8c%84" >更新商品目錄</a></li>
+<li><a href="#%e5%ae%a2%e8%a3%bd%e5%8c%96%e4%bd%a0%e7%9a%84%e5%95%86%e5%ba%97" >客製化你的商店</a>
+<ul>
+<li><a href="#%e5%95%86%e5%ba%97%e8%b3%87%e8%a8%8a-store-information" >商店資訊 (Store Information)</a></li>
+<li><a href="#%e5%a4%96%e8%a7%80-layout" >外觀 (Layout)</a></li>
+<li><a href="#%e8%a8%82%e5%96%ae%e8%a8%ad%e5%ae%9a-order-settings" >訂單設定 (Order Settings)</a>
+<ul>
+<li><a href="#%e7%b6%b2%e7%ab%99%e8%b2%a8%e5%b9%a3" >網站貨幣</a></li>
+<li><a href="#%e8%a8%82%e8%b3%bc%e4%ba%ba%e8%b3%87%e6%96%99" >訂購人資料</a></li>
+<li><a href="#%e6%9c%80%e4%bd%8e%e6%b6%88%e8%b2%bb" >最低消費</a></li>
+<li><a href="#%e8%a8%82%e5%96%ae%e7%a2%ba%e8%aa%8d%e4%bf%a1" >訂單確認信</a></li>
+</ul>
+</li>
+<li><a href="#%e8%81%af%e7%b5%a1%e6%96%b9%e5%bc%8f%e8%88%87%e7%a4%be%e7%be%a4%e5%aa%92%e9%ab%94-contact-information" >聯絡方式與社群媒體 (Contact Information)</a></li>
+<li><a href="#%e4%bb%98%e6%ac%be%e6%96%b9%e5%bc%8f-payment-methods" >付款方式 (Payment Methods)</a>
+<ul>
+<li><a href="#%e7%b7%9a%e4%b8%8a%e6%94%af%e4%bb%98" >線上支付</a></li>
+<li><a href="#%e6%89%8b%e5%8b%95%e4%bb%98%e6%ac%be" >手動付款</a></li>
+</ul>
+</li>
+<li><a href="#%e9%81%8b%e8%b2%bb-shipping" >運費 (Shipping)</a></li>
+<li><a href="#%e6%8a%98%e6%89%a3-discount" >折扣 (Discount)</a></li>
+<li><a href="#%e7%a8%85-tax" >稅 (Tax)</a></li>
+<li><a href="#waitress-api" >Waitress API</a></li>
+</ul>
+</li>
+<li><a href="#%e7%b8%bd%e7%b5%90" >總結</a>
+  </tr>
+</tbody>
+</li>
+</ul>
+</table>
+</div>
 <h2 id="更新商品目錄">更新商品目錄<a href="#更新商品目錄" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
 <p>如果你跟著我們的<a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch"  target="_blank" >教學</a>，並且使用提供的範例資料建立商店，你的商店目前應該會長的像<a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C106308532747537725517/3b99cc9c-6c28-45dd-9786-8521fe0a2e47"  target="_blank" >這樣</a>。</p>
 <p>我相信你應該捨不得賣出 Cool Cat 和 Funny Cat，接下來請按照以下說明更新商品目錄 Google Sheet，更新過程中內容會即時反映在網路商店。</p>
@@ -276,6 +315,10 @@ if (!doNotTrack) {
 </ul>
 <img src="../../images/blog/b_layout_2.png" class="post-img">
 <h3 id="訂單設定-order-settings">訂單設定 (Order Settings)<a href="#訂單設定-order-settings" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
+<h4 id="網站貨幣">網站貨幣<a href="#網站貨幣" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
+<ul>
+<li><em><code>[NEW]</code></em> Store Currency: 預設為 USD (美元)，亦可從下拉式選單選取欲套用的<a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes"  target="_blank" >貨幣代碼</a>。</li>
+</ul>
 <h4 id="訂購人資料">訂購人資料<a href="#訂購人資料" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <ul>
 <li>Required Input in Order Form: 預設只有規定顧客一定要填寫 Email 才能成立訂單，可以選擇其他必填欄位，包括顧客名、聯絡電話和地址。
@@ -315,7 +358,9 @@ if (!doNotTrack) {
 <li>電話: 請包含＋號和國碼(美國即為 +1)，不用輸入連接號(-)或括號 (例：+17181234567)</li>
 <li>LINE: LINE 的個人或群組專屬網址。<a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/#%E5%A6%82%E4%BD%95%E5%8F%96%E5%BE%97-line-%E7%B6%B2%E5%9D%80"  target="_blank" >*如何取得LINE網址？</a></li>
 <li>Instagram: Instagram 的帳號 (非網址)，不用輸入 @ (例：apiobuild)</li>
-<li>Phone Number: 電話號碼前請加國碼 (美加: +1)，不需加 其他符號分隔 (例： +17181234567)</li>
+<li>Phone Number: 電話號碼前請加國碼 (美加: +1)，不需加其他符號分隔 (例： +17181234567)</li>
+<li><em><code>[NEW]</code></em> Twitter: Twitter 的帳號 (非網址)，不用輸入 @ (例：apiobuild)</li>
+<li><em><code>[NEW]</code></em> WhatsApp: WhatsApp 號碼並加上國碼， 不需加 + 或其他符號分隔 (例：12121234567)</li>
 </ul>
 <img src="../../images/blog/d_contact_info.png" class="post-img">
 <h3 id="付款方式-payment-methods">付款方式 (Payment Methods)<a href="#付款方式-payment-methods" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
@@ -339,7 +384,8 @@ if (!doNotTrack) {
 <li><a href="https://www.zellepay.com/"  target="_blank" >Zelle</a>: 填入 Zelle 帳號（電子信箱或電話號碼）。</li>
 <li><a href="https://venmo.com/"  target="_blank" >Venmo</a>: 填入 Venmo 帳號。</li>
 <li><a href="https://www.interac.ca/en/consumers/products/interac-e-transfer/"  target="_blank" >E-transfer</a>: 填入 e-transfer 帳號。</li>
-<li>Pay at Pick-Up: 勾選此選項，可以同時出現其他付款方式與店取選項。</li>
+<li>Pay at Pick-Up: 勾選此選項，會出現店取付款選項。</li>
+<li><em><code>[NEW]</code></em> Collect on Delivery: 勾選此選項，會出現貨到付款選項。</li>
 </ul>
 <h3 id="運費-shipping">運費 (Shipping)<a href="#運費-shipping" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
@@ -368,6 +414,17 @@ if (!doNotTrack) {
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
+}
+.center {
+  margin-left:auto;
+  margin-right:auto;
+}
+.wide {
+  width: 5%;
+}
+.table-box{
+  color: black;
+  border-left: 6px solid #fcd236;
 }
 </style>
 </div>
