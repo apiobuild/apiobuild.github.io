@@ -252,23 +252,22 @@ if (!doNotTrack) {
 </table>
 </div>
 <h2 id="更新商品目錄">更新商品目錄<a href="#更新商品目錄" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
-<p>如果你跟著我們的<a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch"  target="_blank" >教學</a>，並且使用提供的範例資料建立商店，你的商店目前應該會長的像<a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C106308532747537725517/3b99cc9c-6c28-45dd-9786-8521fe0a2e47"  target="_blank" >這樣</a>。</p>
+<p>如果你跟著我們的<a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch"  target="_blank" >教學</a>，並且使用提供的範例資料建立商店，你的商店目前應該會長的像<a href="https://chopin.apiobuild.com/google-oauth2%7C106308532747537725517/3b99cc9c-6c28-45dd-9786-8521fe0a2e47"  target="_blank" >這樣</a>。</p>
 <p>我相信你應該捨不得賣出 Cool Cat 和 Funny Cat，接下來請按照以下說明更新商品目錄 Google Sheet，更新過程中內容會即時反映在網路商店。</p>
 <p>各儲存格對應的內容：</p>
 <ul>
 <li>name: 每個產品的獨立編碼 (product id)，英文開頭並只能使用<strong>英文、數字、連接號(-)或底線(＿)，不能有空格</strong>。</li>
 <li>nickname: 顯示在網站的產品名稱，支援任何語言文字或表情符號。</li>
-<li>description <em>(非必須)</em>: 產品敘述。</li>
-<li>product_url <em>(非必須)</em>: 產品外部連結。</li>
-<li>image_url: 產品圖片網址或 YouTube 連結。每個產品可以有多個影像網址，以逗號相隔 (,)。 <a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/#%E5%A6%82%E4%BD%95%E5%8F%96%E5%BE%97%E6%89%8B%E9%82%8A%E5%9C%96%E7%89%87%E7%9A%84%E7%B6%B2%E5%9D%80%E5%91%A2"  target="_blank" >*如何取得圖片網址</a></li>
+<li>description <em>(非必須)</em>: 產品敘述。<a href="https://www.markdownguide.org/cheat-sheet/"  target="_blank" >*支援 Markdown 語法編輯格式</a></li>
+<li>image_url: 產品圖片網址。每個產品可以有多個圖片，將網址以逗號 (,)分隔即可。 <a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/#%E5%A6%82%E4%BD%95%E5%8F%96%E5%BE%97%E6%89%8B%E9%82%8A%E5%9C%96%E7%89%87%E7%9A%84%E7%B6%B2%E5%9D%80%E5%91%A2"  target="_blank" >*如何取得圖片網址</a></li>
 <li>price: 產品價錢，不需輸入金錢符號 ($)。</li>
-<li>max_qty: 每個顧客可購買的上限，<strong>如果設定 max_qty 為0, 會顯示 Coming Soon</strong>。</li>
+<li>max_qty <em>(非必須)</em>:: 每個顧客可購買的上限，<strong>如果設定 max_qty 為0, 會顯示 Coming Soon</strong>。</li>
 <li>category <em>(非必須)</em>: 不同的產品分類。每個產品可以有多個分類，以逗號相隔 (,)。</li>
 <li>hide: 在這格打上 &ldquo;x&rdquo; (或是其他字母符號)，該產品即不會顯示在網站上。</li>
 <li>no_tax: 在這格打上 &ldquo;x&rdquo; (或是其他字母符號)，該產品不會被計算稅。</li>
 </ul>
 <p>範例：
-<img src="../../images/blog/catalog_sheet_eg1.png" class="post-img"></p>
+<img src="../../images/blog/catalog_sheet_ex1.png" class="post-img"></p>
 <p>如果想要<a href="https://apiobuild.com/blog/how-to-add-options-to-products/"  target="_blank" >將產品加上多個尺寸顏色選項</a>，你會需要手動新增以下四個欄位：</p>
 <ul>
 <li>option:name</li>
@@ -277,7 +276,7 @@ if (!doNotTrack) {
 <li>option:color</li>
 </ul>
 <p>範例：
-<img src="../../images/blog/catalog_sheet_eg2.png" class="post-img"></p>
+<img src="../../images/blog/catalog_sheet_ex2.png" class="post-img"></p>
 <p>⚠️ 注意:</p>
 <ol>
 <li>每列之間不得穿插空白列。</li>
@@ -298,18 +297,17 @@ if (!doNotTrack) {
 <ul>
 <li>Store Name: 網路商店的名稱，<a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio-ch/#step-1-%e5%bb%ba%e7%ab%8b%e6%96%b0%e5%95%86%e5%ba%97"  target="_blank" >建立商店</a>時已提供，無法更改。</li>
 <li>Logo url <em>(非必須)</em>: logo 圖片網址。 <a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/#%e5%a6%82%e4%bd%95%e5%8f%96%e5%be%97%e6%89%8b%e9%82%8a%e5%9c%96%e7%89%87%e7%9a%84%e7%b6%b2%e5%9d%80%e5%91%a2"  target="_blank" >*什麼是圖片網址？</a></li>
-<li>Store Description <em>(非必須)</em>: 商店敘述，最多250字。</li>
-<li>Announcement <em>(非必須)</em>: 此通知會出現在頁面最上方，每次出現約5秒，可以拿來放特價訊息或其他通知。</li>
+<li>Store Description <em>(非必須)</em>: 商店敘述，最多1000字。<a href="https://www.markdownguide.org/cheat-sheet/"  target="_blank" >*支援 Markdown 語法編輯格式</a></li>
+<li>Announcement <em>(非必須)</em>: 此通知會出現在頁面最上方，可以拿來放特價訊息或其他通知。</li>
 </ul>
-<img src="../../images/blog/a_store_info.png" class="post-img">
+<img src="../../images/blog/a_store_info_21.png" class="post-img">
 <h3 id="外觀-layout">外觀 (Layout)<a href="#外觀-layout" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
 <li>Store Background Image url <em>(非必須)</em>: 背景圖案連結。</li>
 <li>Store Background Color <em>(非必須)</em>: 可以從調色盤選取顏色或輸入 <a href="https://htmlcolorcodes.com/"  target="_blank" >hex code</a>。</li>
-<li><em><code>[NEW]</code></em> Page Header Height: 調整點進網站背景圖所佔螢幕的比例。<em>注意：若空間不夠， <code>Store Description</code> 內容將會超出首圖區。</em></li>
-<li>Remove Description Whiteout: 移除商片敘述的半透明白色背景。</li>
+<li><em><code>[NEW]</code></em> Page Header Height: 調整點進網站背景圖所佔螢幕的比例。</li>
 </ul>
-<img src="../../images/blog/b_layout_1.png" class="post-img">
+<img src="../../images/blog/b_layout_1_21.png" class="post-img">
 <ul>
 <li>Message to show when the product has max_qty = 0 <em>(非必須)</em>: 當商品目錄中的 <code>max_qty</code> 欄位為0時，該商品在網站上會自動顯示 &ldquo;Coming Soon!&rdquo; 但你也可以在此欄位填入其他適合的字樣，例如 &ldquo;Out of Stock&rdquo; 或是 &ldquo;Back in October&rdquo; 等等。</li>
 </ul>
@@ -331,7 +329,7 @@ if (!doNotTrack) {
 <li>Remove Customer Address Field: 如果你販賣虛擬商品或是只提供取貨選項，可以移除訂單中的地址欄位。</li>
 <li>Add Optional Note Section: 可以新增一欄位供顧客填寫備註資訊。 <em>我們建議你請客人於此提供客製商品資訊（像是蛋糕上的糖霜字樣），而非用來與客人聯繫寄送細節</em></li>
 </ul>
-<img src="../../images/blog/c_order_1.png" class="post-img">
+<img src="../../images/blog/c_order_1_21.png" class="post-img">
 <h4 id="最低消費">最低消費<a href="#最低消費" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <ul>
 <li>Set Order Minimum: 輸入顧客成立訂單的最低消費金額。</li>
@@ -365,14 +363,13 @@ if (!doNotTrack) {
 <img src="../../images/blog/d_contact_info.png" class="post-img">
 <h3 id="付款方式-payment-methods">付款方式 (Payment Methods)<a href="#付款方式-payment-methods" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <p>每個付款方式會以按鈕的方式呈現，如果沒有新增任何付款方式，預設會是以 &ldquo;Submit Order&rdquo; 按鈕送出訂單。可以添加兩種以上的付款方式。</p>
-<p>可以到<a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C117090713962028193035/7a8c0376-0fd0-4093-894f-e6d0200444d4"  target="_blank" >範例商店</a>實際體驗不同付款方式的流程。如果有其他付款方式的需求，歡迎<a href="https://apiobuild.com/forms/business/"  target="_blank" >聯絡我們</a>！</p>
-<img src="../../images/blog/e_payment_button.png" class="post-img">
+<p>可以到<a href="https://chopin.apiobuild.com/demo-store"  target="_blank" >範例商店</a>實際體驗不同付款方式的流程。如果有其他付款方式的需求，歡迎<a href="https://apiobuild.com/forms/business/"  target="_blank" >聯絡我們</a>！</p>
+<img src="../../images/blog/e_payment_button_21.png" class="post-img">
 <h4 id="線上支付">線上支付<a href="#線上支付" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>目前支持以 <a href="https://stripe.com/payments"  target="_blank" >Stripe</a> 和 <a href="https://www.paypal.com/us/business/website-payments"  target="_blank" >PayPal for Business</a> 處理信用卡付款。 於上述網站開通帳號後，<a href="https://apiobuild.com/forms/business/"  target="_blank" >聯絡我們</a>即可！</p>
-<p>這兩個平台的手續費約<strong>2.9% + 30¢</strong>，會直接從你的營收裡扣款，可參考以下連結了解他們的詳細收費方式：</p>
+<p>目前支持以 <a href="https://stripe.com/payments"  target="_blank" >Stripe</a> 處理信用卡付款。 於開通帳號後，<a href="https://apiobuild.com/forms/business/"  target="_blank" >聯絡我們</a>即可！</p>
+<p>平台手續費約<strong>2.9% + 30¢</strong>，會直接從你的營收裡扣款，apio 並不經手你的營收，可參考以下連結了解 Stripe 平台詳細收費方式：</p>
 <ul>
 <li><em><code>[NEW]</code></em> <a href="https://stripe.com/pricing"  target="_blank" >Stripe</a></li>
-<li><a href="https://www.paypal.com/us/webapps/mpp/merchant-fees"  target="_blank" >PayPal</a></li>
 </ul>
 <p><a href="https://apiobuild.com/blog/troubleshoot-chopin-store-zh/#stripe-%E5%92%8C-paypal-business-%E6%9C%89%E4%BB%80%E9%BA%BC%E4%B8%8D%E5%90%8C"  target="_blank" >*Stripe 和 PayPal 該選哪個？</a></p>
 <p>若您使用線上支付平台，Chopin 可以<strong>自動幫您對帳</strong>，確認客人是否付款成功並將結果顯示在訂單 google sheet 上。</p>

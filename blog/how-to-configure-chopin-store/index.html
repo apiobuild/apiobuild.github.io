@@ -178,7 +178,7 @@ if (!doNotTrack) {
     <h1>How to Configure Your Chopin Store</h1>
   </div>
   <div class="container">
-    <p style="color: black;"> 2020-07-09 • 9 min read </p>
+    <p style="color: black;"> 2020-07-09 • 8 min read </p>
   </div>
   <div class="container py-1 tags">
 
@@ -251,22 +251,21 @@ if (!doNotTrack) {
 </table>
 </div>
 <h2 id="update-catalog-sheet">Update Catalog Sheet<a href="#update-catalog-sheet" class="hanchor" ariaLabel="Anchor">   ¶</a> </h2>
-<p>Your store would be look like <a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C106308532747537725517/3b99cc9c-6c28-45dd-9786-8521fe0a2e47"  target="_blank" >this</a> if you follow the <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio"  target="_blank" >tutorial</a> and use the example data provided. But I&rsquo;m pretty sure you&rsquo;re not selling Cool Cat and Funny Cat. Now it&rsquo;s time to update the catalog google sheet with your own product information.</p>
+<p>Your store would be look like <a href="https://chopin.apiobuild.com/google-oauth2%7C106308532747537725517/3b99cc9c-6c28-45dd-9786-8521fe0a2e47"  target="_blank" >this</a> if you follow the <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio"  target="_blank" >tutorial</a> and use the example data provided. But I&rsquo;m pretty sure you&rsquo;re not selling Cool Cat and Funny Cat. Now it&rsquo;s time to update the catalog google sheet with your own product information.</p>
 <p>Fields are defined as the following:</p>
 <ul>
 <li>name: Unique name/id starts with any alphabet and contains <strong>only dashes (-), underscores (_), and alphanumeric are allowed</strong> for each product. No spaces.</li>
 <li>nickname: Item names that will appear on the store page, they can be <strong>any language, symbol, and even emoji</strong>.</li>
-<li>description <em>(optional)</em>: More information about the product.</li>
-<li>product_url <em>(optional)</em>: Link to an external web page, like a facebook post or blog review.</li>
-<li>image_url: URL of the product image or YouTube video link (obtained via Share button). Multiple image urls can be separated by commas (,). <a href="https://apiobuild.com/blog/troubleshoot-chopin-store/#how-can-i-obtain-image-url"  target="_blank" >*What&#39;s image url?</a></li>
+<li>description <em>(optional)</em>: More information about the product. <a href="https://www.markdownguide.org/cheat-sheet/"  target="_blank" >*Styling with Markdown is supported</a></li>
+<li>image_url: URL of the product image(s). Multiple image urls can be separated by commas (,). <a href="https://apiobuild.com/blog/troubleshoot-chopin-store/#how-can-i-obtain-image-url"  target="_blank" >*What&#39;s image url?</a></li>
 <li>price: Product price, no need to enter &ldquo;$&rdquo; (dollar sign).</li>
-<li>max_qty: Maximum quantity that <em>one customer</em> can buy. If max_qty = 0, it will show &lsquo;Coming Soon&rsquo;</li>
+<li>max_qty <em>(optional)</em>: Maximum quantity that <em>one customer</em> can buy. If max_qty = 0, it will show &lsquo;Coming Soon&rsquo;</li>
 <li>category <em>(optional)</em>: To allow customer to filter products. Multiple categories can be separated by commas (,).</li>
 <li>hide: Enter &ldquo;x&rdquo; (or any other characters), this product will not appear on your store.</li>
 <li>no_tax: Enter &ldquo;x&rdquo; (or any other characters), sales tax won&rsquo;t apply to this product.</li>
 </ul>
 <p>Example:
-<img src="../../images/blog/catalog_sheet_eg1.png" class="post-img"></p>
+<img src="../../images/blog/catalog_sheet_ex1.png" class="post-img"></p>
 <br>
 <p>If you want to <a href="https://apiobuild.com/blog/how-to-add-options-to-products/"  target="_blank" >sell products with multiple options</a>, you will need to add below columns manually:</p>
 <ul>
@@ -276,7 +275,7 @@ if (!doNotTrack) {
 <li>option:color</li>
 </ul>
 <p>Example:
-<img src="../../images/blog/catalog_sheet_eg2.png" class="post-img"></p>
+<img src="../../images/blog/catalog_sheet_ex2.png" class="post-img"></p>
 <p>⚠️ Important:</p>
 <ol>
 <li>There should not be any empty line(s) between rows.</li>
@@ -297,18 +296,17 @@ if (!doNotTrack) {
 <ul>
 <li>Store Name: You named your store when <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio/#step-1-create-a-store"  target="_blank" >creating the store</a>. It cannot be modified.</li>
 <li>Logo url <em>(optional)</em>: Give your store a logo. <a href="https://apiobuild.com/blog/troubleshoot-chopin-store/#how-can-i-obtain-image-url"  target="_blank" >*What&#39;s image URL?</a></li>
-<li>Store Description <em>(optional)</em>: Let your customers know what your store is about, brand story, shipping/return policy, or any information you&rsquo;d like to include. Up to 250 characters.</li>
-<li>Announcement <em>(optional)</em>: News to share with your customers. It will be shown at the top of your store and disappear in 5 seconds.</li>
+<li>Store Description <em>(optional)</em>: Let your customers know what your store is about, brand story, shipping/return policy, or any information you&rsquo;d like to include. Up to 1000 characters. <a href="https://www.markdownguide.org/cheat-sheet/"  target="_blank" >*Styling with Markdown is supported</a></li>
+<li>Announcement <em>(optional)</em>: News to share with your customers.</li>
 </ul>
-<img src="../../images/blog/a_store_info.png" class="post-img">
+<img src="../../images/blog/a_store_info_21.png" class="post-img">
 <h3 id="layout">Layout<a href="#layout" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <ul>
 <li>Store Background Image url <em>(optional)</em>: Add a background image.</li>
 <li>Store Background Color <em>(optional)</em>: You can easily select color from swatch or enter a <a href="https://htmlcolorcodes.com/"  target="_blank" >hex code</a>.</li>
-<li><em><code>[NEW]</code></em> Page Header Height: You can adjust height of your background image. Default is 100% and it will take up the entire screen. <em>Note: If there&rsquo;s no enough space, the texts from <code>Store Description</code> might go beyond boarder.</em></li>
-<li>Remove Description Whiteout: To remove the white background of the store description box.</li>
+<li><em><code>[NEW]</code></em> Page Header Height: You can adjust height of your background image. Default is 100% and it will take up the entire screen.</li>
 </ul>
-<img src="../../images/blog/b_layout_1.png" class="post-img">
+<img src="../../images/blog/b_layout_1_21.png" class="post-img">
 <ul>
 <li>Message to show when the product has max_qty = 0 <em>(optional)</em>: In catalog google sheet, when input &ldquo;0&rdquo; in the <code>max_qty</code> field the indicated product will show &ldquo;Coming Soon!&rdquo; on the website. You can customize this text your way. A few other alternatives can be &ldquo;Out of Stock&rdquo;, &ldquo;Back in October&rdquo; etc.</li>
 </ul>
@@ -336,7 +334,7 @@ if (!doNotTrack) {
 <p><em>We recommend using this field to collect customization details (i.e. message to be put on the cake) rather than using as a communication channel</em></p>
 </li>
 </ul>
-<img src="../../images/blog/c_order_1.png" class="post-img">
+<img src="../../images/blog/c_order_1_21.png" class="post-img">
 <h4 id="minimum-order">Minimum Order<a href="#minimum-order" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <ul>
 <li>Set Order Minimum: Enter a dollar amount. Your customers&rsquo; purchase has to achieve this minimum amount to be able to submit the order.</li>
@@ -368,15 +366,17 @@ if (!doNotTrack) {
 <img src="../../images/blog/d_contact_info.png" class="post-img">
 <h3 id="payment-methods">Payment Methods<a href="#payment-methods" class="hanchor" ariaLabel="Anchor">   ¶</a> </h3>
 <p>Each payment method will appear as a <strong>button</strong>. If you don&rsquo;t add any payment options, there will be a <strong>&ldquo;Submit Order&rdquo;</strong> button. You can enable as many payment options as you&rsquo;d like. They will replace the &ldquo;Submit Order&rdquo; button.</p>
-<p>Visit our <a href="https://trampoline.apiobuild.com/router/chopin/store/page/google-oauth2%7C117090713962028193035/7a8c0376-0fd0-4093-894f-e6d0200444d4"  target="_blank" >Demo Store</a> and see how they work in real world. If you don&rsquo;t see your preferred payment methods, <a href="https://apiobuild.com/forms/business/"  target="_blank" >drop us a message</a>!</p>
-<img src="../../images/blog/e_payment_button.png" class="post-img">
+<p>Visit our <a href="https://chopin.apiobuild.com/demo-store"  target="_blank" >Demo Store</a> and see how they work in real world. If you don&rsquo;t see your preferred payment methods, <a href="https://apiobuild.com/forms/business/"  target="_blank" >drop us a message</a>!</p>
+<img src="../../images/blog/e_payment_button_21.png" class="post-img">
 <h4 id="online-payment-processor">Online Payment Processor<a href="#online-payment-processor" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
-<p>We currently support <a href="https://stripe.com/payments"  target="_blank" >Stripe</a> and <a href="https://www.paypal.com/us/business/website-payments"  target="_blank" >PayPal for Business</a> as online payment processor, which allows your customers pay with credit cards. <a href="https://apiobuild.com/forms/business/"  target="_blank" >Contact us</a> when you&rsquo;ve signed up Stripe and/or PayPal Business account(s) and are ready to integrate them to your Chopin store.</p>
-<p>There is a processing fee of <strong>2.9% + 30¢</strong> for both platforms, that will be deducted directly from your Stripe/PayPal account. Click links below for more detailed pricing. <a href="https://apiobuild.com/blog/troubleshoot-chopin-store/#difference-between-stripe-and-paypal-business"  target="_blank" >*Stripe v.s PayPal. Which one is better?</a></p>
+<p>We currently support <a href="https://stripe.com/payments"  target="_blank" >Stripe</a> as online payment processor, which allows your customers pay with credit cards. <a href="https://apiobuild.com/forms/business/"  target="_blank" >Contact us</a> when you&rsquo;ve signed up Stripe and are ready to integrate them to your Chopin store.</p>
+<p>There is a processing fee of <strong>2.9% + 30¢</strong>, that will be deducted directly from your Stripe account. apio doesn&rsquo;t take a cut from your profits! Click links below for more detailed pricing. <a href="https://apiobuild.com/blog/troubleshoot-chopin-store/#difference-between-stripe-and-paypal-business"  target="_blank" >*Stripe v.s PayPal. Which one is better?</a></p>
 <ul>
 <li><em><code>[NEW]</code></em> <a href="https://stripe.com/pricing"  target="_blank" >Stripe</a></li>
-<li><a href="https://www.paypal.com/us/webapps/mpp/merchant-fees"  target="_blank" >PayPal</a></li>
 </ul>
+<span style="display: none">
+- [PayPal](https://www.paypal.com/us/webapps/mpp/merchant-fees)
+</span>
 <p>Integrating these digital payment platforms allows Chopin to <strong>verify the transactions in realtime and post the result</strong> to <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio/#step-3-add-order-google-sheet"  target="_blank" >order google sheet</a>, so you don&rsquo;t have to manually confirm each payment or check the amount totals.</p>
 <h4 id="manual-options">Manual Options<a href="#manual-options" class="hanchor" ariaLabel="Anchor">   ¶</a> </h4>
 <p>We also support some popular manual payment options across North America. However, manual payment means that the transaction will be handled outside of the Chopin checkout. We won&rsquo;t be able to verify these payments either, though the payment method selected by customers will still be posted to your <a href="https://apiobuild.com/blog/how-to-create-web-store-with-apio/#step-3-add-order-google-sheet"  target="_blank" >order google sheet</a>.</p>
