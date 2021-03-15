@@ -7,13 +7,11 @@ Allow: /blog/
 
 Allow: /tags/chopin/
 
-Allow: /tags/documentation/
-
 Allow: /tags/ecommerce/
 
-Allow: /tags/google-sheet/
+Allow: /blog/news-ui-updates/
 
-Allow: /blog/news-support-more-currencies/
+Allow: /tags/google-sheet/
 
 Allow: /tags/product-updates/
 
@@ -22,6 +20,10 @@ Allow: /tags/
 Allow: /tags/telescope/
 
 Allow: /tags/tutorial/
+
+Allow: /tags/documentation/
+
+Allow: /blog/news-support-more-currencies/
 
 Allow: /tags/application/
 

@@ -6,7 +6,7 @@
     <description>Recent content in Tags on apio: microservices platform to create custom business softwares easily</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://apiobuild.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,54 @@
     <item>
       <title>chopin</title>
       <link>https://apiobuild.com/tags/chopin/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/chopin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ecommerce</title>
+      <link>https://apiobuild.com/tags/ecommerce/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/ecommerce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>google-sheet</title>
+      <link>https://apiobuild.com/tags/google-sheet/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/google-sheet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>product-updates</title>
+      <link>https://apiobuild.com/tags/product-updates/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/product-updates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>telescope</title>
+      <link>https://apiobuild.com/tags/telescope/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/telescope/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://apiobuild.com/tags/tutorial/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://apiobuild.com/tags/tutorial/</guid>
       <description></description>
     </item>
     
@@ -26,51 +71,6 @@
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://apiobuild.com/tags/documentation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ecommerce</title>
-      <link>https://apiobuild.com/tags/ecommerce/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/ecommerce/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>google-sheet</title>
-      <link>https://apiobuild.com/tags/google-sheet/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/google-sheet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>product-updates</title>
-      <link>https://apiobuild.com/tags/product-updates/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/product-updates/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>telescope</title>
-      <link>https://apiobuild.com/tags/telescope/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/telescope/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tutorial</title>
-      <link>https://apiobuild.com/tags/tutorial/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://apiobuild.com/tags/tutorial/</guid>
       <description></description>
     </item>
     
