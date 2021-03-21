@@ -1,23 +1,36 @@
+@import "../../themes/custom-theme/node_modules/Devices.css/assets/scss/devices";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+$font-family-base: 'Lato',
+sans-serif;
+
+$primary: #007bff;
+$secondary: #fcd236;
+$body-bg: #fefefe;
+$body-color: #111;
+
+$enable-rounded: true;
+$enable-shadows: true;
+$enable-gradients: false;
+
+@import "../../themes/custom-theme/node_modules/bootstrap/scss/bootstrap";
+
 html,
 body {
   height: 100%;
 }
 
-* {
-  font-family: "Work Sans", sans-serif;
-}
-
+// full screen banner mask
 .banner {
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .banner-404 {
-  background-color: #6c757d;
+  background-color: $secondary
 }
 
 .strip {
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: rgba($white, 0.65);
   background-blend-mode: overlay;
   background-repeat: no-repeat;
   background-position: right center;
@@ -32,6 +45,7 @@ body {
   background-size: cover;
 }
 
+// anchor offset
 a.anchor {
   display: block;
   position: relative;
@@ -39,30 +53,14 @@ a.anchor {
   top: -60px;
 }
 
+// profile img
 .profile-img {
   width: 100%;
   max-width: 150pt;
   border-radius: 50%;
 }
 
-.email-signup {
-  min-height: 250pt;
-  min-width: 200pt;
-  max-width: 300pt;
-}
-
+// info-card
 .info-card {
   background-color: rgba(245, 245, 245, 0.6) !important;
-}
-
-.footer-socials > a {
-  padding: 10px;
-}
-
-blockquote {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  padding-left: 15px;
-  border-left: 6px solid #ccc;
 }
