@@ -1,6 +1,14 @@
 User-agent: *
 
 
+Allow: /team/lulu/
+
+Allow: /team/yuchien/
+
+Allow: /team/andrew/
+
+Allow: /team/anni/
+
 Allow: /
 
 Allow: /blog/
@@ -109,12 +117,8 @@ Allow: /tags/marketing/
 
 Allow: /blog/collect-email-addresses-without-email-marketing-tools/
 
-Allow: /pricing/
-
-Allow: /forms/
-
 Allow: /privacy-policy/
 
-Allow: /forms/business/
+Allow: /team/
 
 Allow: /terms-of-service/
