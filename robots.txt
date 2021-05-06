@@ -13,7 +13,21 @@ Allow: /team/anni/
 
 Allow: /
 
+Allow: /tags/architecture/
+
 Allow: /blog/
+
+Allow: /tags/blog/
+
+Allow: /blog/why-do-we-create-apio/
+
+Allow: /tags/engineering/
+
+Allow: /tags/mission/
+
+Allow: /tags/
+
+Allow: /tags/tech/
 
 Allow: /tags/chopin/
 
@@ -24,8 +38,6 @@ Allow: /blog/news-ui-updates/
 Allow: /tags/google-sheet/
 
 Allow: /tags/product-updates/
-
-Allow: /tags/
 
 Allow: /tags/telescope/
 
@@ -46,8 +58,6 @@ Allow: /tags/one-page-website/
 Allow: /tags/small-business/
 
 Allow: /tags/website/
-
-Allow: /tags/engineering/
 
 Allow: /tags/pricing/
 
@@ -94,8 +104,6 @@ Allow: /tags/facebook/
 Allow: /tags/instagram/
 
 Allow: /blog/starting-an-online-store-with-chopin-and-instagram/
-
-Allow: /tags/blog/
 
 Allow: /blog/build-a-website-for-your-business-what-do-you-need/
 
