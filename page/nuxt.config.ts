@@ -4,14 +4,16 @@ import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  baseURL: "/page-nuxt/",
-  modules: ["@nuxt/content"],
+  app: {
+    baseURL: "/page-nuxt/"
+  },
   pages: true,
   css: ["@mdi/font/css/materialdesignicons.min.css"],
   build: {
     transpile: ["vuetify"]
   },
   modules: [
+    "@nuxt/content",
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
         // @ts-expect-error
