@@ -26,7 +26,7 @@
 
 <script setup>
 // import TeamMember from "/src/components/TeamMember.vue";
-// import LuluProfileImage from "/team/lulu-profile.png";
+import LuluProfileImage from "~/assets/team/lulu-profile.png";
 </script>
 
 <script>
@@ -38,7 +38,7 @@ export default {
         {
           name: "Lulu Cheng",
           title: "Founder",
-          image: "team/lulu-profile.png",
+          image: LuluProfileImage,
           description:
             "With over a decade of experience as a software engineer, I specialize in designing and implementing data systems. My expertise extends to ensuring security, privacy, compliance, architecting cloud solutions, and developing AI/ML platforms and infrastructure. I have a proven track record in large-scale infrastructure implementation and migration, enabling businesses to transition smoothly in their technology advancement journey. My approach focuses on creating robust, cost-effective solutions that drive innovation and efficiency. By understanding the unique challenges of complex technological landscapes, I help businesses stay ahead of the curve and achieve their strategic goals.",
           links: [

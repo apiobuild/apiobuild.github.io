@@ -4,22 +4,24 @@
       <v-col cols="12">
         <span class="text-h3">Articles</span>
       </v-col>
-      <template v-for="article in articles" :key="article.path">
-        <v-col cols="12" md="4" v-if="article.meta.visible != false">
-          <v-card :to="{ path: 'articles/' + article.path }" class="article">
-            <v-img cover :src="article.meta.img" class="article-img" />
-            <v-card-title class="text-wrap">
-              {{ article.meta.title }}
-            </v-card-title>
-            <v-card-subtitle>
-              By {{ article.meta.author }} on {{ article.meta.date }}
-            </v-card-subtitle>
-            <v-card-text>
-              {{ article.meta.description }}
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </template>
+      <ContentList path="/articles" v-slot="{ list }">
+        <template v-for="article in list" :key="article._path">
+          <v-col cols="12" md="4" v-if="article.visible != false">
+            <v-card :to="{ path: article._path }" class="article">
+              <v-img cover :src="article.img" class="article-img" />
+              <v-card-title class="text-wrap">
+                {{ article.title }}
+              </v-card-title>
+              <v-card-subtitle>
+                By {{ article.author }} on {{ article.date }}
+              </v-card-subtitle>
+              <v-card-text>
+                {{ article.description }}
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </template>
+      </ContentList>
       <v-col cols="12" md="4">
         <v-card class="article d-flex flex-column">
           <v-img contain :src="Logo" class="article-img" />
@@ -38,9 +40,9 @@
 </template>
 
 <script setup>
-import LetsTalkButton from "/src/components/LetsTalkButton.vue";
-import Logo from "/src/assets/images/logo_square.png";
-import { routes } from "vue-router/auto-routes";
+// import LetsTalkButton from "/src/components/LetsTalkButton.vue";
+import Logo from "~/assets/images/logo_square.png";
+// import { routes } from "vue-router/auto-routes";
 </script>
 
 <script>

@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "IntroPage",
+  name: "index",
   // Add your component logic here
   data() {
     return {

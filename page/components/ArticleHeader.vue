@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import Meta from "/src/components/Meta.vue";
+// import Meta from "/src/components/Meta.vue";
 const props = defineProps({
   url: {
     type: String,
