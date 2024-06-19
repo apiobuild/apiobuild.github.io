@@ -5,10 +5,13 @@ import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
-    baseURL: "/page-nuxt/"
+    // baseURL: "/page-nuxt/"
   },
   pages: true,
-  css: ["@mdi/font/css/materialdesignicons.min.css"],
+  css: [
+    "@mdi/font/css/materialdesignicons.min.css",
+    "@fortawesome/fontawesome-svg-core/styles.css"
+  ],
   build: {
     transpile: ["vuetify"]
   },

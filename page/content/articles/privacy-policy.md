@@ -1,11 +1,10 @@
-<route lang="yaml">
-meta:
-  title: Privacy Policy
-  author: luluc@apiobuild.com
-  date: 2022-08-25
-  disableComment: true
-  visible: false
-</route>
+---
+title: Privacy Policy
+author: luluc@apiobuild.com
+date: 2022-08-25
+disableComment: true
+visible: false
+---
 
 Your privacy is important to us. It is apiobuild LLC dba apio's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, https://apiobuild.com, and other sites we own and operate.
 
