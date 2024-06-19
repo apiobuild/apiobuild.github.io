@@ -6,7 +6,7 @@
           <v-avatar :size="mdImageSize" v-if="!mdAndUp">
             <img
               :width="mdImageSize"
-              src="/src/assets/consulting/luluc-profile.png"
+              src="~/assets/consulting/luluc-profile.png"
             />
           </v-avatar>
           <p class="text-uppercase">ApioX Consulting</p>
@@ -17,7 +17,7 @@
         <v-avatar :size="largeImageSize">
           <img
             :width="largeImageSize"
-            src="/src/assets/consulting/luluc-profile.png"
+            src="~/assets/consulting/luluc-profile.png"
           />
         </v-avatar>
       </v-col>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import LetsTalkButton from "/src/components/LetsTalkButton.vue";
+// import LetsTalkButton from "/src/components/LetsTalkButton.vue";
 import { computed } from "vue";
 import { useDisplay } from "vuetify";
 
