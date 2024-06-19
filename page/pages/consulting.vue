@@ -10,7 +10,7 @@
       class="offset-top"
       @click="$refs.articles.$el.scrollIntoView({ behavior: 'smooth' })"
     />
-    <!-- <ConsultingArticles ref="articles" id="articles" /> -->
+    <ConsultingArticles ref="articles" id="articles" />
   </v-container>
 </template>
 
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "ConsultingPage",
+  name: "Consulting",
   // Add your component logic here
   data() {
     return {

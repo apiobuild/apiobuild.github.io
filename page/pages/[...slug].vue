@@ -10,6 +10,7 @@
           date: doc.date,
           tags: doc.tags
         }"
+        :url="doc._path"
       />
       <v-card flat class="py-15">
         <ContentRenderer :value="doc" />
