@@ -6,22 +6,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   pages: true,
-  css: [
-    "@mdi/font/css/materialdesignicons.min.css",
-    "@fortawesome/fontawesome-svg-core/styles.css"
-  ],
   build: {
-    transpile: ["vuetify"]
+    transpile: ["vuetify", "@nuxtjs/mdc"]
   },
-  modules: [
-    "@nuxt/content",
-    (_options, nuxt) => {
-      nuxt.hooks.hook("vite:extendConfig", (config) => {
-        // @ts-expect-error
-        config.plugins.push(vuetify({ autoImport: true }));
-      });
+  hooks: {
+    "vite:extendConfig": (config) => {
+      config.plugins.push(vuetify({ autoImport: true }));
     }
-  ],
+  },
+  modules: ["@nuxt/content", "nuxt-disqus", "nuxt-gtag"],
   vite: {
     ssr: {
       noExternal: ["vuetify"]
@@ -31,6 +24,18 @@ export default defineNuxtConfig({
         transformAssetUrls
       }
     }
+  },
+  content: {
+    markdown: {
+      mdc: true,
+      rehypePlugins: ["rehype-autolink-headings"]
+    }
+  },
+  disqus: {
+    shortname: "apiobuild-com"
+  },
+  gtag: {
+    id: "G-K7JYQS9KVF"
   },
   components: [
     {

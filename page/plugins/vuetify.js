@@ -1,14 +1,17 @@
 import { aliases, fa } from 'vuetify/iconsets/fa'
-import {mdi} from "vuetify/lib/iconsets/mdi";
+import { mdi } from "vuetify/lib/iconsets/mdi";
 
-// import this after install `@mdi/font` package
 import '@mdi/font/css/materialdesignicons.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 import 'vuetify/styles'
+import "~/assets/css/main.css";
+
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+
+// import  "~/assets/css/main.css"
 
 // color theme
 const lightColorTheme = {

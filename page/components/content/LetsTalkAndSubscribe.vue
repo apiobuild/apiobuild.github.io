@@ -8,8 +8,8 @@
 </template>
 
 <script setup>
-import LetsTalkButton from "/src/components/LetsTalkButton.vue";
-import Subscribe from "/src/components/Subscribe.vue";
+// import LetsTalkButton from "/src/components/LetsTalkButton.vue";
+// import Subscribe from "/src/components/Subscribe.vue";
 
 const props = defineProps({
   ctaText: {

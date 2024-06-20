@@ -1,7 +1,15 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <Appbar />
-    <NuxtPage />
+    <div class="page">
+      <NuxtPage />
+    </div>
     <Footer />
   </v-app>
 </template>
+<style>
+.page {
+  max-width: 1280px;
+  align-self: center;
+}
+</style>

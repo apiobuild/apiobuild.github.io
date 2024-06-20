@@ -61,7 +61,7 @@ export default {
 /* Add your component styles here */
 
 .fill-height {
-  height: 95vh !important;
+  height: 100vh !important;
 }
 .fill-width {
   width: 100% !important;

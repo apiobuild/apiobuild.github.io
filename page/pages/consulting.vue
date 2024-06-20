@@ -2,7 +2,7 @@
   <v-container>
     <Meta :meta="meta" url="/consulting" />
     <ConsultingIntro />
-    <ConsultingNextButton
+    <NextButton
       @click="$refs.cases.$el.scrollIntoView({ behavior: 'smooth' })"
     />
     <ConsultingOffering ref="cases" id="cases" />

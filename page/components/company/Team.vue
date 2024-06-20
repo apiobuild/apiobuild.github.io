@@ -71,4 +71,7 @@ export default {
   padding-top: 120px;
   padding-bottom: 120px;
 }
+.min-fill-height {
+  min-height: 100vh;
+}
 </style>

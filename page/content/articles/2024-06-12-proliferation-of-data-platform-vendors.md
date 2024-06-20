@@ -42,11 +42,8 @@ Today, if features needed are not on the vendor's roadmap, they often become dif
 
 Taking away developers' power ended up making businesses move slower together. In order to take advantage of X feature that exists on vendor A but not vendor B, developers have two choices: 1. customize vendor B to add such features or 2. migrate from vendor B to vendor A. Many businesses are now very cautious about building new features since they are already paying so much to the vendors and would rather have the vendor do the heavy lifting. Option 1 has become more difficult and costly if implementation is not aligned with the vendor's design, and option 2 is a very costly process. More often than not, we all end up hoping the vendor will eventually implement the feature.
 
-<LetsTalkAndSubscribe
-  ctaText="We are always happy to chat and see how we can help streamline your data operations and platform vendors."
-  subscribeText="Subscribe to our Newsletter"
-  class="pb-10"
-/>
+::LetsTalkAndSubscribe{ctaText="We are always happy to chat and see how we can help streamline your data operations and platform vendors." subscribeText="Subscribe to our Newsletter"}
+::
 
 ## How to Fix This?
 
@@ -62,8 +59,5 @@ Are platform engineers today just glorified operators? In a perfect world where 
 
 Complexity isn't the most obvious problem of a slow tech stack. It could even provide a false sense of progress and capabilities. Microservice architecture isn't supposed to simplify developers' lives but to increase developer velocity. However, it's important to strike a balance between speed and complexity. Costs associated with complexity such as security, custom processes, complex cross-platform deployment, internal training and education, documentation, etc., are often not easy to quantify. It's important to identify both overlapping use cases and gaps between vendor solutions and recognize when the speed no longer justify the cost and complexity.
 
-<LetsTalkAndSubscribe
-  ctaText="We are always happy to chat and see how we can help streamline your data operations and platform vendors."
-  subscribeText="Subscribe to our Newsletter"
-  class="pb-10"
-/>
+::LetsTalkAndSubscribe{ctaText="We are always happy to chat and see how we can help streamline your data operations and platform vendors." subscribeText="Subscribe to our Newsletter"}  
+::
