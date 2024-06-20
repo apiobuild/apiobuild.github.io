@@ -4,7 +4,6 @@ import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   // devtools: { enabled: true },
-
   pages: true,
   build: {
     transpile: ["vuetify", "@nuxtjs/robots", "@nuxtjs/sitemap"]
@@ -25,8 +24,13 @@ export default defineNuxtConfig({
       }
     }
   },
-  app: {
-    link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }]
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ["/", "sitemap.xml"],
+      ignore: ["/tak", "/konfiguration", "/checkout"]
+    }
   },
   site: {
     url: "https://apiobuild.com",
@@ -36,6 +40,7 @@ export default defineNuxtConfig({
     defaultLocale: "en"
   },
   content: {
+    contentHead: false,
     markdown: {
       mdc: true,
       rehypePlugins: ["rehype-autolink-headings"]
