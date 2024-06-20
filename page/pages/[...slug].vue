@@ -4,6 +4,7 @@
       <ArticleHeader
         :post="{
           title: doc.title,
+          description: doc.description,
           img: doc.img,
           author: doc.author,
           authorLink: doc.authorLink,
