@@ -37,7 +37,6 @@
 </template>
 
 <script setup>
-// import LetsTalkButton from "/src/components/LetsTalkButton.vue";
 import { computed } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -61,7 +60,7 @@ export default {
 /* Add your component styles here */
 
 .fill-height {
-  height: 95vh !important;
+  height: 100vh !important;
 }
 .fill-width {
   width: 100% !important;

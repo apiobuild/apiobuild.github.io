@@ -1,5 +1,4 @@
 <template>
-  <Meta :meta="post" :url="url" />
   <v-card flat rounded="0" class="min-width">
     <v-img cover :src="post.img" v-if="post.img" />
     <v-card-title class="text-h3 text-wrap px-0">
@@ -21,7 +20,6 @@
 </template>
 
 <script setup>
-// import Meta from "/src/components/Meta.vue";
 const props = defineProps({
   url: {
     type: String,
@@ -32,6 +30,14 @@ const props = defineProps({
     required: true
   }
 });
+useSeoMeta({
+  title: props.post.title,
+  ogTitle: props.post.title,
+  description: props.post.description,
+  ogDescription: props.post.description,
+  ogImage: props.post.img,
+  twitterCard: 'summary_large_image',
+})
 </script>
 
 <script>

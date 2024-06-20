@@ -43,7 +43,7 @@ export default {
 
 <style scoped>
 .fill-height {
-  height: 95vh !important;
+  height: 100vh !important;
 }
 .flex-grow-1 {
   flex-grow: 1;

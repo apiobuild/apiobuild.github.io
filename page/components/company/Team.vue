@@ -25,7 +25,6 @@
 </template>
 
 <script setup>
-// import TeamMember from "/src/components/TeamMember.vue";
 import LuluProfileImage from "~/assets/team/lulu-profile.png";
 </script>
 
@@ -70,5 +69,8 @@ export default {
 .p-extra {
   padding-top: 120px;
   padding-bottom: 120px;
+}
+.min-fill-height {
+  min-height: 100vh;
 }
 </style>

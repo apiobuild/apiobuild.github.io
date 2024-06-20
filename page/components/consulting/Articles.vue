@@ -40,9 +40,7 @@
 </template>
 
 <script setup>
-// import LetsTalkButton from "/src/components/LetsTalkButton.vue";
 import Logo from "~/assets/images/logo_square.png";
-// import { routes } from "vue-router/auto-routes";
 </script>
 
 <script>
