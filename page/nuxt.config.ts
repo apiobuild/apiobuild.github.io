@@ -13,7 +13,13 @@ export default defineNuxtConfig({
       config.plugins.push(vuetify({ autoImport: true }));
     }
   },
-  modules: ["@nuxt/content", "nuxt-disqus", "nuxt-gtag", "@nuxtjs/robots"],
+  modules: [
+    "@nuxt/content",
+    "nuxt-disqus",
+    "nuxt-gtag",
+    "@nuxtjs/robots",
+    "@nuxtjs/sitemap"
+  ],
   vite: {
     ssr: {
       noExternal: ["vuetify"]
