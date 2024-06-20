@@ -68,10 +68,7 @@
   </v-container>
 </template>
 
-<script setup>
-// import LetsTalkButton from "/src/components/LetsTalkButton.vue";
-// import MarkdownRenderer from "/src/components/MarkdownRenderer.vue";
-</script>
+<script setup></script>
 
 <script>
 export default {

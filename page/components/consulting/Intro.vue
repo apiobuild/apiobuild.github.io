@@ -37,7 +37,6 @@
 </template>
 
 <script setup>
-// import LetsTalkButton from "/src/components/LetsTalkButton.vue";
 import { computed } from "vue";
 import { useDisplay } from "vuetify";
 

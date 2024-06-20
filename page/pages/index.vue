@@ -1,5 +1,4 @@
 <template>
-  <Meta :meta="meta" />
   <v-container class="py-0">
     <CompanyIntro />
     <NextButton
@@ -17,29 +16,9 @@
   </v-container>
 </template>
 
-<script setup>
-// import Intro from "/components/Company/Intro.vue";
-// import About from "/src/views/Company/About.vue";
-// import Services from "/src/views/Company/Services.vue";
-// import Team from "/src/views/Company/Team.vue";
-// import NextButton from "/src/components/NextButton.vue";
-// import Meta from "/src/components/Meta.vue";
-</script>
-
 <script>
 export default {
-  name: "index",
-  // Add your component logic here
-  data() {
-    return {
-      meta: {
-        title: "apiobuild",
-        description:
-          "apiobuild's mission is to build technology for small business.",
-        img: "/src/assets/images/logo_square.png"
-      }
-    };
-  }
+  name: "index"
 };
 </script>
 

@@ -20,9 +20,7 @@
   </v-container>
 </template>
 
-<script setup>
-// import Service from "/src/components/Service.vue";
-</script>
+<script setup></script>
 
 <script>
 export default {

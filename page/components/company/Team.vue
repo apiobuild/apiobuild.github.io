@@ -25,7 +25,6 @@
 </template>
 
 <script setup>
-// import TeamMember from "/src/components/TeamMember.vue";
 import LuluProfileImage from "~/assets/team/lulu-profile.png";
 </script>
 
