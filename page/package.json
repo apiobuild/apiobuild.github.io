@@ -12,6 +12,8 @@
   "dependencies": {
     "@nuxt/content": "^2.12.1",
     "@nuxtjs/mdc": "^0.8.2",
+    "@nuxtjs/robots": "^3.0.0",
+    "@nuxtjs/sitemap": "^5.2.0",
     "markdown-it": "^14.1.0",
     "markdown-it-for-inline": "^2.0.1",
     "moment": "^2.30.1",
