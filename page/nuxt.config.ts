@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
   pages: true,
   build: {
-    transpile: ["vuetify"]
+    transpile: ["vuetify", "@nuxtjs/robots", "@nuxtjs/sitemap"]
   },
   hooks: {
     "vite:extendConfig": (config) => {
@@ -29,7 +29,11 @@ export default defineNuxtConfig({
     link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }]
   },
   site: {
-    url: "https://apiobuild.com"
+    url: "https://apiobuild.com",
+    name: "apiobuild",
+    description:
+      "apiobuild's mission is to create cost-effective technology tailored to the needs of small to medium-sized businesses. Technology is changing rapidly, and we understand that small businesses can struggle to keep up. Our solutions enable your business to grow and adapt to changes with manageable cost and resources while maintaining compliance with the highest industry standards. We strive to be your technology partner, driving your business's success every step of the way.",
+    defaultLocale: "en"
   },
   content: {
     markdown: {
