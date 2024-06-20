@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: "apiobuild",
+  title: () => "apiobuild",
   meta: [
     {
       name: "description",
@@ -32,6 +32,7 @@ useHead({
       name: "og:image",
       content: "/logo_square.png"
     }
-  ]
+  ],
+  link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }]
 });
 </script>

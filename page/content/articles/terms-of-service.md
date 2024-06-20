@@ -6,4 +6,6 @@ disableComment: true
 visible: false
 ---
 
-<iframe src="~/assets/html/terms-of-service.html" class="fill-height" style="width: 100%" />
+<div> hello world </div>
+
+<iframe src="/html/terms-of-service.html" style="width: 100%; height: 100vh;" />

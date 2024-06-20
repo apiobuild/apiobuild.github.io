@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pt-0">
+  <v-container class="pt-extra">
     <ContentDoc v-slot="{ doc }">
       <ArticleHeader
         :post="{
@@ -25,5 +25,8 @@
   p {
     padding-bottom: 30px;
   }
+}
+.pt-extra {
+  padding-top: 100px;
 }
 </style>
