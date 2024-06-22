@@ -1,0 +1,5 @@
+$font: Ubuntu, Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+
+@use 'vuetify' with (
+  $body-font-family: $font,
+);
