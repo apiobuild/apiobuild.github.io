@@ -13,7 +13,7 @@
     />
     <template v-else>
       <v-list-item
-        class="py-0 fill-height"
+        class="py-0 fill-height font-weight-black"
         v-for="item in items"
         :key="item.name"
         :to="item.link.to"

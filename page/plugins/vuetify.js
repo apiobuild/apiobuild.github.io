@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 import 'vuetify/styles'
 import "~/assets/css/main.css";
+import "~/assets/css/_variables.scss";
 
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
