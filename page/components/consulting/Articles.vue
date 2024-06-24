@@ -13,7 +13,7 @@
                 {{ article.title }}
               </v-card-title>
               <v-card-subtitle>
-                By {{ article.author }} on {{ article.date }}
+                By {{ article.author }} on {{ formatDate(article.date) }}
               </v-card-subtitle>
               <v-card-text>
                 {{ article.description }}
@@ -41,6 +41,7 @@
 
 <script setup>
 import Logo from "~/assets/images/logo_square.png";
+import moment from "moment";
 </script>
 
 <script>
@@ -57,6 +58,11 @@ export default {
       }
       const articles = filtered[0];
       return articles.children;
+    }
+  },
+  methods: {
+    formatDate(date) {
+      return moment(date).format("YYYY-MM-DD");
     }
   }
 };
