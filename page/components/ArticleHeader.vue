@@ -35,7 +35,7 @@ useSeoMeta({
   ogTitle: props.post.title,
   description: props.post.description,
   ogDescription: props.post.description,
-  ogImage: props.post.img,
+  ogImage: (props.post.img ? props.post.img : `${url.protocol}//${url.host}/images/og_image.png`),
   twitterCard: 'summary_large_image',
 })
 </script>
