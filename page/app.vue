@@ -26,11 +26,11 @@ const meta = {
 };
 
 useSeoMeta({
-  title: meta.title,
-  ogTitle: meta.title,
-  description: meta.description,
-  ogDescription: meta.description,
-  ogImage: meta.image,
+  title: () => meta.title,
+  ogTitle: () => meta.title,
+  description: () => meta.description,
+  ogDescription: () => meta.description,
+  ogImage: () => meta.image,
   twitterCard: "summary_large_image"
 });
 
