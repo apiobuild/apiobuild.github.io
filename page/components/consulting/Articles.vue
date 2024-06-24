@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height">
+  <v-container class="fill-height pt-extra">
     <v-row>
       <v-col cols="12">
         <span class="text-h3">Articles</span>
@@ -8,7 +8,12 @@
         <template v-for="article in list" :key="article._path">
           <v-col cols="12" md="4" v-if="article.visible != false">
             <v-card :to="{ path: article._path }" class="article">
-              <v-img cover :src="article.img" class="article-img" />
+              <v-img
+                cover
+                :src="article.img"
+                :height="image.height"
+                :width="image.width"
+              />
               <v-card-title class="text-wrap">
                 {{ article.title }}
               </v-card-title>
@@ -24,7 +29,12 @@
       </ContentList>
       <v-col cols="12" md="4">
         <v-card class="article d-flex flex-column">
-          <v-img contain :src="Logo" class="article-img" />
+          <v-img
+            contain
+            :src="Logo"
+            :height="image.height"
+            :width="image.width"
+          />
           <v-card-title>Learn more?</v-card-title>
           <v-card-text>
             We are always up for a chat to learn about your data and AI/ML
@@ -48,7 +58,12 @@ import moment from "moment";
 export default {
   name: "ConsultingArticles",
   data() {
-    return {};
+    return {
+      image: {
+        height: 200,
+        width: 400
+      }
+    };
   },
   computed: {
     articles() {
@@ -73,11 +88,11 @@ export default {
 a {
   color: black;
 }
-.article {
-  min-height: 400px;
+.pt-extra {
+  padding-top: 100px;
 }
-.article-img {
-  height: 180px;
+.article {
+  min-height: 420px;
 }
 
 @media (min-width: 1024px) {

@@ -20,6 +20,7 @@
 </template>
 
 <script setup>
+const url = useRequestURL();
 const props = defineProps({
   url: {
     type: String,
