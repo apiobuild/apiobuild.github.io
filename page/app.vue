@@ -16,23 +16,26 @@
 </style>
 
 <script setup lang="ts">
+const url = useRequestURL();
+
+const meta = {
+  title: "apiobuild",
+  description:
+    "apiobuild's mission is to create cost-effective technology tailored to the needs of small to medium-sized businesses. Technology is changing rapidly, and we understand that small businesses can struggle to keep up. Our solutions enable your business to grow and adapt to changes with manageable cost and resources while maintaining compliance with the highest industry standards. We strive to be your technology partner, driving your business's success every step of the way.",
+  image: `${url.protocol}//${url.host}/images/og_image.png`
+};
+
+useSeoMeta({
+  title: meta.title,
+  ogTitle: meta.title,
+  description: meta.description,
+  ogDescription: meta.description,
+  ogImage: meta.image,
+  twitterCard: "summary_large_image"
+});
+
 useHead({
   title: () => "apiobuild",
-  meta: [
-    {
-      name: "description",
-      content:
-        "apiobuild's mission is to create cost-effective technology tailored to the needs of small to medium-sized businesses. Technology is changing rapidly, and we understand that small businesses can struggle to keep up. Our solutions enable your business to grow and adapt to changes with manageable cost and resources while maintaining compliance with the highest industry standards. We strive to be your technology partner, driving your business's success every step of the way."
-    },
-    {
-      name: "og:title",
-      content: "apiobuild"
-    },
-    {
-      name: "og:image",
-      content: "/images/og_image.png"
-    }
-  ],
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }]
 });
 </script>
