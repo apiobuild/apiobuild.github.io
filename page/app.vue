@@ -30,7 +30,7 @@ useHead({
     },
     {
       name: "og:image",
-      content: "/logo_square.png"
+      content: "/images/og_image.png"
     }
   ],
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }]
