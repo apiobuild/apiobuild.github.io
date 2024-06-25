@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-const url = useRequestURL();
 const props = defineProps({
   url: {
     type: String,
@@ -31,14 +30,30 @@ const props = defineProps({
     required: true
   }
 });
-useSeoMeta({
-  title: () => props.post.title,
-  ogTitle: () => props.post.title,
-  description: () => props.post.description,
-  ogDescription: () => props.post.description,
-  ogImage: () => (props.post.img ? props.post.img : "https://apiobuild.com/images/og_image.png"),
-  twitterCard: 'summary_large_image',
-})
+
+useHead(
+  {
+    title: props.post.title,
+    meta: [
+      {
+        property: "og:title",
+        content:  props.post.title
+      },
+      {
+        name: "description",
+        property: "og:description",
+        content:  props.post.description
+      },
+      {
+        name: "image",
+        property: "og:image",
+        content:  (props.post.img ? props.post.img : "https://apiobuild.com/images/og_image.png")
+      },
+      { name: "twitter:card", content: "summary" }
+    ]
+  },
+  { tagPriority: "critical" }
+);
 </script>
 
 <script>
