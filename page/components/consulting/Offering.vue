@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row class="p-extra">
+    <v-row class="pb-extra">
       <v-col cols="12" class="pt-15 px-0">
         <span class="text-h3"> How Can We Help? </span>
         <v-row class="pt-15">
@@ -138,7 +138,7 @@ export default {
 </script>
 
 <style scoped>
-.p-extra {
+.pb-extra {
   padding-bottom: 120px;
 }
 .min-height {

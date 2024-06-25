@@ -9,9 +9,11 @@
 </template>
 
 <style>
-.page {
-  max-width: 1280px;
-  align-self: center;
+@media (min-width: 1024px) {
+  .page {
+    max-width: 1280px;
+    align-self: center;
+  }
 }
 </style>
 

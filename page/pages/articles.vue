@@ -1,5 +1,7 @@
 <template>
-  <ConsultingArticles />
+  <v-container>
+    <ConsultingArticles />
+  </v-container>
 </template>
 
 <script>
