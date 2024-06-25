@@ -16,8 +16,6 @@
 </style>
 
 <script setup lang="ts">
-const url = useRequestURL();
-
 const meta = {
   title: "apiobuild",
   description:
@@ -26,7 +24,7 @@ const meta = {
 };
 useHead(
   {
-    title: () => "apiobuild",
+    title: () => meta.title,
     meta: [
       {
         property: "og:title",
