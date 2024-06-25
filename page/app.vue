@@ -30,7 +30,13 @@ useSeoMeta({
   ogTitle: () => meta.title,
   description: () => meta.description,
   ogDescription: () => meta.description,
-  ogImage: () => meta.image,
+  ogImage: () => {
+    return {
+      url: meta.image,
+      secureUrl: meta.image,
+      type: 'image/png'
+    };
+  },
   twitterCard: "summary_large_image"
 });
 
