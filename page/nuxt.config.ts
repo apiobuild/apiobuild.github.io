@@ -38,6 +38,10 @@ export default defineNuxtConfig({
       routes: ["/sitemap.xml"]
     }
   },
+  robots: {
+    UserAgent: "*",
+    Disallow: ""
+  },
   site: {
     url: "https://apiobuild.com",
     name: "apiobuild",
