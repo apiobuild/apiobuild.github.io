@@ -35,12 +35,8 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       // crawlLinks: true
-      routes: ["/sitemap.xml"]
+      routes: ["/sitemap.xml", "/robots.txt"]
     }
-  },
-  robots: {
-    UserAgent: "*",
-    Disallow: ""
   },
   site: {
     url: "https://apiobuild.com",
