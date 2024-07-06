@@ -3,7 +3,7 @@ title: Proliferation of Data Platforms and Infrastructure
 description: With an explosive number of data infrastructure and platform tools and vendors, we should supposedly benefit from the competition in the industry, but why is our life not easier?
 author: Lulu Cheng
 authorLink: https://l1990790120.github.io/about
-date: 2022-08-25
+date: 2024-06-12
 img: https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
 tags: ["Data", "Infrastructure"]
 ---
