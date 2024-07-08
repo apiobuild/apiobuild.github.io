@@ -6,15 +6,10 @@
       </v-col>
       <v-row>
         <ContentList path="/articles" v-slot="{ list }">
-          <template v-for="article in list" :key="article._path">
+          <template v-for="article in sortByDate(list)" :key="article._path">
             <v-col cols="12" md="4" v-if="article.visible != false">
               <v-card :to="{ path: article._path }" class="article">
-                <v-img
-                  cover
-                  :height="image.height"
-                  :width="image.width"
-                  :src="article.img"
-                />
+                <v-img cover :height="image.height" :width="image.width" :src="article.img" />
 
                 <v-card-title class="text-wrap">
                   {{ article.title }}
@@ -31,12 +26,7 @@
         </ContentList>
         <v-col cols="12" md="4" class="">
           <v-card class="article d-flex flex-column">
-            <v-img
-              cover
-              :height="image.height"
-              :width="image.width"
-              :src="Logo"
-            />
+            <v-img cover :height="image.height" :width="image.width" :src="Logo" />
 
             <v-card-title>Learn more?</v-card-title>
             <v-card-text>
@@ -81,7 +71,19 @@ export default {
   },
   methods: {
     formatDate(date) {
-      return moment(date).format("YYYY-MM-DD");
+      return moment(date).utc().format("YYYY-MM-DD");
+    },
+    sortByDate(list) {
+      list.sort((a, b) => {
+        if (a.date < b.date) {
+          return 1;
+        }
+        if (a.date > b.date) {
+          return -1;
+        }
+        return 0;
+      });
+      return list;
     }
   }
 };
@@ -92,9 +94,11 @@ export default {
 a {
   color: black;
 }
+
 .pt-extra {
   padding-top: 100px;
 }
+
 .article {
   min-height: 420px;
 }
@@ -104,6 +108,7 @@ a {
     min-height: 100vh;
   }
 }
+
 .fill-height {
   height: 100% !important;
 }

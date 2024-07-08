@@ -37,17 +37,17 @@ useHead(
     meta: [
       {
         property: "og:title",
-        content:  props.post.title
+        content: props.post.title
       },
       {
         name: "description",
         property: "og:description",
-        content:  props.post.description
+        content: props.post.description
       },
       {
         name: "image",
         property: "og:image",
-        content:  (props.post.img ? props.post.img : "https://apiobuild.com/images/og_image.png")
+        content: (props.post.img ? props.post.img : "https://apiobuild.com/images/og_image.png")
       },
       { name: "twitter:card", content: "summary" }
     ]
@@ -63,8 +63,8 @@ export default {
 
   methods: {
     formatDate(date) {
-      return moment(date).format("YYYY-MM-DD");
-    }
+      return moment(date).utc().format("YYYY-MM-DD");
+    },
   }
 };
 </script>
