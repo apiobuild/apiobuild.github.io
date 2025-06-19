@@ -19,7 +19,8 @@ export default defineNuxtConfig({
     "nuxt-disqus",
     "nuxt-gtag",
     "@nuxtjs/robots",
-    "@nuxtjs/sitemap"
+    "@nuxtjs/sitemap",
+    "@nuxt/image"
   ],
   vite: {
     ssr: {
