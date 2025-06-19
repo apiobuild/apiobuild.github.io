@@ -54,8 +54,7 @@
   </v-footer>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <script>
 export default {
@@ -69,70 +68,70 @@ export default {
           links: [
             {
               name: "About",
-              link: { to: { path: "/", hash: "#about" } }
+              link: { to: { path: "/", hash: "#about" } },
             },
             {
               name: "Services",
-              link: { to: { path: "/", hash: "#service" } }
+              link: { to: { path: "/", hash: "#service" } },
             },
             {
               name: "Team",
-              link: { to: { path: "/", hash: "#team" } }
-            }
-          ]
+              link: { to: { path: "/", hash: "#team" } },
+            },
+          ],
         },
         {
           name: "Service",
           links: [
             {
               name: "Platform",
-              link: { href: "https://apiobuild.com/platform", openNew: true }
+              link: { href: "https://apiobuild.com/platform", openNew: true },
             },
             { name: "Consulting", link: { to: { path: "/consulting" } } },
             {
               name: "Articles",
-              link: { to: { path: "/articles" } }
-            }
-          ]
+              link: { to: { path: "/articles" } },
+            },
+          ],
         },
         {
           name: "Legal",
           links: [
             {
               name: "Privacy Policy",
-              link: { to: { path: "/articles/privacy-policy" } }
+              link: { to: { path: "/articles/privacy-policy" } },
             },
             {
               name: "Terms of Service",
-              link: { to: { path: "/articles/terms-of-service" } }
-            }
-          ]
-        }
+              link: { to: { path: "/articles/terms-of-service" } },
+            },
+          ],
+        },
       ],
       socials: [
         {
           name: "linkedin",
           link: "https://www.linkedin.com/company/apiobuild/",
-          icon: "fab fa-linkedin"
+          icon: "fab fa-linkedin",
         },
         {
           name: "youtube",
           link: "https://www.youtube.com/apiobuild",
-          icon: "fab fa-youtube"
+          icon: "fab fa-youtube",
         },
         {
           name: "email",
           link: "mailto:support@apiobuild.com",
-          icon: "fas fa-envelope"
+          icon: "fas fa-envelope",
         },
         {
           name: "instagram",
           link: "https://www.instagram.com/apiobuild",
-          icon: "fab fa-instagram"
-        }
-      ]
+          icon: "fab fa-instagram",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 
@@ -141,7 +140,7 @@ export default {
   max-width: 300px;
 }
 .full-width {
-  width: 100%;
+  width: 100vw;
 }
 a {
   color: black;
