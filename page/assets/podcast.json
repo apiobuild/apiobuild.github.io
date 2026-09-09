@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Behind the Counter | apiobuild",
+    "description": "Two Asian-owned coffee shop operators telling the real stories behind the counter — the grind, the pressure, the wins nobody sees. A show for the people actually doing the work, and the community growing around them.",
+    "image": "https://apiobuild.com/images/og_image.png"
+  },
+
+  "links": {
+    "listen": "#",
+    "community": "#",
+    "suggestGuest": "#"
+  },
+
+  "hero": {
+    "eyebrow": "A podcast for people behind the counter",
+    "title": "Every shop has a story before it has a P&L.",
+    "body": "An Asian founder building software and a coffee shop owner, telling the real stories behind the counter — the grind, the pressure, the wins nobody sees. Not another founder-hustle podcast. A show for the people actually doing the work, and the community growing around them.",
+    "primaryCta": { "label": "Listen Now", "link": "listen" },
+    "secondaryCta": { "label": "Join the Community", "link": "community" }
+  },
+
+  "bands": [
+    {
+      "id": "the-show",
+      "eyebrow": "The Show",
+      "title": "Real conversations with Asian American operators.",
+      "body": "Boba, matcha, coffee, and beyond. We talk about the daily grind as much as the big wins: the 5am prep, the staffing headaches, the modifier menu that broke your POS. Business lessons come up because they're part of the story — not because we're selling a playbook."
+    },
+    {
+      "id": "community",
+      "eyebrow": "The Community",
+      "title": "This isn't a podcast with a Discord bolted on.",
+      "body": "It's a growing group of Asian operators who get what it's like to run this kind of business — trading notes, asking questions, showing up for each other. If you're in the daily grind too, there's a seat for you.",
+      "cta": { "label": "Join the Community", "link": "community" }
+    },
+    {
+      "id": "guests",
+      "eyebrow": "Guests",
+      "title": "Know someone with a story?",
+      "body": "We're always looking for operators to feature — not just the ones with a big exit, but the ones still in it. If that's you, or someone you know, we want to hear it.",
+      "cta": { "label": "Suggest a Guest", "link": "suggestGuest" },
+      "glow": true
+    }
+  ],
+
+  "footer": [
+    { "name": "Privacy Policy", "href": "/articles/privacy-policy" },
+    { "name": "Terms of Service", "href": "/articles/terms-of-service" },
+    { "name": "Email us", "href": "mailto:support@apiobuild.com", "openNew": true }
+  ]
+}

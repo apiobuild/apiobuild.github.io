@@ -1,21 +1,10 @@
 <template>
   <v-app id="app">
-    <Appbar />
-    <div class="page">
+    <NuxtLayout>
       <NuxtPage />
-    </div>
-    <Footer />
+    </NuxtLayout>
   </v-app>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .page {
-    max-width: 1280px;
-    align-self: center;
-  }
-}
-</style>
 
 <script setup lang="ts">
 const meta = {

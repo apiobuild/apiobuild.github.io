@@ -1,0 +1,124 @@
+/* Design tokens and base typography for the podcast site (/podcast).
+   Namespaced under .podcast-page so this file can be imported unscoped from
+   the podcast layout without touching the rest of apiobuild.com, which keeps
+   its Vuetify theme. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap");
+
+.podcast-page {
+  --pod-bg: #15100d;
+  --pod-bg-raised: #1e1815;
+  --pod-text: #f2e9e1;
+  --pod-text-muted: #b9a99c;
+  --pod-accent: #e08a4c;
+  --pod-accent-strong: #f2a768;
+  --pod-rule: rgba(242, 233, 225, 0.14);
+
+  --pod-display: "Fraunces", Georgia, serif;
+  --pod-body: "Inter", system-ui, sans-serif;
+
+  /* The section rhythm the whole page is built on -- every band uses this
+     for its vertical padding so the spacing stays even as sections are
+     added or reordered. */
+  --pod-band: clamp(4.5rem, 11vw, 9rem);
+
+  min-height: 100vh;
+  background: var(--pod-bg);
+  color: var(--pod-text);
+  font-family: var(--pod-body);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.podcast-page h1,
+.podcast-page h2 {
+  font-family: var(--pod-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.podcast-page p {
+  margin: 0;
+}
+
+/* One column width for every band, so the hero, the prose sections and the
+   footer all line up on the same left edge. */
+.podcast-page .pod-shell {
+  width: min(100% - 2.5rem, 62rem);
+  margin-inline: auto;
+}
+
+.podcast-page .pod-band {
+  padding-block: var(--pod-band);
+  border-top: 1px solid var(--pod-rule);
+}
+
+/* The small caps label above each section heading. */
+.podcast-page .pod-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pod-accent);
+}
+
+.podcast-page .pod-lede {
+  color: var(--pod-text-muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  max-width: 44rem;
+}
+
+.podcast-page .pod-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--pod-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.podcast-page .pod-btn-solid,
+.podcast-page a.pod-btn-solid:link,
+.podcast-page a.pod-btn-solid:visited {
+  background: var(--pod-accent);
+  color: #1a120c;
+}
+.podcast-page a.pod-btn-solid:hover {
+  background: var(--pod-accent-strong);
+  color: #1a120c;
+}
+
+.podcast-page .pod-btn-ghost,
+.podcast-page a.pod-btn-ghost:link,
+.podcast-page a.pod-btn-ghost:visited {
+  border-color: var(--pod-rule);
+  color: var(--pod-text);
+}
+.podcast-page a.pod-btn-ghost:hover {
+  border-color: var(--pod-text);
+  color: var(--pod-text);
+}
+
+/* Every prose band is the same two columns: a sticky eyebrow label on the
+   left, the heading and copy on the right. Stacks below 48rem. */
+.podcast-page .pod-split {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 2rem 3rem;
+}
+
+.podcast-page .pod-split-label {
+  padding-top: 0.6rem;
+}
+
+@media (max-width: 48rem) {
+  .podcast-page .pod-split {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
