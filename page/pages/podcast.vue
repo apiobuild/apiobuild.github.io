@@ -1,5 +1,5 @@
 <template>
-  <PodcastHero :hero="content.hero" :links="content.links" />
+  <PodcastHero :hero="content.hero" :links="content.links" :hosts="hosts" />
   <!-- Every other band is a lime field, so the theme carries down the page
     rather than stopping at the hero. Alternating on position keeps that
     rhythm right when sections are reordered in podcast.json, which a flag
@@ -18,6 +18,10 @@
 import content from "~/assets/podcast.json";
 
 definePageMeta({ layout: "podcast" });
+
+// The hero shows the same people the hosts band does, so it reads them off
+// that band rather than a second copy in the JSON.
+const hosts = content.bands.find((band) => band.type === "hosts")?.people ?? [];
 
 // tagPriority beats app.vue's site-wide head, which registers the same tags
 // as "critical" -- without this the podcast page would share the consulting
