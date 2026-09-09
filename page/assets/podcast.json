@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "<PLACEHOLDER PODCAST NAME> | apiobuild",
+    "description": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
+    "image": "https://apiobuild.com/images/og_image.png"
+  },
+  "links": {
+    "listen": [
+      {
+        "name": "Spotify",
+        "icon": "fab fa-spotify",
+        "href": "#"
+      },
+      {
+        "name": "Apple Podcasts",
+        "icon": "fab fa-apple",
+        "href": "#"
+      },
+      {
+        "name": "YouTube",
+        "icon": "fab fa-youtube",
+        "href": "#"
+      }
+    ],
+    "community": "#",
+    "suggestGuest": "mailto:luluc@apiobuild.com?subject=Guest%20suggestion"
+  },
+  "hero": {
+    "eyebrow": "Stories from Asian American builders",
+    "title": "<PLACEHOLDER PODCAST NAME>",
+    "body": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
+    "primaryCta": {
+      "label": "Listen Now",
+      "link": "listen"
+    },
+    "secondaryCta": {
+      "label": "Join the Community",
+      "link": "community"
+    }
+  },
+  "bands": [
+    {
+      "id": "the-conversation",
+      "eyebrow": "The Conversation",
+      "title": "Why do they build?",
+      "body": "Giving up the comfort and stability of a 9-5, paychecks, health insurance, a prestigious job title. In exchange for working 24/7, doing anything and everything, and unsolicited comments from family and friends. Listen to stories of builders."
+    },
+    {
+      "id": "community",
+      "eyebrow": "The Community",
+      "title": "Join the conversation. Ask anything.",
+      "body": "A new episode is released every Tuesday. Join the live discussion, bring your questions. Meet other builders, and talk about the not-so-pretty things no one talks about.",
+      "cta": {
+        "label": "Join the Community",
+        "link": "community"
+      }
+    },
+    {
+      "id": "hosts",
+      "type": "hosts",
+      "eyebrow": "The Hosts",
+      "people": [
+        {
+          "name": "Lulu",
+          "role": "Technology builder",
+          "bio": "Founder, ex Reddit, Square. Building software for small businesses.",
+          "photo": "lulu-profile.png",
+          "links": [
+            {
+              "name": "Bio",
+              "href": "https://l1990790120.github.io/",
+              "icon": "fas fa-link"
+            },
+            {
+              "name": "LinkedIn",
+              "href": "https://www.linkedin.com/in/luluchengengineeratheart/",
+              "icon": "fab fa-linkedin"
+            },
+            {
+              "name": "Email",
+              "href": "mailto:luluc@apiobuild.com",
+              "icon": "fas fa-envelope"
+            }
+          ]
+        },
+        {
+          "name": "Meiling",
+          "role": "Business builder",
+          "bio": "<PLACEHOLDER BIO>",
+          "photo": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "guests",
+      "eyebrow": "Guests",
+      "title": "Want to hear someone's story?",
+      "body": "Invite them to the conversation. No win is too small and no story is too messy. We want to hear it all. If that's you or someone you know, tell us.",
+      "cta": {
+        "label": "Suggest a Guest",
+        "link": "suggestGuest"
+      }
+    }
+  ],
+  "footer": [
+    {
+      "name": "Privacy Policy",
+      "href": "/articles/privacy-policy"
+    },
+    {
+      "name": "Terms of Service",
+      "href": "/articles/terms-of-service"
+    },
+    {
+      "name": "Email us",
+      "href": "mailto:luluc@apiobuild.com"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+/* Design tokens and base typography for the podcast site (/podcast).
+   Namespaced under .podcast-page so this file can be imported unscoped from
+   the podcast layout without touching the rest of apiobuild.com, which keeps
+   its Vuetify theme. */
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Comfortaa:wght@400;600&display=swap");
+
+.podcast-page {
+  /* The stockoverflow product palette, off the primary and honey ramps in
+     that project's Tailwind @theme block. The hero is plain --pod-bg; lime
+     fills alternating bands below it. Lime is too light to hold small text,
+     so primary-700 carries the eyebrows and buttons on both grounds. */
+  --pod-lime: #cddc39; /* primary-500, the brand lime */
+  --pod-bg: #f8f9f1; /* primary-50 */
+  --pod-bg-raised: #f0f2de; /* primary-100 */
+  --pod-text: #282b0d; /* primary-900 */
+  --pod-text-muted: #6c562c; /* honey-700 */
+  --pod-accent: #6a721d; /* primary-700 */
+  --pod-accent-strong: #424814; /* primary-800 */
+  --pod-rule: rgba(40, 43, 13, 0.15);
+  /* Honey-700 is tuned for the near-white ground; on the lime field it
+     closes up, so the lede drops to primary-800 there. */
+  --pod-on-lime-muted: #424814;
+
+  /* Headings are the show's own face. Reading text uses the site's stack
+     from assets/css/_variables.scss, none of which is loaded as a webfont
+     here or elsewhere on the site -- most visitors land on the system UI
+     font, which is what the other pages render in too. */
+  --pod-display: "Newsreader", Georgia, serif;
+  --pod-body: Ubuntu, Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  /* The apiobuild wordmark, matching the face Appbar.vue sets on the logo
+     everywhere else on the site. The one font this page does load. */
+  --pod-logo: "Comfortaa", cursive;
+
+  /* The section rhythm the whole page is built on -- every band uses this
+     for its vertical padding so the spacing stays even as sections are
+     added or reordered. */
+  --pod-band: clamp(4.5rem, 11vw, 9rem);
+
+  min-height: 100vh;
+  background: var(--pod-bg);
+  color: var(--pod-text);
+  font-family: var(--pod-body);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.podcast-page h1,
+.podcast-page h2 {
+  font-family: var(--pod-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.podcast-page p {
+  margin: 0;
+}
+
+/* One column width for every band, so the hero, the prose sections and the
+   footer all line up on the same left edge. */
+.podcast-page .pod-shell {
+  width: min(100% - 2.5rem, 62rem);
+  margin-inline: auto;
+}
+
+.podcast-page .pod-band {
+  padding-block: var(--pod-band);
+  border-top: 1px solid var(--pod-rule);
+}
+
+/* The small caps label above each section heading. */
+.podcast-page .pod-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pod-accent);
+}
+
+.podcast-page .pod-lede {
+  color: var(--pod-text-muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.15rem);
+  max-width: 42rem;
+}
+
+.podcast-page .pod-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--pod-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* The site-wide `a { color: ... }` in main.css is a plain element selector,
+   so these link-state rules are what keep the buttons on their own colours. */
+.podcast-page .pod-btn-solid,
+.podcast-page a.pod-btn-solid:link,
+.podcast-page a.pod-btn-solid:visited {
+  background: var(--pod-accent);
+  color: #f4f6ea;
+}
+.podcast-page a.pod-btn-solid:hover {
+  background: var(--pod-accent-strong);
+  color: #f4f6ea;
+}
+
+.podcast-page .pod-btn-ghost,
+.podcast-page a.pod-btn-ghost:link,
+.podcast-page a.pod-btn-ghost:visited {
+  border-color: rgba(40, 43, 13, 0.35);
+  color: var(--pod-text);
+}
+.podcast-page a.pod-btn-ghost:hover {
+  border-color: var(--pod-text);
+  background: rgba(40, 43, 13, 0.07);
+  color: var(--pod-text);
+}
+
+/* A lime band. The accent already reads against it, so only the muted tone,
+   tuned for the near-white ground, needs restating. */
+.podcast-page .pod-on-lime {
+  background: var(--pod-lime);
+}
+.podcast-page .pod-on-lime .pod-lede,
+.podcast-page .pod-on-lime .pod-host-bio {
+  color: var(--pod-on-lime-muted);
+}
+
+/* Every prose band is the same two columns: an eyebrow label on the left,
+   the heading and copy on the right. Stacks below 48rem. */
+.podcast-page .pod-split {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 2rem 3rem;
+}
+
+.podcast-page .pod-split-label {
+  padding-top: 0.6rem;
+}
+
+@media (max-width: 48rem) {
+  .podcast-page .pod-split {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
