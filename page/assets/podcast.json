@@ -67,6 +67,11 @@
           "photo": "lulu-profile.png",
           "links": [
             {
+              "name": "Bagel²",
+              "href": "#",
+              "image": "bagel-mark.png"
+            },
+            {
               "name": "Bio",
               "href": "https://l1990790120.github.io/",
               "icon": "fas fa-link"
@@ -75,11 +80,6 @@
               "name": "LinkedIn",
               "href": "https://www.linkedin.com/in/luluchengengineeratheart/",
               "icon": "fab fa-linkedin"
-            },
-            {
-              "name": "Email",
-              "href": "mailto:luluc@apiobuild.com",
-              "icon": "fas fa-envelope"
             }
           ]
         },

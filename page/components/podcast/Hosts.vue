@@ -137,20 +137,27 @@ export default {
 
 /* A brand mark stands in for the icon glyph, so it sits inside the ring at
    the same size the icons do rather than filling the circle. */
+/* Each mark carries its own padding, so a logo that brings a background
+   fills the circle while one that doesn't sits inside it, without either
+   needing a rule of its own here. */
 .pod-host-link-mark img {
-  /* Larger than an icon's glyph would be: the mark's linework is finer than
-     Font Awesome's, so at a glyph's size it reads faint beside them. */
-  width: 74%;
-  height: 74%;
+  width: 100%;
+  height: 100%;
   display: block;
+  border-radius: 999px;
   object-fit: contain;
 }
 
-/* The mark is a flat tint of the accent, so on the hover fill it would sit
-   accent-on-accent. brightness(0) flattens it to black and invert lifts it
-   to white -- the colour the icon glyphs take on hover. */
-.pod-host-links a.pod-host-link-mark:hover img {
-  filter: brightness(0) invert(1);
+/* A mark keeps its own colours, so it gets a neutral disc to sit on rather
+   than the band -- the Bagel mark is a green close enough to the lime one to
+   disappear into it -- and the hover marks the ring instead of filling the
+   circle, which would bury the mark under the accent. */
+.pod-host-links a.pod-host-link-mark {
+  background: var(--pod-bg);
+}
+.pod-host-links a.pod-host-link-mark:hover {
+  background: var(--pod-bg);
+  border-color: var(--pod-accent);
 }
 
 @media (max-width: 32rem) {
