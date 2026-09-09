@@ -72,14 +72,15 @@
               "image": "bagel-mark.png"
             },
             {
-              "name": "Bio",
-              "href": "https://l1990790120.github.io/",
-              "icon": "fas fa-link"
+              "name": "apiobuild",
+              "href": "/",
+              "image": "apio-mark.png"
             },
             {
               "name": "LinkedIn",
               "href": "https://www.linkedin.com/in/luluchengengineeratheart/",
-              "icon": "fab fa-linkedin"
+              "icon": "fab fa-linkedin",
+              "color": "#0a66c2"
             }
           ]
         },

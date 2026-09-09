@@ -20,7 +20,8 @@
               v-for="link in person.links"
               :key="link.name"
               class="pod-host-link"
-              :class="{ 'pod-host-link-mark': link.image }"
+              :class="{ 'pod-host-link-brand': link.image || link.color }"
+              :style="link.color ? { color: link.color } : null"
               :href="link.href"
               :aria-label="link.name"
               :title="link.name"
@@ -140,7 +141,7 @@ export default {
 /* Each mark carries its own padding, so a logo that brings a background
    fills the circle while one that doesn't sits inside it, without either
    needing a rule of its own here. */
-.pod-host-link-mark img {
+.pod-host-link-brand img {
   width: 100%;
   height: 100%;
   display: block;
@@ -148,14 +149,17 @@ export default {
   object-fit: contain;
 }
 
-/* A mark keeps its own colours, so it gets a neutral disc to sit on rather
-   than the band -- the Bagel mark is a green close enough to the lime one to
-   disappear into it -- and the hover marks the ring instead of filling the
-   circle, which would bury the mark under the accent. */
-.pod-host-links a.pod-host-link-mark {
+/* Every chip sits on a neutral disc: brand colours need a ground that isn't
+   the band -- the Bagel mark is a green close enough to the lime to vanish
+   into it, and LinkedIn's glyph knocks its letters out of the square, so
+   whatever is behind shows through them. */
+.pod-host-links a {
   background: var(--pod-bg);
 }
-.pod-host-links a.pod-host-link-mark:hover {
+
+/* A link carrying its own colours keeps them on hover too; the accent fill
+   would bury a logo, and it cannot recolour one. */
+.pod-host-links a.pod-host-link-brand:hover {
   background: var(--pod-bg);
   border-color: var(--pod-accent);
 }
