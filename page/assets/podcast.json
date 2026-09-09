@@ -87,12 +87,12 @@
           "name": "Meiling",
           "role": "Founder, Catfight Coffee",
           "bio": "Came from Taiwan to New York in 2010 to study, and stayed — through work, marriage, and eventually a business of her own. She and her husband started Catfight Coffee in 2020, online first, then a storefront and pop-ups. It runs on art, punk rock, vintage and Halloween, all year round.",
-          "photo": null,
+          "photo": "meiling-profile.jpg",
           "links": [
             {
               "name": "Catfight Coffee",
               "href": "https://www.catfightcoffee.com/",
-              "icon": "fas fa-link"
+              "image": "catfight-mark.png"
             }
           ]
         }
