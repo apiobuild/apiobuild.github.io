@@ -1,5 +1,5 @@
 <template>
-  <header class="pod-hero">
+  <header class="pod-hero pod-on-lime">
     <div class="pod-shell pod-hero-inner">
       <p class="pod-eyebrow">{{ hero.eyebrow }}</p>
       <h1 class="pod-hero-title">{{ hero.title }}</h1>
@@ -47,11 +47,9 @@ export default {
   align-items: center;
   min-height: 100vh;
   padding-block: var(--pod-band);
-  /* A warm wash behind the headline so the hero doesn't read as a flat
-     rectangle. */
-  background:
-    radial-gradient(70rem 40rem at 15% 0%, rgba(168, 70, 26, 0.09), transparent 62%),
-    var(--pod-bg);
+  /* The hero is the page's largest lime field -- flat, no wash. A gradient
+     across this much saturated green muddies it rather than adding depth. */
+  background: var(--pod-lime);
 }
 
 .pod-hero-inner {

@@ -2,7 +2,7 @@
   <!-- Same two-column band shape as PodcastBand, with host cards in place of
     the prose. Its position on the page comes from where its entry sits in
     assets/podcast.json, like every other band. -->
-  <section :id="band.id" class="pod-band">
+  <section :id="band.id" class="pod-band" :class="{ 'pod-on-lime': lime }">
     <div class="pod-shell pod-split">
       <div class="pod-split-label">
         <p class="pod-eyebrow">{{ band.eyebrow }}</p>
@@ -42,7 +42,8 @@
 
 <script setup>
 defineProps({
-  band: { type: Object, required: true }
+  band: { type: Object, required: true },
+  lime: { type: Boolean, default: false }
 });
 </script>
 

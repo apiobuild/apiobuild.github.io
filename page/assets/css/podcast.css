@@ -5,13 +5,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap");
 
 .podcast-page {
-  --pod-bg: #fbf8f4;
-  --pod-bg-raised: #f4ece2;
-  --pod-text: #1c1917;
-  --pod-text-muted: #57534e;
-  --pod-accent: #a8461a;
-  --pod-accent-strong: #8c3a15;
-  --pod-rule: rgba(28, 25, 23, 0.13);
+  /* Lime is the theme: it fills the hero and every other band outright.
+     Olive is the same hue held down to a value that survives as small text,
+     so it can carry the eyebrows, the buttons and the marks that lime
+     cannot -- one hue doing both jobs, nothing extra to read. */
+  --pod-lime: #c7f000;
+  --pod-lime-tint: #eef7d4;
+  --pod-bg: #fcfdf6;
+  --pod-bg-raised: var(--pod-lime-tint);
+  --pod-text: #161a0b;
+  --pod-text-muted: #5c6147;
+  --pod-accent: #4f6127;
+  --pod-accent-strong: #3b4a1c;
+  --pod-rule: rgba(22, 26, 11, 0.14);
+  /* On a lime field the muted tone has to darken to stay readable, and the
+     rule has to lean on the ink rather than disappear into the green. */
+  --pod-on-lime-muted: #46521f;
+  --pod-on-lime-rule: rgba(22, 26, 11, 0.22);
 
   /* Newsreader is drawn for screen reading -- moderate stroke contrast and
      open counters, so the large headings stay legible rather than thinning
@@ -91,23 +101,34 @@
 .podcast-page a.pod-btn-solid:link,
 .podcast-page a.pod-btn-solid:visited {
   background: var(--pod-accent);
-  color: #fffaf5;
+  color: #f4f6ea;
 }
 .podcast-page a.pod-btn-solid:hover {
   background: var(--pod-accent-strong);
-  color: #fffaf5;
+  color: #f4f6ea;
 }
 
 .podcast-page .pod-btn-ghost,
 .podcast-page a.pod-btn-ghost:link,
 .podcast-page a.pod-btn-ghost:visited {
-  border-color: rgba(28, 25, 23, 0.35);
+  border-color: rgba(22, 26, 11, 0.35);
   color: var(--pod-text);
 }
 .podcast-page a.pod-btn-ghost:hover {
   border-color: var(--pod-text);
-  background: var(--pod-bg-raised);
+  background: rgba(22, 26, 11, 0.07);
   color: var(--pod-text);
+}
+
+/* A lime field -- the hero, and every other band. The olive accent already
+   reads against it, so only the tones that were tuned for the near-white
+   ground need restating. */
+.podcast-page .pod-on-lime {
+  background: var(--pod-lime);
+  border-top-color: var(--pod-on-lime-rule);
+}
+.podcast-page .pod-on-lime .pod-lede {
+  color: var(--pod-on-lime-muted);
 }
 
 /* Every prose band is the same two columns: an eyebrow label on the left,

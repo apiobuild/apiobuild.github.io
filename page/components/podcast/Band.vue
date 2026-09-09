@@ -2,7 +2,7 @@
   <!-- One shape for every prose section on the page -- eyebrow, heading,
     copy, optional CTA. Sections are added and reordered in
     assets/podcast.json, not here. -->
-  <section :id="band.id" class="pod-band" :class="{ 'pod-band-glow': band.glow }">
+  <section :id="band.id" class="pod-band" :class="{ 'pod-on-lime': lime }">
     <div class="pod-shell pod-split">
       <div class="pod-split-label">
         <p class="pod-eyebrow">{{ band.eyebrow }}</p>
@@ -27,7 +27,8 @@
 <script setup>
 defineProps({
   band: { type: Object, required: true },
-  links: { type: Object, required: true }
+  links: { type: Object, required: true },
+  lime: { type: Boolean, default: false }
 });
 </script>
 
@@ -46,10 +47,5 @@ export default {
 
 .pod-band-cta {
   margin-top: 2rem;
-}
-
-/* Opt-in warm wash, to echo the hero once more before the page ends. */
-.pod-band-glow {
-  background: radial-gradient(60rem 30rem at 85% 100%, rgba(168, 70, 26, 0.08), transparent 65%);
 }
 </style>

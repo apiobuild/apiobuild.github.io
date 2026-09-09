@@ -4,21 +4,24 @@
     "description": "An Asian founder building software and a coffee shop owner, asking operators why they started and what it actually took. Listen live, put a question to the founder, and find the room of people doing the same work.",
     "image": "https://apiobuild.com/images/og_image.png"
   },
-
   "links": {
     "listen": "#",
     "community": "#",
     "suggestGuest": "#"
   },
-
   "hero": {
     "eyebrow": "A podcast for people behind the counter",
     "title": "Every shop has a story before it has a P&L.",
     "body": "An Asian founder building software and a coffee shop owner, asking operators why they started and what it actually took — the grind, the pressure, the wins nobody sees. A show for the people doing the work, and the room growing around them.",
-    "primaryCta": { "label": "Listen Now", "link": "listen" },
-    "secondaryCta": { "label": "Join the Community", "link": "community" }
+    "primaryCta": {
+      "label": "Listen Now",
+      "link": "listen"
+    },
+    "secondaryCta": {
+      "label": "Join the Community",
+      "link": "community"
+    }
   },
-
   "bands": [
     {
       "id": "the-show",
@@ -31,7 +34,10 @@
       "eyebrow": "The Community",
       "title": "Listen live. Ask the founder anything.",
       "body": "We record with the room open. Turn up, put your question to the founder while they're still in the chair, and stay for the conversation after. Between episodes it's operators trading notes on suppliers, rent, hiring, and the parts nobody posts about.",
-      "cta": { "label": "Join the Community", "link": "community" }
+      "cta": {
+        "label": "Join the Community",
+        "link": "community"
+      }
     },
     {
       "id": "hosts",
@@ -45,9 +51,18 @@
           "bio": "A decade of engineering behind me — Reddit, Square, Capital One — now spent building the software small businesses actually run on. I ask the questions I wish someone had asked the operators I build for.",
           "photo": "/images/lulu.png",
           "links": [
-            { "name": "Bio", "href": "https://l1990790120.github.io/" },
-            { "name": "LinkedIn", "href": "https://www.linkedin.com/in/luluchengengineeratheart/" },
-            { "name": "Email", "href": "mailto:luluc@apiobuild.com" }
+            {
+              "name": "Bio",
+              "href": "https://l1990790120.github.io/"
+            },
+            {
+              "name": "LinkedIn",
+              "href": "https://www.linkedin.com/in/luluchengengineeratheart/"
+            },
+            {
+              "name": "Email",
+              "href": "mailto:luluc@apiobuild.com"
+            }
           ]
         },
         {
@@ -70,14 +85,25 @@
       "eyebrow": "Guests",
       "title": "Know someone with a story?",
       "body": "We're always looking for operators to feature — not just the ones with a big exit, but the ones still in it. If that's you, or someone you know, we want to hear it.",
-      "cta": { "label": "Suggest a Guest", "link": "suggestGuest" },
-      "glow": true
+      "cta": {
+        "label": "Suggest a Guest",
+        "link": "suggestGuest"
+      }
     }
   ],
-
   "footer": [
-    { "name": "Privacy Policy", "href": "/articles/privacy-policy" },
-    { "name": "Terms of Service", "href": "/articles/terms-of-service" },
-    { "name": "Email us", "href": "mailto:luluc@apiobuild.com", "openNew": true }
+    {
+      "name": "Privacy Policy",
+      "href": "/articles/privacy-policy"
+    },
+    {
+      "name": "Terms of Service",
+      "href": "/articles/terms-of-service"
+    },
+    {
+      "name": "Email us",
+      "href": "mailto:luluc@apiobuild.com",
+      "openNew": true
+    }
   ]
 }

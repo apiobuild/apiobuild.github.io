@@ -1,8 +1,12 @@
 <template>
   <PodcastHero :hero="content.hero" :links="content.links" />
-  <template v-for="band in content.bands" :key="band.id">
-    <PodcastHosts v-if="band.type === 'hosts'" :band="band" />
-    <PodcastBand v-else :band="band" :links="content.links" />
+  <!-- Every other band is a lime field, so the theme carries down the page
+    rather than stopping at the hero. Alternating on position keeps that
+    rhythm right when sections are reordered in podcast.json, which a flag
+    on each entry would not. -->
+  <template v-for="(band, index) in content.bands" :key="band.id">
+    <PodcastHosts v-if="band.type === 'hosts'" :band="band" :lime="index % 2 === 1" />
+    <PodcastBand v-else :band="band" :links="content.links" :lime="index % 2 === 1" />
   </template>
   <PodcastFooter :links="content.footer" />
 </template>
