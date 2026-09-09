@@ -5,23 +5,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap");
 
 .podcast-page {
-  /* Lime is the theme: it fills the hero and every other band outright.
-     Olive is the same hue held down to a value that survives as small text,
-     so it can carry the eyebrows, the buttons and the marks that lime
-     cannot -- one hue doing both jobs, nothing extra to read. */
-  --pod-lime: #c7f000;
-  --pod-lime-tint: #eef7d4;
-  --pod-bg: #fcfdf6;
-  --pod-bg-raised: var(--pod-lime-tint);
-  --pod-text: #161a0b;
-  --pod-text-muted: #5c6147;
-  --pod-accent: #4f6127;
-  --pod-accent-strong: #3b4a1c;
-  --pod-rule: rgba(22, 26, 11, 0.14);
-  /* On a lime field the muted tone has to darken to stay readable, and the
-     rule has to lean on the ink rather than disappear into the green. */
-  --pod-on-lime-muted: #46521f;
-  --pod-on-lime-rule: rgba(22, 26, 11, 0.22);
+  /* The stockoverflow product palette, reused so the show and the app read
+     as the same family: primary is its brand lime, honey its warm accent.
+     Values come straight off the primary and honey ramps in that project's
+     Tailwind @theme block; none of them are new.
+
+     Lime fills the hero and every other band. It is too light to hold small
+     text, so primary-700 -- the first step down the same ramp that clears
+     4.5:1 -- carries the eyebrows and buttons on both grounds. One hue does
+     both jobs, leaving nothing extra to read.
+
+     If the hero still runs hot across a full screen, step the field down
+     the same ramp rather than picking a new colour: primary-400 #d4e166,
+     then primary-300 #dee694. */
+  --pod-lime: #cddc39; /* primary-500, the brand lime */
+  --pod-bg: #f8f9f1; /* primary-50 */
+  --pod-bg-raised: #f0f2de; /* primary-100 */
+  --pod-text: #282b0d; /* primary-900 */
+  --pod-text-muted: #6c562c; /* honey-700 */
+  --pod-accent: #6a721d; /* primary-700 */
+  --pod-accent-strong: #424814; /* primary-800 */
+  --pod-rule: rgba(40, 43, 13, 0.15);
+  /* Honey-700 is tuned for the near-white ground; on the lime field it
+     closes up, so the lede drops to primary-800 there. */
+  --pod-on-lime-muted: #424814;
 
   /* Newsreader is drawn for screen reading -- moderate stroke contrast and
      open counters, so the large headings stay legible rather than thinning
@@ -111,23 +118,23 @@
 .podcast-page .pod-btn-ghost,
 .podcast-page a.pod-btn-ghost:link,
 .podcast-page a.pod-btn-ghost:visited {
-  border-color: rgba(22, 26, 11, 0.35);
+  border-color: rgba(40, 43, 13, 0.35);
   color: var(--pod-text);
 }
 .podcast-page a.pod-btn-ghost:hover {
   border-color: var(--pod-text);
-  background: rgba(22, 26, 11, 0.07);
+  background: rgba(40, 43, 13, 0.07);
   color: var(--pod-text);
 }
 
-/* A lime field -- the hero, and every other band. The olive accent already
-   reads against it, so only the tones that were tuned for the near-white
-   ground need restating. */
+/* A lime field -- the hero, and every other band. The accent already reads
+   against it, so only the muted tone, tuned for the near-white ground,
+   needs restating. */
 .podcast-page .pod-on-lime {
   background: var(--pod-lime);
-  border-top-color: var(--pod-on-lime-rule);
 }
-.podcast-page .pod-on-lime .pod-lede {
+.podcast-page .pod-on-lime .pod-lede,
+.podcast-page .pod-on-lime .pod-host-bio {
   color: var(--pod-on-lime-muted);
 }
 
