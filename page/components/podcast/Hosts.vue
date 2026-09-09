@@ -8,7 +8,9 @@
         <p class="pod-eyebrow">{{ band.eyebrow }}</p>
       </div>
       <div class="pod-split-body">
-        <h2 class="pod-hosts-title">{{ band.title }}</h2>
+        <!-- Optional: the band reads fine as an eyebrow and two cards, so a
+          heading here is only worth rendering when podcast.json gives one. -->
+        <h2 v-if="band.title" class="pod-hosts-title">{{ band.title }}</h2>
         <ul class="pod-hosts">
           <li v-for="person in band.people" :key="person.name" class="pod-host">
             <img v-if="person.photo" class="pod-host-photo" :src="person.photo" alt="" />
@@ -21,15 +23,18 @@
               <p class="pod-host-name">{{ person.name }}</p>
               <p class="pod-host-role">{{ person.role }}</p>
               <p class="pod-host-bio">{{ person.bio }}</p>
+              <!-- Icon-only, with the link's name as its accessible label --
+                three short words under every bio competed with the bio. -->
               <p v-if="person.links.length" class="pod-host-links">
                 <a
                   v-for="link in person.links"
                   :key="link.name"
                   :href="link.href"
-                  target="_blank"
-                  rel="noopener"
+                  :aria-label="link.name"
+                  :title="link.name"
+                  v-bind="podcastLinkAttrs(link.href)"
                 >
-                  {{ link.name }}
+                  <i :class="link.icon" aria-hidden="true"></i>
                 </a>
               </p>
             </div>
@@ -116,20 +121,32 @@ export default {
 .pod-host-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
-  margin-top: 0.75rem;
-  font-size: 0.9rem;
-  font-weight: 500;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+/* Outlined and smaller than the hero's platform buttons -- same family, but
+   these sit under a bio rather than acting as the page's main call. */
+.pod-host-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--pod-rule);
+  font-size: 0.95rem;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .pod-host-links a:link,
 .pod-host-links a:visited {
-  color: var(--pod-text);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--pod-accent);
 }
 .pod-host-links a:hover {
-  color: var(--pod-accent);
+  background: var(--pod-accent);
+  border-color: var(--pod-accent);
+  color: #f4f6ea;
 }
 
 @media (max-width: 32rem) {

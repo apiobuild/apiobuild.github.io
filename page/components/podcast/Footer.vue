@@ -3,14 +3,13 @@
     way back to apiobuild.com live here instead. -->
   <footer class="pod-footer">
     <div class="pod-shell pod-footer-inner">
-      <a class="pod-footer-home" href="/">apiobuild</a>
+      <a class="pod-footer-home" href="/" v-bind="podcastLinkAttrs('/')">apiobuild</a>
       <nav class="pod-footer-links">
         <a
           v-for="link in links"
           :key="link.name"
           :href="link.href"
-          :target="link.openNew ? '_blank' : null"
-          :rel="link.openNew ? 'noopener' : null"
+          v-bind="podcastLinkAttrs(link.href)"
         >
           {{ link.name }}
         </a>
@@ -46,7 +45,7 @@ export default {
 }
 
 .pod-footer-home {
-  font-family: var(--pod-display);
+  font-family: var(--pod-logo);
   font-size: 1.1rem;
   font-weight: 600;
 }

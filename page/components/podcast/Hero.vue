@@ -1,7 +1,9 @@
 <template>
   <header class="pod-hero">
     <div class="pod-shell pod-hero-inner">
-      <p class="pod-eyebrow">{{ hero.eyebrow }}</p>
+      <!-- Optional, like the hosts band's heading: the hero reads fine
+        without a label when the headline already says who the show is for. -->
+      <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
       <h1 class="pod-hero-title">{{ hero.title }}</h1>
       <p class="pod-lede">{{ hero.body }}</p>
 
@@ -26,30 +28,67 @@
         </p>
       </div>
 
-      <div class="pod-hero-actions">
+      <!-- Buttons and platform icons are one group, so the hero's own
+        1.75rem gap falls before the pair instead of between them. -->
+      <div class="pod-hero-cta">
+        <div class="pod-hero-actions">
+        <!-- A podcast has no single place to send someone, so when the CTA's
+          destination in podcast.json is a list of platforms the button opens
+          into them rather than linking anywhere itself. A plain string still
+          renders a plain link. -->
+        <button
+          v-if="platforms"
+          type="button"
+          class="pod-btn pod-btn-solid"
+          :aria-expanded="platformsOpen"
+          @click="platformsOpen = !platformsOpen"
+        >
+          {{ hero.primaryCta.label }}
+        </button>
         <a
+          v-else
           class="pod-btn pod-btn-solid"
           :href="links[hero.primaryCta.link]"
-          target="_blank"
-          rel="noopener"
+          v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
         >
           {{ hero.primaryCta.label }}
         </a>
         <a
           class="pod-btn pod-btn-ghost"
           :href="links[hero.secondaryCta.link]"
-          target="_blank"
-          rel="noopener"
+          v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
         >
           {{ hero.secondaryCta.label }}
         </a>
+        </div>
+
+        <!-- Below the actions rather than in place of the button: the button
+          stays put and stays the toggle, so nothing the visitor is aiming at
+          moves when the row opens. Icon-only, with the platform name as the
+          accessible label. -->
+        <div v-if="platforms" class="pod-listen-platforms">
+          <a
+            v-for="(platform, index) in visiblePlatforms"
+            :key="platform.name"
+            class="pod-listen-platform"
+            :style="{ '--pod-stagger': index }"
+            :href="platform.href"
+            :aria-label="platform.name"
+            :title="platform.name"
+            v-bind="podcastLinkAttrs(platform.href)"
+          >
+            <i :class="platform.icon" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-defineProps({
+import { computed, onBeforeUnmount, ref, watch } from "vue";
+
+const props = defineProps({
   hero: { type: Object, required: true },
   // The whole links map, since a CTA names its destination by key
   // ("listen", "community") rather than carrying a URL of its own.
@@ -58,6 +97,34 @@ defineProps({
   // faces and names only. They stay defined in one place in podcast.json.
   hosts: { type: Array, default: () => [] }
 });
+
+const platformsOpen = ref(false);
+
+// Null unless the primary CTA's destination is a list, which is what tells
+// the template to render the opener instead of a plain link.
+const platforms = computed(() => {
+  const target = props.links[props.hero.primaryCta.link];
+  return Array.isArray(target) ? target : null;
+});
+
+// The row's container is always rendered and always holds its height, so
+// opening it cannot move the button above it -- the hero centres its content
+// vertically, so anything that changes the block's height shifts everything
+// in it. Only the icons themselves come and go.
+const visiblePlatforms = computed(() => (platformsOpen.value ? platforms.value : []));
+
+// Escape closes the row too, so someone who opened it by accident is not
+// stuck reaching for a specific small button.
+function closeOnEscape(event) {
+  if (event.key === "Escape") platformsOpen.value = false;
+}
+
+watch(platformsOpen, (open) => {
+  if (open) window.addEventListener("keydown", closeOnEscape);
+  else window.removeEventListener("keydown", closeOnEscape);
+});
+
+onBeforeUnmount(() => window.removeEventListener("keydown", closeOnEscape));
 </script>
 
 <script>
@@ -87,11 +154,76 @@ export default {
   max-width: 18ch;
 }
 
+.pod-hero-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
 .pod-hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
-  margin-top: 0.5rem;
+}
+
+/* Holds the icons' height whether or not they are showing, so the button
+   above never moves. Matches .pod-listen-platform's height. */
+.pod-listen-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+}
+
+.pod-listen-platform {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: var(--pod-accent);
+  color: #f4f6ea;
+  font-size: 1.15rem;
+  transition: background-color 0.2s, transform 0.2s;
+
+  /* Each icon pops just after the one before it, so the row reads as opening
+     out of the button rather than replacing it all at once. `backwards`
+     holds the start frame through the delay -- without it the later icons
+     flash at full size before their turn. */
+  animation: pod-listen-pop 320ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  animation-delay: calc(var(--pod-stagger) * 60ms);
+}
+
+.podcast-page a.pod-listen-platform:link,
+.podcast-page a.pod-listen-platform:visited {
+  color: #f4f6ea;
+}
+
+.podcast-page a.pod-listen-platform:hover {
+  background: var(--pod-accent-strong);
+  color: #f4f6ea;
+  transform: translateY(-2px);
+}
+
+/* Overshoots past full size and settles, which is what reads as a pop
+   rather than a fade. */
+@keyframes pod-listen-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pod-listen-platform {
+    animation: none;
+  }
+  .podcast-page a.pod-listen-platform:hover {
+    transform: none;
+  }
 }
 
 .pod-hero-hosts {

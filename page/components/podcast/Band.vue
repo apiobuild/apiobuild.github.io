@@ -14,8 +14,7 @@
           v-if="band.cta"
           class="pod-btn pod-btn-solid pod-band-cta"
           :href="links[band.cta.link]"
-          target="_blank"
-          rel="noopener"
+          v-bind="podcastLinkAttrs(links[band.cta.link])"
         >
           {{ band.cta.label }}
         </a>

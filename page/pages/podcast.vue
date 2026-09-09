@@ -1,12 +1,13 @@
 <template>
   <PodcastHero :hero="content.hero" :links="content.links" :hosts="hosts" />
   <!-- Every other band is a lime field, so the theme carries down the page
-    rather than stopping at the hero. Alternating on position keeps that
-    rhythm right when sections are reordered in podcast.json, which a flag
-    on each entry would not. -->
+    rather than stopping at the white hero. The run starts green -- the first
+    band under the hero takes the colour -- and alternates from there.
+    Alternating on position keeps that rhythm right when sections are
+    reordered in podcast.json, which a flag on each entry would not. -->
   <template v-for="(band, index) in content.bands" :key="band.id">
-    <PodcastHosts v-if="band.type === 'hosts'" :band="band" :lime="index % 2 === 1" />
-    <PodcastBand v-else :band="band" :links="content.links" :lime="index % 2 === 1" />
+    <PodcastHosts v-if="band.type === 'hosts'" :band="band" :lime="index % 2 === 0" />
+    <PodcastBand v-else :band="band" :links="content.links" :lime="index % 2 === 0" />
   </template>
   <PodcastFooter :links="content.footer" />
 </template>

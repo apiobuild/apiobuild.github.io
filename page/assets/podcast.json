@@ -1,18 +1,34 @@
 {
   "meta": {
-    "title": "Behind the Counter | apiobuild",
-    "description": "An Asian founder building software and a coffee shop owner, asking operators why they started and what it actually took. Listen live, put a question to the founder, and find the room of people doing the same work.",
+    "title": "<PLACEHOLDER PODCAST NAME> | apiobuild",
+    "description": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "image": "https://apiobuild.com/images/og_image.png"
   },
   "links": {
-    "listen": "#",
+    "listen": [
+      {
+        "name": "Spotify",
+        "icon": "fab fa-spotify",
+        "href": "#"
+      },
+      {
+        "name": "Apple Podcasts",
+        "icon": "fab fa-apple",
+        "href": "#"
+      },
+      {
+        "name": "YouTube",
+        "icon": "fab fa-youtube",
+        "href": "#"
+      }
+    ],
     "community": "#",
-    "suggestGuest": "#"
+    "suggestGuest": "mailto:luluc@apiobuild.com?subject=Guest%20suggestion"
   },
   "hero": {
-    "eyebrow": "A podcast for people behind the counter",
-    "title": "Every shop has a story before it has a P&L.",
-    "body": "An Asian founder building software and a coffee shop owner, asking operators why they started and what it actually took — the grind, the pressure, the wins nobody sees. A show for the people doing the work, and the room growing around them.",
+    "eyebrow": "Stories from Asian American builders",
+    "title": "<PLACEHOLDER PODCAST NAME>",
+    "body": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "primaryCta": {
       "label": "Listen Now",
       "link": "listen"
@@ -24,16 +40,16 @@
   },
   "bands": [
     {
-      "id": "the-show",
-      "eyebrow": "The Show",
-      "title": "Why did you start?",
-      "body": "Every episode opens there. Asian American operators — boba, matcha, coffee, and beyond — on the job they left, the lease they signed, and the first year that nearly ended it. The 5am prep, the staffing headaches, the modifier menu that broke the POS: all of it comes up because it's the story, not because we're selling a playbook."
+      "id": "the-conversation",
+      "eyebrow": "The Conversation",
+      "title": "Why do they build?",
+      "body": "Giving up the comfort and stability of a 9-5, paychecks, health insurance, a prestigious job title. In exchange for working 24/7, doing anything and everything, and unsolicited comments from family and friends. Listen to stories of builders."
     },
     {
       "id": "community",
       "eyebrow": "The Community",
-      "title": "Listen live. Ask the founder anything.",
-      "body": "We record with the room open. Turn up, put your question to the founder while they're still in the chair, and stay for the conversation after. Between episodes it's operators trading notes on suppliers, rent, hiring, and the parts nobody posts about.",
+      "title": "Join the conversation. Ask anything.",
+      "body": "A new episode is released every Tuesday. Join the live discussion, bring your questions. Meet other builders, and talk about the not-so-pretty things no one talks about.",
       "cta": {
         "label": "Join the Community",
         "link": "community"
@@ -43,48 +59,44 @@
       "id": "hosts",
       "type": "hosts",
       "eyebrow": "The Hosts",
-      "title": "Who's asking.",
       "people": [
         {
-          "name": "Lulu Cheng",
-          "role": "Builds software for small businesses and consumer apps",
-          "bio": "A decade of engineering behind me — Reddit, Square, Capital One — now spent building the software small businesses actually run on. I ask the questions I wish someone had asked the operators I build for.",
+          "name": "Lulu",
+          "role": "Technology builder",
+          "bio": "Founder, ex Reddit, Square. Building software for small businesses.",
           "photo": "/images/lulu.png",
           "links": [
             {
               "name": "Bio",
-              "href": "https://l1990790120.github.io/"
+              "href": "https://l1990790120.github.io/",
+              "icon": "fas fa-link"
             },
             {
               "name": "LinkedIn",
-              "href": "https://www.linkedin.com/in/luluchengengineeratheart/"
+              "href": "https://www.linkedin.com/in/luluchengengineeratheart/",
+              "icon": "fab fa-linkedin"
             },
             {
               "name": "Email",
-              "href": "mailto:luluc@apiobuild.com"
+              "href": "mailto:luluc@apiobuild.com",
+              "icon": "fas fa-envelope"
             }
           ]
         },
         {
-          "name": "TODO: cohost's name",
-          "role": "Coffee shop owner",
-          "bio": "TODO: a couple of lines in their own voice -- the shop, how long they've run it, what they'd want a guest to be asked.",
+          "name": "Meiling",
+          "role": "Business builder",
+          "bio": "<PLACEHOLDER BIO>",
           "photo": null,
           "links": []
         }
       ]
     },
     {
-      "id": "shops",
-      "eyebrow": "The Shops",
-      "title": "Every guest leaves with their shop named.",
-      "body": "We say where it is, link it, and put it in front of a room of people who care where they spend. Come on the show and you get an hour to tell it your way, plus a table of operators who'll pick up when you text them six months later."
-    },
-    {
       "id": "guests",
       "eyebrow": "Guests",
-      "title": "Know someone with a story?",
-      "body": "We're always looking for operators to feature — not just the ones with a big exit, but the ones still in it. If that's you, or someone you know, we want to hear it.",
+      "title": "Want to hear someone's story?",
+      "body": "Invite them to the conversation. No win is too small and no story is too messy. We want to hear it all. If that's you or someone you know, tell us.",
       "cta": {
         "label": "Suggest a Guest",
         "link": "suggestGuest"
@@ -102,8 +114,7 @@
     },
     {
       "name": "Email us",
-      "href": "mailto:luluc@apiobuild.com",
-      "openNew": true
+      "href": "mailto:luluc@apiobuild.com"
     }
   ]
 }

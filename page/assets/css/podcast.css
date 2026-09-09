@@ -2,7 +2,7 @@
    Namespaced under .podcast-page so this file can be imported unscoped from
    the podcast layout without touching the rest of apiobuild.com, which keeps
    its Vuetify theme. */
-@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Comfortaa:wght@400;600&display=swap");
 
 .podcast-page {
   /* The stockoverflow product palette, reused so the show and the app read
@@ -30,11 +30,20 @@
      closes up, so the lede drops to primary-800 there. */
   --pod-on-lime-muted: #424814;
 
-  /* Newsreader is drawn for screen reading -- moderate stroke contrast and
-     open counters, so the large headings stay legible rather than thinning
-     out the way display serifs do. */
+  /* Newsreader carries the headings -- it is drawn for screen reading, with
+     moderate stroke contrast and open counters, so it holds up at display
+     size instead of thinning out. It is the show's own voice, and the one
+     place this page departs from the site.
+     Reading text uses the site's own stack, copied from
+     assets/css/_variables.scss, so the prose matches every other page.
+     None of that stack is loaded as a webfont here or anywhere else on the
+     site: Ubuntu and Inter resolve only for visitors who happen to have
+     them, and everyone else lands on the system UI font. */
   --pod-display: "Newsreader", Georgia, serif;
-  --pod-body: "Inter", system-ui, sans-serif;
+  --pod-body: Ubuntu, Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  /* The apiobuild wordmark, matching the face Appbar.vue sets on the logo
+     everywhere else on the site. The one font this page does load. */
+  --pod-logo: "Comfortaa", cursive;
 
   /* The section rhythm the whole page is built on -- every band uses this
      for its vertical padding so the spacing stays even as sections are
