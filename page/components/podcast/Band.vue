@@ -50,6 +50,6 @@ export default {
 
 /* Opt-in warm wash, to echo the hero once more before the page ends. */
 .pod-band-glow {
-  background: radial-gradient(60rem 30rem at 85% 100%, rgba(224, 138, 76, 0.12), transparent 65%);
+  background: radial-gradient(60rem 30rem at 85% 100%, rgba(168, 70, 26, 0.08), transparent 65%);
 }
 </style>

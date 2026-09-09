@@ -47,10 +47,10 @@ export default {
   align-items: center;
   min-height: 100vh;
   padding-block: var(--pod-band);
-  /* A warm pool of light behind the headline so the hero doesn't read as a
-     flat dark rectangle. */
+  /* A warm wash behind the headline so the hero doesn't read as a flat
+     rectangle. */
   background:
-    radial-gradient(70rem 40rem at 15% 0%, rgba(224, 138, 76, 0.16), transparent 60%),
+    radial-gradient(70rem 40rem at 15% 0%, rgba(168, 70, 26, 0.09), transparent 62%),
     var(--pod-bg);
 }
 

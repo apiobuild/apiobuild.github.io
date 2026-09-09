@@ -87,10 +87,12 @@ a {
 }
 
 @media (min-width: 1024px) {
-  body {
-    /* display: flex; */
-    place-items: center;
-  }
+  /* `place-items: center` used to sit here, left over from the Vue starter
+     template along with the `display: flex` it needed (commented out just
+     above). With body still `display: block` it shrink-wrapped #__nuxt to its
+     content and centred it, leaving a gutter either side -- invisible while
+     every page was white, and plainly visible as a narrow column once
+     /podcast painted a dark background. */
 
   #app {
     display: grid;

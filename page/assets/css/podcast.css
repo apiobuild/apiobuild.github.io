@@ -2,18 +2,21 @@
    Namespaced under .podcast-page so this file can be imported unscoped from
    the podcast layout without touching the rest of apiobuild.com, which keeps
    its Vuetify theme. */
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap");
 
 .podcast-page {
-  --pod-bg: #15100d;
-  --pod-bg-raised: #1e1815;
-  --pod-text: #f2e9e1;
-  --pod-text-muted: #b9a99c;
-  --pod-accent: #e08a4c;
-  --pod-accent-strong: #f2a768;
-  --pod-rule: rgba(242, 233, 225, 0.14);
+  --pod-bg: #fbf8f4;
+  --pod-bg-raised: #f4ece2;
+  --pod-text: #1c1917;
+  --pod-text-muted: #57534e;
+  --pod-accent: #a8461a;
+  --pod-accent-strong: #8c3a15;
+  --pod-rule: rgba(28, 25, 23, 0.13);
 
-  --pod-display: "Fraunces", Georgia, serif;
+  /* Newsreader is drawn for screen reading -- moderate stroke contrast and
+     open counters, so the large headings stay legible rather than thinning
+     out the way display serifs do. */
+  --pod-display: "Newsreader", Georgia, serif;
   --pod-body: "Inter", system-ui, sans-serif;
 
   /* The section rhythm the whole page is built on -- every band uses this
@@ -25,16 +28,16 @@
   background: var(--pod-bg);
   color: var(--pod-text);
   font-family: var(--pod-body);
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.75;
 }
 
 .podcast-page h1,
 .podcast-page h2 {
   font-family: var(--pod-display);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -58,15 +61,15 @@
 .podcast-page .pod-eyebrow {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--pod-accent);
 }
 
 .podcast-page .pod-lede {
   color: var(--pod-text-muted);
-  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  max-width: 44rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.15rem);
+  max-width: 42rem;
 }
 
 .podcast-page .pod-btn {
@@ -82,30 +85,33 @@
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
+/* The site-wide `a { color: ... }` in main.css is a plain element selector,
+   so these link-state rules are what keep the buttons on their own colours. */
 .podcast-page .pod-btn-solid,
 .podcast-page a.pod-btn-solid:link,
 .podcast-page a.pod-btn-solid:visited {
   background: var(--pod-accent);
-  color: #1a120c;
+  color: #fffaf5;
 }
 .podcast-page a.pod-btn-solid:hover {
   background: var(--pod-accent-strong);
-  color: #1a120c;
+  color: #fffaf5;
 }
 
 .podcast-page .pod-btn-ghost,
 .podcast-page a.pod-btn-ghost:link,
 .podcast-page a.pod-btn-ghost:visited {
-  border-color: var(--pod-rule);
+  border-color: rgba(28, 25, 23, 0.35);
   color: var(--pod-text);
 }
 .podcast-page a.pod-btn-ghost:hover {
   border-color: var(--pod-text);
+  background: var(--pod-bg-raised);
   color: var(--pod-text);
 }
 
-/* Every prose band is the same two columns: a sticky eyebrow label on the
-   left, the heading and copy on the right. Stacks below 48rem. */
+/* Every prose band is the same two columns: an eyebrow label on the left,
+   the heading and copy on the right. Stacks below 48rem. */
 .podcast-page .pod-split {
   display: grid;
   grid-template-columns: 12rem 1fr;
