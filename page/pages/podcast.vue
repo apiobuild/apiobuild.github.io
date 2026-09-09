@@ -1,10 +1,8 @@
 <template>
   <PodcastHero :hero="content.hero" :links="content.links" :hosts="hosts" />
-  <!-- Every other band is a lime field, so the theme carries down the page
-    rather than stopping at the white hero. The run starts green -- the first
-    band under the hero takes the colour -- and alternates from there.
-    Alternating on position keeps that rhythm right when sections are
-    reordered in podcast.json, which a flag on each entry would not. -->
+  <!-- Alternating bands take the lime, starting with the first one under
+    the white hero. Keyed on position so reordering podcast.json keeps the
+    rhythm, which a per-entry flag would not. -->
   <template v-for="(band, index) in bands" :key="band.id">
     <PodcastHosts v-if="band.type === 'hosts'" :band="band" :lime="index % 2 === 0" />
     <PodcastBand v-else :band="band" :links="content.links" :lime="index % 2 === 0" />
@@ -56,6 +54,9 @@ useHead(
     meta: [
       { property: "og:title", content: content.meta.title },
       { name: "description", property: "og:description", content: content.meta.description },
+      // Same shape as app.vue's site-wide tag, including the meaningless
+      // name="image": differing shapes are separate keys to unhead, which
+      // renders both instead of letting this one override.
       { name: "image", property: "og:image", content: content.meta.image },
       { name: "twitter:card", content: "summary" }
     ]

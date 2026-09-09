@@ -1,48 +1,36 @@
 <template>
-  <!-- Same two-column band shape as PodcastBand, with host cards in place of
-    the prose. Its position on the page comes from where its entry sits in
-    assets/podcast.json, like every other band. -->
-  <section :id="band.id" class="pod-band" :class="{ 'pod-on-lime': lime }">
-    <div class="pod-shell pod-split">
-      <div class="pod-split-label">
-        <p class="pod-eyebrow">{{ band.eyebrow }}</p>
-      </div>
-      <div class="pod-split-body">
-        <!-- Optional: the band reads fine as an eyebrow and two cards, so a
-          heading here is only worth rendering when podcast.json gives one. -->
-        <h2 v-if="band.title" class="pod-hosts-title">{{ band.title }}</h2>
-        <ul class="pod-hosts">
-          <li v-for="person in band.people" :key="person.name" class="pod-host">
-            <img v-if="person.photo" class="pod-host-photo" :src="person.photo" alt="" />
-            <!-- A host without a photo yet still gets the same circle, so the
-              row keeps its rhythm instead of collapsing to one card. -->
-            <span v-else class="pod-host-photo pod-host-photo-empty" aria-hidden="true">
-              {{ person.name.charAt(0) }}
-            </span>
-            <div>
-              <p class="pod-host-name">{{ person.name }}</p>
-              <p class="pod-host-role">{{ person.role }}</p>
-              <p class="pod-host-bio">{{ person.bio }}</p>
-              <!-- Icon-only, with the link's name as its accessible label --
-                three short words under every bio competed with the bio. -->
-              <p v-if="person.links.length" class="pod-host-links">
-                <a
-                  v-for="link in person.links"
-                  :key="link.name"
-                  :href="link.href"
-                  :aria-label="link.name"
-                  :title="link.name"
-                  v-bind="podcastLinkAttrs(link.href)"
-                >
-                  <i :class="link.icon" aria-hidden="true"></i>
-                </a>
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <!-- The hosts section: the same shape as a prose band, with cards in place
+    of the copy. -->
+  <PodcastSection :id="band.id" :eyebrow="band.eyebrow" :title="band.title" :lime="lime">
+    <ul class="pod-hosts">
+      <li v-for="person in band.people" :key="person.name" class="pod-host">
+        <img v-if="person.photo" class="pod-host-photo" :src="person.photo" alt="" />
+        <!-- A host without a photo yet still gets the same circle, so the
+          row keeps its rhythm instead of collapsing to one card. -->
+        <span v-else class="pod-host-photo pod-host-photo-empty" aria-hidden="true">
+          {{ person.name.charAt(0) }}
+        </span>
+        <div>
+          <p class="pod-host-name">{{ person.name }}</p>
+          <p class="pod-host-role">{{ person.role }}</p>
+          <p class="pod-host-bio">{{ person.bio }}</p>
+          <!-- Icon-only, with the link's name as its accessible label. -->
+          <p v-if="person.links?.length" class="pod-host-links">
+            <a
+              v-for="link in person.links"
+              :key="link.name"
+              :href="link.href"
+              :aria-label="link.name"
+              :title="link.name"
+              v-bind="podcastLinkAttrs(link.href)"
+            >
+              <i :class="link.icon" aria-hidden="true"></i>
+            </a>
+          </p>
+        </div>
+      </li>
+    </ul>
+  </PodcastSection>
 </template>
 
 <script setup>
@@ -59,12 +47,6 @@ export default {
 </script>
 
 <style scoped>
-.pod-hosts-title {
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
-  max-width: 20ch;
-  margin-bottom: 2rem;
-}
-
 .pod-hosts {
   display: grid;
   gap: 2.5rem;

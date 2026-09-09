@@ -3,7 +3,7 @@
     way back to apiobuild.com live here instead. -->
   <footer class="pod-footer">
     <div class="pod-shell pod-footer-inner">
-      <a class="pod-footer-home" href="/" v-bind="podcastLinkAttrs('/')">apiobuild</a>
+      <a class="pod-footer-home" href="/" target="_blank" rel="noopener">apiobuild</a>
       <nav class="pod-footer-links">
         <a
           v-for="link in links"

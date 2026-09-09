@@ -7,9 +7,8 @@
       <h1 class="pod-hero-title">{{ hero.title }}</h1>
       <p class="pod-lede">{{ hero.body }}</p>
 
-      <!-- The hosts, up front. On a white hero the lime has no field to
-        fill, so it does this instead: the ring around each face and the
-        mark behind each name. -->
+      <!-- The hosts, up front. Lime has no field to fill on a white hero, so
+        it rings each face and marks each name instead. -->
       <div v-if="hosts.length" class="pod-hero-hosts">
         <div class="pod-hero-faces">
           <span v-for="person in hosts" :key="person.name" class="pod-hero-face">
@@ -41,6 +40,7 @@
           type="button"
           class="pod-btn pod-btn-solid"
           :aria-expanded="platformsOpen"
+          aria-controls="pod-listen-platforms"
           @click="platformsOpen = !platformsOpen"
         >
           {{ hero.primaryCta.label }}
@@ -66,7 +66,7 @@
           stays put and stays the toggle, so nothing the visitor is aiming at
           moves when the row opens. Icon-only, with the platform name as the
           accessible label. -->
-        <div v-if="platforms" class="pod-listen-platforms">
+        <div v-if="platforms" id="pod-listen-platforms" class="pod-listen-platforms">
           <a
             v-for="(platform, index) in visiblePlatforms"
             :key="platform.name"
@@ -107,10 +107,8 @@ const platforms = computed(() => {
   return Array.isArray(target) ? target : null;
 });
 
-// The row's container is always rendered and always holds its height, so
-// opening it cannot move the button above it -- the hero centres its content
-// vertically, so anything that changes the block's height shifts everything
-// in it. Only the icons themselves come and go.
+// Only the icons come and go; their container always renders and holds its
+// height, so opening the row cannot move the button above it.
 const visiblePlatforms = computed(() => (platformsOpen.value ? platforms.value : []));
 
 // Escape closes the row too, so someone who opened it by accident is not
@@ -189,10 +187,8 @@ export default {
   font-size: 1.15rem;
   transition: background-color 0.2s, transform 0.2s;
 
-  /* Each icon pops just after the one before it, so the row reads as opening
-     out of the button rather than replacing it all at once. `backwards`
-     holds the start frame through the delay -- without it the later icons
-     flash at full size before their turn. */
+  /* Staggered so the row opens out of the button. `backwards` holds the
+     start frame through the delay, or later icons flash before their turn. */
   animation: pod-listen-pop 320ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
   animation-delay: calc(var(--pod-stagger) * 60ms);
 }
@@ -208,8 +204,7 @@ export default {
   transform: translateY(-2px);
 }
 
-/* Overshoots past full size and settles, which is what reads as a pop
-   rather than a fade. */
+/* Overshoots and settles, which reads as a pop rather than a fade. */
 @keyframes pod-listen-pop {
   from {
     opacity: 0;
