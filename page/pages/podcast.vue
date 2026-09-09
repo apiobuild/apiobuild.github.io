@@ -20,13 +20,15 @@ definePageMeta({ layout: "podcast" });
 
 // Vite rewrites asset URLs at build time, so a path arriving as a string from
 // JSON is never seen by the bundler and would ship as a dead link. Globbing
-// assets/team gives every image its built URL, keyed by filename, which is
-// what podcast.json stores -- so the hosts reuse the same file the company
-// team page does instead of a second copy under public/.
-const teamPhotos = Object.fromEntries(
-  Object.entries(import.meta.glob("../assets/team/*", { eager: true, import: "default" })).map(
-    ([path, url]) => [path.split("/").pop(), url]
-  )
+// gives every image its built URL, keyed by filename, which is what
+// podcast.json stores. team/ is shared with the company page, so the hosts
+// reuse its photos rather than keeping a second copy; brand/ holds the marks
+// that stand in for a link's icon.
+const images = Object.fromEntries(
+  Object.entries({
+    ...import.meta.glob("../assets/team/*", { eager: true, import: "default" }),
+    ...import.meta.glob("../assets/brand/*", { eager: true, import: "default" })
+  }).map(([path, url]) => [path.split("/").pop(), url])
 );
 
 const bands = content.bands.map((band) =>
@@ -35,7 +37,8 @@ const bands = content.bands.map((band) =>
         ...band,
         people: band.people.map((person) => ({
           ...person,
-          photo: teamPhotos[person.photo] ?? null
+          photo: images[person.photo] ?? null,
+          links: person.links.map((link) => ({ ...link, image: images[link.image] ?? null }))
         }))
       }
     : band
