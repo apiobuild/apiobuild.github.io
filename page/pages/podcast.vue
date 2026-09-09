@@ -1,6 +1,9 @@
 <template>
   <PodcastHero :hero="content.hero" :links="content.links" />
-  <PodcastBand v-for="band in content.bands" :key="band.id" :band="band" :links="content.links" />
+  <template v-for="band in content.bands" :key="band.id">
+    <PodcastHosts v-if="band.type === 'hosts'" :band="band" />
+    <PodcastBand v-else :band="band" :links="content.links" />
+  </template>
   <PodcastFooter :links="content.footer" />
 </template>
 

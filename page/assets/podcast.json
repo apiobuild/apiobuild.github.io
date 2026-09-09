@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Behind the Counter | apiobuild",
-    "description": "Two Asian-owned coffee shop operators telling the real stories behind the counter — the grind, the pressure, the wins nobody sees. A show for the people actually doing the work, and the community growing around them.",
+    "description": "An Asian founder building software and a coffee shop owner, asking operators why they started and what it actually took. Listen live, put a question to the founder, and find the room of people doing the same work.",
     "image": "https://apiobuild.com/images/og_image.png"
   },
 
@@ -14,7 +14,7 @@
   "hero": {
     "eyebrow": "A podcast for people behind the counter",
     "title": "Every shop has a story before it has a P&L.",
-    "body": "An Asian founder building software and a coffee shop owner, telling the real stories behind the counter — the grind, the pressure, the wins nobody sees. Not another founder-hustle podcast. A show for the people actually doing the work, and the community growing around them.",
+    "body": "An Asian founder building software and a coffee shop owner, asking operators why they started and what it actually took — the grind, the pressure, the wins nobody sees. A show for the people doing the work, and the room growing around them.",
     "primaryCta": { "label": "Listen Now", "link": "listen" },
     "secondaryCta": { "label": "Join the Community", "link": "community" }
   },
@@ -23,15 +23,47 @@
     {
       "id": "the-show",
       "eyebrow": "The Show",
-      "title": "Real conversations with Asian American operators.",
-      "body": "Boba, matcha, coffee, and beyond. We talk about the daily grind as much as the big wins: the 5am prep, the staffing headaches, the modifier menu that broke your POS. Business lessons come up because they're part of the story — not because we're selling a playbook."
+      "title": "Why did you start?",
+      "body": "Every episode opens there. Asian American operators — boba, matcha, coffee, and beyond — on the job they left, the lease they signed, and the first year that nearly ended it. The 5am prep, the staffing headaches, the modifier menu that broke the POS: all of it comes up because it's the story, not because we're selling a playbook."
     },
     {
       "id": "community",
       "eyebrow": "The Community",
-      "title": "This isn't a podcast with a Discord bolted on.",
-      "body": "It's a growing group of Asian operators who get what it's like to run this kind of business — trading notes, asking questions, showing up for each other. If you're in the daily grind too, there's a seat for you.",
+      "title": "Listen live. Ask the founder anything.",
+      "body": "We record with the room open. Turn up, put your question to the founder while they're still in the chair, and stay for the conversation after. Between episodes it's operators trading notes on suppliers, rent, hiring, and the parts nobody posts about.",
       "cta": { "label": "Join the Community", "link": "community" }
+    },
+    {
+      "id": "hosts",
+      "type": "hosts",
+      "eyebrow": "The Hosts",
+      "title": "Who's asking.",
+      "people": [
+        {
+          "name": "Lulu Cheng",
+          "role": "Builds software for small businesses and consumer apps",
+          "bio": "A decade of engineering behind me — Reddit, Square, Capital One — now spent building the software small businesses actually run on. I ask the questions I wish someone had asked the operators I build for.",
+          "photo": "/images/lulu.png",
+          "links": [
+            { "name": "Bio", "href": "https://l1990790120.github.io/" },
+            { "name": "LinkedIn", "href": "https://www.linkedin.com/in/luluchengengineeratheart/" },
+            { "name": "Email", "href": "mailto:luluc@apiobuild.com" }
+          ]
+        },
+        {
+          "name": "TODO: cohost's name",
+          "role": "Coffee shop owner",
+          "bio": "TODO: a couple of lines in their own voice -- the shop, how long they've run it, what they'd want a guest to be asked.",
+          "photo": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "shops",
+      "eyebrow": "The Shops",
+      "title": "Every guest leaves with their shop named.",
+      "body": "We say where it is, link it, and put it in front of a room of people who care where they spend. Come on the show and you get an hour to tell it your way, plus a table of operators who'll pick up when you text them six months later."
     },
     {
       "id": "guests",
@@ -46,6 +78,6 @@
   "footer": [
     { "name": "Privacy Policy", "href": "/articles/privacy-policy" },
     { "name": "Terms of Service", "href": "/articles/terms-of-service" },
-    { "name": "Email us", "href": "mailto:support@apiobuild.com", "openNew": true }
+    { "name": "Email us", "href": "mailto:luluc@apiobuild.com", "openNew": true }
   ]
 }
