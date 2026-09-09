@@ -5,7 +5,7 @@
     band under the hero takes the colour -- and alternates from there.
     Alternating on position keeps that rhythm right when sections are
     reordered in podcast.json, which a flag on each entry would not. -->
-  <template v-for="(band, index) in content.bands" :key="band.id">
+  <template v-for="(band, index) in bands" :key="band.id">
     <PodcastHosts v-if="band.type === 'hosts'" :band="band" :lime="index % 2 === 0" />
     <PodcastBand v-else :band="band" :links="content.links" :lime="index % 2 === 0" />
   </template>
@@ -20,9 +20,32 @@ import content from "~/assets/podcast.json";
 
 definePageMeta({ layout: "podcast" });
 
+// Vite rewrites asset URLs at build time, so a path arriving as a string from
+// JSON is never seen by the bundler and would ship as a dead link. Globbing
+// assets/team gives every image its built URL, keyed by filename, which is
+// what podcast.json stores -- so the hosts reuse the same file the company
+// team page does instead of a second copy under public/.
+const teamPhotos = Object.fromEntries(
+  Object.entries(import.meta.glob("../assets/team/*", { eager: true, import: "default" })).map(
+    ([path, url]) => [path.split("/").pop(), url]
+  )
+);
+
+const bands = content.bands.map((band) =>
+  band.type === "hosts"
+    ? {
+        ...band,
+        people: band.people.map((person) => ({
+          ...person,
+          photo: teamPhotos[person.photo] ?? null
+        }))
+      }
+    : band
+);
+
 // The hero shows the same people the hosts band does, so it reads them off
 // that band rather than a second copy in the JSON.
-const hosts = content.bands.find((band) => band.type === "hosts")?.people ?? [];
+const hosts = bands.find((band) => band.type === "hosts")?.people ?? [];
 
 // tagPriority beats app.vue's site-wide head, which registers the same tags
 // as "critical" -- without this the podcast page would share the consulting
