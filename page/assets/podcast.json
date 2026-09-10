@@ -94,6 +94,12 @@
               "name": "Catfight Coffee",
               "href": "https://www.catfightcoffee.com/",
               "image": "catfight-mark.png"
+            },
+            {
+              "name": "Catfight Coffee on Google Maps",
+              "href": "https://maps.app.goo.gl/WuY4hEPk9FKftmji7",
+              "icon": "fas fa-location-dot",
+              "color": "#ea4335"
             }
           ]
         }
