@@ -199,11 +199,13 @@ export default {
   margin-top: 0.5rem;
 }
 
-/* The Listen button and the platforms it opens, as one column. */
+/* The Listen button and the platforms it opens, as one column. Each keeps
+   its own width: the row of icons is wider than the button, and stretching
+   the column's children to match grew the button on open. */
 .pod-hero-listen {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
   gap: 0.6rem;
 }
 
@@ -287,6 +289,13 @@ export default {
 @media (max-width: 32rem) {
   .pod-hero-actions {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Stacked, the button does fill its column -- that is what squares it off
+     against the one below it. Nothing stretches to the icon row here, since
+     the two never share the column: one replaces the other. */
+  .pod-hero-listen {
     align-items: stretch;
   }
 
