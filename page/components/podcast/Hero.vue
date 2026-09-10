@@ -33,18 +33,19 @@
           the whole interaction: from below the second button the icons read
           as belonging to it, and sit far enough down to fall past the fold
           on a short screen, so the tap looks like it did nothing. -->
-        <div class="pod-hero-listen">
+        <div class="pod-hero-listen" :class="{ 'is-open': platformsOpen }">
           <!-- A podcast has no single place to send someone, so when the CTA's
             destination in podcast.json is a list of platforms the button opens
             into them rather than linking anywhere itself. A plain string still
             renders a plain link. -->
           <button
             v-if="platforms"
+            ref="listenButton"
             type="button"
-            class="pod-btn pod-btn-solid"
+            class="pod-btn pod-btn-solid pod-listen-toggle"
             :aria-expanded="platformsOpen"
             aria-controls="pod-listen-platforms"
-            @click="platformsOpen = !platformsOpen"
+            @click="togglePlatforms"
           >
             {{ hero.primaryCta.label }}
           </button>
@@ -57,16 +58,28 @@
             {{ hero.primaryCta.label }}
           </a>
 
-          <!-- Below the button rather than in place of it: the button stays
-            put and stays the toggle, so nothing the visitor is aiming at
-            moves when the row opens. Icon-only, with the platform name as
-            the accessible label. -->
+          <!-- Side by side the row opens below the button, which stays put and
+            stays the toggle. Stacked, it takes the button's place instead --
+            adding a row there costs vertical space a phone may not have, and
+            the visitor is looking at that spot anyway. The close button only
+            exists for that second case, where the toggle is out of reach. -->
           <div v-if="platforms" id="pod-listen-platforms" class="pod-listen-platforms">
+            <button
+              v-if="platformsOpen"
+              ref="closeButton"
+              type="button"
+              class="pod-listen-platform pod-listen-close"
+              aria-label="Close"
+              title="Close"
+              @click="togglePlatforms"
+            >
+              <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
             <a
               v-for="(platform, index) in visiblePlatforms"
               :key="platform.name"
               class="pod-listen-platform"
-              :style="{ '--pod-stagger': index }"
+              :style="{ '--pod-stagger': index + 1 }"
               :href="platform.href"
               :aria-label="platform.name"
               :title="platform.name"
@@ -90,7 +103,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, ref, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 
 const props = defineProps({
   hero: { type: Object, required: true },
@@ -115,10 +128,29 @@ const platforms = computed(() => {
 // height, so opening the row cannot move the button above it.
 const visiblePlatforms = computed(() => (platformsOpen.value ? platforms.value : []));
 
+const listenButton = ref(null);
+const closeButton = ref(null);
+
+// The one breakpoint where the row takes the button's place, kept in step
+// with the media query in this component's styles.
+const STACKED = "(max-width: 32rem)";
+const isStacked = () => window.matchMedia(STACKED).matches;
+
+// Where the row replaces the button, whichever control just disappeared was
+// the one holding focus, so hand it to the one that took its place --
+// otherwise a keyboard or screen-reader visitor is dropped back to the top
+// of the document mid-interaction.
+async function togglePlatforms() {
+  platformsOpen.value = !platformsOpen.value;
+  if (!isStacked()) return;
+  await nextTick();
+  (platformsOpen.value ? closeButton.value : listenButton.value)?.focus();
+}
+
 // Escape closes the row too, so someone who opened it by accident is not
 // stuck reaching for a specific small button.
 function closeOnEscape(event) {
-  if (event.key === "Escape") platformsOpen.value = false;
+  if (event.key === "Escape") togglePlatforms();
 }
 
 watch(platformsOpen, (open) => {
@@ -213,6 +245,23 @@ export default {
   transform: translateY(-2px);
 }
 
+/* Only the stacked layout puts the row where the button was, so that is the
+   only layout needing a way back -- everywhere else the button is still
+   above the row, still the toggle. Outlined rather than filled, so it reads
+   as the odd one out among the platforms it leads. */
+.pod-listen-close {
+  display: none;
+  --pod-stagger: 0;
+  background: transparent;
+  border: 1px solid var(--pod-rule);
+  color: var(--pod-text);
+}
+
+.pod-listen-close:hover {
+  border-color: var(--pod-text);
+  transform: translateY(-2px);
+}
+
 /* Overshoots and settles, which reads as a pop rather than a fade. */
 @keyframes pod-listen-pop {
   from {
@@ -241,12 +290,31 @@ export default {
     align-items: stretch;
   }
 
-  /* Stacked, the reserved height would sit between the two buttons as a
-     permanent empty gap, so here the row takes space only once it opens.
-     What that reserve protects is unaffected: the icons open below Listen
-     Now, which does not move -- only the button after it is pushed down. */
+  /* The row takes the button's place instead of opening under it. Opening a
+     row here costs vertical space a phone may not have -- below the fold the
+     icons never appear, and the tap reads as broken. */
+  .pod-hero-listen.is-open .pod-listen-toggle {
+    display: none;
+  }
+
+  .pod-listen-close {
+    display: inline-flex;
+  }
+
+  /* Closed, the row leaves the layout entirely: reserved height would show
+     as a permanent gap between the two buttons, and even a zero-height box
+     still leaves the column's gap behind it. Open, it stands exactly as tall
+     as the button it replaced, so the button below it never moves. */
+  .pod-hero-listen:not(.is-open) .pod-listen-platforms {
+    display: none;
+  }
+
   .pod-listen-platforms {
-    min-height: 0;
+    align-items: center;
+  }
+
+  .pod-hero-listen.is-open .pod-listen-platforms {
+    min-height: 3.5rem;
   }
 }
 
