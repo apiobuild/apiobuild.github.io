@@ -33,7 +33,10 @@
           the whole interaction: from below the second button the icons read
           as belonging to it, and sit far enough down to fall past the fold
           on a short screen, so the tap looks like it did nothing. -->
-        <div class="pod-hero-listen" :class="{ 'is-open': platformsOpen }">
+        <div
+          class="pod-hero-listen"
+          :class="{ 'is-open': platformsOpen, 'is-closing': platformsClosing }"
+        >
           <!-- A podcast has no single place to send someone, so when the CTA's
             destination in podcast.json is a list of platforms the button opens
             into them rather than linking anywhere itself. A plain string still
@@ -63,7 +66,12 @@
             adding a row there costs vertical space a phone may not have, and
             the visitor is looking at that spot anyway. The close button only
             exists for that second case, where the toggle is out of reach. -->
-          <div v-if="platforms" id="pod-listen-platforms" class="pod-listen-platforms">
+          <div
+            v-if="platforms"
+            id="pod-listen-platforms"
+            class="pod-listen-platforms"
+            :style="{ '--pod-count': platforms.length + 1 }"
+          >
             <button
               v-if="platformsOpen"
               ref="closeButton"
@@ -131,17 +139,45 @@ const visiblePlatforms = computed(() => (platformsOpen.value ? platforms.value :
 const listenButton = ref(null);
 const closeButton = ref(null);
 
+// True only while the row is animating out. The icons stay mounted through
+// it -- unmounting them on the click is what made closing instant while
+// opening had a whole animation to itself.
+const platformsClosing = ref(false);
+
+// Long enough for the last icon to finish: the exit animation plus the
+// delay the final icon waits through. Kept in step with the styles below.
+const EXIT_MS = 200 + 45 * 4;
+
 // The one breakpoint where the row takes the button's place, kept in step
 // with the media query in this component's styles.
 const STACKED = "(max-width: 32rem)";
 const isStacked = () => window.matchMedia(STACKED).matches;
+const isReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Where the row replaces the button, whichever control just disappeared was
 // the one holding focus, so hand it to the one that took its place --
 // otherwise a keyboard or screen-reader visitor is dropped back to the top
 // of the document mid-interaction.
 async function togglePlatforms() {
-  platformsOpen.value = !platformsOpen.value;
+  // A second click mid-exit would otherwise reopen the row underneath the
+  // animation still running over it.
+  if (platformsClosing.value) return;
+
+  if (platformsOpen.value) {
+    // Hold the row open while it plays out, or the icons would be gone
+    // before the animation had anything left to animate.
+    if (!isReducedMotion()) {
+      platformsClosing.value = true;
+      await wait(EXIT_MS);
+      platformsClosing.value = false;
+    }
+    platformsOpen.value = false;
+  } else {
+    platformsOpen.value = true;
+  }
+
   if (!isStacked()) return;
   await nextTick();
   (platformsOpen.value ? closeButton.value : listenButton.value)?.focus();
@@ -282,8 +318,32 @@ export default {
   }
 }
 
+/* Its own keyframes rather than the entry's played in reverse: the entry
+   animation has already run on these elements, and swapping only the
+   direction leaves the animation-name unchanged, so the browser keeps the
+   finished animation instead of starting a new one and nothing moves. */
+@keyframes pod-listen-unpop {
+  to {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+/* The row collapses the way it grew, and the stagger runs backwards --
+   --pod-stagger counts from the close button outwards, so subtracting it
+   from the count sends the far end first and the row zips back toward the
+   button. `forwards` holds the icons gone for the rest of the exit, or they
+   would snap back to full size and wait there until the row closes. */
+.pod-hero-listen.is-closing .pod-listen-platform {
+  animation: pod-listen-unpop 200ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  animation-delay: calc((var(--pod-count) - var(--pod-stagger)) * 45ms);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .pod-listen-platform {
+  .pod-listen-platform,
+  /* Belt and braces -- the exit is skipped outright in the click handler,
+     so this class should never be set under reduced motion. */
+  .pod-hero-listen.is-closing .pod-listen-platform {
     animation: none;
   }
   .podcast-page a.pod-listen-platform:hover {
