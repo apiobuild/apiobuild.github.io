@@ -203,19 +203,29 @@ export default {
    its own width: the row of icons is wider than the button, and stretching
    the column's children to match grew the button on open. */
 .pod-hero-listen {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.6rem;
 }
 
-/* Holds the icons' height whether or not they are showing, so the button
-   above never moves. Matches .pod-listen-platform's height. */
+/* Out of flow, so the group's box stays exactly the button's whether the row
+   is open or not. In flow it sized the group to its own width -- wider than
+   the button by the icons it holds -- which pushed the button beside it
+   sideways on open, and needed its height reserved to stop the same thing
+   happening vertically. */
 .pod-listen-platforms {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.6rem;
+  /* Out of flow it would otherwise take the button's width and wrap the
+     icons onto a second line -- they are wider than the button together. */
+  width: max-content;
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  min-height: 2.75rem;
 }
 
 .pod-listen-platform {
@@ -318,7 +328,18 @@ export default {
     display: none;
   }
 
+  /* Back in flow: here the row is not floating under the button, it is
+     standing in the button's place, so it has to occupy the column. */
   .pod-listen-platforms {
+    position: static;
+    margin-top: 0;
+    width: auto;
+    /* Tighter than elsewhere so the row stays inside the column the buttons
+       set. Wider than that and the row drives the column instead, taking the
+       button below it along -- the close button and three platforms come to
+       204.8px at the standard gap, against 203px of column on a 375px
+       screen. This keeps five of them inside a 320px screen. */
+    gap: 0.5rem;
     align-items: center;
   }
 
