@@ -221,6 +221,18 @@ export default {
   }
 }
 
+/* On a phone the two buttons wrap onto separate lines, where hugging their
+   own labels left them different widths against a shared left edge -- a
+   ragged pair that reads as a mistake. Stacked, they both take the width of
+   the longer label, so the pair squares off while staying on the left edge
+   the headline and copy sit on. Same breakpoint the hosts band stacks at. */
+@media (max-width: 32rem) {
+  .pod-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .pod-hero-hosts {
   display: flex;
   align-items: center;
