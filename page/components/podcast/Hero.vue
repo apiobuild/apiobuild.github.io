@@ -35,7 +35,11 @@
           on a short screen, so the tap looks like it did nothing. -->
         <div
           class="pod-hero-listen"
-          :class="{ 'is-open': platformsOpen, 'is-closing': platformsClosing }"
+          :class="{
+            'is-open': platformsOpen,
+            'is-closing': platformsClosing,
+            'is-returning': toggleReturning
+          }"
         >
           <!-- A podcast has no single place to send someone, so when the CTA's
             destination in podcast.json is a list of platforms the button opens
@@ -148,6 +152,13 @@ const platformsClosing = ref(false);
 // delay the final icon waits through. Kept in step with the styles below.
 const EXIT_MS = 200 + 45 * 4;
 
+// True only while the Listen button is animating back in, once the row it
+// stood in for has finished leaving. Stacked, the button is display:none
+// for the whole time the row is open, so without this it snaps back at
+// full size the moment the row unmounts.
+const toggleReturning = ref(false);
+const RETURN_MS = 240;
+
 // The one breakpoint where the row takes the button's place, kept in step
 // with the media query in this component's styles.
 const STACKED = "(max-width: 32rem)";
@@ -174,6 +185,15 @@ async function togglePlatforms() {
       platformsClosing.value = false;
     }
     platformsOpen.value = false;
+
+    // Not awaited: the button is back and focusable immediately, and only
+    // its arrival is being animated.
+    if (!isReducedMotion()) {
+      toggleReturning.value = true;
+      wait(RETURN_MS).then(() => {
+        toggleReturning.value = false;
+      });
+    }
   } else {
     platformsOpen.value = true;
   }
@@ -329,6 +349,16 @@ export default {
   }
 }
 
+/* The button coming back. A gentler start than the icons' 0.3 -- a pill
+   this wide swelling from a third of its size reads as a different element
+   arriving rather than this one returning. */
+@keyframes pod-listen-return {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
 /* The row collapses the way it grew, and the stagger runs backwards --
    --pod-stagger counts from the close button outwards, so subtracting it
    from the count sends the far end first and the row zips back toward the
@@ -374,6 +404,12 @@ export default {
      icons never appear, and the tap reads as broken. */
   .pod-hero-listen.is-open .pod-listen-toggle {
     display: none;
+  }
+
+  /* Only here does the button ever leave, so only here does it arrive.
+     Side by side it never went anywhere and has nothing to animate. */
+  .pod-hero-listen.is-returning .pod-listen-toggle {
+    animation: pod-listen-return 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .pod-listen-close {
