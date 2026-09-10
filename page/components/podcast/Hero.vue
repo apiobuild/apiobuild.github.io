@@ -27,32 +27,56 @@
         </p>
       </div>
 
-      <!-- Buttons and platform icons are one group, so the hero's own
-        1.75rem gap falls before the pair instead of between them. -->
-      <div class="pod-hero-cta">
-        <div class="pod-hero-actions">
-        <!-- A podcast has no single place to send someone, so when the CTA's
-          destination in podcast.json is a list of platforms the button opens
-          into them rather than linking anywhere itself. A plain string still
-          renders a plain link. -->
-        <button
-          v-if="platforms"
-          type="button"
-          class="pod-btn pod-btn-solid"
-          :aria-expanded="platformsOpen"
-          aria-controls="pod-listen-platforms"
-          @click="platformsOpen = !platformsOpen"
-        >
-          {{ hero.primaryCta.label }}
-        </button>
-        <a
-          v-else
-          class="pod-btn pod-btn-solid"
-          :href="links[hero.primaryCta.link]"
-          v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
-        >
-          {{ hero.primaryCta.label }}
-        </a>
+      <div class="pod-hero-actions">
+        <!-- The platform row is nested with the button that opens it, not
+          placed after both buttons. Stacked on a phone that difference is
+          the whole interaction: from below the second button the icons read
+          as belonging to it, and sit far enough down to fall past the fold
+          on a short screen, so the tap looks like it did nothing. -->
+        <div class="pod-hero-listen">
+          <!-- A podcast has no single place to send someone, so when the CTA's
+            destination in podcast.json is a list of platforms the button opens
+            into them rather than linking anywhere itself. A plain string still
+            renders a plain link. -->
+          <button
+            v-if="platforms"
+            type="button"
+            class="pod-btn pod-btn-solid"
+            :aria-expanded="platformsOpen"
+            aria-controls="pod-listen-platforms"
+            @click="platformsOpen = !platformsOpen"
+          >
+            {{ hero.primaryCta.label }}
+          </button>
+          <a
+            v-else
+            class="pod-btn pod-btn-solid"
+            :href="links[hero.primaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
+          >
+            {{ hero.primaryCta.label }}
+          </a>
+
+          <!-- Below the button rather than in place of it: the button stays
+            put and stays the toggle, so nothing the visitor is aiming at
+            moves when the row opens. Icon-only, with the platform name as
+            the accessible label. -->
+          <div v-if="platforms" id="pod-listen-platforms" class="pod-listen-platforms">
+            <a
+              v-for="(platform, index) in visiblePlatforms"
+              :key="platform.name"
+              class="pod-listen-platform"
+              :style="{ '--pod-stagger': index }"
+              :href="platform.href"
+              :aria-label="platform.name"
+              :title="platform.name"
+              v-bind="podcastLinkAttrs(platform.href)"
+            >
+              <i :class="platform.icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
         <a
           class="pod-btn pod-btn-ghost"
           :href="links[hero.secondaryCta.link]"
@@ -60,26 +84,6 @@
         >
           {{ hero.secondaryCta.label }}
         </a>
-        </div>
-
-        <!-- Below the actions rather than in place of the button: the button
-          stays put and stays the toggle, so nothing the visitor is aiming at
-          moves when the row opens. Icon-only, with the platform name as the
-          accessible label. -->
-        <div v-if="platforms" id="pod-listen-platforms" class="pod-listen-platforms">
-          <a
-            v-for="(platform, index) in visiblePlatforms"
-            :key="platform.name"
-            class="pod-listen-platform"
-            :style="{ '--pod-stagger': index }"
-            :href="platform.href"
-            :aria-label="platform.name"
-            :title="platform.name"
-            v-bind="podcastLinkAttrs(platform.href)"
-          >
-            <i :class="platform.icon" aria-hidden="true"></i>
-          </a>
-        </div>
       </div>
     </div>
   </header>
@@ -152,18 +156,23 @@ export default {
   max-width: 18ch;
 }
 
-.pod-hero-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
-}
-
 .pod-hero-actions {
   display: flex;
   flex-wrap: wrap;
+  /* Top, not the default stretch: the Listen group is taller than the ghost
+     button beside it (it carries the platform row), and stretching would
+     pull the ghost button down to match. */
+  align-items: flex-start;
   gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* The Listen button and the platforms it opens, as one column. */
+.pod-hero-listen {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
 }
 
 /* Holds the icons' height whether or not they are showing, so the button
@@ -230,6 +239,14 @@ export default {
   .pod-hero-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  /* Stacked, the reserved height would sit between the two buttons as a
+     permanent empty gap, so here the row takes space only once it opens.
+     What that reserve protects is unaffected: the icons open below Listen
+     Now, which does not move -- only the button after it is pushed down. */
+  .pod-listen-platforms {
+    min-height: 0;
   }
 }
 
