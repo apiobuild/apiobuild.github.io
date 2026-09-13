@@ -8,7 +8,10 @@
       <p class="pod-lede">{{ join.thanks.body }}</p>
     </div>
 
-    <form v-else class="pod-join-fields" @submit.prevent="submit">
+    <!-- The intro asks for the form, so it goes when the form does. -->
+    <p v-if="status !== 'sent'" class="pod-lede pod-join-intro">{{ join.body }}</p>
+
+    <form v-if="status !== 'sent'" class="pod-join-fields" @submit.prevent="submit">
       <!-- A lone field is a group of one without a legend, so fields and
         groups share one set of markup. A group's fields are all optional, so
         its legend carries the one "optional" instead of every field. -->
@@ -112,6 +115,10 @@ export default {
 <style scoped>
 .pod-join-card {
   max-width: 34rem;
+}
+
+.pod-join-intro {
+  margin-bottom: 2.5rem;
 }
 
 .pod-join-fields {

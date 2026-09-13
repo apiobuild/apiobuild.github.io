@@ -15,8 +15,7 @@
       </div>
       <div class="pod-split-body">
         <h1 class="pod-join-title">{{ join.title }}</h1>
-        <p class="pod-lede">{{ join.body }}</p>
-        <PodcastJoinForm class="pod-join-form" :join="join" />
+        <PodcastJoinForm :join="join" />
       </div>
     </div>
   </main>
@@ -80,9 +79,5 @@ export default {
 .pod-join-title {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   margin-bottom: 1.25rem;
-}
-
-.pod-join-form {
-  margin-top: 2.5rem;
 }
 </style>
