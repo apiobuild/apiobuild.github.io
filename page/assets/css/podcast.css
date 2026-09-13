@@ -2,8 +2,9 @@
    Namespaced under .podcast-page so this file can be imported unscoped from
    the podcast layout without touching the rest of apiobuild.com, which keeps
    its Vuetify theme. */
-/* Archivo is only drawn into the hero cube's canvases (PodcastCube). */
-@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Comfortaa:wght@400;600&family=Archivo:wght@600;800&display=swap");
+/* Archivo sets the whole page and is drawn into the hero cube's canvases
+   (PodcastCube), so the two read as one thing. */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Comfortaa:wght@400;600&display=swap");
 
 .podcast-page {
   /* The stockoverflow product palette, off the primary and honey ramps in
@@ -22,12 +23,11 @@
      closes up, so the lede drops to primary-800 there. */
   --pod-on-lime-muted: #424814;
 
-  /* Headings are the show's own face. Reading text uses the site's stack
-     from assets/css/_variables.scss, none of which is loaded as a webfont
-     here or elsewhere on the site -- most visitors land on the system UI
-     font, which is what the other pages render in too. */
-  --pod-display: "Newsreader", Georgia, serif;
-  --pod-body: Ubuntu, Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  /* One face for headings and reading text alike: Archivo, the one the hero
+     cube's faces are drawn in. Keep the two in step -- PodcastCube names it
+     in its own FONT constant, since a canvas can't read these tokens. */
+  --pod-display: Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --pod-body: Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   /* The apiobuild wordmark, matching the face Appbar.vue sets on the logo
      everywhere else on the site. The one font this page does load. */
   --pod-logo: "Comfortaa", cursive;
@@ -48,9 +48,11 @@
 .podcast-page h1,
 .podcast-page h2 {
   font-family: var(--pod-display);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  /* The weight the cube's titles are drawn at, so a heading on the page and
+     the same words on a face match. */
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
