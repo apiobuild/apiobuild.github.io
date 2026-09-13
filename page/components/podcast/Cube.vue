@@ -9,7 +9,6 @@
       has drawn and after it has been handled, so nothing moves either time. -->
     <p class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
       <span class="pod-cube-hint-thumb"><i class="fas fa-hand-pointer"></i></span>
-      <span>Give it a spin</span>
     </p>
   </div>
 </template>
@@ -615,14 +614,13 @@ export default {
   opacity: 1;
 }
 
-/* A thumb flicking sideways: presses in, swipes across with a tilt, lifts
-   off and comes back for another go. The box holds its width so the words
-   beside it never move. */
+/* A thumb flicking left to right: presses in, swipes across with a tilt,
+   lifts off and comes back for another go. The icon says it on its own. */
 .pod-cube-hint-thumb {
   display: inline-flex;
   justify-content: center;
-  width: 2.25rem;
-  font-size: 1rem;
+  width: 4rem;
+  font-size: 1.25rem;
 }
 
 .pod-cube-hint-thumb i {
@@ -632,20 +630,20 @@ export default {
 @keyframes pod-cube-hint-swipe {
   0% {
     opacity: 0;
-    transform: translateX(10px) rotate(12deg) scale(1);
+    transform: translateX(-18px) rotate(-14deg) scale(1);
   }
   15% {
     opacity: 1;
-    transform: translateX(10px) rotate(12deg) scale(0.88);
+    transform: translateX(-18px) rotate(-14deg) scale(0.88);
   }
   55% {
     opacity: 1;
-    transform: translateX(-10px) rotate(-14deg) scale(0.88);
+    transform: translateX(18px) rotate(12deg) scale(0.88);
   }
   75%,
   100% {
     opacity: 0;
-    transform: translateX(-12px) rotate(-14deg) scale(1);
+    transform: translateX(20px) rotate(12deg) scale(1);
   }
 }
 
