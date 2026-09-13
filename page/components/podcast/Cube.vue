@@ -24,7 +24,8 @@ const band = (id) => content.bands.find((entry) => entry.id === id);
 // here freely. Colors name podcast.css tokens so the palette stays in one
 // place. Copy comes from podcast.json for the same reason.
 const STORY = [
-  { bg: "--pod-lime", fg: "--pod-text", eyebrow: content.hero.eyebrow, title: content.hero.title },
+  // The show's name as a periodic-table tile: Tê is tea in Taiwanese.
+  { bg: "--pod-lime", fg: "--pod-text", tile: { number: "1", symbol: "Tê", name: "tea" } },
   ...props.hosts.map((person, index) => {
     const brand = person.links.find((link) => link.image);
     return {
@@ -81,6 +82,29 @@ function fitText(ctx, text, weight, maxWidth, maxLines, startSize) {
   return { size: 24, lines: [text] };
 }
 
+// A periodic-table tile: a ruled square with the number in its corner, the
+// symbol filling the middle and the name under it.
+function drawTile(ctx, tile, ink) {
+  const inset = 72;
+  ctx.strokeStyle = ink;
+  ctx.lineWidth = 14;
+  ctx.strokeRect(inset, inset, FACE_PX - inset * 2, FACE_PX - inset * 2);
+
+  ctx.fillStyle = ink;
+  ctx.textAlign = "left";
+  ctx.font = `600 96px ${FONT}`;
+  ctx.fillText(tile.number, inset + 64, inset + 150);
+
+  ctx.textAlign = "center";
+  const { size } = fitText(ctx, tile.symbol, 800, FACE_PX - inset * 2 - 160, 1, 460);
+  ctx.font = `800 ${size}px ${FONT}`;
+  ctx.fillText(tile.symbol, FACE_PX / 2, 690);
+
+  ctx.font = `600 120px ${FONT}`;
+  ctx.fillText(tile.name, FACE_PX / 2, 850);
+  ctx.textAlign = "left";
+}
+
 function drawFace(canvas, stop, color, images) {
   const ctx = canvas.getContext("2d");
   const pad = 96;
@@ -90,6 +114,11 @@ function drawFace(canvas, stop, color, images) {
   ctx.fillRect(0, 0, FACE_PX, FACE_PX);
   ctx.fillStyle = color(stop.fg);
   ctx.textBaseline = "alphabetic";
+
+  if (stop.tile) {
+    drawTile(ctx, stop.tile, color(stop.fg));
+    return;
+  }
 
   ctx.font = `600 34px ${FONT}`;
   if ("letterSpacing" in ctx) ctx.letterSpacing = "4px";

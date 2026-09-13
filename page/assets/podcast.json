@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "<PLACEHOLDER PODCAST NAME> | apiobuild",
+    "title": "What's the Tea | apiobuild",
     "description": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "image": "https://apiobuild.com/images/og_image.png"
   },
@@ -27,7 +27,7 @@
   },
   "hero": {
     "eyebrow": "Stories from Asian American builders",
-    "title": "<PLACEHOLDER PODCAST NAME>",
+    "title": "What's the Tea",
     "body": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "primaryCta": {
       "label": "Listen Now",
