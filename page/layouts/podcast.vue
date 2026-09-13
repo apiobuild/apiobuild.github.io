@@ -3,6 +3,7 @@
     thing rather than a page of the consulting site. The page supplies its own
     footer (PodcastFooter), carrying the legal links the site footer would have. -->
   <div class="podcast-page">
+    <PodcastHeader />
     <slot />
   </div>
 </template>

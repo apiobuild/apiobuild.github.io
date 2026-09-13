@@ -25,6 +25,122 @@
     "community": "/podcast/join",
     "suggestGuest": "mailto:luluc@apiobuild.com?subject=Guest%20suggestion"
   },
+  "nav": {
+    "links": [
+      {
+        "label": "Hosts",
+        "to": "/podcast#hosts"
+      },
+      {
+        "label": "Deals",
+        "to": "/podcast/deals"
+      }
+    ],
+    "cta": {
+      "label": "Join",
+      "to": "/podcast/join"
+    }
+  },
+  "deals": {
+    "meta": {
+      "title": "Deals | What's the Tea",
+      "description": "Free plans and free trials that help small business owners get going: selling, money, marketing and AI tools, picked by What's the Tea."
+    },
+    "eyebrow": "Deals",
+    "title": "Free tools for builders",
+    "body": "Free plans and trials we'd point any small business owner to. No codes needed.",
+    "note": "We're not affiliated with these companies and don't earn anything from them. Offers and terms are set by each company and can change, so check their page before you sign up. Last checked September 2026.",
+    "join": {
+      "body": "Know a deal we should add? Tell us in the community.",
+      "label": "Join the Community"
+    },
+    "items": [
+      {
+        "name": "Google Business Profile",
+        "category": "Local",
+        "deal": "Always free",
+        "details": "List your business on Google Search and Maps, with photos, reviews and updates, at no cost.",
+        "url": "https://business.google.com/us/business-profile/"
+      },
+      {
+        "name": "Square",
+        "category": "Sell",
+        "deal": "Free plan, no monthly fee",
+        "details": "Free POS app, invoicing, booking and an online site. You only pay per payment: 2.6% + 15¢ in person, 3.3% + 30¢ online.",
+        "url": "https://squareup.com/us/en/pricing"
+      },
+      {
+        "name": "Shopify",
+        "category": "Sell",
+        "deal": "3 days free, then $1/month for 3 months",
+        "details": "Start your online store with no credit card for the trial, then $1 a month for your first 3 months.",
+        "url": "https://www.shopify.com/pricing"
+      },
+      {
+        "name": "Wave",
+        "category": "Money",
+        "deal": "Free Starter plan",
+        "details": "Unlimited invoices, estimates and bookkeeping. Card payments cost 2.9% + 60¢, and bank auto-import needs the paid plan.",
+        "url": "https://www.waveapps.com/pricing"
+      },
+      {
+        "name": "Mercury",
+        "category": "Money",
+        "deal": "$0/month business banking",
+        "details": "Business checking and savings with no minimum balance or monthly fees, plus free domestic ACH and wires.",
+        "url": "https://mercury.com/pricing"
+      },
+      {
+        "name": "Mailchimp",
+        "category": "Marketing",
+        "deal": "Free plan",
+        "details": "Email marketing for up to 250 contacts and 500 sends a month.",
+        "url": "https://mailchimp.com/pricing/marketing/"
+      },
+      {
+        "name": "HubSpot",
+        "category": "Marketing",
+        "deal": "Free CRM, no credit card",
+        "details": "Keep track of customers and leads, free for up to 2 users and 1,000 contacts, with no time limit.",
+        "url": "https://www.hubspot.com/pricing/crm"
+      },
+      {
+        "name": "Claude",
+        "category": "Productivity & AI",
+        "deal": "Free plan",
+        "details": "Anthropic's AI assistant for writing, research and working through files on web, desktop and mobile, with usage limits.",
+        "url": "https://claude.com/pricing"
+      },
+      {
+        "name": "Granola",
+        "category": "Productivity & AI",
+        "deal": "Free Basic plan",
+        "details": "AI meeting notes with no daily limit. The free app shows notes from the last 30 days.",
+        "url": "https://www.granola.ai/pricing"
+      },
+      {
+        "name": "Notion",
+        "category": "Productivity & AI",
+        "deal": "Free plan",
+        "details": "Docs, databases, forms and a simple web page, with 5 MB uploads and 7 days of page history.",
+        "url": "https://www.notion.com/pricing"
+      },
+      {
+        "name": "Calendly",
+        "category": "Productivity & AI",
+        "deal": "Free plan",
+        "details": "A booking page for one-on-one appointments, with one event type and one connected calendar.",
+        "url": "https://calendly.com/pricing"
+      },
+      {
+        "name": "Wix",
+        "category": "Website",
+        "deal": "Free website plan",
+        "details": "Build and host a site with templates for free. It shows Wix branding, and a custom domain needs a paid plan.",
+        "url": "https://www.wix.com/plans"
+      }
+    ]
+  },
   "join": {
     "meta": {
       "title": "Join the Community | What's the Tea",

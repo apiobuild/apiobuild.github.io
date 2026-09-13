@@ -239,7 +239,8 @@ export default {
 .pod-hero {
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  /* A screen less the sticky header above it. */
+  min-height: calc(100vh - var(--pod-header));
   padding-block: var(--pod-band);
   background: var(--pod-bg);
 }
@@ -312,8 +313,8 @@ export default {
     flex-direction: column;
     justify-content: flex-end;
     gap: var(--pod-hero-pad);
-    height: calc(100vh - 2 * var(--pod-hero-pad));
-    height: calc(100svh - 2 * var(--pod-hero-pad));
+    height: calc(100vh - var(--pod-header) - 2 * var(--pod-hero-pad));
+    height: calc(100svh - var(--pod-header) - 2 * var(--pod-hero-pad));
     min-height: fit-content;
   }
 

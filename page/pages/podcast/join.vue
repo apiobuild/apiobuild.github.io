@@ -1,13 +1,4 @@
 <template>
-  <header class="pod-join-top">
-    <div class="pod-shell">
-      <NuxtLink class="pod-join-back" to="/podcast">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-        {{ content.hero.title }}
-      </NuxtLink>
-    </div>
-  </header>
-
   <main class="pod-join">
     <div class="pod-shell pod-split">
       <div class="pod-split-label">
@@ -54,26 +45,8 @@ export default {
 </script>
 
 <style scoped>
-.pod-join-top {
-  padding-block: 1.5rem;
-}
-
-.podcast-page .pod-join-back,
-.podcast-page .pod-join-back:link,
-.podcast-page .pod-join-back:visited {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--pod-text);
-}
-.podcast-page .pod-join-back:hover {
-  color: var(--pod-accent);
-}
-
 .pod-join {
-  padding-block: clamp(2rem, 6vw, 4.5rem) var(--pod-band);
+  padding-block: clamp(3rem, 8vw, 6rem) var(--pod-band);
 }
 
 .pod-join-title {
