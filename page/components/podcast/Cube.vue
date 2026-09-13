@@ -83,17 +83,24 @@ function loadImage(src) {
   });
 }
 
+// Breaks text into lines no wider than maxWidth at the context's current font.
+// A single word wider than that still gets a line of its own.
+function wrapText(ctx, text, maxWidth) {
+  const lines = [];
+  for (const word of text.split(/\s+/)) {
+    const candidate = lines.length ? `${lines[lines.length - 1]} ${word}` : word;
+    if (lines.length && ctx.measureText(candidate).width <= maxWidth) lines[lines.length - 1] = candidate;
+    else lines.push(word);
+  }
+  return lines;
+}
+
 // Wraps to at most maxLines at the largest size that fits, shrinking a step
 // at a time until everything does.
 function fitText(ctx, text, weight, maxWidth, maxLines, startSize) {
   for (let size = startSize; size > 24; size -= 6) {
     ctx.font = `${weight} ${size}px ${FONT}`;
-    const lines = [];
-    for (const word of text.split(/\s+/)) {
-      const candidate = lines.length ? `${lines[lines.length - 1]} ${word}` : word;
-      if (lines.length && ctx.measureText(candidate).width <= maxWidth) lines[lines.length - 1] = candidate;
-      else lines.push(word);
-    }
+    const lines = wrapText(ctx, text, maxWidth);
     if (lines.length <= maxLines && lines.every((line) => ctx.measureText(line).width <= maxWidth)) {
       return { size, lines };
     }
@@ -139,17 +146,26 @@ function drawFace(canvas, stop, color, images) {
     return;
   }
 
-  // One line, shrunk until it fits rather than squeezed by fillText's
-  // maxWidth -- a long eyebrow squeezed that way reads as a different face.
-  const eyebrow = stop.eyebrow.toUpperCase();
-  if ("letterSpacing" in ctx) ctx.letterSpacing = "4px";
-  let eyebrowSize = 34;
+  // Big enough to read once the cube is phone-sized, where a face is drawn at
+  // about a third of these pixels. A long eyebrow wraps rather than shrinks,
+  // breaking at a " | " first so each part keeps its own line.
+  if ("letterSpacing" in ctx) ctx.letterSpacing = "5px";
+  let eyebrowSize = 44;
+  let eyebrowLines;
   do {
     ctx.font = `600 ${eyebrowSize}px ${FONT}`;
-  } while (ctx.measureText(eyebrow).width > width && --eyebrowSize > 18);
-  ctx.fillText(eyebrow, pad, pad + 34, width);
+    eyebrowLines = stop.eyebrow
+      .toUpperCase()
+      .split(" | ")
+      .flatMap((part) => wrapText(ctx, part, width));
+  } while (eyebrowLines.length > 3 && (eyebrowSize -= 2) > 28);
+
+  const eyebrowLeading = eyebrowSize * 1.25;
+  eyebrowLines.forEach((line, index) => {
+    ctx.fillText(line, pad, pad + eyebrowSize + index * eyebrowLeading, width);
+  });
   if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
-  ctx.fillRect(pad, pad + 64, 96, 6);
+  ctx.fillRect(pad, pad + eyebrowSize + (eyebrowLines.length - 1) * eyebrowLeading + 32, 96, 6);
 
   const image = stop.mark && images.get(stop.mark);
   if (image) {
