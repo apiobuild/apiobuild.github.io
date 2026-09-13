@@ -8,9 +8,8 @@
       until someone does. Its line is always there, invisible until the cube
       has drawn and after it has been handled, so nothing moves either time. -->
     <p class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
-      <span class="pod-cube-hint-arrow">&larr;</span>
+      <span class="pod-cube-hint-thumb"><i class="fas fa-hand-pointer"></i></span>
       <span>Give it a spin</span>
-      <span class="pod-cube-hint-arrow">&rarr;</span>
     </p>
   </div>
 </template>
@@ -616,30 +615,42 @@ export default {
   opacity: 1;
 }
 
-/* The arrows sway outward, pointing the way a swipe goes. */
-.pod-cube-hint-arrow {
-  display: inline-block;
-  animation: pod-cube-hint-left 1.6s ease-in-out infinite;
+/* A thumb flicking sideways: presses in, swipes across with a tilt, lifts
+   off and comes back for another go. The box holds its width so the words
+   beside it never move. */
+.pod-cube-hint-thumb {
+  display: inline-flex;
+  justify-content: center;
+  width: 2.25rem;
+  font-size: 1rem;
 }
 
-.pod-cube-hint-arrow:last-child {
-  animation-name: pod-cube-hint-right;
+.pod-cube-hint-thumb i {
+  animation: pod-cube-hint-swipe 1.8s cubic-bezier(0.45, 0, 0.3, 1) infinite;
 }
 
-@keyframes pod-cube-hint-left {
-  50% {
-    transform: translateX(-4px);
+@keyframes pod-cube-hint-swipe {
+  0% {
+    opacity: 0;
+    transform: translateX(10px) rotate(12deg) scale(1);
   }
-}
-
-@keyframes pod-cube-hint-right {
-  50% {
-    transform: translateX(4px);
+  15% {
+    opacity: 1;
+    transform: translateX(10px) rotate(12deg) scale(0.88);
+  }
+  55% {
+    opacity: 1;
+    transform: translateX(-10px) rotate(-14deg) scale(0.88);
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: translateX(-12px) rotate(-14deg) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pod-cube-hint-arrow {
+  .pod-cube-hint-thumb i {
     animation: none;
   }
 }
