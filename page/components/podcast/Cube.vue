@@ -86,7 +86,7 @@ const TURN_MS = 600;
 const SETTLE_MS = 260;
 // How long handling the cube holds off the automatic turn, so the visitor gets
 // to read the face they landed on.
-const IDLE_MS = 6000;
+const IDLE_MS = 2500;
 // The spin. Speeds are in quarter-turns per millisecond. A release faster
 // than FLICK_SPEED, measured over the last FLICK_WINDOW_MS of the drag, keeps
 // spinning; COAST_MS is how fast that spin dies away -- short, so it whips
