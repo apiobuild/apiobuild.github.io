@@ -40,7 +40,9 @@ const STORY = [
       mark: brand?.image ?? null
     };
   }),
-  { bg: "--pod-accent-strong", fg: "--pod-lime", eyebrow: band("the-conversation").eyebrow, title: band("the-conversation").title },
+  // What the show is, said plainly. Its own words rather than a band's: the
+  // conversation band's question already has the page to itself.
+  { bg: "--pod-accent-strong", fg: "--pod-lime", eyebrow: "Podcast", title: "Podcast series of Asian American builders" },
   { bg: "--pod-lime", fg: "--pod-text", eyebrow: band("community").eyebrow, title: band("community").title }
 ];
 
