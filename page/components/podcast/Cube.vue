@@ -139,9 +139,15 @@ function drawFace(canvas, stop, color, images) {
     return;
   }
 
-  ctx.font = `600 34px ${FONT}`;
+  // One line, shrunk until it fits rather than squeezed by fillText's
+  // maxWidth -- a long eyebrow squeezed that way reads as a different face.
+  const eyebrow = stop.eyebrow.toUpperCase();
   if ("letterSpacing" in ctx) ctx.letterSpacing = "4px";
-  ctx.fillText(stop.eyebrow.toUpperCase(), pad, pad + 34, width);
+  let eyebrowSize = 34;
+  do {
+    ctx.font = `600 ${eyebrowSize}px ${FONT}`;
+  } while (ctx.measureText(eyebrow).width > width && --eyebrowSize > 18);
+  ctx.fillText(eyebrow, pad, pad + 34, width);
   if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
   ctx.fillRect(pad, pad + 64, 96, 6);
 
