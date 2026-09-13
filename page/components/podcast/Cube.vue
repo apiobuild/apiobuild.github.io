@@ -51,17 +51,26 @@ const HOLD_MS = 2600;
 const TURN_MS = 900;
 // The shortest a turn gets, for a drag released most of the way round.
 const SETTLE_MS = 260;
-// How long a swipe holds off the automatic turn, so the visitor gets to read
-// the face they chose.
+// How long handling the cube holds off the automatic turn, so the visitor gets
+// to read the face they landed on.
 const IDLE_MS = 6000;
-// Horizontal travel that counts as a flick to the next face rather than a
-// nudge that springs back.
-const SWIPE_PX = 40;
-// Trackpad scroll that counts as one swipe, and the quiet gap that ends a
-// gesture -- a trackpad keeps sending momentum for a while after the fingers
-// lift, and all of it belongs to the one swipe.
-const WHEEL_PX = 50;
-const WHEEL_GAP_MS = 250;
+// The spin. Speeds are in quarter-turns per millisecond. A release faster
+// than FLICK_SPEED, measured over the last FLICK_WINDOW_MS of the drag, keeps
+// spinning; COAST_MS is how fast that spin dies away -- short, so it whips
+// round and slows quickly -- and below SETTLE_SPEED it eases onto a face,
+// leading by SETTLE_LEAD_MS of its remaining speed so it does not swing back.
+const FLICK_SPEED = 0.002;
+const FLICK_WINDOW_MS = 80;
+const MAX_SPEED = 0.04;
+const COAST_MS = 260;
+const SETTLE_SPEED = 0.0025;
+const SETTLE_LEAD_MS = 120;
+// No frame or pointer event may move the cube a whole quarter-turn, or a side
+// could come round before it is re-skinned.
+const MAX_STEP = 0.9;
+// The quiet gap that ends a trackpad swipe -- a trackpad keeps sending
+// momentum for a while after the fingers lift, and all of it belongs to it.
+const WHEEL_GAP_MS = 150;
 const FACE_PX = 1024;
 const FONT = 'Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
@@ -243,10 +252,16 @@ onMounted(async () => {
   });
 
   // Stop k is shown on side k mod 4, and k runs both ways now that the cube
-  // can be turned back by hand.
+  // can be spun back by hand. Each side remembers which stop it holds, so a
+  // spin redraws a side only when it has to show something new -- drawing a
+  // 1024px face every frame would stutter.
+  const sideStop = SIDES.map(() => null);
   const skin = (k) => {
     const side = mod(k, SIDES.length);
-    drawFace(canvases[side], STORY[mod(k, STORY.length)], color, images);
+    const stop = mod(k, STORY.length);
+    if (sideStop[side] === stop) return;
+    sideStop[side] = stop;
+    drawFace(canvases[side], STORY[stop], color, images);
     textures[side].needsUpdate = true;
   };
   for (let k = -1; k <= 2; k++) skin(k);
@@ -265,27 +280,38 @@ onMounted(async () => {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // angle is where the cube is, in quarter-turns; target is the stop it is
-  // easing toward from `from`. shown is the last stop it came to rest on.
-  let shown = 0;
+  // angle is where the cube is, in quarter-turns. It moves one of three ways:
+  // easing from `from` to `target` (a turn), following a hand (a drag or a
+  // trackpad swipe), or coasting on the speed a flick left it with.
   let target = 0;
   let angle = 0;
   let from = 0;
   let turnStart = 0;
   let turnMs = TURN_MS;
   let ease = easeInOutCubic;
+  let velocity = 0;
+  let hand = null;
+  let wheelTimer = 0;
   let restingSince = performance.now();
   let resumeAt = 0;
+  let lastTick = 0;
   let frame = 0;
   let visible = true;
-  let drag = null;
 
-  // Only the two sides either side of `angle` can be seen, so any other side
-  // is safe to re-skin. Keeping every input within two stops of the cube is
-  // what guarantees the side about to come round is one of those.
+  // Only the two sides either side of `angle` can be seen. Every frame, the
+  // side about to come round in either direction is re-skinned for the stop
+  // it will show -- while it still faces away, which holds at any speed as
+  // long as no frame moves the cube a whole quarter-turn (moveBy caps it).
   const inView = (k) => mod(k, 4) === mod(Math.floor(angle), 4) || mod(k, 4) === mod(Math.ceil(angle), 4);
-  const prepare = (k) => {
-    if (!inView(k)) skin(k);
+  const prepareAround = () => {
+    for (const k of [Math.floor(angle) - 1, Math.ceil(angle) + 1]) {
+      if (!inView(k)) skin(k);
+    }
+  };
+
+  const moveBy = (delta) => {
+    angle += clamp(delta, -MAX_STEP, MAX_STEP);
+    prepareAround();
   };
 
   // The tilt shows the top face and hides the bottom, so the cube sits a
@@ -300,39 +326,57 @@ onMounted(async () => {
 
   // By hand the cube is already moving, so it eases out from where it is;
   // a turn it starts itself eases in as well. Short distances go quicker.
-  let turnByHand = false;
   const turnTo = (next, now, byHand) => {
-    prepare(next);
-    prepare(next + Math.sign(next - angle));
+    velocity = 0;
     from = angle;
     target = next;
     turnStart = now;
-    turnByHand = byHand;
     ease = byHand ? easeOutCubic : easeInOutCubic;
     turnMs = Math.max(TURN_MS * Math.abs(target - angle), byHand ? SETTLE_MS : TURN_MS);
     if (byHand) resumeAt = now + IDLE_MS;
     kick();
   };
 
+  // Lands on the nearest face, nudged the way the cube was already going so
+  // a spin that is nearly over does not swing back.
+  const settle = (now, speed) => turnTo(Math.round(angle + speed * SETTLE_LEAD_MS), now, true);
+
+  // A hand takes the cube wherever it is, mid-turn or mid-coast.
+  const grab = (now) => {
+    velocity = 0;
+    target = angle;
+    resumeAt = now + IDLE_MS;
+    kick();
+  };
+
   const tick = (now) => {
-    if (!drag && angle !== target) {
+    const dt = lastTick ? Math.min(now - lastTick, 50) : 16;
+    lastTick = now;
+
+    if (hand || wheelTimer) {
+      // Steered by pointermove / wheel; nothing to advance here.
+    } else if (velocity) {
+      moveBy(velocity * dt);
+      velocity *= Math.exp(-dt / COAST_MS);
+      if (Math.abs(velocity) < SETTLE_SPEED) settle(now, velocity);
+    } else if (angle !== target) {
       const progress = reducedMotion ? 1 : Math.min((now - turnStart) / turnMs, 1);
       angle = from + (target - from) * ease(progress);
       if (progress === 1) {
-        angle = shown = target;
-        prepare(shown - 1);
-        prepare(shown + 1);
+        angle = target;
         restingSince = now;
       }
-    } else if (!drag && !reducedMotion && now >= resumeAt && now - restingSince >= HOLD_MS) {
+    } else if (!reducedMotion && now >= resumeAt && now - restingSince >= HOLD_MS) {
       turnTo(target + 1, now, false);
     }
 
+    prepareAround();
     render(now);
     // Under reduced motion nothing moves on its own, so the loop only runs
-    // while the cube is being turned by hand or settling from it.
-    const busy = !reducedMotion || drag || angle !== target;
+    // while the cube is being handled or settling from it.
+    const busy = !reducedMotion || hand || wheelTimer || velocity || angle !== target;
     frame = visible && busy ? requestAnimationFrame(tick) : 0;
+    if (!frame) lastTick = 0;
   };
 
   function kick() {
@@ -360,22 +404,24 @@ onMounted(async () => {
   const listeners = new AbortController();
   const { signal } = listeners;
 
-  // Dragging turns the cube under the pointer -- a drag the width of the cube
-  // is one face -- and letting go settles it: on the next face for a flick,
-  // back where it was for a nudge. Captured, so a drag that leaves the cube
-  // still ends. Vertical drags stay the page's on touch (touch-action: pan-y
-  // in the styles), which cancels the pointer instead.
+  // Spin it like a toy. The cube follows the pointer -- a drag the width of
+  // the cube is one face -- and a flick leaves it spinning at the speed of the
+  // last moment of the drag, slowing fast so the face it lands on is readable
+  // almost at once. A slow release just settles on the nearest face.
+  // Captured, so a drag that leaves the cube still ends. Vertical drags stay
+  // the page's on touch (touch-action: pan-y in the styles), which cancels the
+  // pointer instead.
   el.addEventListener(
     "pointerdown",
     (event) => {
       if (event.button !== 0) return;
-      el.setPointerCapture(event.pointerId);
-      const near = Math.round(angle);
-      prepare(near - 1);
-      prepare(near + 1);
-      drag = { x: event.clientX, base: angle, near };
-      resumeAt = performance.now() + IDLE_MS;
-      kick();
+      try {
+        el.setPointerCapture(event.pointerId);
+      } catch {
+        // Capture is a nicety; without it a drag still works on the cube.
+      }
+      hand = { x: event.clientX, samples: [{ x: event.clientX, t: event.timeStamp }] };
+      grab(performance.now());
     },
     { signal }
   );
@@ -383,55 +429,57 @@ onMounted(async () => {
   el.addEventListener(
     "pointermove",
     (event) => {
-      if (!drag) return;
-      const turned = drag.base - (event.clientX - drag.x) / cubeSize();
-      angle = clamp(turned, drag.near - 1, drag.near + 1);
+      if (!hand) return;
+      moveBy(-(event.clientX - hand.x) / cubeSize());
+      hand.x = event.clientX;
+      hand.samples.push({ x: event.clientX, t: event.timeStamp });
+      while (hand.samples.length > 2 && event.timeStamp - hand.samples[0].t > FLICK_WINDOW_MS) hand.samples.shift();
     },
     { signal }
   );
 
   const release = (event, cancelled) => {
-    if (!drag) return;
-    const dx = cancelled ? 0 : event.clientX - drag.x;
-    let next = Math.round(angle);
-    if (dx <= -SWIPE_PX) next = Math.floor(angle) + 1;
-    if (dx >= SWIPE_PX) next = Math.ceil(angle) - 1;
-    next = clamp(next, drag.near - 1, drag.near + 1);
-    drag = null;
-    turnTo(next, performance.now(), true);
+    if (!hand) return;
+    const first = hand.samples[0];
+    const last = hand.samples[hand.samples.length - 1];
+    const elapsed = event.timeStamp - first.t;
+    // Quarter-turns per millisecond over the last moment of the drag. A
+    // pointer that stopped before letting go has nothing left to give.
+    const recent = elapsed > 0 && event.timeStamp - last.t < FLICK_WINDOW_MS;
+    const speed = cancelled || !recent ? 0 : -(last.x - first.x) / elapsed / cubeSize();
+    hand = null;
+
+    const now = performance.now();
+    if (reducedMotion || Math.abs(speed) < FLICK_SPEED) settle(now, speed);
+    else {
+      velocity = clamp(speed, -MAX_SPEED, MAX_SPEED);
+      resumeAt = now + IDLE_MS;
+      kick();
+    }
   };
   el.addEventListener("pointerup", (event) => release(event, false), { signal });
   el.addEventListener("pointercancel", (event) => release(event, true), { signal });
 
   // A two-finger swipe on a trackpad arrives as horizontal scrolling, never as
-  // a pointer. One face per gesture, chaining onto a turn already under way.
+  // a pointer. The cube follows it, momentum included -- the trackpad sends
+  // its own -- and settles on the nearest face once the scrolling stops.
   // preventDefault keeps the browser from reading it as back/forward.
-  let wheelTravel = 0;
-  let wheelLast = 0;
-  let wheelSpent = false;
   el.addEventListener(
     "wheel",
     (event) => {
       if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
       event.preventDefault();
-      const now = performance.now();
-      if (now - wheelLast > WHEEL_GAP_MS) {
-        wheelTravel = 0;
-        wheelSpent = false;
-      }
-      wheelLast = now;
-      if (wheelSpent || drag) return;
+      if (hand) return;
 
-      wheelTravel += event.deltaX;
-      if (Math.abs(wheelTravel) < WHEEL_PX) return;
-      // Chain onto a turn the visitor started, so two quick swipes go two
-      // faces. A turn the cube started itself is not theirs to add to: count
-      // from the face it is leaving, or a swipe mid-turn skips one.
-      const dir = Math.sign(wheelTravel);
-      const start = turnByHand ? target : dir > 0 ? Math.floor(angle) : Math.ceil(angle);
-      const next = start + dir;
-      wheelSpent = true;
-      if (Math.abs(next - angle) < 2) turnTo(next, now, true);
+      if (!wheelTimer) grab(performance.now());
+      else clearTimeout(wheelTimer);
+      // deltaMode 1 is lines, from a mouse's horizontal wheel.
+      moveBy((event.deltaX * (event.deltaMode === 1 ? 16 : 1)) / cubeSize());
+      resumeAt = performance.now() + IDLE_MS;
+      wheelTimer = setTimeout(() => {
+        wheelTimer = 0;
+        settle(performance.now(), 0);
+      }, WHEEL_GAP_MS);
     },
     { passive: false, signal }
   );
@@ -440,6 +488,7 @@ onMounted(async () => {
 
   teardown = () => {
     cancelAnimationFrame(frame);
+    clearTimeout(wheelTimer);
     visible = false;
     listeners.abort();
     resizeObserver.disconnect();
