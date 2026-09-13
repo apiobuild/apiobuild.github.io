@@ -8,7 +8,28 @@
       until someone does. Its line is always there, invisible until the cube
       has drawn and after it has been handled, so nothing moves either time. -->
     <p class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
-      <span class="pod-cube-hint-thumb"><i class="fas fa-hand-pointer"></i></span>
+      <span class="pod-cube-hint-thumb">
+        <!-- A chubby pointing hand: the index finger up the palm's left edge,
+          two curled fingers beside it and the thumb tucked across the front.
+          Each shape is drawn twice, dark and fattened under the lime, so the
+          outline wraps the whole hand without lines where shapes overlap. -->
+        <svg viewBox="0 0 40 40">
+          <g class="pod-cube-hint-outline">
+            <rect x="11" y="4" width="8" height="20" rx="4" />
+            <rect x="11" y="16" width="20" height="19" rx="8" />
+            <rect x="18.5" y="15" width="6" height="9" rx="3" />
+            <rect x="24" y="17" width="6" height="9" rx="3" />
+          </g>
+          <g class="pod-cube-hint-fill">
+            <rect x="11" y="4" width="8" height="20" rx="4" />
+            <rect x="11" y="16" width="20" height="19" rx="8" />
+            <rect x="18.5" y="15" width="6" height="9" rx="3" />
+            <rect x="24" y="17" width="6" height="9" rx="3" />
+          </g>
+          <path class="pod-cube-hint-thumbline" d="M12.5 27.5 q4.5 2.5 9 -0.5" />
+          <rect class="pod-cube-hint-nail" x="12.8" y="5.6" width="4.4" height="3.6" rx="1.8" />
+        </svg>
+      </span>
     </p>
   </div>
 </template>
@@ -61,8 +82,8 @@ const STORY = [
 // camera: +z, +x, -z, -x.
 const SIDES = [4, 0, 5, 1];
 
-const HOLD_MS = 1800;
-const TURN_MS = 750;
+const HOLD_MS = 1200;
+const TURN_MS = 600;
 // The shortest a turn gets, for a drag released most of the way round.
 const SETTLE_MS = 260;
 // How long handling the cube holds off the automatic turn, so the visitor gets
@@ -563,12 +584,16 @@ export default {
 .pod-cube-wrap {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
 }
 
+/* Never taller than it is wide: on a phone, where the hero hands the cube a
+   box taller than the cube, the cube and its hint sit together in the middle
+   of it rather than the cube sinking to the bottom. */
 .pod-cube {
   position: relative;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-height: 0;
   width: 100%;
   aspect-ratio: 1;
@@ -619,12 +644,37 @@ export default {
 .pod-cube-hint-thumb {
   display: inline-flex;
   justify-content: center;
-  width: 4rem;
-  font-size: 1.25rem;
+  width: 4.5rem;
 }
 
-.pod-cube-hint-thumb i {
-  animation: pod-cube-hint-swipe 1.8s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+.pod-cube-hint-thumb svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  overflow: visible;
+  animation: pod-cube-hint-swipe 1.2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+}
+
+.pod-cube-hint-outline {
+  fill: var(--pod-text);
+  stroke: var(--pod-text);
+  stroke-width: 4.5;
+  stroke-linejoin: round;
+}
+
+.pod-cube-hint-fill {
+  fill: var(--pod-lime);
+}
+
+.pod-cube-hint-thumbline {
+  fill: none;
+  stroke: var(--pod-text);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.pod-cube-hint-nail {
+  fill: var(--pod-bg);
+  opacity: 0.85;
 }
 
 @keyframes pod-cube-hint-swipe {
@@ -648,7 +698,7 @@ export default {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pod-cube-hint-thumb i {
+  .pod-cube-hint-thumb svg {
     animation: none;
   }
 }
