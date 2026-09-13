@@ -249,15 +249,38 @@ export default {
   gap: 1.75rem;
 }
 
-/* One column on tablet down; the cube leads, the copy follows. */
+/* One column on tablet down; the cube leads, the copy follows. The hero is
+   at least one screen tall, and the cube takes whatever height the copy
+   leaves -- at a fixed size it pushed the buttons below the fold on a phone.
+   Where the copy alone outgrows the screen, the cube keeps a floor and the
+   hero scrolls rather than the cube vanishing. */
 @media (max-width: 60rem) {
-  .pod-hero-inner {
-    grid-template-columns: minmax(0, 1fr);
+  .pod-hero {
+    flex-direction: column;
+    align-items: stretch;
+    /* A definite height is what lets the cube's 1fr row shrink; fit-content
+       lets it grow past the screen when the copy alone is taller. */
+    height: 100vh;
+    height: 100svh;
+    min-height: fit-content;
+    padding-block: clamp(1.5rem, 4svh, 3rem);
   }
 
-  .pod-hero-art {
+  .pod-hero-inner {
+    flex: 1;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(6rem, 1fr) auto;
+    gap: clamp(1rem, 3svh, 2rem);
+  }
+
+  /* Fills its row; the cube draws itself square inside at the smaller side.
+     Scoped under the grid to outrank the cube's own width and aspect-ratio. */
+  .pod-hero-inner .pod-hero-art {
     order: -1;
-    max-width: 22rem;
+    width: 100%;
+    height: 100%;
+    max-height: 22rem;
+    aspect-ratio: auto;
   }
 }
 

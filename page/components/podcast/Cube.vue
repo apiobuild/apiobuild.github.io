@@ -208,8 +208,10 @@ onMounted(async () => {
   cube.rotation.x = 0.22;
   scene.add(cube);
 
+  // The smaller side, so the cube stays square when its box is set by height
+  // (the stacked hero hands it whatever height the copy leaves).
   const resize = () => {
-    const size = el.clientWidth;
+    const size = Math.min(el.clientWidth, el.clientHeight || el.clientWidth);
     if (!size) return;
     renderer.setSize(size, size);
     renderer.render(scene, camera);
@@ -287,11 +289,17 @@ export default {
 
 <style scoped>
 .pod-cube {
+  position: relative;
   width: 100%;
   aspect-ratio: 1;
 }
 
+/* Out of flow, so the canvas follows the box rather than holding it open --
+   in flow its pixel size kept a height-driven box from shrinking. */
 .pod-cube :deep(canvas) {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
 }
 </style>
