@@ -7,28 +7,24 @@
     <!-- Nothing about a cube says it can be turned by hand, so say it --
       until someone does. Its line is always there, invisible until the cube
       has drawn and after it has been handled, so nothing moves either time. -->
-    <p class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
-      <span class="pod-cube-hint-thumb">
-        <!-- A chubby pointing hand: the index finger up the palm's left edge
-          and two curled fingers beside it, just the silhouette. Each shape is
-          drawn twice, dark and fattened under the lime, so the outline wraps
-          the whole hand without lines where shapes overlap. -->
-        <svg viewBox="0 0 40 40">
-          <g class="pod-cube-hint-outline">
+    <div class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
+      <!-- A chubby pointing hand: the index finger up the palm's left edge and
+        two curled fingers beside it. The silhouette is drawn twice, dark and
+        fattened under the lime, so the outline wraps the whole hand without
+        lines where its shapes overlap. -->
+      <svg class="pod-cube-hand" viewBox="0 0 40 40">
+        <defs>
+          <g id="pod-cube-hand-shape">
             <rect x="11" y="4" width="8" height="20" rx="4" />
             <rect x="11" y="16" width="20" height="19" rx="8" />
             <rect x="18.5" y="15" width="6" height="9" rx="3" />
             <rect x="24" y="17" width="6" height="9" rx="3" />
           </g>
-          <g class="pod-cube-hint-fill">
-            <rect x="11" y="4" width="8" height="20" rx="4" />
-            <rect x="11" y="16" width="20" height="19" rx="8" />
-            <rect x="18.5" y="15" width="6" height="9" rx="3" />
-            <rect x="24" y="17" width="6" height="9" rx="3" />
-          </g>
-        </svg>
-      </span>
-    </p>
+        </defs>
+        <use class="pod-cube-hand-outline" href="#pod-cube-hand-shape" />
+        <use class="pod-cube-hand-fill" href="#pod-cube-hand-shape" />
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -400,7 +396,7 @@ onMounted(async () => {
   const settle = (now, speed) => turnTo(Math.round(angle + speed * SETTLE_LEAD_MS), now, true);
 
   // A hand takes the cube wherever it is, mid-turn or mid-coast.
-  const grab = (now) => {
+  const grab = () => {
     handled.value = true;
     velocity = 0;
     target = angle;
@@ -479,7 +475,7 @@ onMounted(async () => {
         // Capture is a nicety; without it a drag still works on the cube.
       }
       hand = { x: event.clientX, samples: [{ x: event.clientX, t: event.timeStamp }] };
-      grab(performance.now());
+      grab();
     },
     { signal }
   );
@@ -528,7 +524,7 @@ onMounted(async () => {
       event.preventDefault();
       if (hand) return;
 
-      if (!wheelTimer) grab(performance.now());
+      if (!wheelTimer) grab();
       else clearTimeout(wheelTimer);
       // deltaMode 1 is lines, from a mouse's horizontal wheel.
       moveBy((event.deltaX * (event.deltaMode === 1 ? 16 : 1)) / cubeSize());
@@ -571,8 +567,8 @@ export default {
 
 <style scoped>
 /* The cube over its hint. The root is what the hero sizes -- a square by
-   width beside the copy, or a set height on a phone -- and the cube takes
-   whatever the hint's line leaves. */
+   width beside the copy, or a set height on a phone -- and the two sit
+   together in the middle of it. */
 .pod-cube-wrap {
   display: flex;
   flex-direction: column;
@@ -580,9 +576,9 @@ export default {
   width: 100%;
 }
 
-/* Never taller than it is wide: on a phone, where the hero hands the cube a
-   box taller than the cube, the cube and its hint sit together in the middle
-   of it rather than the cube sinking to the bottom. */
+/* Square, shrinking to fit what the hint's line leaves, and never growing
+   past square -- on a phone the hero's box is taller than the cube, and a
+   growing cube box pushed the hint away to the bottom of it. */
 .pod-cube {
   position: relative;
   flex: 0 1 auto;
@@ -599,29 +595,19 @@ export default {
   cursor: grabbing;
 }
 
-/* Out of flow, so the canvas follows the box rather than holding it open.
-   Centred across, and down on the box's bottom edge for when the box is
-   taller than the cube -- so the hint under it stays close. */
+/* Out of flow, so the canvas follows the box rather than holding it open,
+   and centered for when the box is taller or wider than the cube. */
 .pod-cube :deep(canvas) {
   position: absolute;
-  bottom: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   display: block;
 }
 
 .pod-cube-hint {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  line-height: 1.5rem;
-  text-transform: uppercase;
-  color: var(--pod-accent);
   opacity: 0;
   transition: opacity 0.4s;
   pointer-events: none;
@@ -632,32 +618,26 @@ export default {
 }
 
 /* A thumb flicking left to right: presses in, swipes across with a tilt,
-   lifts off and comes back for another go. The icon says it on its own. */
-.pod-cube-hint-thumb {
-  display: inline-flex;
-  justify-content: center;
-  width: 4.5rem;
-}
-
-.pod-cube-hint-thumb svg {
+   lifts off and comes back for another go. */
+.pod-cube-hand {
   width: 1.9rem;
   height: 1.9rem;
   overflow: visible;
-  animation: pod-cube-hint-swipe 2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+  animation: pod-cube-hand-swipe 2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
 }
 
-.pod-cube-hint-outline {
+.pod-cube-hand-outline {
   fill: var(--pod-text);
   stroke: var(--pod-text);
   stroke-width: 4.5;
   stroke-linejoin: round;
 }
 
-.pod-cube-hint-fill {
+.pod-cube-hand-fill {
   fill: var(--pod-lime);
 }
 
-@keyframes pod-cube-hint-swipe {
+@keyframes pod-cube-hand-swipe {
   0% {
     opacity: 0;
     transform: translateX(-18px) rotate(-14deg) scale(1);
@@ -678,7 +658,7 @@ export default {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pod-cube-hint-thumb svg {
+  .pod-cube-hand {
     animation: none;
   }
 }
