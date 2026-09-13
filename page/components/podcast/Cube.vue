@@ -9,10 +9,10 @@
       has drawn and after it has been handled, so nothing moves either time. -->
     <p class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
       <span class="pod-cube-hint-thumb">
-        <!-- A chubby pointing hand: the index finger up the palm's left edge,
-          two curled fingers beside it and the thumb tucked across the front.
-          Each shape is drawn twice, dark and fattened under the lime, so the
-          outline wraps the whole hand without lines where shapes overlap. -->
+        <!-- A chubby pointing hand: the index finger up the palm's left edge
+          and two curled fingers beside it, just the silhouette. Each shape is
+          drawn twice, dark and fattened under the lime, so the outline wraps
+          the whole hand without lines where shapes overlap. -->
         <svg viewBox="0 0 40 40">
           <g class="pod-cube-hint-outline">
             <rect x="11" y="4" width="8" height="20" rx="4" />
@@ -26,8 +26,6 @@
             <rect x="18.5" y="15" width="6" height="9" rx="3" />
             <rect x="24" y="17" width="6" height="9" rx="3" />
           </g>
-          <path class="pod-cube-hint-thumbline" d="M12.5 27.5 q4.5 2.5 9 -0.5" />
-          <rect class="pod-cube-hint-nail" x="12.8" y="5.6" width="4.4" height="3.6" rx="1.8" />
         </svg>
       </span>
     </p>
@@ -663,18 +661,6 @@ export default {
 
 .pod-cube-hint-fill {
   fill: var(--pod-lime);
-}
-
-.pod-cube-hint-thumbline {
-  fill: none;
-  stroke: var(--pod-text);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-}
-
-.pod-cube-hint-nail {
-  fill: var(--pod-bg);
-  opacity: 0.85;
 }
 
 @keyframes pod-cube-hint-swipe {
