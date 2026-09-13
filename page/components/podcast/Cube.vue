@@ -265,12 +265,14 @@ onMounted(async () => {
 
   // By hand the cube is already moving, so it eases out from where it is;
   // a turn it starts itself eases in as well. Short distances go quicker.
+  let turnByHand = false;
   const turnTo = (next, now, byHand) => {
     prepare(next);
     prepare(next + Math.sign(next - angle));
     from = angle;
     target = next;
     turnStart = now;
+    turnByHand = byHand;
     ease = byHand ? easeOutCubic : easeInOutCubic;
     turnMs = Math.max(TURN_MS * Math.abs(target - angle), byHand ? SETTLE_MS : TURN_MS);
     if (byHand) resumeAt = now + IDLE_MS;
@@ -387,7 +389,12 @@ onMounted(async () => {
 
       wheelTravel += event.deltaX;
       if (Math.abs(wheelTravel) < WHEEL_PX) return;
-      const next = target + Math.sign(wheelTravel);
+      // Chain onto a turn the visitor started, so two quick swipes go two
+      // faces. A turn the cube started itself is not theirs to add to: count
+      // from the face it is leaving, or a swipe mid-turn skips one.
+      const dir = Math.sign(wheelTravel);
+      const start = turnByHand ? target : dir > 0 ? Math.floor(angle) : Math.ceil(angle);
+      const next = start + dir;
       wheelSpent = true;
       if (Math.abs(next - angle) < 2) turnTo(next, now, true);
     },
