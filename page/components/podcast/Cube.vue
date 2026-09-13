@@ -2,7 +2,30 @@
   <!-- Decorative: every word on the faces is already in the hero or the bands
     below it, so screen readers skip the cube. The box holds its size on the
     server render, so the canvas arriving on the client moves nothing. -->
-  <div ref="stage" class="pod-cube" aria-hidden="true"></div>
+  <div class="pod-cube-wrap" aria-hidden="true">
+    <div ref="stage" class="pod-cube"></div>
+    <!-- Nothing about a cube says it can be turned by hand, so say it --
+      until someone does. Its line is always there, invisible until the cube
+      has drawn and after it has been handled, so nothing moves either time. -->
+    <div class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
+      <!-- A chubby pointing hand: the index finger up the palm's left edge and
+        two curled fingers beside it. The silhouette is drawn twice, dark and
+        fattened under the lime, so the outline wraps the whole hand without
+        lines where its shapes overlap. -->
+      <svg class="pod-cube-hand" viewBox="0 0 40 40">
+        <defs>
+          <g id="pod-cube-hand-shape">
+            <rect x="11" y="4" width="8" height="20" rx="4" />
+            <rect x="11" y="16" width="20" height="19" rx="8" />
+            <rect x="18.5" y="15" width="6" height="9" rx="3" />
+            <rect x="24" y="17" width="6" height="9" rx="3" />
+          </g>
+        </defs>
+        <use class="pod-cube-hand-outline" href="#pod-cube-hand-shape" />
+        <use class="pod-cube-hand-fill" href="#pod-cube-hand-shape" />
+      </svg>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -53,13 +76,10 @@ const STORY = [
 // camera: +z, +x, -z, -x.
 const SIDES = [4, 0, 5, 1];
 
-const HOLD_MS = 2600;
-const TURN_MS = 900;
+const HOLD_MS = 1000;
+const TURN_MS = 600;
 // The shortest a turn gets, for a drag released most of the way round.
 const SETTLE_MS = 260;
-// How long handling the cube holds off the automatic turn, so the visitor gets
-// to read the face they landed on.
-const IDLE_MS = 6000;
 // The spin. Speeds are in quarter-turns per millisecond. A release faster
 // than FLICK_SPEED, measured over the last FLICK_WINDOW_MS of the drag, keeps
 // spinning; COAST_MS is how fast that spin dies away -- short, so it whips
@@ -81,6 +101,9 @@ const FACE_PX = 1024;
 const FONT = 'Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 const stage = ref(null);
+// The hint shows once the cube has drawn, and goes for good once it is handled.
+const ready = ref(false);
+const handled = ref(false);
 let teardown = () => {};
 let unmounted = false;
 
@@ -264,6 +287,7 @@ onMounted(async () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   el.appendChild(renderer.domElement);
+  ready.value = true;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
@@ -322,8 +346,9 @@ onMounted(async () => {
   let velocity = 0;
   let hand = null;
   let wheelTimer = 0;
+  // When the cube last came to rest -- after its own turn or a hand's alike,
+  // so a spin lands and holds HOLD_MS like any other face before moving on.
   let restingSince = performance.now();
-  let resumeAt = 0;
   let lastTick = 0;
   let frame = 0;
   let visible = true;
@@ -363,7 +388,6 @@ onMounted(async () => {
     turnStart = now;
     ease = byHand ? easeOutCubic : easeInOutCubic;
     turnMs = Math.max(TURN_MS * Math.abs(target - angle), byHand ? SETTLE_MS : TURN_MS);
-    if (byHand) resumeAt = now + IDLE_MS;
     kick();
   };
 
@@ -372,10 +396,10 @@ onMounted(async () => {
   const settle = (now, speed) => turnTo(Math.round(angle + speed * SETTLE_LEAD_MS), now, true);
 
   // A hand takes the cube wherever it is, mid-turn or mid-coast.
-  const grab = (now) => {
+  const grab = () => {
+    handled.value = true;
     velocity = 0;
     target = angle;
-    resumeAt = now + IDLE_MS;
     kick();
   };
 
@@ -396,7 +420,7 @@ onMounted(async () => {
         angle = target;
         restingSince = now;
       }
-    } else if (!reducedMotion && now >= resumeAt && now - restingSince >= HOLD_MS) {
+    } else if (!reducedMotion && now - restingSince >= HOLD_MS) {
       turnTo(target + 1, now, false);
     }
 
@@ -451,7 +475,7 @@ onMounted(async () => {
         // Capture is a nicety; without it a drag still works on the cube.
       }
       hand = { x: event.clientX, samples: [{ x: event.clientX, t: event.timeStamp }] };
-      grab(performance.now());
+      grab();
     },
     { signal }
   );
@@ -483,7 +507,6 @@ onMounted(async () => {
     if (reducedMotion || Math.abs(speed) < FLICK_SPEED) settle(now, speed);
     else {
       velocity = clamp(speed, -MAX_SPEED, MAX_SPEED);
-      resumeAt = now + IDLE_MS;
       kick();
     }
   };
@@ -501,11 +524,10 @@ onMounted(async () => {
       event.preventDefault();
       if (hand) return;
 
-      if (!wheelTimer) grab(performance.now());
+      if (!wheelTimer) grab();
       else clearTimeout(wheelTimer);
       // deltaMode 1 is lines, from a mouse's horizontal wheel.
       moveBy((event.deltaX * (event.deltaMode === 1 ? 16 : 1)) / cubeSize());
-      resumeAt = performance.now() + IDLE_MS;
       wheelTimer = setTimeout(() => {
         wheelTimer = 0;
         settle(performance.now(), 0);
@@ -544,8 +566,23 @@ export default {
 </script>
 
 <style scoped>
+/* The cube over its hint. The root is what the hero sizes -- a square by
+   width beside the copy, or a set height on a phone -- and the two sit
+   together in the middle of it. */
+.pod-cube-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Square, shrinking to fit what the hint's line leaves, and never growing
+   past square -- on a phone the hero's box is taller than the cube, and a
+   growing cube box pushed the hint away to the bottom of it. */
 .pod-cube {
   position: relative;
+  flex: 0 1 auto;
+  min-height: 0;
   width: 100%;
   aspect-ratio: 1;
   /* Horizontal drags turn the cube; vertical ones still scroll the page. */
@@ -566,5 +603,63 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   display: block;
+}
+
+.pod-cube-hint {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.pod-cube-hint.is-shown {
+  opacity: 1;
+}
+
+/* A thumb flicking left to right: presses in, swipes across with a tilt,
+   lifts off and comes back for another go. */
+.pod-cube-hand {
+  width: 1.9rem;
+  height: 1.9rem;
+  overflow: visible;
+  animation: pod-cube-hand-swipe 2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+}
+
+.pod-cube-hand-outline {
+  fill: var(--pod-text);
+  stroke: var(--pod-text);
+  stroke-width: 4.5;
+  stroke-linejoin: round;
+}
+
+.pod-cube-hand-fill {
+  fill: var(--pod-lime);
+}
+
+@keyframes pod-cube-hand-swipe {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px) rotate(-14deg) scale(1);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(-18px) rotate(-14deg) scale(0.88);
+  }
+  55% {
+    opacity: 1;
+    transform: translateX(18px) rotate(12deg) scale(0.88);
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: translateX(20px) rotate(12deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pod-cube-hand {
+    animation: none;
+  }
 }
 </style>
