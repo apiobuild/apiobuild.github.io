@@ -91,8 +91,8 @@
     ],
     "submitLabel": "Request to Join",
     "thanks": {
-      "title": "Thanks, we got it.",
-      "body": "We'll look over your request and add your number to the WhatsApp group, usually within a day. Keep an eye on WhatsApp."
+      "title": "Thanks. We're on it.",
+      "body": "We will add you shortly. Keep an eye on WhatsApp."
     },
     "error": "That didn't go through. Try again, or email us at luluc@apiobuild.com."
   },
