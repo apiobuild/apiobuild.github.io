@@ -651,7 +651,7 @@ export default {
   width: 1.9rem;
   height: 1.9rem;
   overflow: visible;
-  animation: pod-cube-hint-swipe 1.2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+  animation: pod-cube-hint-swipe 2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
 }
 
 .pod-cube-hint-outline {
