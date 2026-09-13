@@ -1,11 +1,20 @@
 <template>
   <header class="pod-hero">
     <div class="pod-shell pod-hero-inner">
+      <!-- The cube and the name are grouped for a phone, where together they
+        are the first screen. Side by side the group dissolves (display:
+        contents) and the name sits over the rest of the copy, beside the cube. -->
+      <div class="pod-hero-top">
+        <PodcastCube class="pod-hero-art" :hosts="hosts" />
+        <div class="pod-hero-lead">
+          <!-- Optional, like the hosts band's heading: the hero reads fine
+            without a label when the headline already says who the show is for. -->
+          <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
+          <h1 class="pod-hero-title">{{ hero.title }}</h1>
+        </div>
+      </div>
+
       <div class="pod-hero-copy">
-        <!-- Optional, like the hosts band's heading: the hero reads fine
-          without a label when the headline already says who the show is for. -->
-        <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
-        <h1 class="pod-hero-title">{{ hero.title }}</h1>
         <p class="pod-lede">{{ hero.body }}</p>
 
         <!-- The hosts, up front. Lime has no field to fill on a white hero, so
@@ -113,7 +122,6 @@
           </a>
         </div>
       </div>
-      <PodcastCube class="pod-hero-art" :hosts="hosts" />
     </div>
   </header>
 </template>
@@ -236,13 +244,25 @@ export default {
   background: var(--pod-bg);
 }
 
+/* Side by side: the name over the rest of the copy on the left, the cube
+   spanning both on the right. */
 .pod-hero-inner {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: center;
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-areas:
+    "lead art"
+    "copy art";
+  align-content: center;
+  column-gap: clamp(2rem, 5vw, 4rem);
+  row-gap: 1.75rem;
 }
 
+/* Only a box on a phone; here its children place themselves in the grid. */
+.pod-hero-top {
+  display: contents;
+}
+
+.pod-hero-lead,
 .pod-hero-copy {
   display: flex;
   flex-direction: column;
@@ -250,9 +270,25 @@ export default {
   gap: 1.75rem;
 }
 
-/* One column on tablet down. The cube is the whole first screen -- its faces
-   carry the name, the hosts and both bands, and a swipe turns it -- and the
-   copy and buttons follow on scroll. */
+.pod-hero-lead {
+  grid-area: lead;
+  align-self: end;
+}
+
+.pod-hero-copy {
+  grid-area: copy;
+  align-self: start;
+}
+
+.pod-hero-inner .pod-hero-art {
+  grid-area: art;
+  align-self: center;
+}
+
+/* One column on tablet down. The first screen is always the cube and the
+   name under it, whatever the screen's size: the name holds its height and
+   the cube takes the rest -- its faces carry the hosts and both bands, and a
+   swipe turns it. The lede, hosts and buttons follow on scroll. */
 @media (max-width: 60rem) {
   .pod-hero {
     --pod-hero-pad: clamp(1.5rem, 4svh, 3rem);
@@ -261,18 +297,34 @@ export default {
 
   .pod-hero-inner {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--pod-hero-pad);
+    grid-template-areas:
+      "top"
+      "copy";
+    row-gap: var(--pod-hero-pad);
   }
 
-  /* A screen tall less the hero's padding; the cube draws itself square at
-     the box's smaller side, centered. Capped so a tablet's cube stays a cube
-     and not a wall. Scoped under the grid to outrank the cube's own width
-     and aspect-ratio. */
-  .pod-hero-inner .pod-hero-art {
-    order: -1;
-    width: 100%;
+  /* A screen tall less the hero's padding, name at the bottom. fit-content
+     lets it grow instead of overlapping on a screen too short for the name
+     and the cube's floor. */
+  .pod-hero-top {
+    grid-area: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--pod-hero-pad);
     height: calc(100vh - 2 * var(--pod-hero-pad));
     height: calc(100svh - 2 * var(--pod-hero-pad));
+    min-height: fit-content;
+  }
+
+  /* Whatever the name leaves; the cube draws itself square at the box's
+     smaller side, centered. A floor so it never vanishes, and a cap so a
+     tablet's cube stays a cube and not a wall. Scoped under the grid to
+     outrank the cube's own width and aspect-ratio. */
+  .pod-hero-inner .pod-hero-art {
+    flex: 1 1 0;
+    width: 100%;
+    min-height: 8rem;
     max-height: 40rem;
     aspect-ratio: auto;
   }
