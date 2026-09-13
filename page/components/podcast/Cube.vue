@@ -27,7 +27,14 @@ const STORY = [
   // The show's name as a periodic-table tile: Tê is tea in Taiwanese.
   { bg: "--pod-lime", fg: "--pod-text", tile: { number: "1", symbol: "Tê", name: "tea" } },
   // Then the name itself, spelled out -- the tile teases it, this lands it.
-  { bg: "--pod-accent", fg: "--pod-bg", eyebrow: content.hero.eyebrow, title: content.hero.title, subtitle: content.hero.subtitle },
+  {
+    bg: "--pod-accent",
+    fg: "--pod-bg",
+    layout: "centered",
+    eyebrow: content.hero.eyebrow,
+    title: content.hero.title,
+    subtitle: content.hero.subtitle
+  },
   ...props.hosts.map((person, index) => {
     const brand = person.links.find((link) => link.image);
     return {
@@ -140,6 +147,49 @@ function drawTile(ctx, tile, ink) {
   ctx.textAlign = "left";
 }
 
+// Big enough to read once the cube is phone-sized, where a face is drawn at
+// about a third of these pixels. A long eyebrow wraps rather than shrinks,
+// breaking at a " | " first so each part keeps its own line. Leaves the
+// eyebrow's font and letter-spacing set for drawing.
+function setEyebrow(ctx, text, maxWidth) {
+  if ("letterSpacing" in ctx) ctx.letterSpacing = "5px";
+  let size = 44;
+  let lines;
+  do {
+    ctx.font = `600 ${size}px ${FONT}`;
+    lines = text
+      .toUpperCase()
+      .split(" | ")
+      .flatMap((part) => wrapText(ctx, part, maxWidth));
+  } while (lines.length > 3 && (size -= 2) > 28);
+  return { size, lines, leading: size * 1.25 };
+}
+
+// The name as the face's centrepiece: the title in the middle, the eyebrow
+// under it at the bottom edge with its rule above, everything centred.
+function drawCentered(ctx, stop, width, pad) {
+  ctx.textAlign = "center";
+  const middle = FACE_PX / 2;
+
+  const eyebrow = setEyebrow(ctx, stop.eyebrow, width);
+  const firstBaseline = FACE_PX - pad - (eyebrow.lines.length - 1) * eyebrow.leading;
+  eyebrow.lines.forEach((line, index) => {
+    ctx.fillText(line, middle, firstBaseline + index * eyebrow.leading, width);
+  });
+  if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
+  ctx.fillRect(middle - 48, firstBaseline - eyebrow.size - 38, 96, 6);
+
+  // Centred on the face as a block: cap height is about 0.72 of the size.
+  const { size, lines } = fitText(ctx, stop.title, 800, width, 3, 170);
+  const leading = size * 1.02;
+  const blockHeight = (lines.length - 1) * leading + size * 0.72;
+  const top = middle - blockHeight / 2 - 40;
+  lines.forEach((line, index) => {
+    ctx.fillText(line, middle, top + size * 0.72 + index * leading, width);
+  });
+  ctx.textAlign = "left";
+}
+
 function drawFace(canvas, stop, color, images) {
   const ctx = canvas.getContext("2d");
   const pad = 96;
@@ -155,26 +205,17 @@ function drawFace(canvas, stop, color, images) {
     return;
   }
 
-  // Big enough to read once the cube is phone-sized, where a face is drawn at
-  // about a third of these pixels. A long eyebrow wraps rather than shrinks,
-  // breaking at a " | " first so each part keeps its own line.
-  if ("letterSpacing" in ctx) ctx.letterSpacing = "5px";
-  let eyebrowSize = 44;
-  let eyebrowLines;
-  do {
-    ctx.font = `600 ${eyebrowSize}px ${FONT}`;
-    eyebrowLines = stop.eyebrow
-      .toUpperCase()
-      .split(" | ")
-      .flatMap((part) => wrapText(ctx, part, width));
-  } while (eyebrowLines.length > 3 && (eyebrowSize -= 2) > 28);
+  if (stop.layout === "centered") {
+    drawCentered(ctx, stop, width, pad);
+    return;
+  }
 
-  const eyebrowLeading = eyebrowSize * 1.25;
-  eyebrowLines.forEach((line, index) => {
-    ctx.fillText(line, pad, pad + eyebrowSize + index * eyebrowLeading, width);
+  const eyebrow = setEyebrow(ctx, stop.eyebrow, width);
+  eyebrow.lines.forEach((line, index) => {
+    ctx.fillText(line, pad, pad + eyebrow.size + index * eyebrow.leading, width);
   });
   if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
-  ctx.fillRect(pad, pad + eyebrowSize + (eyebrowLines.length - 1) * eyebrowLeading + 32, 96, 6);
+  ctx.fillRect(pad, pad + eyebrow.size + (eyebrow.lines.length - 1) * eyebrow.leading + 32, 96, 6);
 
   const image = stop.mark && images.get(stop.mark);
   if (image) {
