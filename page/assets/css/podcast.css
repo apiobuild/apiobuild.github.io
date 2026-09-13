@@ -38,6 +38,10 @@
   --pod-band: clamp(4.5rem, 11vw, 9rem);
 
   min-height: 100vh;
+  /* Vuetify's app wrapper is a flex column one screen tall, and an explicit
+     min-height lets a flex child shrink to it -- the ground then stopped a
+     screen down and the rest of the page sat on the white body. */
+  flex-shrink: 0;
   background: var(--pod-bg);
   color: var(--pod-text);
   font-family: var(--pod-body);

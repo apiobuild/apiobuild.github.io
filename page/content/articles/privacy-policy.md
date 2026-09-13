@@ -8,7 +8,7 @@ visible: false
 
 Your privacy is important to us. It is apiobuild LLC dba apio's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, https://apiobuild.com, and other sites we own and operate.
 
-This policy is effective as of 21 May 2020 and was last updated on 25 April 2021.
+This policy is effective as of 21 May 2020 and was last updated on 13 September 2026.
 
 ### Information We Collect
 
@@ -26,6 +26,7 @@ We may ask for personal information which may include one or more of the followi
 
 - Name
 - Email
+- Phone number, such as the WhatsApp number you give us when you ask to join our podcast community
 
 ### Legitimate Reasons for Processing Your Personal Information
 
@@ -36,6 +37,7 @@ We only collect and use your personal information when we have a legitimate reas
 We may collect personal information from you when you do any of the following on our website:
 
 - Sign up to receive updates from us via email or social media channels
+- Ask to join a community we run, such as the What's the Tea WhatsApp community
 - Use a mobile device or web browser to access our content
 - Contact us via email, social media, or on any similar technologies
 - When you mention us on social media
