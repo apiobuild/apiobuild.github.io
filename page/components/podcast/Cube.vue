@@ -80,7 +80,7 @@ const STORY = [
 // camera: +z, +x, -z, -x.
 const SIDES = [4, 0, 5, 1];
 
-const HOLD_MS = 1200;
+const HOLD_MS = 1000;
 const TURN_MS = 600;
 // The shortest a turn gets, for a drag released most of the way round.
 const SETTLE_MS = 260;
