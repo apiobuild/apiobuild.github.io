@@ -1,6 +1,6 @@
 <template>
   <!-- Decorative: every word on the faces is already in the hero or the bands
-    below it, so screen readers skip the cube. The box holds its square on the
+    below it, so screen readers skip the cube. The box holds its size on the
     server render, so the canvas arriving on the client moves nothing. -->
   <div ref="stage" class="pod-cube" aria-hidden="true"></div>
 </template>
@@ -20,9 +20,9 @@ const props = defineProps({
 const band = (id) => content.bands.find((entry) => entry.id === id);
 
 // The loop, in order. There are more stops than a cube has sides, so a side
-// is re-skinned while it faces away from the camera -- reorder or add stops
-// here freely. Colors name podcast.css tokens so the palette stays in one
-// place. Copy comes from podcast.json for the same reason.
+// is re-skinned while it is out of view -- reorder or add stops here freely.
+// Colors name podcast.css tokens so the palette stays in one place. Copy
+// comes from podcast.json for the same reason.
 const STORY = [
   // The show's name as a periodic-table tile: Tê is tea in Taiwanese.
   { bg: "--pod-lime", fg: "--pod-text", tile: { number: "1", symbol: "Tê", name: "tea" } },
@@ -48,6 +48,11 @@ const SIDES = [4, 0, 5, 1];
 
 const HOLD_MS = 2600;
 const TURN_MS = 900;
+// How long a swipe holds off the automatic turn, so the visitor gets to read
+// the face they chose.
+const IDLE_MS = 6000;
+// Horizontal travel that counts as a swipe rather than a tap or a scroll.
+const SWIPE_PX = 40;
 const FACE_PX = 1024;
 const FONT = 'Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
@@ -56,6 +61,7 @@ let teardown = () => {};
 let unmounted = false;
 
 const easeInOutCubic = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const mod = (n, m) => ((n % m) + m) % m;
 
 function loadImage(src) {
   return new Promise((resolve) => {
@@ -67,7 +73,7 @@ function loadImage(src) {
 }
 
 // Wraps to at most maxLines at the largest size that fits, shrinking a step
-// at a time -- the hero title is one long word until the show has a name.
+// at a time until everything does.
 function fitText(ctx, text, weight, maxWidth, maxLines, startSize) {
   for (let size = startSize; size > 24; size -= 6) {
     ctx.font = `${weight} ${size}px ${FONT}`;
@@ -187,14 +193,16 @@ onMounted(async () => {
     return texture;
   });
 
-  // Stop k is shown on side k % 4. Arriving at stop k, the side two turns
-  // ahead is facing directly away, so that is when it takes its next stop.
+  // Stop k is shown on side k mod 4, and k runs both ways now that a swipe
+  // can turn the cube back. At rest the two neighbouring sides are edge-on to
+  // the camera, so resting on a stop is when both take the stops either side
+  // of it.
   const skin = (k) => {
-    const side = k % SIDES.length;
-    drawFace(canvases[side], STORY[k % STORY.length], color, images);
+    const side = mod(k, SIDES.length);
+    drawFace(canvases[side], STORY[mod(k, STORY.length)], color, images);
     textures[side].needsUpdate = true;
   };
-  for (let k = 0; k < SIDES.length; k++) skin(k);
+  for (let k = -1; k <= 2; k++) skin(k);
 
   // Top and bottom only show as a sliver under the tilt.
   const edge = new THREE.MeshBasicMaterial({ color: color("--pod-accent-strong") });
@@ -208,65 +216,111 @@ onMounted(async () => {
   cube.rotation.x = 0.22;
   scene.add(cube);
 
-  // The smaller side, so the cube stays square when its box is set by height
-  // (the stacked hero hands it whatever height the copy leaves).
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // The stop at rest, the stop being turned to, and where the turn is now in
+  // quarter-turns. from/turnStart restart the easing whenever target moves.
+  let shown = 0;
+  let target = 0;
+  let angle = 0;
+  let from = 0;
+  let turnStart = 0;
+  let restingSince = performance.now();
+  let resumeAt = 0;
+  let frame = 0;
+  let visible = true;
+
+  const render = (now) => {
+    cube.rotation.y = -angle * (Math.PI / 2);
+    cube.position.y = reducedMotion ? 0 : Math.sin(now / 1400) * 0.04;
+    renderer.render(scene, camera);
+  };
+
+  const turnTo = (next, now) => {
+    from = angle;
+    target = next;
+    turnStart = now;
+  };
+
+  const tick = (now) => {
+    if (angle !== target) {
+      const progress = reducedMotion ? 1 : Math.min((now - turnStart) / TURN_MS, 1);
+      angle = from + (target - from) * easeInOutCubic(progress);
+      if (progress === 1) {
+        angle = shown = target;
+        skin(shown - 1);
+        skin(shown + 1);
+        restingSince = now;
+      }
+    } else if (!reducedMotion && now >= resumeAt && now - restingSince >= HOLD_MS) {
+      turnTo(target + 1, now);
+    }
+
+    render(now);
+    // Under reduced motion nothing moves on its own, so the loop only runs
+    // while a swipe is being answered.
+    const busy = !reducedMotion || angle !== target;
+    frame = visible && busy ? requestAnimationFrame(tick) : 0;
+  };
+
+  const kick = () => {
+    if (!frame && visible) frame = requestAnimationFrame(tick);
+  };
+
   const resize = () => {
+    // The smaller side, so the cube stays square in a box that is not.
     const size = Math.min(el.clientWidth, el.clientHeight || el.clientWidth);
     if (!size) return;
     renderer.setSize(size, size);
-    renderer.render(scene, camera);
+    render(performance.now());
   };
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(el);
   resize();
 
-  let frame = 0;
-  let visible = true;
-  let elapsed = 0;
-  let last = 0;
-  let shown = 0;
+  // Stops while scrolled away, and picks up again on the way back.
+  const intersectionObserver = new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    if (visible) kick();
+  });
+  intersectionObserver.observe(el);
 
-  const tick = (now) => {
-    // Clamped, so coming back from a hidden tab or off-screen resumes the
-    // loop where it left off instead of skipping stops.
-    elapsed += Math.min(now - (last || now), 100);
-    last = now;
+  // Swipe left for the next face, right for the one before. One stop per
+  // swipe, and only from rest: the sides two stops away are not skinned yet.
+  // Vertical drags stay the page's (touch-action: pan-y in the styles), which
+  // cancels the pointer before it can count as a swipe.
+  const listeners = new AbortController();
+  let start = null;
+  el.addEventListener("pointerdown", (event) => (start = { x: event.clientX, y: event.clientY }), {
+    signal: listeners.signal
+  });
+  el.addEventListener("pointercancel", () => (start = null), { signal: listeners.signal });
+  el.addEventListener(
+    "pointerup",
+    (event) => {
+      if (!start) return;
+      const dx = event.clientX - start.x;
+      const dy = event.clientY - start.y;
+      start = null;
+      if (Math.abs(dx) < SWIPE_PX || Math.abs(dx) < Math.abs(dy)) return;
 
-    const period = HOLD_MS + TURN_MS;
-    const k = Math.floor(elapsed / period);
-    const local = elapsed - k * period;
-    const turn = local < HOLD_MS ? 0 : easeInOutCubic((local - HOLD_MS) / TURN_MS);
+      const now = performance.now();
+      resumeAt = now + IDLE_MS;
+      if (angle !== target) return;
+      turnTo(shown + (dx < 0 ? 1 : -1), now);
+      kick();
+    },
+    { signal: listeners.signal }
+  );
 
-    if (k > shown) {
-      shown = k;
-      skin(k + 2);
-    }
-
-    cube.rotation.y = -(k + turn) * (Math.PI / 2);
-    cube.position.y = Math.sin(elapsed / 1400) * 0.04;
-    renderer.render(scene, camera);
-    frame = visible ? requestAnimationFrame(tick) : 0;
-  };
-
-  // Held on the first face, drawn once.
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let intersectionObserver = null;
-  if (!reducedMotion) {
-    intersectionObserver = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      if (visible && !frame) {
-        last = 0;
-        frame = requestAnimationFrame(tick);
-      }
-    });
-    intersectionObserver.observe(el);
-  }
+  kick();
 
   teardown = () => {
     cancelAnimationFrame(frame);
     visible = false;
+    listeners.abort();
     resizeObserver.disconnect();
-    intersectionObserver?.disconnect();
+    intersectionObserver.disconnect();
     geometry.dispose();
     textures.forEach((texture) => texture.dispose());
     new Set(materials).forEach((material) => material.dispose());
@@ -292,14 +346,23 @@ export default {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
+  /* Horizontal drags turn the cube; vertical ones still scroll the page. */
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
 }
 
-/* Out of flow, so the canvas follows the box rather than holding it open --
-   in flow its pixel size kept a height-driven box from shrinking. */
+.pod-cube:active {
+  cursor: grabbing;
+}
+
+/* Out of flow, so the canvas follows the box rather than holding it open,
+   and centered for when the box is taller or wider than the cube. */
 .pod-cube :deep(canvas) {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: block;
 }
 </style>

@@ -249,37 +249,30 @@ export default {
   gap: 1.75rem;
 }
 
-/* One column on tablet down; the cube leads, the copy follows. The hero is
-   at least one screen tall, and the cube takes whatever height the copy
-   leaves -- at a fixed size it pushed the buttons below the fold on a phone.
-   Where the copy alone outgrows the screen, the cube keeps a floor and the
-   hero scrolls rather than the cube vanishing. */
+/* One column on tablet down. The cube is the whole first screen -- its faces
+   carry the name, the hosts and both bands, and a swipe turns it -- and the
+   copy and buttons follow on scroll. */
 @media (max-width: 60rem) {
   .pod-hero {
-    flex-direction: column;
-    align-items: stretch;
-    /* A definite height is what lets the cube's 1fr row shrink; fit-content
-       lets it grow past the screen when the copy alone is taller. */
-    height: 100vh;
-    height: 100svh;
-    min-height: fit-content;
-    padding-block: clamp(1.5rem, 4svh, 3rem);
+    --pod-hero-pad: clamp(1.5rem, 4svh, 3rem);
+    padding-block: var(--pod-hero-pad);
   }
 
   .pod-hero-inner {
-    flex: 1;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(6rem, 1fr) auto;
-    gap: clamp(1rem, 3svh, 2rem);
+    gap: var(--pod-hero-pad);
   }
 
-  /* Fills its row; the cube draws itself square inside at the smaller side.
-     Scoped under the grid to outrank the cube's own width and aspect-ratio. */
+  /* A screen tall less the hero's padding; the cube draws itself square at
+     the box's smaller side, centered. Capped so a tablet's cube stays a cube
+     and not a wall. Scoped under the grid to outrank the cube's own width
+     and aspect-ratio. */
   .pod-hero-inner .pod-hero-art {
     order: -1;
     width: 100%;
-    height: 100%;
-    max-height: 22rem;
+    height: calc(100vh - 2 * var(--pod-hero-pad));
+    height: calc(100svh - 2 * var(--pod-hero-pad));
+    max-height: 40rem;
     aspect-ratio: auto;
   }
 }
