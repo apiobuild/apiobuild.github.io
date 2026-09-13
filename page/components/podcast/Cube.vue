@@ -2,7 +2,17 @@
   <!-- Decorative: every word on the faces is already in the hero or the bands
     below it, so screen readers skip the cube. The box holds its size on the
     server render, so the canvas arriving on the client moves nothing. -->
-  <div ref="stage" class="pod-cube" aria-hidden="true"></div>
+  <div class="pod-cube-wrap" aria-hidden="true">
+    <div ref="stage" class="pod-cube"></div>
+    <!-- Nothing about a cube says it can be turned by hand, so say it --
+      until someone does. Its line is always there, invisible until the cube
+      has drawn and after it has been handled, so nothing moves either time. -->
+    <p class="pod-cube-hint" :class="{ 'is-shown': ready && !handled }">
+      <span class="pod-cube-hint-arrow">&larr;</span>
+      <span>Give it a spin</span>
+      <span class="pod-cube-hint-arrow">&rarr;</span>
+    </p>
+  </div>
 </template>
 
 <script setup>
@@ -53,8 +63,8 @@ const STORY = [
 // camera: +z, +x, -z, -x.
 const SIDES = [4, 0, 5, 1];
 
-const HOLD_MS = 2600;
-const TURN_MS = 900;
+const HOLD_MS = 1800;
+const TURN_MS = 750;
 // The shortest a turn gets, for a drag released most of the way round.
 const SETTLE_MS = 260;
 // How long handling the cube holds off the automatic turn, so the visitor gets
@@ -81,6 +91,9 @@ const FACE_PX = 1024;
 const FONT = 'Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 const stage = ref(null);
+// The hint shows once the cube has drawn, and goes for good once it is handled.
+const ready = ref(false);
+const handled = ref(false);
 let teardown = () => {};
 let unmounted = false;
 
@@ -264,6 +277,7 @@ onMounted(async () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   el.appendChild(renderer.domElement);
+  ready.value = true;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
@@ -373,6 +387,7 @@ onMounted(async () => {
 
   // A hand takes the cube wherever it is, mid-turn or mid-coast.
   const grab = (now) => {
+    handled.value = true;
     velocity = 0;
     target = angle;
     resumeAt = now + IDLE_MS;
@@ -544,8 +559,19 @@ export default {
 </script>
 
 <style scoped>
+/* The cube over its hint. The root is what the hero sizes -- a square by
+   width beside the copy, or a set height on a phone -- and the cube takes
+   whatever the hint's line leaves. */
+.pod-cube-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .pod-cube {
   position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
   aspect-ratio: 1;
   /* Horizontal drags turn the cube; vertical ones still scroll the page. */
@@ -558,13 +584,63 @@ export default {
   cursor: grabbing;
 }
 
-/* Out of flow, so the canvas follows the box rather than holding it open,
-   and centered for when the box is taller or wider than the cube. */
+/* Out of flow, so the canvas follows the box rather than holding it open.
+   Centred across, and down on the box's bottom edge for when the box is
+   taller than the cube -- so the hint under it stays close. */
 .pod-cube :deep(canvas) {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   display: block;
+}
+
+.pod-cube-hint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  color: var(--pod-accent);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.pod-cube-hint.is-shown {
+  opacity: 1;
+}
+
+/* The arrows sway outward, pointing the way a swipe goes. */
+.pod-cube-hint-arrow {
+  display: inline-block;
+  animation: pod-cube-hint-left 1.6s ease-in-out infinite;
+}
+
+.pod-cube-hint-arrow:last-child {
+  animation-name: pod-cube-hint-right;
+}
+
+@keyframes pod-cube-hint-left {
+  50% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes pod-cube-hint-right {
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pod-cube-hint-arrow {
+    animation: none;
+  }
 }
 </style>
