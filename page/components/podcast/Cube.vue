@@ -84,9 +84,6 @@ const HOLD_MS = 1200;
 const TURN_MS = 600;
 // The shortest a turn gets, for a drag released most of the way round.
 const SETTLE_MS = 260;
-// How long handling the cube holds off the automatic turn, so the visitor gets
-// to read the face they landed on.
-const IDLE_MS = 2500;
 // The spin. Speeds are in quarter-turns per millisecond. A release faster
 // than FLICK_SPEED, measured over the last FLICK_WINDOW_MS of the drag, keeps
 // spinning; COAST_MS is how fast that spin dies away -- short, so it whips
@@ -353,8 +350,9 @@ onMounted(async () => {
   let velocity = 0;
   let hand = null;
   let wheelTimer = 0;
+  // When the cube last came to rest -- after its own turn or a hand's alike,
+  // so a spin lands and holds HOLD_MS like any other face before moving on.
   let restingSince = performance.now();
-  let resumeAt = 0;
   let lastTick = 0;
   let frame = 0;
   let visible = true;
@@ -394,7 +392,6 @@ onMounted(async () => {
     turnStart = now;
     ease = byHand ? easeOutCubic : easeInOutCubic;
     turnMs = Math.max(TURN_MS * Math.abs(target - angle), byHand ? SETTLE_MS : TURN_MS);
-    if (byHand) resumeAt = now + IDLE_MS;
     kick();
   };
 
@@ -407,7 +404,6 @@ onMounted(async () => {
     handled.value = true;
     velocity = 0;
     target = angle;
-    resumeAt = now + IDLE_MS;
     kick();
   };
 
@@ -428,7 +424,7 @@ onMounted(async () => {
         angle = target;
         restingSince = now;
       }
-    } else if (!reducedMotion && now >= resumeAt && now - restingSince >= HOLD_MS) {
+    } else if (!reducedMotion && now - restingSince >= HOLD_MS) {
       turnTo(target + 1, now, false);
     }
 
@@ -515,7 +511,6 @@ onMounted(async () => {
     if (reducedMotion || Math.abs(speed) < FLICK_SPEED) settle(now, speed);
     else {
       velocity = clamp(speed, -MAX_SPEED, MAX_SPEED);
-      resumeAt = now + IDLE_MS;
       kick();
     }
   };
@@ -537,7 +532,6 @@ onMounted(async () => {
       else clearTimeout(wheelTimer);
       // deltaMode 1 is lines, from a mouse's horizontal wheel.
       moveBy((event.deltaX * (event.deltaMode === 1 ? 16 : 1)) / cubeSize());
-      resumeAt = performance.now() + IDLE_MS;
       wheelTimer = setTimeout(() => {
         wheelTimer = 0;
         settle(performance.now(), 0);
