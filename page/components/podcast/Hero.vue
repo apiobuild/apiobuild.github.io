@@ -1,114 +1,126 @@
 <template>
   <header class="pod-hero">
     <div class="pod-shell pod-hero-inner">
-      <!-- Optional, like the hosts band's heading: the hero reads fine
-        without a label when the headline already says who the show is for. -->
-      <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
-      <h1 class="pod-hero-title">{{ hero.title }}</h1>
-      <p class="pod-lede">{{ hero.body }}</p>
-
-      <!-- The hosts, up front. Lime has no field to fill on a white hero, so
-        it rings each face and marks each name instead. -->
-      <div v-if="hosts.length" class="pod-hero-hosts">
-        <div class="pod-hero-faces">
-          <span v-for="person in hosts" :key="person.name" class="pod-hero-face">
-            <img v-if="person.photo" :src="person.photo" alt="" />
-            <span v-else class="pod-hero-face-empty" aria-hidden="true">
-              {{ person.name.charAt(0) }}
-            </span>
-          </span>
+      <!-- The cube and the name are grouped for a phone, where together they
+        are the first screen. Side by side the group dissolves (display:
+        contents) and the name sits over the rest of the copy, beside the cube. -->
+      <div class="pod-hero-top">
+        <PodcastCube class="pod-hero-art" :hosts="hosts" />
+        <div class="pod-hero-lead">
+          <!-- Optional, like the hosts band's heading: the hero reads fine
+            without a label when the headline already says who the show is for. -->
+          <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
+          <h1 class="pod-hero-title">{{ hero.title }}</h1>
         </div>
-        <p class="pod-hero-hosted">
-          Hosted by
-          <template v-for="(person, index) in hosts" :key="person.name">
-            <span class="pod-mark">{{ person.name }}</span>
-            <template v-if="index < hosts.length - 1"> and </template>
-          </template>
-        </p>
       </div>
 
-      <div class="pod-hero-actions">
-        <!-- The platform row is nested with the button that opens it, not
-          placed after both buttons. Stacked on a phone that difference is
-          the whole interaction: from below the second button the icons read
-          as belonging to it, and sit far enough down to fall past the fold
-          on a short screen, so the tap looks like it did nothing. -->
-        <div
-          class="pod-hero-listen"
-          :class="{
-            'is-open': platformsOpen,
-            'is-closing': platformsClosing,
-            'is-returning': toggleReturning
-          }"
-        >
-          <!-- A podcast has no single place to send someone, so when the CTA's
-            destination in podcast.json is a list of platforms the button opens
-            into them rather than linking anywhere itself. A plain string still
-            renders a plain link. -->
-          <button
-            v-if="platforms"
-            ref="listenButton"
-            type="button"
-            class="pod-btn pod-btn-solid pod-listen-toggle"
-            :aria-expanded="platformsOpen"
-            aria-controls="pod-listen-platforms"
-            @click="togglePlatforms"
-          >
-            {{ hero.primaryCta.label }}
-          </button>
-          <a
-            v-else
-            class="pod-btn pod-btn-solid"
-            :href="links[hero.primaryCta.link]"
-            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
-          >
-            {{ hero.primaryCta.label }}
-          </a>
+      <div class="pod-hero-copy">
+        <p class="pod-lede">{{ hero.body }}</p>
 
-          <!-- Side by side the row opens below the button, which stays put and
-            stays the toggle. Stacked, it takes the button's place instead --
-            adding a row there costs vertical space a phone may not have, and
-            the visitor is looking at that spot anyway. The close button only
-            exists for that second case, where the toggle is out of reach. -->
-          <div
-            v-if="platforms"
-            id="pod-listen-platforms"
-            class="pod-listen-platforms"
-            :style="{ '--pod-count': platforms.length + 1 }"
-          >
-            <button
-              v-if="platformsOpen"
-              ref="closeButton"
-              type="button"
-              class="pod-listen-platform pod-listen-close"
-              aria-label="Close"
-              title="Close"
-              @click="togglePlatforms"
-            >
-              <i class="fas fa-xmark" aria-hidden="true"></i>
-            </button>
-            <a
-              v-for="(platform, index) in visiblePlatforms"
-              :key="platform.name"
-              class="pod-listen-platform"
-              :style="{ '--pod-stagger': index + 1 }"
-              :href="platform.href"
-              :aria-label="platform.name"
-              :title="platform.name"
-              v-bind="podcastLinkAttrs(platform.href)"
-            >
-              <i :class="platform.icon" aria-hidden="true"></i>
-            </a>
+        <!-- The hosts, up front. Lime has no field to fill on a white hero, so
+          it rings each face and marks each name instead. -->
+        <div v-if="hosts.length" class="pod-hero-hosts">
+          <div class="pod-hero-faces">
+            <span v-for="person in hosts" :key="person.name" class="pod-hero-face">
+              <img v-if="person.photo" :src="person.photo" alt="" />
+              <span v-else class="pod-hero-face-empty" aria-hidden="true">
+                {{ person.name.charAt(0) }}
+              </span>
+            </span>
           </div>
+          <!-- Just the names: the faces beside them already say these are the
+            hosts. One line per name so the comma hugs it instead of picking
+            up the template's line break as a space. -->
+          <p class="pod-hero-hosted">
+            <template v-for="(person, index) in hosts" :key="person.name">
+              <span class="pod-mark">{{ person.name }}</span><template v-if="index < hosts.length - 1">, </template>
+            </template>
+          </p>
         </div>
 
-        <a
-          class="pod-btn pod-btn-ghost"
-          :href="links[hero.secondaryCta.link]"
-          v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
-        >
-          {{ hero.secondaryCta.label }}
-        </a>
+        <div class="pod-hero-actions">
+          <!-- The platform row is nested with the button that opens it, not
+            placed after both buttons. Stacked on a phone that difference is
+            the whole interaction: from below the second button the icons read
+            as belonging to it, and sit far enough down to fall past the fold
+            on a short screen, so the tap looks like it did nothing. -->
+          <div
+            class="pod-hero-listen"
+            :class="{
+              'is-open': platformsOpen,
+              'is-closing': platformsClosing,
+              'is-returning': toggleReturning
+            }"
+          >
+            <!-- A podcast has no single place to send someone, so when the CTA's
+              destination in podcast.json is a list of platforms the button opens
+              into them rather than linking anywhere itself. A plain string still
+              renders a plain link. -->
+            <button
+              v-if="platforms"
+              ref="listenButton"
+              type="button"
+              class="pod-btn pod-btn-solid pod-listen-toggle"
+              :aria-expanded="platformsOpen"
+              aria-controls="pod-listen-platforms"
+              @click="togglePlatforms"
+            >
+              {{ hero.primaryCta.label }}
+            </button>
+            <a
+              v-else
+              class="pod-btn pod-btn-solid"
+              :href="links[hero.primaryCta.link]"
+              v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
+            >
+              {{ hero.primaryCta.label }}
+            </a>
+
+            <!-- Side by side the row opens below the button, which stays put and
+              stays the toggle. Stacked, it takes the button's place instead --
+              adding a row there costs vertical space a phone may not have, and
+              the visitor is looking at that spot anyway. The close button only
+              exists for that second case, where the toggle is out of reach. -->
+            <div
+              v-if="platforms"
+              id="pod-listen-platforms"
+              class="pod-listen-platforms"
+              :style="{ '--pod-count': platforms.length + 1 }"
+            >
+              <button
+                v-if="platformsOpen"
+                ref="closeButton"
+                type="button"
+                class="pod-listen-platform pod-listen-close"
+                aria-label="Close"
+                title="Close"
+                @click="togglePlatforms"
+              >
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+              </button>
+              <a
+                v-for="(platform, index) in visiblePlatforms"
+                :key="platform.name"
+                class="pod-listen-platform"
+                :style="{ '--pod-stagger': index + 1 }"
+                :href="platform.href"
+                :aria-label="platform.name"
+                :title="platform.name"
+                v-bind="podcastLinkAttrs(platform.href)"
+              >
+                <i :class="platform.icon" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <a
+            class="pod-btn pod-btn-ghost"
+            :href="links[hero.secondaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
+          >
+            {{ hero.secondaryCta.label }}
+          </a>
+        </div>
       </div>
     </div>
   </header>
@@ -232,16 +244,95 @@ export default {
   background: var(--pod-bg);
 }
 
+/* Side by side: the name over the rest of the copy on the left, the cube
+   spanning both on the right. */
 .pod-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-areas:
+    "lead art"
+    "copy art";
+  align-content: center;
+  column-gap: clamp(2rem, 5vw, 4rem);
+  row-gap: 1.75rem;
+}
+
+/* Only a box on a phone; here its children place themselves in the grid. */
+.pod-hero-top {
+  display: contents;
+}
+
+.pod-hero-lead,
+.pod-hero-copy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.75rem;
 }
 
+.pod-hero-lead {
+  grid-area: lead;
+  align-self: end;
+}
+
+.pod-hero-copy {
+  grid-area: copy;
+  align-self: start;
+}
+
+.pod-hero-inner .pod-hero-art {
+  grid-area: art;
+  align-self: center;
+}
+
+/* One column on tablet down. The first screen is always the cube and the
+   name under it, whatever the screen's size: the name holds its height and
+   the cube takes the rest -- its faces carry the hosts and both bands, and a
+   swipe turns it. The lede, hosts and buttons follow on scroll. */
+@media (max-width: 60rem) {
+  .pod-hero {
+    --pod-hero-pad: clamp(1.5rem, 4svh, 3rem);
+    padding-block: var(--pod-hero-pad);
+  }
+
+  .pod-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "top"
+      "copy";
+    row-gap: var(--pod-hero-pad);
+  }
+
+  /* A screen tall less the hero's padding, name at the bottom. fit-content
+     lets it grow instead of overlapping on a screen too short for the name
+     and the cube's floor. */
+  .pod-hero-top {
+    grid-area: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--pod-hero-pad);
+    height: calc(100vh - 2 * var(--pod-hero-pad));
+    height: calc(100svh - 2 * var(--pod-hero-pad));
+    min-height: fit-content;
+  }
+
+  /* Whatever the name leaves; the cube draws itself square at the box's
+     smaller side, centered. A floor so it never vanishes, and a cap so a
+     tablet's cube stays a cube and not a wall. Scoped under the grid to
+     outrank the cube's own width and aspect-ratio. */
+  .pod-hero-inner .pod-hero-art {
+    flex: 1 1 0;
+    width: 100%;
+    min-height: 8rem;
+    max-height: 40rem;
+    aspect-ratio: auto;
+  }
+}
+
+/* The grid column sets the measure now, not a max-width of its own. */
 .pod-hero-title {
   font-size: clamp(2.5rem, 7vw, 4.75rem);
-  max-width: 18ch;
 }
 
 .pod-hero-actions {

@@ -21,6 +21,7 @@
     "nuxt": "^3.12.2",
     "nuxt-gtag": "^2.0.6",
     "rehype-autolink-headings": "^7.1.0",
+    "three": "^0.186.0",
     "upgrade": "^1.1.0",
     "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.29",
