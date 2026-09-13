@@ -33,7 +33,7 @@ const STORY = [
       // and a face in either color melts into it.
       bg: index % 2 === 0 ? "--pod-text" : "--pod-text-muted",
       fg: index % 2 === 0 ? "--pod-lime" : "--pod-bg",
-      eyebrow: `Hosted by ${person.name}`,
+      eyebrow: person.name,
       title: brand?.name ?? person.role,
       mark: brand?.image ?? null
     };
@@ -48,11 +48,19 @@ const SIDES = [4, 0, 5, 1];
 
 const HOLD_MS = 2600;
 const TURN_MS = 900;
+// The shortest a turn gets, for a drag released most of the way round.
+const SETTLE_MS = 260;
 // How long a swipe holds off the automatic turn, so the visitor gets to read
 // the face they chose.
 const IDLE_MS = 6000;
-// Horizontal travel that counts as a swipe rather than a tap or a scroll.
+// Horizontal travel that counts as a flick to the next face rather than a
+// nudge that springs back.
 const SWIPE_PX = 40;
+// Trackpad scroll that counts as one swipe, and the quiet gap that ends a
+// gesture -- a trackpad keeps sending momentum for a while after the fingers
+// lift, and all of it belongs to the one swipe.
+const WHEEL_PX = 50;
+const WHEEL_GAP_MS = 250;
 const FACE_PX = 1024;
 const FONT = 'Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
@@ -61,7 +69,9 @@ let teardown = () => {};
 let unmounted = false;
 
 const easeInOutCubic = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3);
 const mod = (n, m) => ((n % m) + m) % m;
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 function loadImage(src) {
   return new Promise((resolve) => {
@@ -181,9 +191,11 @@ onMounted(async () => {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
-  // Close enough that the cube fills its square with room for the tilt and
-  // the corners swinging out mid-turn.
-  camera.position.set(0, 0, 5.6);
+  // Far enough back that a corner swinging toward the camera mid-turn stays
+  // in frame -- the tilt drops the near bottom corner lowest of all, which at
+  // 5.6 ran off the bottom of the canvas. LIFT, below, spends the spare room
+  // above the cube on that corner.
+  camera.position.set(0, 0, 5.9);
 
   const canvases = SIDES.map(() => Object.assign(document.createElement("canvas"), { width: FACE_PX, height: FACE_PX }));
   const textures = canvases.map((canvas) => {
@@ -193,10 +205,8 @@ onMounted(async () => {
     return texture;
   });
 
-  // Stop k is shown on side k mod 4, and k runs both ways now that a swipe
-  // can turn the cube back. At rest the two neighbouring sides are edge-on to
-  // the camera, so resting on a stop is when both take the stops either side
-  // of it.
+  // Stop k is shown on side k mod 4, and k runs both ways now that the cube
+  // can be turned back by hand.
   const skin = (k) => {
     const side = mod(k, SIDES.length);
     drawFace(canvases[side], STORY[mod(k, STORY.length)], color, images);
@@ -218,60 +228,83 @@ onMounted(async () => {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // The stop at rest, the stop being turned to, and where the turn is now in
-  // quarter-turns. from/turnStart restart the easing whenever target moves.
+  // angle is where the cube is, in quarter-turns; target is the stop it is
+  // easing toward from `from`. shown is the last stop it came to rest on.
   let shown = 0;
   let target = 0;
   let angle = 0;
   let from = 0;
   let turnStart = 0;
+  let turnMs = TURN_MS;
+  let ease = easeInOutCubic;
   let restingSince = performance.now();
   let resumeAt = 0;
   let frame = 0;
   let visible = true;
+  let drag = null;
+
+  // Only the two sides either side of `angle` can be seen, so any other side
+  // is safe to re-skin. Keeping every input within two stops of the cube is
+  // what guarantees the side about to come round is one of those.
+  const inView = (k) => mod(k, 4) === mod(Math.floor(angle), 4) || mod(k, 4) === mod(Math.ceil(angle), 4);
+  const prepare = (k) => {
+    if (!inView(k)) skin(k);
+  };
+
+  // The tilt shows the top face and hides the bottom, so the cube sits a
+  // little above centre to look centred -- and to give its lowest corner room.
+  const LIFT = 0.2;
 
   const render = (now) => {
     cube.rotation.y = -angle * (Math.PI / 2);
-    cube.position.y = reducedMotion ? 0 : Math.sin(now / 1400) * 0.04;
+    cube.position.y = LIFT + (reducedMotion ? 0 : Math.sin(now / 1400) * 0.04);
     renderer.render(scene, camera);
   };
 
-  const turnTo = (next, now) => {
+  // By hand the cube is already moving, so it eases out from where it is;
+  // a turn it starts itself eases in as well. Short distances go quicker.
+  const turnTo = (next, now, byHand) => {
+    prepare(next);
+    prepare(next + Math.sign(next - angle));
     from = angle;
     target = next;
     turnStart = now;
+    ease = byHand ? easeOutCubic : easeInOutCubic;
+    turnMs = Math.max(TURN_MS * Math.abs(target - angle), byHand ? SETTLE_MS : TURN_MS);
+    if (byHand) resumeAt = now + IDLE_MS;
+    kick();
   };
 
   const tick = (now) => {
-    if (angle !== target) {
-      const progress = reducedMotion ? 1 : Math.min((now - turnStart) / TURN_MS, 1);
-      angle = from + (target - from) * easeInOutCubic(progress);
+    if (!drag && angle !== target) {
+      const progress = reducedMotion ? 1 : Math.min((now - turnStart) / turnMs, 1);
+      angle = from + (target - from) * ease(progress);
       if (progress === 1) {
         angle = shown = target;
-        skin(shown - 1);
-        skin(shown + 1);
+        prepare(shown - 1);
+        prepare(shown + 1);
         restingSince = now;
       }
-    } else if (!reducedMotion && now >= resumeAt && now - restingSince >= HOLD_MS) {
-      turnTo(target + 1, now);
+    } else if (!drag && !reducedMotion && now >= resumeAt && now - restingSince >= HOLD_MS) {
+      turnTo(target + 1, now, false);
     }
 
     render(now);
     // Under reduced motion nothing moves on its own, so the loop only runs
-    // while a swipe is being answered.
-    const busy = !reducedMotion || angle !== target;
+    // while the cube is being turned by hand or settling from it.
+    const busy = !reducedMotion || drag || angle !== target;
     frame = visible && busy ? requestAnimationFrame(tick) : 0;
   };
 
-  const kick = () => {
+  function kick() {
     if (!frame && visible) frame = requestAnimationFrame(tick);
-  };
+  }
+
+  const cubeSize = () => Math.min(el.clientWidth, el.clientHeight || el.clientWidth) || 1;
 
   const resize = () => {
     // The smaller side, so the cube stays square in a box that is not.
-    const size = Math.min(el.clientWidth, el.clientHeight || el.clientWidth);
-    if (!size) return;
-    renderer.setSize(size, size);
+    renderer.setSize(cubeSize(), cubeSize());
     render(performance.now());
   };
   const resizeObserver = new ResizeObserver(resize);
@@ -285,32 +318,78 @@ onMounted(async () => {
   });
   intersectionObserver.observe(el);
 
-  // Swipe left for the next face, right for the one before. One stop per
-  // swipe, and only from rest: the sides two stops away are not skinned yet.
-  // Vertical drags stay the page's (touch-action: pan-y in the styles), which
-  // cancels the pointer before it can count as a swipe.
   const listeners = new AbortController();
-  let start = null;
-  el.addEventListener("pointerdown", (event) => (start = { x: event.clientX, y: event.clientY }), {
-    signal: listeners.signal
-  });
-  el.addEventListener("pointercancel", () => (start = null), { signal: listeners.signal });
-  el.addEventListener(
-    "pointerup",
-    (event) => {
-      if (!start) return;
-      const dx = event.clientX - start.x;
-      const dy = event.clientY - start.y;
-      start = null;
-      if (Math.abs(dx) < SWIPE_PX || Math.abs(dx) < Math.abs(dy)) return;
+  const { signal } = listeners;
 
-      const now = performance.now();
-      resumeAt = now + IDLE_MS;
-      if (angle !== target) return;
-      turnTo(shown + (dx < 0 ? 1 : -1), now);
+  // Dragging turns the cube under the pointer -- a drag the width of the cube
+  // is one face -- and letting go settles it: on the next face for a flick,
+  // back where it was for a nudge. Captured, so a drag that leaves the cube
+  // still ends. Vertical drags stay the page's on touch (touch-action: pan-y
+  // in the styles), which cancels the pointer instead.
+  el.addEventListener(
+    "pointerdown",
+    (event) => {
+      if (event.button !== 0) return;
+      el.setPointerCapture(event.pointerId);
+      const near = Math.round(angle);
+      prepare(near - 1);
+      prepare(near + 1);
+      drag = { x: event.clientX, base: angle, near };
+      resumeAt = performance.now() + IDLE_MS;
       kick();
     },
-    { signal: listeners.signal }
+    { signal }
+  );
+
+  el.addEventListener(
+    "pointermove",
+    (event) => {
+      if (!drag) return;
+      const turned = drag.base - (event.clientX - drag.x) / cubeSize();
+      angle = clamp(turned, drag.near - 1, drag.near + 1);
+    },
+    { signal }
+  );
+
+  const release = (event, cancelled) => {
+    if (!drag) return;
+    const dx = cancelled ? 0 : event.clientX - drag.x;
+    let next = Math.round(angle);
+    if (dx <= -SWIPE_PX) next = Math.floor(angle) + 1;
+    if (dx >= SWIPE_PX) next = Math.ceil(angle) - 1;
+    next = clamp(next, drag.near - 1, drag.near + 1);
+    drag = null;
+    turnTo(next, performance.now(), true);
+  };
+  el.addEventListener("pointerup", (event) => release(event, false), { signal });
+  el.addEventListener("pointercancel", (event) => release(event, true), { signal });
+
+  // A two-finger swipe on a trackpad arrives as horizontal scrolling, never as
+  // a pointer. One face per gesture, chaining onto a turn already under way.
+  // preventDefault keeps the browser from reading it as back/forward.
+  let wheelTravel = 0;
+  let wheelLast = 0;
+  let wheelSpent = false;
+  el.addEventListener(
+    "wheel",
+    (event) => {
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      event.preventDefault();
+      const now = performance.now();
+      if (now - wheelLast > WHEEL_GAP_MS) {
+        wheelTravel = 0;
+        wheelSpent = false;
+      }
+      wheelLast = now;
+      if (wheelSpent || drag) return;
+
+      wheelTravel += event.deltaX;
+      if (Math.abs(wheelTravel) < WHEEL_PX) return;
+      const next = target + Math.sign(wheelTravel);
+      wheelSpent = true;
+      if (Math.abs(next - angle) < 2) turnTo(next, now, true);
+    },
+    { passive: false, signal }
   );
 
   kick();

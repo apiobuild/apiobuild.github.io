@@ -19,11 +19,12 @@
               </span>
             </span>
           </div>
+          <!-- Just the names: the faces beside them already say these are the
+            hosts. One line per name so the comma hugs it instead of picking
+            up the template's line break as a space. -->
           <p class="pod-hero-hosted">
-            Hosted by
             <template v-for="(person, index) in hosts" :key="person.name">
-              <span class="pod-mark">{{ person.name }}</span>
-              <template v-if="index < hosts.length - 1"> and </template>
+              <span class="pod-mark">{{ person.name }}</span><template v-if="index < hosts.length - 1">, </template>
             </template>
           </p>
         </div>
