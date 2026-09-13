@@ -30,7 +30,7 @@ const STORY = [
   {
     bg: "--pod-accent",
     fg: "--pod-bg",
-    layout: "centered",
+    layout: "feature",
     eyebrow: content.hero.eyebrow,
     title: content.hero.title,
     subtitle: content.hero.subtitle
@@ -165,29 +165,33 @@ function setEyebrow(ctx, text, maxWidth) {
   return { size, lines, leading: size * 1.25 };
 }
 
-// The name as the face's centrepiece: the title in the middle, the eyebrow
-// under it at the bottom edge with its rule above, everything centred.
-function drawCentered(ctx, stop, width, pad) {
-  ctx.textAlign = "center";
-  const middle = FACE_PX / 2;
+// The name as the face's centrepiece: the title left-aligned across the
+// middle, the eyebrow right-aligned along the bottom edge with its rule above.
+function drawFeature(ctx, stop, width, pad) {
+  const right = FACE_PX - pad;
 
+  // Right-aligned, so the letter-spacing the last character carries would
+  // push the line in from the edge; start that far out to make up for it.
+  ctx.textAlign = "right";
   const eyebrow = setEyebrow(ctx, stop.eyebrow, width);
+  const tracking = "letterSpacing" in ctx ? parseFloat(ctx.letterSpacing) || 0 : 0;
   const firstBaseline = FACE_PX - pad - (eyebrow.lines.length - 1) * eyebrow.leading;
   eyebrow.lines.forEach((line, index) => {
-    ctx.fillText(line, middle, firstBaseline + index * eyebrow.leading, width);
+    ctx.fillText(line, right + tracking, firstBaseline + index * eyebrow.leading, width);
   });
   if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
-  ctx.fillRect(middle - 48, firstBaseline - eyebrow.size - 38, 96, 6);
+  ctx.fillRect(right - 96, firstBaseline - eyebrow.size - 38, 96, 6);
 
-  // Centred on the face as a block: cap height is about 0.72 of the size.
+  // Centred on the face vertically as a block, a little high to leave the
+  // eyebrow its own room: cap height is about 0.72 of the size.
+  ctx.textAlign = "left";
   const { size, lines } = fitText(ctx, stop.title, 800, width, 3, 170);
   const leading = size * 1.02;
   const blockHeight = (lines.length - 1) * leading + size * 0.72;
-  const top = middle - blockHeight / 2 - 40;
+  const top = FACE_PX / 2 - blockHeight / 2 - 60;
   lines.forEach((line, index) => {
-    ctx.fillText(line, middle, top + size * 0.72 + index * leading, width);
+    ctx.fillText(line, pad, top + size * 0.72 + index * leading, width);
   });
-  ctx.textAlign = "left";
 }
 
 function drawFace(canvas, stop, color, images) {
@@ -205,8 +209,8 @@ function drawFace(canvas, stop, color, images) {
     return;
   }
 
-  if (stop.layout === "centered") {
-    drawCentered(ctx, stop, width, pad);
+  if (stop.layout === "feature") {
+    drawFeature(ctx, stop, width, pad);
     return;
   }
 
