@@ -29,8 +29,10 @@ const STORY = [
   ...props.hosts.map((person, index) => {
     const brand = person.links.find((link) => link.image);
     return {
-      bg: index % 2 === 0 ? "--pod-text" : "--pod-bg",
-      fg: index % 2 === 0 ? "--pod-lime" : "--pod-text",
+      // Never --pod-bg or --pod-bg-raised: the cube sits on the page ground,
+      // and a face in either color melts into it.
+      bg: index % 2 === 0 ? "--pod-text" : "--pod-text-muted",
+      fg: index % 2 === 0 ? "--pod-lime" : "--pod-bg",
       eyebrow: `Hosted by ${person.name}`,
       title: brand?.name ?? person.role,
       mark: brand?.image ?? null
