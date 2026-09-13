@@ -26,6 +26,8 @@ const band = (id) => content.bands.find((entry) => entry.id === id);
 const STORY = [
   // The show's name as a periodic-table tile: Tê is tea in Taiwanese.
   { bg: "--pod-lime", fg: "--pod-text", tile: { number: "1", symbol: "Tê", name: "tea" } },
+  // Then the name itself, spelled out -- the tile teases it, this lands it.
+  { bg: "--pod-accent", fg: "--pod-bg", eyebrow: content.hero.eyebrow, title: content.hero.title },
   ...props.hosts.map((person, index) => {
     const brand = person.links.find((link) => link.image);
     return {
@@ -38,7 +40,7 @@ const STORY = [
       mark: brand?.image ?? null
     };
   }),
-  { bg: "--pod-accent", fg: "--pod-bg", eyebrow: band("the-conversation").eyebrow, title: band("the-conversation").title },
+  { bg: "--pod-accent-strong", fg: "--pod-lime", eyebrow: band("the-conversation").eyebrow, title: band("the-conversation").title },
   { bg: "--pod-lime", fg: "--pod-text", eyebrow: band("community").eyebrow, title: band("community").title }
 ];
 
