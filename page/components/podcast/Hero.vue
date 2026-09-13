@@ -1,115 +1,118 @@
 <template>
   <header class="pod-hero">
     <div class="pod-shell pod-hero-inner">
-      <!-- Optional, like the hosts band's heading: the hero reads fine
-        without a label when the headline already says who the show is for. -->
-      <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
-      <h1 class="pod-hero-title">{{ hero.title }}</h1>
-      <p class="pod-lede">{{ hero.body }}</p>
+      <div class="pod-hero-copy">
+        <!-- Optional, like the hosts band's heading: the hero reads fine
+          without a label when the headline already says who the show is for. -->
+        <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
+        <h1 class="pod-hero-title">{{ hero.title }}</h1>
+        <p class="pod-lede">{{ hero.body }}</p>
 
-      <!-- The hosts, up front. Lime has no field to fill on a white hero, so
-        it rings each face and marks each name instead. -->
-      <div v-if="hosts.length" class="pod-hero-hosts">
-        <div class="pod-hero-faces">
-          <span v-for="person in hosts" :key="person.name" class="pod-hero-face">
-            <img v-if="person.photo" :src="person.photo" alt="" />
-            <span v-else class="pod-hero-face-empty" aria-hidden="true">
-              {{ person.name.charAt(0) }}
+        <!-- The hosts, up front. Lime has no field to fill on a white hero, so
+          it rings each face and marks each name instead. -->
+        <div v-if="hosts.length" class="pod-hero-hosts">
+          <div class="pod-hero-faces">
+            <span v-for="person in hosts" :key="person.name" class="pod-hero-face">
+              <img v-if="person.photo" :src="person.photo" alt="" />
+              <span v-else class="pod-hero-face-empty" aria-hidden="true">
+                {{ person.name.charAt(0) }}
+              </span>
             </span>
-          </span>
+          </div>
+          <p class="pod-hero-hosted">
+            Hosted by
+            <template v-for="(person, index) in hosts" :key="person.name">
+              <span class="pod-mark">{{ person.name }}</span>
+              <template v-if="index < hosts.length - 1"> and </template>
+            </template>
+          </p>
         </div>
-        <p class="pod-hero-hosted">
-          Hosted by
-          <template v-for="(person, index) in hosts" :key="person.name">
-            <span class="pod-mark">{{ person.name }}</span>
-            <template v-if="index < hosts.length - 1"> and </template>
-          </template>
-        </p>
-      </div>
 
-      <div class="pod-hero-actions">
-        <!-- The platform row is nested with the button that opens it, not
-          placed after both buttons. Stacked on a phone that difference is
-          the whole interaction: from below the second button the icons read
-          as belonging to it, and sit far enough down to fall past the fold
-          on a short screen, so the tap looks like it did nothing. -->
-        <div
-          class="pod-hero-listen"
-          :class="{
-            'is-open': platformsOpen,
-            'is-closing': platformsClosing,
-            'is-returning': toggleReturning
-          }"
-        >
-          <!-- A podcast has no single place to send someone, so when the CTA's
-            destination in podcast.json is a list of platforms the button opens
-            into them rather than linking anywhere itself. A plain string still
-            renders a plain link. -->
-          <button
-            v-if="platforms"
-            ref="listenButton"
-            type="button"
-            class="pod-btn pod-btn-solid pod-listen-toggle"
-            :aria-expanded="platformsOpen"
-            aria-controls="pod-listen-platforms"
-            @click="togglePlatforms"
-          >
-            {{ hero.primaryCta.label }}
-          </button>
-          <a
-            v-else
-            class="pod-btn pod-btn-solid"
-            :href="links[hero.primaryCta.link]"
-            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
-          >
-            {{ hero.primaryCta.label }}
-          </a>
-
-          <!-- Side by side the row opens below the button, which stays put and
-            stays the toggle. Stacked, it takes the button's place instead --
-            adding a row there costs vertical space a phone may not have, and
-            the visitor is looking at that spot anyway. The close button only
-            exists for that second case, where the toggle is out of reach. -->
+        <div class="pod-hero-actions">
+          <!-- The platform row is nested with the button that opens it, not
+            placed after both buttons. Stacked on a phone that difference is
+            the whole interaction: from below the second button the icons read
+            as belonging to it, and sit far enough down to fall past the fold
+            on a short screen, so the tap looks like it did nothing. -->
           <div
-            v-if="platforms"
-            id="pod-listen-platforms"
-            class="pod-listen-platforms"
-            :style="{ '--pod-count': platforms.length + 1 }"
+            class="pod-hero-listen"
+            :class="{
+              'is-open': platformsOpen,
+              'is-closing': platformsClosing,
+              'is-returning': toggleReturning
+            }"
           >
+            <!-- A podcast has no single place to send someone, so when the CTA's
+              destination in podcast.json is a list of platforms the button opens
+              into them rather than linking anywhere itself. A plain string still
+              renders a plain link. -->
             <button
-              v-if="platformsOpen"
-              ref="closeButton"
+              v-if="platforms"
+              ref="listenButton"
               type="button"
-              class="pod-listen-platform pod-listen-close"
-              aria-label="Close"
-              title="Close"
+              class="pod-btn pod-btn-solid pod-listen-toggle"
+              :aria-expanded="platformsOpen"
+              aria-controls="pod-listen-platforms"
               @click="togglePlatforms"
             >
-              <i class="fas fa-xmark" aria-hidden="true"></i>
+              {{ hero.primaryCta.label }}
             </button>
             <a
-              v-for="(platform, index) in visiblePlatforms"
-              :key="platform.name"
-              class="pod-listen-platform"
-              :style="{ '--pod-stagger': index + 1 }"
-              :href="platform.href"
-              :aria-label="platform.name"
-              :title="platform.name"
-              v-bind="podcastLinkAttrs(platform.href)"
+              v-else
+              class="pod-btn pod-btn-solid"
+              :href="links[hero.primaryCta.link]"
+              v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
             >
-              <i :class="platform.icon" aria-hidden="true"></i>
+              {{ hero.primaryCta.label }}
             </a>
-          </div>
-        </div>
 
-        <a
-          class="pod-btn pod-btn-ghost"
-          :href="links[hero.secondaryCta.link]"
-          v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
-        >
-          {{ hero.secondaryCta.label }}
-        </a>
+            <!-- Side by side the row opens below the button, which stays put and
+              stays the toggle. Stacked, it takes the button's place instead --
+              adding a row there costs vertical space a phone may not have, and
+              the visitor is looking at that spot anyway. The close button only
+              exists for that second case, where the toggle is out of reach. -->
+            <div
+              v-if="platforms"
+              id="pod-listen-platforms"
+              class="pod-listen-platforms"
+              :style="{ '--pod-count': platforms.length + 1 }"
+            >
+              <button
+                v-if="platformsOpen"
+                ref="closeButton"
+                type="button"
+                class="pod-listen-platform pod-listen-close"
+                aria-label="Close"
+                title="Close"
+                @click="togglePlatforms"
+              >
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+              </button>
+              <a
+                v-for="(platform, index) in visiblePlatforms"
+                :key="platform.name"
+                class="pod-listen-platform"
+                :style="{ '--pod-stagger': index + 1 }"
+                :href="platform.href"
+                :aria-label="platform.name"
+                :title="platform.name"
+                v-bind="podcastLinkAttrs(platform.href)"
+              >
+                <i :class="platform.icon" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <a
+            class="pod-btn pod-btn-ghost"
+            :href="links[hero.secondaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
+          >
+            {{ hero.secondaryCta.label }}
+          </a>
+        </div>
       </div>
+      <PodcastCube class="pod-hero-art" :hosts="hosts" />
     </div>
   </header>
 </template>
@@ -233,15 +236,34 @@ export default {
 }
 
 .pod-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.pod-hero-copy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.75rem;
 }
 
+/* One column on tablet down; the cube leads, the copy follows. */
+@media (max-width: 60rem) {
+  .pod-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pod-hero-art {
+    order: -1;
+    max-width: 22rem;
+  }
+}
+
+/* The grid column sets the measure now, not a max-width of its own. */
 .pod-hero-title {
   font-size: clamp(2.5rem, 7vw, 4.75rem);
-  max-width: 18ch;
 }
 
 .pod-hero-actions {

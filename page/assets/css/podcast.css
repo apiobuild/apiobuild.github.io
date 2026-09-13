@@ -2,7 +2,8 @@
    Namespaced under .podcast-page so this file can be imported unscoped from
    the podcast layout without touching the rest of apiobuild.com, which keeps
    its Vuetify theme. */
-@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Comfortaa:wght@400;600&display=swap");
+/* Archivo is only drawn into the hero cube's canvases (PodcastCube). */
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Comfortaa:wght@400;600&family=Archivo:wght@600;800&display=swap");
 
 .podcast-page {
   /* The stockoverflow product palette, off the primary and honey ramps in
