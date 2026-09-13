@@ -32,8 +32,7 @@ const STORY = [
     fg: "--pod-bg",
     layout: "feature",
     eyebrow: content.hero.eyebrow,
-    title: content.hero.title,
-    subtitle: content.hero.subtitle
+    title: content.hero.title
   },
   ...props.hosts.map((person, index) => {
     const brand = person.links.find((link) => link.image);
@@ -228,24 +227,10 @@ function drawFace(canvas, stop, color, images) {
     ctx.drawImage(image, (FACE_PX - side) / 2, 430 - side / 2, side, side);
   }
 
-  // Everything below is stacked up from the bottom edge: the subtitle, if
-  // there is one, then the title over it.
-  let bottom = FACE_PX - pad;
-
-  if (stop.subtitle) {
-    const sub = fitText(ctx, stop.subtitle, 600, width, 2, 56);
-    const subLeading = sub.size * 1.25;
-    sub.lines.forEach((line, index) => {
-      ctx.fillText(line, pad, bottom - (sub.lines.length - 1 - index) * subLeading, width);
-    });
-    bottom -= sub.lines.length * subLeading + 40;
-  }
-
-  const maxLines = image ? 2 : stop.subtitle ? 3 : 4;
-  const { size, lines } = fitText(ctx, stop.title, 800, width, maxLines, image ? 120 : 150);
+  const { size, lines } = fitText(ctx, stop.title, 800, width, image ? 2 : 4, image ? 120 : 150);
   const leading = size * 1.02;
   lines.forEach((line, index) => {
-    ctx.fillText(line, pad, bottom - (lines.length - 1 - index) * leading, width);
+    ctx.fillText(line, pad, FACE_PX - pad - (lines.length - 1 - index) * leading, width);
   });
 }
 

@@ -61,7 +61,8 @@ useHead(
       // name="image": differing shapes are separate keys to unhead, which
       // renders both instead of letting this one override.
       { name: "image", property: "og:image", content: content.meta.image },
-      { name: "twitter:card", content: "summary" }
+      // Large: the podcast image is a 1200x630 card, not a square logo.
+      { name: "twitter:card", content: "summary_large_image" }
     ]
   },
   { tagPriority: 1 }
