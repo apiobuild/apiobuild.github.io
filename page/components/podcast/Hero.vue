@@ -11,6 +11,7 @@
             without a label when the headline already says who the show is for. -->
           <p v-if="hero.eyebrow" class="pod-eyebrow">{{ hero.eyebrow }}</p>
           <h1 class="pod-hero-title">{{ hero.title }}</h1>
+          <p v-if="hero.subtitle" class="pod-hero-subtitle">{{ hero.subtitle }}</p>
         </div>
       </div>
 
@@ -333,6 +334,15 @@ export default {
 /* The grid column sets the measure now, not a max-width of its own. */
 .pod-hero-title {
   font-size: clamp(2.5rem, 7vw, 4.75rem);
+}
+
+/* Reads as part of the title, so it sits closer to it than the lead's gap. */
+.pod-hero-subtitle {
+  margin-top: -1rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--pod-text);
 }
 
 .pod-hero-actions {
