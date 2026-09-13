@@ -59,7 +59,7 @@
         "required": true
       },
       {
-        "legend": "Where can we find you online?",
+        "legend": "Where can we find you?",
         "fields": [
           {
             "name": "Instagram",
