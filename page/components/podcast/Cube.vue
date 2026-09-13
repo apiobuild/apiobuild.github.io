@@ -130,18 +130,9 @@ function drawFace(canvas, stop, color, images) {
 
   const image = stop.mark && images.get(stop.mark);
   if (image) {
-    // The marks are small squares with their own colors, so they sit on a
-    // light disc rather than straight on a dark face.
-    const radius = 210;
-    const cx = FACE_PX / 2;
-    const cy = 430;
-    ctx.fillStyle = color("--pod-bg-raised");
-    ctx.beginPath();
-    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-    ctx.fill();
-    const side = radius * 1.3;
-    ctx.drawImage(image, cx - side / 2, cy - side / 2, side, side);
-    ctx.fillStyle = color(stop.fg);
+    // Straight on the face, no backing shape.
+    const side = 400;
+    ctx.drawImage(image, (FACE_PX - side) / 2, 430 - side / 2, side, side);
   }
 
   const { size, lines } = fitText(ctx, stop.title, 800, width, image ? 2 : 4, image ? 120 : 150);
