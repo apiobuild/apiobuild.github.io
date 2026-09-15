@@ -37,7 +37,20 @@ useHead(
   { tagPriority: "critical" }
 );
 
+// The podcast page carries its own mark instead of the site-wide one --
+// route-based here rather than the page overriding this tag, since two
+// separate useHead calls registering the same rel="icon" left it up to
+// dedupe/priority ordering between a root-level and a page-level call,
+// which didn't resolve the way the tagPriority pattern above does for
+// meta tags. A single reactive href sidesteps that ambiguity entirely.
+const route = useRoute();
 useHead({
-  link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }]
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: () => (route.path.startsWith("/podcast") ? "/images/podcast-favicon.png" : "/favicon.png")
+    }
+  ]
 });
 </script>
