@@ -22,6 +22,12 @@
   /* Honey-700 is tuned for the near-white ground; on the lime field it
      closes up, so the lede drops to primary-800 there. */
   --pod-on-lime-muted: #424814;
+  /* The lime's darker shades, for the sides of a 3D lime block. */
+  --pod-lime-side: #a9b52c;
+  --pod-lime-bottom: #8a9424;
+  --pod-error: #a12a1c;
+  --pod-field-border: rgba(40, 43, 13, 0.25);
+  --pod-placeholder: rgba(40, 43, 13, 0.4);
 
   /* One face for headings and reading text alike: Archivo, the same one
      loaded above for the hero scene's own text. */
@@ -37,12 +43,9 @@
   --pod-band: clamp(4.5rem, 11vw, 9rem);
 
   min-height: 100vh;
-  /* Vuetify's app wrapper is a flex column one screen tall, and an explicit
-     min-height lets a flex child shrink to it -- the ground then stopped a
-     screen down and the rest of the page sat on the white body. */
+  /* Grows past Vuetify's one-screen app wrapper instead of shrinking to it. */
   flex-shrink: 0;
-  /* A column, so a page shorter than the screen still ends in its footer at
-     the bottom of the screen rather than halfway up it. */
+  /* A column, so the footer can sit at the bottom of a short page. */
   display: flex;
   flex-direction: column;
   background: var(--pod-bg);

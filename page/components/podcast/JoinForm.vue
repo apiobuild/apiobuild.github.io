@@ -14,10 +14,9 @@
     <p v-if="status !== 'sent'" class="pod-lede pod-join-intro">{{ join.body }}</p>
 
     <form v-if="status !== 'sent'" class="pod-join-fields" @submit.prevent="submit">
-      <!-- A lone field is a group of one without a legend, so fields and
-        groups share one set of markup. A group's fields are all optional, so
-        its legend carries the one "optional" instead of every field. -->
-      <fieldset v-for="(group, index) in groups" :key="index" class="pod-join-group">
+      <!-- A lone field renders as a group of one without a legend. A group's
+        legend carries the "optional" for all its fields. -->
+      <fieldset v-for="group in groups" :key="group.legend ?? group.fields[0].name" class="pod-join-group">
         <legend v-if="group.legend" class="pod-join-legend">
           {{ group.legend }}
           <span class="pod-join-optional">optional</span>
@@ -181,7 +180,7 @@ export default {
 .pod-join-field textarea {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid rgba(40, 43, 13, 0.25);
+  border: 1px solid var(--pod-field-border);
   border-radius: 0.75rem;
   background: #fff;
   color: var(--pod-text);
@@ -197,7 +196,7 @@ export default {
 
 .pod-join-field input::placeholder,
 .pod-join-field textarea::placeholder {
-  color: rgba(40, 43, 13, 0.4);
+  color: var(--pod-placeholder);
 }
 
 /* The brand lime as a ring, with the accent on the edge so it still reads
@@ -221,7 +220,7 @@ export default {
 
 .pod-join-error {
   font-size: 0.95rem;
-  color: #a12a1c;
+  color: var(--pod-error);
 }
 
 .pod-join-submit {
@@ -234,20 +233,15 @@ export default {
   cursor: progress;
 }
 
-/* One lime speech bubble, drawn as a block the way the hero's subway scene
-   (NinthTrain.vue) draws its signs: a flat front face, and a bottom and a
-   right face sheared 45deg in darker shades of the same color. Square
-   corners, since a sheared face can't follow a rounded one. */
+/* A 3D lime speech bubble, in the style of the hero scene's signs. */
 .pod-join-bubble {
   --pod-depth: 10px;
-  --pod-face-right: #a9b52c;
-  --pod-face-bottom: #8a9424;
   position: relative;
   display: inline-flex;
   flex-direction: column;
   gap: 0.5rem;
   max-width: 26rem;
-  /* Room for the faces and the tail, which all hang outside the box. */
+  /* Room for the sides and the tail, which hang outside the box. */
   margin: 0 var(--pod-depth) calc(var(--pod-depth) + 1.4rem) 0;
   padding: 1.5rem 1.75rem;
   background: var(--pod-lime);
@@ -263,31 +257,28 @@ export default {
   transform-origin: top left;
 }
 
-/* The bottom face: skewX slides its lower edge right by its own height. */
+/* The bottom side. */
 .pod-join-bubble::before {
   left: 0;
   top: 100%;
   width: 100%;
   height: var(--pod-depth);
-  background: var(--pod-face-bottom);
+  background: var(--pod-lime-bottom);
   transform: skewX(45deg);
 }
 
-/* The right face: skewY drops its far edge by its own width, meeting the
-   bottom face at the corner. */
+/* The right side. */
 .pod-join-bubble::after {
   left: 100%;
   top: 0;
   width: var(--pod-depth);
   height: 100%;
-  background: var(--pod-face-right);
+  background: var(--pod-lime-side);
   transform: skewY(45deg);
 }
 
-/* The tail, a wedge hanging from the front face's bottom edge, over the
-   bottom face so it reads as part of the front. Its thickness is one shape,
-   not an offset copy: the wedge swept down and right by the depth, so the
-   dark edge runs unbroken along the slope from the bubble to the tip. */
+/* The tail: a lime wedge, over its darker side (the wedge swept down and
+   right by the depth). */
 .pod-join-tail,
 .pod-join-tail-side {
   --pod-tail-w: 1.6rem;
@@ -308,7 +299,7 @@ export default {
 .pod-join-tail-side {
   width: calc(var(--pod-tail-w) + var(--pod-depth));
   height: calc(var(--pod-tail-h) + var(--pod-depth));
-  background: var(--pod-face-bottom);
+  background: var(--pod-lime-bottom);
   clip-path: polygon(
     0 0,
     var(--pod-tail-w) 0,
