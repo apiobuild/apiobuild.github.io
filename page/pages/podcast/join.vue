@@ -32,19 +32,7 @@ definePageMeta({ layout: "podcast" });
 
 const join = content.join;
 
-// Same tags and priority as the show's page -- see pages/podcast/index.vue.
-useHead(
-  {
-    title: join.meta.title,
-    meta: [
-      { property: "og:title", content: join.meta.title },
-      { name: "description", property: "og:description", content: join.meta.description },
-      { name: "image", property: "og:image", content: content.meta.image },
-      { name: "twitter:card", content: "summary_large_image" }
-    ]
-  },
-  { tagPriority: 1 }
-);
+usePodcastHead({ title: join.meta.title, description: join.meta.description });
 </script>
 
 <script>

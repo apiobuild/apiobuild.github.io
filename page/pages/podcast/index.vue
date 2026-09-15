@@ -48,25 +48,7 @@ const bands = content.bands.map((band) =>
 // that band rather than a second copy in the JSON.
 const hosts = bands.find((band) => band.type === "hosts")?.people ?? [];
 
-// tagPriority beats app.vue's site-wide head, which registers the same tags
-// as "critical" -- without this the podcast page would share the consulting
-// site's title and description in every link preview.
-useHead(
-  {
-    title: content.meta.title,
-    meta: [
-      { property: "og:title", content: content.meta.title },
-      { name: "description", property: "og:description", content: content.meta.description },
-      // Same shape as app.vue's site-wide tag, including the meaningless
-      // name="image": differing shapes are separate keys to unhead, which
-      // renders both instead of letting this one override.
-      { name: "image", property: "og:image", content: content.meta.image },
-      // Large: the podcast image is a 1200x630 card, not a square logo.
-      { name: "twitter:card", content: "summary_large_image" }
-    ]
-  },
-  { tagPriority: 1 }
-);
+usePodcastHead({ title: content.meta.title, description: content.meta.description });
 </script>
 
 <script>
