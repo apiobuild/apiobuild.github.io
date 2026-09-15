@@ -84,7 +84,7 @@
             <div style="position:absolute;left:2140px;top:0;width:160px;height:500px;background:linear-gradient(90deg,#060810 0%,rgba(6,8,16,0.92) 28%,rgba(6,8,16,0.62) 56%,rgba(6,8,16,0.24) 80%,rgba(6,8,16,0) 100%);"></div>
             <div style="position:absolute;left:2140px;top:206px;width:120px;height:5px;background:linear-gradient(90deg,rgba(232,179,58,0.30) 0%,rgba(232,179,58,0) 100%);"></div>
 
-            <img draggable="false" :src="catfightStorefront" alt="Catfight Coffee storefront" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:2825px;top:155px;width:330px;display:block;" />
+            <img draggable="false" :src="catfightStorefront" alt="Catfight Coffee storefront" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:2825px;top:159px;width:330px;display:block;" />
 
             <div style="position:absolute;left:2306px;top:104px;width:104px;height:396px;background-color:#cbb79c;background-image:repeating-linear-gradient(0deg,#cbb79c 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#5d6b7d 13px 31px);"></div>
             <div style="position:absolute;left:2306px;top:104px;width:104px;height:15px;background:#a8977d;"></div>
