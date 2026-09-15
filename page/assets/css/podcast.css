@@ -2,8 +2,8 @@
    Namespaced under .podcast-page so this file can be imported unscoped from
    the podcast layout without touching the rest of apiobuild.com, which keeps
    its Vuetify theme. */
-/* Archivo sets the whole page and is drawn into the hero cube's canvases
-   (PodcastCube), so the two read as one thing. */
+/* Archivo sets the whole page, headings and the hero scene's own text alike,
+   so the two read as one thing. */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Comfortaa:wght@400;600&display=swap");
 
 .podcast-page {
@@ -23,9 +23,8 @@
      closes up, so the lede drops to primary-800 there. */
   --pod-on-lime-muted: #424814;
 
-  /* One face for headings and reading text alike: Archivo, the one the hero
-     cube's faces are drawn in. Keep the two in step -- PodcastCube names it
-     in its own FONT constant, since a canvas can't read these tokens. */
+  /* One face for headings and reading text alike: Archivo, the same one
+     loaded above for the hero scene's own text. */
   --pod-display: Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --pod-body: Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   /* The apiobuild wordmark, matching the face Appbar.vue sets on the logo
@@ -48,8 +47,6 @@
 .podcast-page h1,
 .podcast-page h2 {
   font-family: var(--pod-display);
-  /* The weight the cube's titles are drawn at, so a heading on the page and
-     the same words on a face match. */
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;

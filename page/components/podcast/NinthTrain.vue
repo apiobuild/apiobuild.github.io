@@ -1,8 +1,8 @@
 <template>
   <!-- Decorative: a diorama of the show's namesake train ride, not content of
     its own -- every word on it is already said elsewhere on the page. Sized
-    and centred the same way PodcastCube is, so the two are drop-in
-    replacements for each other in the hero grid. -->
+    and centred to fill whatever box the hero grid gives it, the same way
+    the rest of the hero's art slot is meant to be filled. -->
   <div class="ninth-wrap" aria-hidden="true">
     <div
       ref="stage"
@@ -84,7 +84,7 @@
             <div style="position:absolute;left:2140px;top:0;width:160px;height:500px;background:linear-gradient(90deg,#060810 0%,rgba(6,8,16,0.92) 28%,rgba(6,8,16,0.62) 56%,rgba(6,8,16,0.24) 80%,rgba(6,8,16,0) 100%);"></div>
             <div style="position:absolute;left:2140px;top:206px;width:120px;height:5px;background:linear-gradient(90deg,rgba(232,179,58,0.30) 0%,rgba(232,179,58,0) 100%);"></div>
 
-            <img draggable="false" :src="catfightStorefront" alt="Catfight Coffee storefront" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:2825px;top:159px;width:330px;display:block;" />
+            <img draggable="false" :src="catfightStorefront" alt="Catfight Coffee storefront" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:2825px;top:161.5px;width:330px;display:block;" />
 
             <div style="position:absolute;left:2306px;top:104px;width:104px;height:396px;background-color:#cbb79c;background-image:repeating-linear-gradient(0deg,#cbb79c 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#5d6b7d 13px 31px);"></div>
             <div style="position:absolute;left:2306px;top:104px;width:104px;height:15px;background:#a8977d;"></div>
@@ -145,14 +145,14 @@
             <div style="position:absolute;left:5374px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
 
             <div style="position:absolute;left:0;top:0;width:6630px;height:500px;">
-              <img draggable="false" :src="figure1" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4724px;top:275px;width:77px;height:180px;display:block;" />
-              <img draggable="false" :src="figure2" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4806px;top:360px;width:75px;height:95px;display:block;" />
-              <img draggable="false" :src="figure3" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4864px;top:275px;width:76px;height:180px;display:block;" />
+              <img draggable="false" :src="ashly" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4724px;top:275px;width:77px;height:180px;display:block;" />
+              <img draggable="false" :src="catfight1" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4806px;top:360px;width:75px;height:95px;display:block;" />
+              <img draggable="false" :src="meiling" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4864px;top:275px;width:76px;height:180px;display:block;" />
               <!-- Lulu, between the dog and cat -- earlier in source order than
                 either so both stack in front of her rather than her covering them. -->
-              <img draggable="false" :src="luluFigure" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4988px;top:275px;width:110px;height:180px;display:block;" />
-              <img draggable="false" :src="figure4" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4932px;top:349px;width:80px;height:104px;display:block;" />
-              <img draggable="false" :src="figure5" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:5070px;top:357px;width:74px;height:96px;display:block;" />
+              <img draggable="false" :src="lulu" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4988px;top:275px;width:110px;height:180px;display:block;" />
+              <img draggable="false" :src="luna" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4932px;top:349px;width:80px;height:104px;display:block;" />
+              <img draggable="false" :src="catfight2" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:5070px;top:357px;width:74px;height:96px;display:block;" />
               <div style="position:absolute;left:4882px;top:235px;width:28px;height:20px;background:#D99A53;animation:ninth-bubble-bob 2.6s ease-in-out 0s infinite;">
                 <div style="position:absolute;left:0;top:100%;width:100%;height:4px;background:#B87C38;transform:skewX(45deg);transform-origin:top left;"></div>
                 <div style="position:absolute;left:100%;top:0;width:4px;height:100%;background:#996326;transform:skewY(45deg);transform-origin:left top;"></div>
@@ -239,12 +239,12 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import catfightStorefront from "~/assets/ninth-hero/catfight-storefront.webp";
 import blockShops from "~/assets/ninth-hero/block-shops.webp";
-import figure1 from "~/assets/ninth-hero/figure-1.webp";
-import figure2 from "~/assets/ninth-hero/figure-2.webp";
-import figure3 from "~/assets/ninth-hero/figure-3.webp";
-import figure4 from "~/assets/ninth-hero/figure-4.webp";
-import figure5 from "~/assets/ninth-hero/figure-5.webp";
-import luluFigure from "~/assets/ninth-hero/lulu-figure-cutout.png";
+import ashly from "~/assets/ninth-hero/ashly.webp";
+import catfight1 from "~/assets/ninth-hero/catfight1.webp";
+import meiling from "~/assets/ninth-hero/meiling.webp";
+import luna from "~/assets/ninth-hero/luna.webp";
+import catfight2 from "~/assets/ninth-hero/catfight2.webp";
+import lulu from "~/assets/ninth-hero/lulu.png";
 // Bagel²'s mark, already on the page in podcast.json's host links -- reused
 // here rather than kept as a second copy of the same logo. Catfight's own
 // mark is orange, which now doubles as this scene's whole accent color, so
@@ -302,6 +302,9 @@ let lastX = 0;
 let frame = 0;
 let visible = true;
 let dragState = null;
+// Aborts the current drag's document listeners -- set in onDragStart,
+// cleared on release, and also aborted on unmount (see onBeforeUnmount).
+let dragAbort = null;
 // A release tweens the clock from where the drag left it to a stop's, so
 // letting go always snaps onto a scene instead of leaving the ride parked
 // mid-transit.
@@ -467,13 +470,18 @@ function onDragStart(event) {
       : { from: clock, to: targetClock, start: now, dur: SETTLE_MS };
     // Reduced motion: land on the stop at once, already folded in range.
     if (!settle) clock = ((targetClock % TOTAL) + TOTAL) % TOTAL;
-    document.removeEventListener("pointermove", move);
-    document.removeEventListener("pointerup", up);
-    document.removeEventListener("pointercancel", up);
+    dragAbort?.abort();
+    dragAbort = null;
   };
-  document.addEventListener("pointermove", move);
-  document.addEventListener("pointerup", up);
-  document.addEventListener("pointercancel", up);
+  // An AbortController rather than three matched removeEventListener calls,
+  // so a component unmount mid-drag (an SPA nav away while touching) can
+  // close these out too via the same signal instead of leaving them on
+  // document forever -- see onBeforeUnmount.
+  dragAbort = new AbortController();
+  const { signal } = dragAbort;
+  document.addEventListener("pointermove", move, { signal });
+  document.addEventListener("pointerup", up, { signal });
+  document.addEventListener("pointercancel", up, { signal });
 }
 
 let resizeObserver;
@@ -490,9 +498,8 @@ onMounted(() => {
   apply();
   kick();
 
-  // Scales the whole 488x620 scene to whatever box the hero grid gives it,
-  // the same way PodcastCube fits its square to its own box -- "contain",
-  // not stretch, so nothing in the diorama distorts.
+  // Scales the whole 488x620 scene to whatever box the hero grid gives it --
+  // "contain", not stretch, so nothing in the diorama distorts.
   const frame = el.querySelector(".ninth-bezel");
   const fit = () => {
     scale = Math.min(el.clientWidth / 488, el.clientHeight / 620) || 1;
@@ -515,6 +522,7 @@ onBeforeUnmount(() => {
   cancelAnimationFrame(frame);
   resizeObserver?.disconnect();
   intersectionObserver?.disconnect();
+  dragAbort?.abort();
 });
 </script>
 
@@ -525,8 +533,8 @@ export default {
 </script>
 
 <style scoped>
-/* The scene over its hint, sized and centred the same way PodcastCube is --
-   the two are interchangeable in the hero grid. */
+/* The scene over its hint, both sized and centred to fill the hero's art
+   grid area. */
 .ninth-wrap {
   display: flex;
   flex-direction: column;
