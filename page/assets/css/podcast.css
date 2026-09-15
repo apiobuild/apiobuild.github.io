@@ -118,7 +118,8 @@
   background: var(--pod-accent);
   color: #f4f6ea;
 }
-.podcast-page a.pod-btn-solid:hover {
+.podcast-page a.pod-btn-solid:hover,
+.podcast-page button.pod-btn-solid:hover:not(:disabled) {
   background: var(--pod-accent-strong);
   color: #f4f6ea;
 }

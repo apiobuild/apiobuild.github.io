@@ -48,7 +48,7 @@
         "type": "tel",
         "autocomplete": "tel",
         "placeholder": "+1 555 123 4567",
-        "hint": "Once we've reviewed your request, we'll add this number to the WhatsApp group.",
+        "hint": "Include your country code.",
         "required": true
       },
       {

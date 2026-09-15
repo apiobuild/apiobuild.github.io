@@ -1,10 +1,8 @@
 <template>
   <div class="pod-join-card">
-    <!-- No invite link, ever: the hosts review each request and add the
-      number to the WhatsApp group themselves, so a link can't leak to
-      spammers from here. -->
-    <!-- Sent: the reply as one chat bubble, a taste of the WhatsApp group
-      it leads to. -->
+    <!-- Sent: the reply as one chat bubble. No invite link -- the hosts
+      review each request and add the number to the WhatsApp group
+      themselves, so a link can't leak to spammers from here. -->
     <div v-if="status === 'sent'" class="pod-join-bubble">
       <h2 ref="thanksHeading" class="pod-join-bubble-title" tabindex="-1">{{ join.thanks.title }}</h2>
       <p>{{ join.thanks.body }}</p>
@@ -89,12 +87,14 @@ async function submit() {
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
+      // The answers first, so a field named like one of Web3Forms' own keys
+      // can't overwrite it.
       body: JSON.stringify({
+        ...values,
         access_key: props.join.web3formsAccessKey,
         subject: `The Ninth: ${values.Name} wants to join`,
         from_name: "The Ninth",
-        botcheck: botcheck.value,
-        ...values
+        botcheck: botcheck.value
       })
     });
     const result = await response.json();
@@ -227,11 +227,6 @@ export default {
 .pod-join-submit {
   align-self: flex-start;
   cursor: pointer;
-}
-
-/* podcast.css only gives links a hover, and this is a button. */
-.pod-join-submit:hover:not(:disabled) {
-  background: var(--pod-accent-strong);
 }
 
 .pod-join-submit:disabled {
