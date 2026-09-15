@@ -3,9 +3,13 @@
     <!-- No invite link, ever: the hosts review each request and add the
       number to the WhatsApp group themselves, so a link can't leak to
       spammers from here. -->
-    <div v-if="status === 'sent'" class="pod-join-thanks">
-      <h2 ref="thanksHeading" class="pod-join-thanks-title" tabindex="-1">{{ join.thanks.title }}</h2>
-      <p class="pod-lede">{{ join.thanks.body }}</p>
+    <!-- Sent: the reply as one chat bubble, a taste of the WhatsApp group
+      it leads to. -->
+    <div v-if="status === 'sent'" class="pod-join-bubble">
+      <h2 ref="thanksHeading" class="pod-join-bubble-title" tabindex="-1">{{ join.thanks.title }}</h2>
+      <p>{{ join.thanks.body }}</p>
+      <span class="pod-join-tail-side" aria-hidden="true"></span>
+      <span class="pod-join-tail" aria-hidden="true"></span>
     </div>
 
     <!-- The intro asks for the form, so it goes when the form does. -->
@@ -235,22 +239,110 @@ export default {
   cursor: progress;
 }
 
-.pod-join-thanks {
-  display: flex;
+/* One lime speech bubble, drawn as a block the way the hero's subway scene
+   (NinthTrain.vue) draws its signs: a flat front face, and a bottom and a
+   right face sheared 45deg in darker shades of the same color. Square
+   corners, since a sheared face can't follow a rounded one. */
+.pod-join-bubble {
+  --pod-depth: 10px;
+  --pod-face-right: #a9b52c;
+  --pod-face-bottom: #8a9424;
+  position: relative;
+  display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 2rem;
-  border-radius: 1.25rem;
+  gap: 0.5rem;
+  max-width: 26rem;
+  /* Room for the faces and the tail, which all hang outside the box. */
+  margin: 0 var(--pod-depth) calc(var(--pod-depth) + 1.4rem) 0;
+  padding: 1.5rem 1.75rem;
   background: var(--pod-lime);
+  color: var(--pod-text);
+  transform-origin: bottom left;
+  animation: pod-join-bubble-in 420ms cubic-bezier(0.34, 1.4, 0.64, 1) 100ms backwards;
 }
 
-.pod-join-thanks .pod-lede {
-  color: var(--pod-on-lime-muted);
+.pod-join-bubble::before,
+.pod-join-bubble::after {
+  content: "";
+  position: absolute;
+  transform-origin: top left;
 }
 
-.pod-join-thanks-title {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
+/* The bottom face: skewX slides its lower edge right by its own height. */
+.pod-join-bubble::before {
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: var(--pod-depth);
+  background: var(--pod-face-bottom);
+  transform: skewX(45deg);
+}
+
+/* The right face: skewY drops its far edge by its own width, meeting the
+   bottom face at the corner. */
+.pod-join-bubble::after {
+  left: 100%;
+  top: 0;
+  width: var(--pod-depth);
+  height: 100%;
+  background: var(--pod-face-right);
+  transform: skewY(45deg);
+}
+
+/* The tail, a wedge hanging from the front face's bottom edge, over the
+   bottom face so it reads as part of the front. Its thickness is one shape,
+   not an offset copy: the wedge swept down and right by the depth, so the
+   dark edge runs unbroken along the slope from the bubble to the tip. */
+.pod-join-tail,
+.pod-join-tail-side {
+  --pod-tail-w: 1.6rem;
+  --pod-tail-h: 1.4rem;
+  position: absolute;
+  z-index: 1;
+  left: 1.5rem;
+  top: 100%;
+}
+
+.pod-join-tail {
+  width: var(--pod-tail-w);
+  height: var(--pod-tail-h);
+  background: var(--pod-lime);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.pod-join-tail-side {
+  width: calc(var(--pod-tail-w) + var(--pod-depth));
+  height: calc(var(--pod-tail-h) + var(--pod-depth));
+  background: var(--pod-face-bottom);
+  clip-path: polygon(
+    0 0,
+    var(--pod-tail-w) 0,
+    calc(var(--pod-tail-w) + var(--pod-depth)) var(--pod-depth),
+    var(--pod-depth) calc(var(--pod-tail-h) + var(--pod-depth)),
+    0 var(--pod-tail-h)
+  );
+}
+
+.pod-join-bubble-title {
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
   outline: none;
+}
+
+.pod-join-bubble p {
+  color: var(--pod-on-lime-muted);
+  line-height: 1.5;
+}
+
+@keyframes pod-join-bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pod-join-bubble {
+    animation: none;
+  }
 }
 </style>

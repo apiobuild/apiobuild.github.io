@@ -41,6 +41,10 @@
      min-height lets a flex child shrink to it -- the ground then stopped a
      screen down and the rest of the page sat on the white body. */
   flex-shrink: 0;
+  /* A column, so a page shorter than the screen still ends in its footer at
+     the bottom of the screen rather than halfway up it. */
+  display: flex;
+  flex-direction: column;
   background: var(--pod-bg);
   color: var(--pod-text);
   font-family: var(--pod-body);
@@ -66,6 +70,11 @@
 .podcast-page .pod-shell {
   width: min(100% - 2.5rem, 62rem);
   margin-inline: auto;
+}
+
+/* Pushed down by whatever space the page leaves above it. */
+.podcast-page > .pod-footer {
+  margin-top: auto;
 }
 
 .podcast-page .pod-band {
