@@ -36,10 +36,6 @@
      added or reordered. */
   --pod-band: clamp(4.5rem, 11vw, 9rem);
 
-  /* PodcastHeader's height. It is sticky, so a screen-tall section gives it
-     this much back, and a link jumping to a band stops this far down. */
-  --pod-header: 4rem;
-
   min-height: 100vh;
   /* Vuetify's app wrapper is a flex column one screen tall, and an explicit
      min-height lets a flex child shrink to it -- the ground then stopped a
@@ -75,7 +71,6 @@
 .podcast-page .pod-band {
   padding-block: var(--pod-band);
   border-top: 1px solid var(--pod-rule);
-  scroll-margin-top: var(--pod-header);
 }
 
 /* The small caps label above each section heading. */
