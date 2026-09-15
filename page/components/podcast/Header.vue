@@ -95,8 +95,10 @@ export default {
   font-weight: 600;
   color: var(--pod-text);
 }
+/* The page you're on. Not a link to a section: the router ignores the hash
+   when it matches, so "/podcast#hosts" would stay lit all over /podcast. */
 .podcast-page .pod-header-link:hover,
-.podcast-page .pod-header-link.router-link-exact-active {
+.podcast-page .pod-header-link.router-link-exact-active:not([href*="#"]) {
   color: var(--pod-accent);
 }
 
