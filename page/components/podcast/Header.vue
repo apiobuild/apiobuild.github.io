@@ -5,7 +5,7 @@
     <div class="pod-shell pod-header-inner">
       <NuxtLink class="pod-header-name" to="/podcast">{{ title }}</NuxtLink>
 
-      <nav class="pod-header-nav" :class="{ 'is-open': open }" aria-label="What's the Tea">
+      <nav class="pod-header-nav" :class="{ 'is-open': open }" :aria-label="title">
         <NuxtLink v-for="link in nav.links" :key="link.label" class="pod-header-link" :to="link.to">
           {{ link.label }}
         </NuxtLink>
@@ -45,13 +45,21 @@ export default {
 </script>
 
 <style scoped>
-/* Sticky, and on the page's own ground so the lime bands pass under it
-   without the header changing colour. */
+/* Sticky, and in the hero's night palette (Hero.vue) on every podcast page:
+   it sits straight on the dark hero, where a light bar read as a separate
+   thing, and a dark bar still frames the light join and deals pages. Keep
+   these in step with the hero's tokens. */
 .pod-header {
+  --pod-bg: #101014;
+  --pod-text: #f4f1e8;
+  --pod-accent: #ff6319;
+  --pod-accent-strong: #e0551a;
+  --pod-rule: rgba(244, 241, 232, 0.18);
   position: sticky;
   top: 0;
   z-index: 20;
   background: var(--pod-bg);
+  color: var(--pod-text);
   border-bottom: 1px solid var(--pod-rule);
 }
 

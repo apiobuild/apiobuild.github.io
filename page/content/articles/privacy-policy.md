@@ -37,7 +37,7 @@ We only collect and use your personal information when we have a legitimate reas
 We may collect personal information from you when you do any of the following on our website:
 
 - Sign up to receive updates from us via email or social media channels
-- Ask to join a community we run, such as the What's the Tea WhatsApp community
+- Ask to join a community we run, such as The Ninth's WhatsApp community
 - Use a mobile device or web browser to access our content
 - Contact us via email, social media, or on any similar technologies
 - When you mention us on social media
