@@ -4,7 +4,7 @@
    its Vuetify theme. */
 /* Archivo sets the whole page and is drawn into the hero cube's canvases
    (PodcastCube), so the two read as one thing. */
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Comfortaa:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Comfortaa:wght@400;600&display=swap");
 
 .podcast-page {
   /* The stockoverflow product palette, off the primary and honey ramps in
