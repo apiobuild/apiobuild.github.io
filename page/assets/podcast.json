@@ -22,8 +22,79 @@
         "href": "#"
       }
     ],
-    "community": "#",
+    "community": "/podcast/join",
     "suggestGuest": "mailto:luluc@apiobuild.com?subject=Guest%20suggestion"
+  },
+  "join": {
+    "meta": {
+      "title": "Join the Community | The Ninth",
+      "description": "Join The Ninth's WhatsApp community: Asian American builders talking through each Tuesday's episode and the not-so-pretty things no one talks about."
+    },
+    "eyebrow": "The Community",
+    "title": "Join the conversation",
+    "body": "To keep the group spam-free, tell us about yourself. Once we've reviewed your request, we'll add you to the WhatsApp group.",
+    "web3formsAccessKey": "b0f9b8cd-e777-48d5-8b24-ca2170781e4b",
+    "fields": [
+      {
+        "name": "Name",
+        "label": "Your name",
+        "type": "text",
+        "autocomplete": "name",
+        "required": true
+      },
+      {
+        "name": "WhatsApp number",
+        "label": "WhatsApp number",
+        "type": "tel",
+        "autocomplete": "tel",
+        "placeholder": "+1 555 123 4567",
+        "hint": "Once we've reviewed your request, we'll add this number to the WhatsApp group.",
+        "required": true
+      },
+      {
+        "name": "What they're building",
+        "label": "What are you building?",
+        "type": "textarea",
+        "placeholder": "A coffee shop, a family restaurant, an app, still just an idea...",
+        "required": true
+      },
+      {
+        "legend": "Where can we find you?",
+        "fields": [
+          {
+            "name": "Instagram",
+            "label": "Instagram",
+            "type": "text",
+            "placeholder": "@yourhandle"
+          },
+          {
+            "name": "LinkedIn",
+            "label": "LinkedIn",
+            "type": "text",
+            "placeholder": "linkedin.com/in/you"
+          },
+          {
+            "name": "Website",
+            "label": "Website",
+            "type": "text",
+            "autocomplete": "url",
+            "placeholder": "yourbusiness.com"
+          }
+        ]
+      },
+      {
+        "name": "How they found us",
+        "label": "How did you find us?",
+        "type": "text",
+        "placeholder": "Instagram, a friend, an episode..."
+      }
+    ],
+    "submitLabel": "Request to Join",
+    "thanks": {
+      "title": "Thanks. We're on it.",
+      "body": "We will add you shortly. Keep an eye on WhatsApp."
+    },
+    "error": "That didn't go through. Try again, or email us at luluc@apiobuild.com."
   },
   "hero": {
     "eyebrow": "Podcast | Stories from Asian American builders",

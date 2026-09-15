@@ -26,8 +26,8 @@ definePageMeta({ layout: "podcast" });
 // that stand in for a link's icon.
 const images = Object.fromEntries(
   Object.entries({
-    ...import.meta.glob("../assets/team/*", { eager: true, import: "default" }),
-    ...import.meta.glob("../assets/brand/*", { eager: true, import: "default" })
+    ...import.meta.glob("../../assets/team/*", { eager: true, import: "default" }),
+    ...import.meta.glob("../../assets/brand/*", { eager: true, import: "default" })
   }).map(([path, url]) => [path.split("/").pop(), url])
 );
 
