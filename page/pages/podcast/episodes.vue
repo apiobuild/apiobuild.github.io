@@ -94,6 +94,18 @@
           :language="station.language"
           :arrived="arrived.has(station.id)"
         />
+
+        <!-- Phones and tablets have no line map, so the next stop closes the
+          list instead: the same dashed track and stop, past the last
+          platform. -->
+        <div v-if="next" class="pod-episodes-next-end">
+          <span class="pod-episodes-stop" aria-hidden="true"></span>
+          <span class="pod-episodes-stop-ep">{{ page.nextStopLabel }}</span>
+          <span class="pod-episodes-next-end-name">
+            {{ next.station }}
+            <span v-if="next.language.badge" class="pod-episodes-stop-lang" :lang="next.language.htmlLang">{{ next.language.label }}</span>
+          </span>
+        </div>
       </main>
     </div>
 
@@ -275,10 +287,6 @@ export default {
 
 .pod-episodes :deep(.pod-eyebrow) {
   color: #ffc694;
-}
-
-.pod-episodes :deep(.pod-mark) {
-  color: #282b0d;
 }
 
 .pod-episodes :deep(.pod-btn-ghost) {
@@ -544,6 +552,10 @@ export default {
   color: #e8b33a;
 }
 
+.pod-episodes-next-end {
+  display: none;
+}
+
 .pod-episodes-stations {
   display: flex;
   flex-direction: column;
@@ -558,6 +570,43 @@ export default {
   }
   .pod-episodes-line {
     display: none;
+  }
+
+  .pod-episodes-next-end {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    column-gap: 0.9rem;
+    padding: 2.5rem 0 1rem;
+    line-height: 1.3;
+  }
+
+  /* Track not laid yet, running down into the stop. */
+  .pod-episodes-next-end::before {
+    content: "";
+    position: absolute;
+    left: 0.55rem;
+    top: 0;
+    height: 2.7rem;
+    width: 4px;
+    margin-left: -2px;
+    background: repeating-linear-gradient(180deg, #ff6319 0 5px, transparent 5px 10px);
+  }
+
+  .pod-episodes-next-end .pod-episodes-stop {
+    position: relative;
+    border-style: dashed;
+  }
+
+  .pod-episodes-next-end .pod-episodes-stop-ep {
+    color: #e8b33a;
+  }
+
+  .pod-episodes-next-end-name {
+    grid-column: 2;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--pod-text);
   }
 }
 

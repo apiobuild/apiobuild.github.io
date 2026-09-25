@@ -274,6 +274,11 @@ export default {
     gap: 0.9rem;
     padding-block: 1rem 1.5rem;
   }
+  /* The last platform is only as tall as it needs to be, so whatever ends
+     the line (the next stop) follows it instead of a screen further down. */
+  .pod-station:last-of-type {
+    min-height: 0;
+  }
   .pod-station-scene {
     aspect-ratio: auto;
     height: clamp(15rem, calc(100svh - var(--pod-bar-h, 9.5rem) - 13.5rem), 125vw);

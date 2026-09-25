@@ -275,13 +275,6 @@ export default {
   padding: 0.15em 0.4em;
 }
 
-.pod-hero .pod-mark {
-  /* Always a lime chip regardless of the ground it sits on, so its text
-     stays the fixed dark that reads on lime rather than following the
-     hero's light text token. */
-  color: #282b0d;
-}
-
 .pod-hero .pod-btn-ghost,
 .pod-hero a.pod-btn-ghost:link,
 .pod-hero a.pod-btn-ghost:visited {
@@ -705,11 +698,5 @@ export default {
 .pod-hero-hosted {
   font-size: 1rem;
   color: var(--pod-text);
-}
-
-.pod-mark {
-  background: var(--pod-lime);
-  padding: 0.1em 0.3em;
-  font-weight: 600;
 }
 </style>
