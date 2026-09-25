@@ -1,10 +1,7 @@
 <template>
   <article :id="station.id" class="pod-station" :class="{ 'is-arrived': arrived }">
-    <!-- The platform, in the same frame as the hero's ride: the episode's
-      title heads it where the hero says THE NINTH, over the station, and
-      the card on the wall says who it's by. It carries the title and guest
-      for sighted readers, so the copy below doesn't repeat them; the title
-      is also in the copy for screen readers, which skip the frame. -->
+    <!-- The platform in the hero's frame. Decorative: the copy below repeats
+      what matters, and carries the title for screen readers. -->
     <div class="pod-station-stage" aria-hidden="true">
       <PodcastBezel :name="station.title" :tag="station.station">
         <div class="pod-station-scene">
@@ -84,8 +81,6 @@ const props = defineProps({
 // "#" or a missing link is an episode that isn't out yet.
 const live = computed(() => !!props.station.spotify && props.station.spotify !== "#");
 
-// Dates are stored as plain YYYY-MM-DD; read as UTC so a visitor west of
-// Greenwich doesn't see the day before.
 const date = computed(() => formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }));
 </script>
 
@@ -104,22 +99,16 @@ export default {
   scroll-margin-top: 6rem;
 }
 
-/* The frame's box: PodcastBezel scales its 488x620 design to fit inside.
-   Never taller than the screen leaves once the sticky bar and the copy
-   under it are counted, at any width -- the frame then fits the height and
-   centres, rather than filling a wide column and running off the screen.
-   --pod-bar-h is the bar's measured height, set by the page. */
+/* PodcastBezel fits its 488x620 frame in here. Capped to the screen height
+   left by the bar and the copy. */
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
   max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 15.75rem));
 }
 
-/* Fills the frame's viewport, which is 460x499 at the frame's native size.
-   Drawn in the same pixels as the hero's platforms (NinthTrain.vue) -- the
-   tiles, the navy band at 132, the floor and its yellow edge at 360, the
-   pillars and the dark card -- so a station reads as one more
-   stop on the same ride. PodcastBezel scales the whole thing. */
+/* The frame's 460x499 viewport, drawn in the same pixels as the hero's
+   platforms (NinthTrain.vue). */
 .pod-station-scene {
   position: absolute;
   inset: 0;
@@ -224,9 +213,7 @@ export default {
 }
 
 
-/* Feet on the platform where the hero's riders stand (455 down), and
-   bigger than they are there: the guest is the point of this platform.
-   Scaled per character in the config so a cat isn't the size of a person. */
+/* Feet on the platform; characterScale in the config shrinks a pet. */
 .pod-station-character {
   left: 280px;
   bottom: 40px;
@@ -262,9 +249,7 @@ export default {
   }
 }
 
-/* One column (phones and tablets): one station per screen. The frame takes
-   whatever height the bar and the copy leave (see .pod-station-stage), the
-   copy is trimmed to fit, and scrolling settles on a station at a time. */
+/* One column: a station per screen, copy trimmed to fit. */
 @media (max-width: 60rem) {
   .pod-station {
     scroll-snap-align: start;
@@ -316,8 +301,7 @@ export default {
   gap: 0.6rem;
 }
 
-/* The frame says it; this is for screen readers. The visible line under
-   the frame is the optional headline. */
+/* For screen readers; the frame shows the title. */
 .pod-station-title {
   position: absolute;
   width: 1px;

@@ -47,9 +47,7 @@
         </div>
       </div>
 
-      <!-- Phones and tablets have no line map, so the next stop rides in the
-        sticky bar instead, where scrolling can't hide it: the line running
-        on into the next stop. -->
+      <!-- Phones and tablets have no line map, so the next stop rides in the sticky bar. -->
       <p v-if="next" class="pod-shell pod-episodes-next-hint">
         <span class="pod-episodes-next-hint-name" :lang="next.language.htmlLang">{{ next.station }}</span>
         <span class="pod-episodes-next-hint-line" aria-hidden="true">
@@ -59,9 +57,7 @@
       </p>
     </header>
 
-    <!-- The platforms say what the page is; the heading is for screen
-      readers, and at every width (the line map it used to head is hidden
-      on phones). -->
+    <!-- For screen readers; the platforms say what the page is. -->
     <h1 class="pod-episodes-title">{{ page.title }}</h1>
 
     <div class="pod-shell pod-episodes-body">
@@ -155,6 +151,7 @@ const allStations = page.stations.map((station) => ({
 const stations = allStations.filter((s) => !s.next);
 const next = allStations.find((s) => s.next);
 
+const showTitle = content.hero.title;
 const labels = { listen: page.listenLabel, comingSoon: page.comingSoonLabel };
 
 // ---- Where the rider is --------------------------------------------------
@@ -292,17 +289,6 @@ export default {
   color: #ffc694;
 }
 
-.pod-episodes :deep(.pod-btn-ghost) {
-  border: 2px solid var(--pod-text);
-  color: var(--pod-text);
-}
-
-.pod-episodes :deep(.pod-btn-solid),
-.pod-episodes :deep(a.pod-btn-solid:link),
-.pod-episodes :deep(a.pod-btn-solid:visited) {
-  color: #fff;
-}
-
 .pod-episodes :deep(.pod-footer) {
   border-top: 1px solid var(--pod-rule);
 }
@@ -434,9 +420,7 @@ export default {
 
 /* ---- Body --------------------------------------------------------------- */
 
-/* At least a screen tall under the bar, so the footer waits below the
-   fold until someone scrolls to it -- and on desktop the stations sit in
-   the middle of that screen rather than at its top. */
+/* A screen tall, so the footer sits below the fold; centred on desktop. */
 .pod-episodes-body {
   min-height: calc(100svh - var(--pod-bar-h, 4.5rem));
   box-sizing: border-box;
@@ -584,8 +568,7 @@ export default {
     display: none;
   }
 
-  /* Like a subway line diagram: the next station's name, and under it the
-     line running on into the stop. */
+  /* The next station's name over the line running into its stop. */
   .pod-episodes-next-hint {
     display: grid;
     justify-items: center;
@@ -601,14 +584,19 @@ export default {
     color: var(--pod-text);
   }
 
+  /* The stop is what centres under the name; the track hangs off its left. */
   .pod-episodes-next-hint-line {
+    position: relative;
     display: flex;
-    align-items: center;
   }
 
   .pod-episodes-next-hint-track {
+    position: absolute;
+    right: 100%;
+    top: 50%;
     width: 2.75rem;
     height: 4px;
+    transform: translateY(-50%);
     background: #ff6319;
   }
 
@@ -628,14 +616,10 @@ export default {
   :global(html:has(.pod-episodes)) {
     scroll-snap-type: y proximity;
   }
-  /* Just enough room before the footer, not a whole section's worth. */
   .pod-episodes-body {
     padding-block: 0 1.5rem;
   }
-  /* Every station, and the hint above them, is exactly as wide as its
-     frame: the frame's height is capped to the screen (see Station.vue),
-     and 488:620 is its shape. Centred, so the copy lines up under the
-     frame instead of spanning a wider column. */
+  /* Each station (and the hint) is as wide as its height-capped frame, centred. */
   .pod-episodes-stations {
     gap: 0;
     align-items: center;
@@ -646,8 +630,7 @@ export default {
   }
 }
 
-/* A phone's frame all but fills the width already; a column narrower than
-   the screen would only squeeze the copy onto more lines. */
+/* Phones: full width; the frame nearly fills it anyway. */
 @media (max-width: 40rem) {
   .pod-episodes-stations {
     --pod-station-w: 100%;

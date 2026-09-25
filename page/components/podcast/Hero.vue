@@ -143,6 +143,9 @@ const props = defineProps({
   hosts: { type: Array, default: () => [] }
 });
 
+// The platform row below only renders when links.listen in podcast.json is
+// a list of platforms. It's a single Spotify URL for now, so this is idle
+// until Apple Podcasts or YouTube are added back.
 const platformsOpen = ref(false);
 
 // Null unless the primary CTA's destination is a list, which is what tells

@@ -23,16 +23,11 @@
     {
       "id": "edison",
       "station": "Edison, NJ",
-      "number": 2,
-      "next": true,
-      "title": "Machapresso",
-      "guest": "Machapresso",
-      "character": "ashly.webp"
+      "next": true
     },
     {
       "id": "boonton",
       "station": "Boonton, NJ",
-      "number": 1,
       "date": "2026-09-24",
       "title": "Catfight Coffee",
       "guest": "Meiling",
