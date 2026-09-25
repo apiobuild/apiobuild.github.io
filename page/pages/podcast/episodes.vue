@@ -576,6 +576,7 @@ export default {
     scroll-snap-align: start;
     scroll-margin-top: var(--pod-bar-h, 4.5rem);
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     gap: 0.5rem;
     padding-top: 1rem;
@@ -628,8 +629,25 @@ export default {
   .pod-episodes-body {
     padding-top: 0;
   }
+  /* Every station, and the hint above them, is exactly as wide as its
+     frame: the frame's height is capped to the screen (see Station.vue),
+     and 488:620 is its shape. Centred, so the copy lines up under the
+     frame instead of spanning a wider column. */
   .pod-episodes-stations {
     gap: 0;
+    align-items: center;
+    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 13rem) * 488 / 620)));
+  }
+  .pod-episodes-stations > * {
+    width: var(--pod-station-w);
+  }
+}
+
+/* A phone's frame all but fills the width already; a column narrower than
+   the screen would only squeeze the copy onto more lines. */
+@media (max-width: 40rem) {
+  .pod-episodes-stations {
+    --pod-station-w: 100%;
   }
 }
 
