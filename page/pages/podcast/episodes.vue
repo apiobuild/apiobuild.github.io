@@ -49,7 +49,7 @@
 
       <!-- Phones and tablets have no line map, so the next stop rides in the
         sticky bar instead, where scrolling can't hide it: the line running
-        on, dashed, into the stop that isn't built yet. -->
+        on into the next stop. -->
       <p v-if="next" class="pod-shell pod-episodes-next-hint">
         <span class="pod-episodes-next-hint-name" :lang="next.language.htmlLang">{{ next.station }}</span>
         <span class="pod-episodes-next-hint-line" aria-hidden="true">
@@ -86,7 +86,7 @@
         </ol>
 
         <!-- The coming-next episode has no platform yet, so it lives only
-          here: a dashed stop past the end of the line. -->
+          here: an unfilled stop at the end of the line. -->
         <div v-if="next" class="pod-episodes-next">
           <div class="pod-episodes-next-stop">
             <span class="pod-episodes-stop" aria-hidden="true"></span>
@@ -151,7 +151,7 @@ const allStations = page.stations.map((station) => ({
 }));
 
 // "next": true marks the episode that's coming but not out. It gets no
-// platform, only the dashed stop at the end of the line map.
+// platform, only the unfilled stop at the end of the line map.
 const stations = allStations.filter((s) => !s.next);
 const next = allStations.find((s) => s.next);
 
@@ -585,7 +585,7 @@ export default {
   }
 
   /* Like a subway line diagram: the next station's name, and under it the
-     line running on, dashed where it isn't built yet, into the stop. */
+     line running on into the stop. */
   .pod-episodes-next-hint {
     display: grid;
     justify-items: center;
@@ -609,10 +609,7 @@ export default {
   .pod-episodes-next-hint-track {
     width: 2.75rem;
     height: 4px;
-    background:
-      linear-gradient(90deg, #ff6319 0 1rem, transparent 1rem),
-      repeating-linear-gradient(90deg, #ff6319 0 5px, transparent 5px 10px) 1.35rem 0 / calc(100% - 1.35rem) 100%
-        no-repeat;
+    background: #ff6319;
   }
 
   .pod-episodes-next-hint .pod-episodes-stop {
