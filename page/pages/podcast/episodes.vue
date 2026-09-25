@@ -85,6 +85,15 @@
       </nav>
 
       <main class="pod-episodes-stations">
+        <!-- Phones and tablets have no line map, so the next stop is hinted
+          above the platforms instead: the line running on, dashed, into
+          the stop that isn't built yet. -->
+        <p v-if="next" class="pod-episodes-next-hint">
+          <span class="pod-episodes-next-hint-track" aria-hidden="true"></span>
+          <span class="pod-episodes-stop" aria-hidden="true"></span>
+          <span class="pod-episodes-next-hint-label">{{ page.nextStopLabel }}</span>
+          <span class="pod-episodes-next-hint-name" :lang="next.language.htmlLang">{{ next.station }}</span>
+        </p>
         <PodcastStation
           v-for="station in stations"
           :key="station.id"
@@ -94,18 +103,6 @@
           :language="station.language"
           :arrived="arrived.has(station.id)"
         />
-
-        <!-- Phones and tablets have no line map, so the next stop closes the
-          list instead: the same dashed track and stop, past the last
-          platform. -->
-        <div v-if="next" class="pod-episodes-next-end">
-          <span class="pod-episodes-stop" aria-hidden="true"></span>
-          <span class="pod-episodes-stop-ep">{{ page.nextStopLabel }}</span>
-          <span class="pod-episodes-next-end-name">
-            {{ next.station }}
-            <span v-if="next.language.badge" class="pod-episodes-stop-lang" :lang="next.language.htmlLang">{{ next.language.label }}</span>
-          </span>
-        </div>
       </main>
     </div>
 
@@ -552,7 +549,7 @@ export default {
   color: #e8b33a;
 }
 
-.pod-episodes-next-end {
+.pod-episodes-next-hint {
   display: none;
 }
 
@@ -572,41 +569,47 @@ export default {
     display: none;
   }
 
-  .pod-episodes-next-end {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1.1rem 1fr;
-    column-gap: 0.9rem;
-    padding: 2.5rem 0 1rem;
-    line-height: 1.3;
+  /* The page's first snap point, so snapping onto the first platform
+     doesn't scroll the hint away under the sticky bar. */
+  .pod-episodes-next-hint {
+    scroll-snap-align: start;
+    scroll-margin-top: var(--pod-bar-h, 4.5rem);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
-  /* Track not laid yet, running down into the stop. */
-  .pod-episodes-next-end::before {
-    content: "";
-    position: absolute;
-    left: 0.55rem;
-    top: 0;
-    height: 2.7rem;
-    width: 4px;
-    margin-left: -2px;
-    background: repeating-linear-gradient(180deg, #ff6319 0 5px, transparent 5px 10px);
+  /* The line, solid then dashed where it isn't built yet. */
+  .pod-episodes-next-hint-track {
+    width: 3rem;
+    height: 4px;
+    flex-shrink: 0;
+    background:
+      linear-gradient(90deg, #ff6319 0 1.25rem, transparent 1.25rem),
+      repeating-linear-gradient(90deg, #ff6319 0 5px, transparent 5px 10px) 1.6rem 0 / calc(100% - 1.6rem) 100%
+        no-repeat;
   }
 
-  .pod-episodes-next-end .pod-episodes-stop {
-    position: relative;
+  .pod-episodes-next-hint .pod-episodes-stop {
+    flex-shrink: 0;
+    margin: 0;
     border-style: dashed;
   }
 
-  .pod-episodes-next-end .pod-episodes-stop-ep {
+  .pod-episodes-next-hint-label {
     color: #e8b33a;
+    letter-spacing: 0.08em;
   }
 
-  .pod-episodes-next-end-name {
-    grid-column: 2;
+  .pod-episodes-next-hint-name {
     font-weight: 800;
-    font-size: 1.25rem;
     color: var(--pod-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

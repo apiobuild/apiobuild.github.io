@@ -102,10 +102,15 @@ export default {
 /* Portrait first: phones are the main way in. Everything inside the scene
    is sized in cqw (the scene's own width), so one layout scales from a
    phone to the narrower column it gets beside the copy on desktop. */
-/* The frame's box: PodcastBezel scales its 488x620 design to fit inside. */
+/* The frame's box: PodcastBezel scales its 488x620 design to fit inside.
+   Never taller than the screen leaves once the sticky bar and the copy
+   under it are counted, at any width -- the frame then fits the height and
+   centres, rather than filling a wide column and running off the screen.
+   --pod-bar-h is the bar's measured height, set by the page. */
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 12.5rem));
 }
 
 /* Fills the frame's viewport. Positions are percentages of it and sizes are
@@ -246,16 +251,6 @@ export default {
     min-height: calc(100svh - var(--pod-bar-h, 9.5rem));
     gap: 0.9rem;
     padding-block: 1rem 1.5rem;
-  }
-  /* The last platform is only as tall as it needs to be, so whatever ends
-     the line (the next stop) follows it instead of a screen further down. */
-  .pod-station:last-of-type {
-    min-height: 0;
-  }
-  /* Never taller than the bar and the copy leave; the frame then fits the
-     height and centres, rather than pushing the copy off the screen. */
-  .pod-station-stage {
-    max-height: max(15rem, calc(100svh - var(--pod-bar-h, 9.5rem) - 12.5rem));
   }
   .pod-station-copy {
     gap: 0.35rem;
