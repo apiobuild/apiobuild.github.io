@@ -11,6 +11,8 @@
           <div class="pod-station-pillar pod-station-pillar-a"></div>
           <div class="pod-station-pillar pod-station-pillar-b"></div>
 
+          <div class="pod-station-floor"></div>
+
           <div class="pod-station-poster">
             <div class="pod-station-poster-eyebrow">EP {{ pad(station.number) }}</div>
             <div class="pod-station-poster-rule"></div>
@@ -18,7 +20,6 @@
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
-          <div class="pod-station-floor"></div>
           <div class="pod-station-bench"></div>
 
           <img
@@ -99,9 +100,6 @@ export default {
   scroll-margin-top: 6rem;
 }
 
-/* Portrait first: phones are the main way in. Everything inside the scene
-   is sized in cqw (the scene's own width), so one layout scales from a
-   phone to the narrower column it gets beside the copy on desktop. */
 /* The frame's box: PodcastBezel scales its 488x620 design to fit inside.
    Never taller than the screen leaves once the sticky bar and the copy
    under it are counted, at any width -- the frame then fits the height and
@@ -110,21 +108,22 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 13rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 14rem));
 }
 
-/* Fills the frame's viewport. Positions are percentages of it and sizes are
-   cqw (its width), so the platform is drawn once at the frame's native size
-   and scales with it. */
+/* Fills the frame's viewport, which is 460x499 at the frame's native size.
+   Drawn in the same pixels as the hero's platforms (NinthTrain.vue) -- the
+   tiles, the navy band at 132, the floor and its yellow edge at 360, the
+   pillars, the bench and the dark card -- so a station reads as one more
+   stop on the same ride. PodcastBezel scales the whole thing. */
 .pod-station-scene {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  container-type: inline-size;
   background-color: #efece5;
   background-image:
-    repeating-linear-gradient(0deg, rgba(32, 38, 48, 0.1) 0 1px, transparent 1px 5.5cqw),
-    repeating-linear-gradient(90deg, rgba(32, 38, 48, 0.1) 0 1px, transparent 1px 5.5cqw);
+    repeating-linear-gradient(0deg, rgba(32, 38, 48, 0.1) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(90deg, rgba(32, 38, 48, 0.1) 0 1px, transparent 1px 22px);
 }
 
 .pod-station-scene > * {
@@ -134,82 +133,127 @@ export default {
 .pod-station-frieze {
   left: 0;
   right: 0;
-  top: 9%;
-  height: 4%;
+  top: 132px;
+  height: 26px;
   background: #2b3340;
 }
 
 .pod-station-pillar {
   top: 0;
-  width: 4%;
-  height: 84%;
+  width: 22px;
+  height: 400px;
   background: #39414e;
 }
 
 .pod-station-pillar-a {
-  left: 2%;
+  left: 36px;
 }
 .pod-station-pillar-b {
-  right: 2%;
+  right: 36px;
 }
 
 .pod-station-floor {
   left: 0;
   right: 0;
-  top: 80%;
+  top: 360px;
   bottom: 0;
   background: #5f636b;
-  border-top: 2.6cqw solid #e8b33a;
-  box-shadow: inset 0 0.8cqw 0 rgba(0, 0, 0, 0.22);
+  border-top: 15px solid #e8b33a;
+  box-shadow: inset 0 3px 0 rgba(0, 0, 0, 0.22);
 }
 
-/* An ad on the wall that happens to be the episode's. */
+/* The hero's dark card, with the same skewed edges standing in for depth. */
 .pod-station-poster {
-  left: 10%;
-  top: 24%;
-  width: 38%;
-  padding: 3cqw;
-  background: #c4470f;
-  color: #fff;
-  box-shadow: 1.4cqw 1.4cqw 0 #7c2d0a;
-  font-size: 3.3cqw;
-  line-height: 1.25;
+  left: 78px;
+  top: 172px;
+  width: 196px;
+  box-sizing: border-box;
+  padding: 16px 18px;
+  background: #0c0f16;
+  color: #fdfbf7;
+}
+
+.pod-station-poster::before,
+.pod-station-poster::after {
+  content: "";
+  position: absolute;
+}
+
+.pod-station-poster::before {
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 9px;
+  background: #2a2f36;
+  transform: skewX(45deg);
+  transform-origin: top left;
+}
+
+.pod-station-poster::after {
+  left: 100%;
+  top: 0;
+  width: 9px;
+  height: 100%;
+  background: #1a1e24;
+  transform: skewY(45deg);
+  transform-origin: left top;
 }
 
 .pod-station-poster-eyebrow {
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.16em;
   color: #ffc694;
 }
 
 .pod-station-poster-rule {
-  height: 0.5cqw;
-  margin: 0.6em 0;
+  height: 2px;
+  margin: 13px 0;
   background: rgba(253, 251, 247, 0.5);
 }
 
 .pod-station-poster-guest {
-  font-weight: 800;
-  font-size: 1.3em;
-  letter-spacing: -0.01em;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
+/* Two slats and two legs, as on the hero's platforms. */
 .pod-station-bench {
-  left: 10%;
-  top: 72%;
-  width: 32%;
-  height: 2.6%;
+  left: 78px;
+  top: 396px;
+  width: 148px;
+  height: 12px;
   background: #8a5a33;
-  box-shadow: 0 1.6cqw 0 #9a663a;
+  box-shadow: 0 16px 0 #9a663a;
 }
 
-/* Feet on the platform just past its yellow edge, the way the hero's riders
-   stand. Height is a share of the scene, scaled per character in the config
-   so a cat isn't the size of a person. */
+.pod-station-bench::before,
+.pod-station-bench::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  width: 8px;
+  height: 26px;
+  background: #3a4350;
+}
+
+.pod-station-bench::before {
+  left: 10px;
+}
+
+.pod-station-bench::after {
+  right: 10px;
+}
+
+/* Feet on the platform where the hero's riders stand (455 down), a little
+   taller than they are there since this frame is the whole scene. Scaled
+   per character in the config so a cat isn't the size of a person. */
 .pod-station-character {
-  left: 55%;
-  bottom: 11%;
-  height: calc(56% * var(--pod-character-scale));
+  left: 290px;
+  bottom: 44px;
+  height: calc(210px * var(--pod-character-scale));
   width: auto;
   pointer-events: none;
   user-select: none;
@@ -348,8 +392,8 @@ export default {
 }
 
 .pod-station-poster .pod-station-lang {
-  margin: 0.5em 0 0;
-  font-size: 0.85em;
+  margin: 10px 0 0;
+  font-size: 11px;
 }
 
 </style>
