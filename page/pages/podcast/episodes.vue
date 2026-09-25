@@ -435,15 +435,16 @@ export default {
 /* ---- Body --------------------------------------------------------------- */
 
 /* At least a screen tall under the bar, so the footer waits below the
-   fold until someone scrolls to it. */
+   fold until someone scrolls to it -- and on desktop the stations sit in
+   the middle of that screen rather than at its top. */
 .pod-episodes-body {
   min-height: calc(100svh - var(--pod-bar-h, 4.5rem));
   box-sizing: border-box;
-  align-content: start;
+  align-content: center;
   display: grid;
   grid-template-columns: 12rem minmax(0, 1fr);
   gap: 3rem;
-  padding-block: 3rem var(--pod-band);
+  padding-block: 2rem;
 }
 
 .pod-episodes-line {
@@ -576,6 +577,7 @@ export default {
 @media (max-width: 60rem) {
   .pod-episodes-body {
     grid-template-columns: minmax(0, 1fr);
+    align-content: start;
     padding-top: 1.5rem;
   }
   .pod-episodes-line {
