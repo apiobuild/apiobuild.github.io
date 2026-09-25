@@ -23,8 +23,6 @@
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
-          <div class="pod-station-bench"></div>
-
           <img
             v-if="station.character"
             class="pod-station-character"
@@ -120,7 +118,7 @@ export default {
 /* Fills the frame's viewport, which is 460x499 at the frame's native size.
    Drawn in the same pixels as the hero's platforms (NinthTrain.vue) -- the
    tiles, the navy band at 132, the floor and its yellow edge at 360, the
-   pillars, the bench and the dark card -- so a station reads as one more
+   pillars and the dark card -- so a station reads as one more
    stop on the same ride. PodcastBezel scales the whole thing. */
 .pod-station-scene {
   position: absolute;
@@ -172,9 +170,9 @@ export default {
 .pod-station-poster {
   left: 70px;
   top: 40px;
-  width: 196px;
+  width: 168px;
   box-sizing: border-box;
-  padding: 16px 18px;
+  padding: 13px 15px;
   background: #0c0f16;
   color: #fdfbf7;
 }
@@ -206,7 +204,7 @@ export default {
 }
 
 .pod-station-poster-eyebrow {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 900;
   letter-spacing: 0.06em;
   color: #ffc694;
@@ -214,44 +212,17 @@ export default {
 
 .pod-station-poster-rule {
   height: 2px;
-  margin: 13px 0;
+  margin: 10px 0;
   background: rgba(253, 251, 247, 0.5);
 }
 
 .pod-station-poster-title {
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
-/* Two slats and two legs, as on the hero's platforms. */
-.pod-station-bench {
-  left: 78px;
-  top: 396px;
-  width: 148px;
-  height: 12px;
-  background: #8a5a33;
-  box-shadow: 0 16px 0 #9a663a;
-}
-
-.pod-station-bench::before,
-.pod-station-bench::after {
-  content: "";
-  position: absolute;
-  top: 28px;
-  width: 8px;
-  height: 26px;
-  background: #3a4350;
-}
-
-.pod-station-bench::before {
-  left: 10px;
-}
-
-.pod-station-bench::after {
-  right: 10px;
-}
 
 /* Feet on the platform where the hero's riders stand (455 down), and
    bigger than they are there: the guest is the point of this platform.
