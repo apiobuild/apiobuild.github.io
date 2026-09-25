@@ -1,37 +1,36 @@
 <template>
   <article :id="station.id" class="pod-station" :class="{ 'is-arrived': arrived }">
-    <!-- The platform: the same tiles, frieze, yellow edge and pillars as the
-      hero's ride, drawn in percentages so it scales with the column. Purely
-      scenery -- the sign's name and the poster's text are repeated in the
-      details below, so the whole scene is hidden from assistive tech. -->
-    <div class="pod-station-scene" aria-hidden="true">
-      <div class="pod-station-frieze"></div>
-      <div class="pod-station-pillar pod-station-pillar-a"></div>
-      <div class="pod-station-pillar pod-station-pillar-b"></div>
+    <!-- The platform, in the same frame as the hero's ride: the station's
+      name heads it where the hero says THE NINTH. Purely scenery -- the
+      name and the poster's text are repeated in the details below, so the
+      whole frame is hidden from assistive tech. -->
+    <div class="pod-station-stage" aria-hidden="true">
+      <PodcastBezel :name="station.station" :tag="`EP ${pad(station.number)}`">
+        <div class="pod-station-scene">
+          <div class="pod-station-frieze"></div>
+          <div class="pod-station-pillar pod-station-pillar-a"></div>
+          <div class="pod-station-pillar pod-station-pillar-b"></div>
 
-      <div class="pod-station-sign">
-        <span class="pod-station-bullet">9</span>
-        <span class="pod-station-sign-name">{{ station.station }}</span>
-      </div>
+          <div class="pod-station-poster">
+            <div class="pod-station-poster-eyebrow">EP {{ pad(station.number) }}</div>
+            <div class="pod-station-poster-rule"></div>
+            <div class="pod-station-poster-guest">{{ station.guest }}</div>
+            <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
+          </div>
 
-      <div class="pod-station-poster">
-        <div class="pod-station-poster-eyebrow">EP {{ pad(station.number) }}</div>
-        <div class="pod-station-poster-rule"></div>
-        <div class="pod-station-poster-guest">{{ station.guest }}</div>
-        <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
-      </div>
+          <div class="pod-station-floor"></div>
+          <div class="pod-station-bench"></div>
 
-      <div class="pod-station-floor"></div>
-      <div class="pod-station-bench"></div>
-
-      <img
-        v-if="station.character"
-        class="pod-station-character"
-        :src="station.character"
-        :style="{ '--pod-character-scale': station.characterScale ?? 1 }"
-        alt=""
-        draggable="false"
-      />
+          <img
+            v-if="station.character"
+            class="pod-station-character"
+            :src="station.character"
+            :style="{ '--pod-character-scale': station.characterScale ?? 1 }"
+            alt=""
+            draggable="false"
+          />
+        </div>
+      </PodcastBezel>
     </div>
 
     <div class="pod-station-details">
@@ -80,7 +79,6 @@ const pad = (n) => String(n ?? "").padStart(2, "0");
 // "#" or a missing link is an episode that isn't out yet.
 const live = computed(() => !!props.station.spotify && props.station.spotify !== "#");
 
-
 // Dates are stored as plain YYYY-MM-DD; read as UTC so a visitor west of
 // Greenwich doesn't see the day before.
 const date = computed(() => formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }));
@@ -104,10 +102,18 @@ export default {
 /* Portrait first: phones are the main way in. Everything inside the scene
    is sized in cqw (the scene's own width), so one layout scales from a
    phone to the narrower column it gets beside the copy on desktop. */
-.pod-station-scene {
-  position: relative;
+/* The frame's box: PodcastBezel scales its 488x620 design to fit inside. */
+.pod-station-stage {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 488 / 620;
+}
+
+/* Fills the frame's viewport. Positions are percentages of it and sizes are
+   cqw (its width), so the platform is drawn once at the frame's native size
+   and scales with it. */
+.pod-station-scene {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   container-type: inline-size;
   background-color: #efece5;
@@ -123,8 +129,8 @@ export default {
 .pod-station-frieze {
   left: 0;
   right: 0;
-  top: 8%;
-  height: 3%;
+  top: 9%;
+  height: 4%;
   background: #2b3340;
 }
 
@@ -152,42 +158,10 @@ export default {
   box-shadow: inset 0 0.8cqw 0 rgba(0, 0, 0, 0.22);
 }
 
-/* The station's name, the way the platform wall itself would say it. */
-.pod-station-sign {
-  left: 10%;
-  right: 10%;
-  top: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  padding: 0.4em 0.6em;
-  background: #0c0f16;
-  color: #fdfbf7;
-  font-size: 8cqw;
-  font-weight: 800;
-  line-height: 1.15;
-  white-space: nowrap;
-  /* The same faux-3D edge as the hero's cards. */
-  box-shadow: 1.4cqw 1.4cqw 0 #2a2f36;
-}
-
-.pod-station-bullet {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.4em;
-  height: 1.4em;
-  border-radius: 50%;
-  background: #ff6319;
-  color: #fff;
-  font-weight: 900;
-}
-
 /* An ad on the wall that happens to be the episode's. */
 .pod-station-poster {
   left: 10%;
-  top: 37%;
+  top: 24%;
   width: 38%;
   padding: 3cqw;
   background: #c4470f;
@@ -262,9 +236,8 @@ export default {
   }
 }
 
-/* Phone: one station per screen. The scene takes whatever height the bar
-   and the copy leave (never taller than 4:5, never a sliver), and the copy
-   is trimmed to fit. --pod-bar-h is the sticky bar's measured height, set
+/* Phone: one station per screen. The frame takes whatever height the bar
+   and the copy leave, and the copy is trimmed to fit. --pod-bar-h is the sticky bar's measured height, set
    by the page. */
 @media (max-width: 40rem) {
   .pod-station {
@@ -279,9 +252,10 @@ export default {
   .pod-station:last-of-type {
     min-height: 0;
   }
-  .pod-station-scene {
-    aspect-ratio: auto;
-    height: clamp(15rem, calc(100svh - var(--pod-bar-h, 9.5rem) - 13.5rem), 125vw);
+  /* Never taller than the bar and the copy leave; the frame then fits the
+     height and centres, rather than pushing the copy off the screen. */
+  .pod-station-stage {
+    max-height: max(15rem, calc(100svh - var(--pod-bar-h, 9.5rem) - 12.5rem));
   }
   .pod-station-copy {
     gap: 0.35rem;
@@ -295,14 +269,6 @@ export default {
   }
   .pod-station-listen {
     padding: 0.6rem 1.1rem 0.6rem 0.9rem;
-  }
-}
-
-/* Short phones squeeze the scene wide; the poster would crowd the sign, and
-   the copy right below says the same thing. */
-@media (max-width: 40rem) and (max-height: 720px) {
-  .pod-station-poster {
-    display: none;
   }
 }
 
@@ -340,7 +306,6 @@ export default {
   color: var(--pod-text);
 }
 
-
 .pod-station-listen {
   flex-shrink: 0;
   margin-left: auto;
@@ -375,8 +340,6 @@ export default {
   background: transparent;
   color: var(--pod-text-muted);
 }
-
-
 
 .pod-station-lang {
   display: inline-flex;
