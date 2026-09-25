@@ -41,6 +41,9 @@
           <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
         </p>
         <h2 class="pod-station-title" :lang="language.htmlLang">{{ station.title }}</h2>
+        <p v-if="station.description" class="pod-station-description" :lang="language.htmlLang">
+          {{ station.description }}
+        </p>
       </div>
 
       <!-- Guest on the left, Listen on the right, sharing one centre line.
@@ -108,7 +111,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 14rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 18rem));
 }
 
 /* Fills the frame's viewport, which is 460x499 at the frame's native size.
@@ -302,6 +305,15 @@ export default {
   .pod-station-title {
     font-size: 1.45rem;
   }
+  /* Three lines at most, so a station still fits one screen. */
+  .pod-station-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
   .pod-station-guest,
   .pod-station-listen {
     font-size: 0.95rem;
@@ -334,6 +346,13 @@ export default {
 
 .pod-station-title {
   font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+}
+
+.pod-station-description {
+  color: var(--pod-text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 36rem;
 }
 
 .pod-station-guest {

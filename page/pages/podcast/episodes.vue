@@ -229,7 +229,7 @@ const results = computed(() => {
   if (!q) return [];
   return stations
     .filter((s) =>
-      [s.station, s.title, s.guest, `ep ${s.number}`, String(s.number), s.language.label, s.language.searchAs]
+      [s.station, s.title, s.guest, s.description, `ep ${s.number}`, String(s.number), s.language.label, s.language.searchAs]
         .filter(Boolean)
         .some((field) => field.toLowerCase().includes(q))
     )
@@ -641,7 +641,7 @@ export default {
   .pod-episodes-stations {
     gap: 0;
     align-items: center;
-    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 14rem) * 488 / 620)));
+    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 18rem) * 488 / 620)));
   }
   .pod-episodes-stations > * {
     width: var(--pod-station-w);
