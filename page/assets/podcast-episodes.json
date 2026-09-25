@@ -21,6 +21,15 @@
   "defaultLanguage": "en",
   "stations": [
     {
+      "id": "edison",
+      "station": "Edison, NJ",
+      "number": 2,
+      "next": true,
+      "title": "Machapresso",
+      "guest": "Machapresso",
+      "character": "ashly.webp"
+    },
+    {
       "id": "boonton",
       "station": "Boonton, NJ",
       "number": 1,
