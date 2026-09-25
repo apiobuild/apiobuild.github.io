@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Episodes | The Ninth",
+    "description": "Every stop on The Ninth: stories from Asian American builders, one station at a time."
+  },
+  "title": "Episodes",
+  "searchPlaceholder": "Find a station, guest or episode",
+  "listenLabel": "Listen",
+  "comingSoonLabel": "Coming soon",
+  "nextStopLabel": "Next stop",
+  "languages": {
+    "en": {
+      "label": "English"
+    },
+    "zh": {
+      "label": "中文",
+      "htmlLang": "zh-Hant",
+      "searchAs": "mandarin chinese"
+    }
+  },
+  "defaultLanguage": "en",
+  "stations": [
+    {
+      "id": "boonton",
+      "station": "Boonton, NJ",
+      "number": 1,
+      "date": "2026-09-24",
+      "title": "Catfight Coffee",
+      "guest": "Meiling, Catfight Coffee",
+      "spotify": "https://open.spotify.com/episode/17YHq0WyN8klUV6sEciFqL?si=6nYY3GC0S3GaNPYg1PfPEg",
+      "character": "meiling-boonton.webp"
+    }
+  ]
+}
