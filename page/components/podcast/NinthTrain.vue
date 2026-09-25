@@ -10,210 +10,200 @@
       :class="{ 'is-dragging': dragging }"
       @pointerdown="onDragStart"
     >
-      <div class="ninth-bezel">
-        <div class="ninth-header">
-          <div class="ninth-logo">9</div>
-          <div class="ninth-wordmark">
-            <div class="ninth-name">THE NINTH</div>
-            <div class="ninth-tag">PODCAST SERIES</div>
-          </div>
-        </div>
+      <PodcastBezel name="THE NINTH" tag="PODCAST SERIES" @scale="onScale">
+        <div ref="skyRef" class="ninth-sky"></div>
 
-        <div class="ninth-viewport">
-          <div ref="skyRef" class="ninth-sky"></div>
+        <div ref="stripRef" class="ninth-strip">
+          <!-- Platform one: tile floor, the train's near wall, a bench. -->
+          <div style="position:absolute;left:0px;top:0;width:1860px;height:500px;background:#efece5;background-image:repeating-linear-gradient(0deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px),repeating-linear-gradient(90deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px);"></div>
+          <div style="position:absolute;left:0px;top:132px;width:1860px;height:26px;background:#2b3340;"></div>
+          <div style="position:absolute;left:0px;top:360px;width:1860px;height:140px;background:#5f636b;"></div>
+          <div style="position:absolute;left:0px;top:360px;width:1860px;height:15px;background:#E8B33A;"></div>
+          <div style="position:absolute;left:0;top:376px;width:1400px;height:3px;background:rgba(0,0,0,0.22);"></div>
+          <div style="position:absolute;left:816px;top:0;width:22px;height:400px;background:#39414e;"></div>
 
-          <div ref="stripRef" class="ninth-strip">
-            <!-- Platform one: tile floor, the train's near wall, a bench. -->
-            <div style="position:absolute;left:0px;top:0;width:1860px;height:500px;background:#efece5;background-image:repeating-linear-gradient(0deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px),repeating-linear-gradient(90deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px);"></div>
-            <div style="position:absolute;left:0px;top:132px;width:1860px;height:26px;background:#2b3340;"></div>
-            <div style="position:absolute;left:0px;top:360px;width:1860px;height:140px;background:#5f636b;"></div>
-            <div style="position:absolute;left:0px;top:360px;width:1860px;height:15px;background:#E8B33A;"></div>
-            <div style="position:absolute;left:0;top:376px;width:1400px;height:3px;background:rgba(0,0,0,0.22);"></div>
-            <div style="position:absolute;left:816px;top:0;width:22px;height:400px;background:#39414e;"></div>
+          <div style="position:absolute;left:524px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
+          <div style="position:absolute;left:524px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
+          <div style="position:absolute;left:534px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:654px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:930px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
+          <div style="position:absolute;left:930px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
+          <div style="position:absolute;left:940px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:1060px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:744px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
+          <div style="position:absolute;left:1190px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
+          <div style="position:absolute;left:1432px;top:0;width:22px;height:400px;background:#39414e;"></div>
 
-            <div style="position:absolute;left:524px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
-            <div style="position:absolute;left:524px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
-            <div style="position:absolute;left:534px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:654px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:930px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
-            <div style="position:absolute;left:930px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
-            <div style="position:absolute;left:940px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:1060px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:744px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
-            <div style="position:absolute;left:1190px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
-            <div style="position:absolute;left:1432px;top:0;width:22px;height:400px;background:#39414e;"></div>
-
-            <!-- Tunnel mouth into daylight. -->
-            <div style="position:absolute;left:1778px;top:0;width:82px;height:500px;background:#060810;"></div>
-            <div style="position:absolute;left:0;top:0;width:1400px;height:500px;">
-              <div style="position:absolute;left:484px;top:168px;width:300px;background:#0C0F16;box-sizing:border-box;padding:16px 18px;">
-                <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#2A2F36;transform:skewX(45deg);transform-origin:top left;"></div>
-                <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#1A1E24;transform:skewY(45deg);transform-origin:left top;"></div>
-                <div style="font-size:12px;font-weight:900;letter-spacing:0.16em;color:#FFC694;">PODCAST SERIES</div>
-                <div style="height:2px;background:rgba(253,251,247,0.5);margin:13px 0;"></div>
-                <div style="font-size:33px;font-weight:700;letter-spacing:-0.03em;line-height:1.06;color:#FDFBF7;text-wrap:pretty;">Stories of Asian American builders</div>
-              </div>
-            </div>
-
-            <!-- Between the tunnels: a wall of scattered light, Catfight Coffee's storefront. -->
-            <div style="position:absolute;left:1860px;top:0;width:280px;height:500px;background:#060810;"></div>
-            <div style="position:absolute;left:1790px;top:46px;width:22px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:2049px;top:88px;width:58px;height:3px;background:rgba(232,179,58,0.42);"></div>
-            <div style="position:absolute;left:2042px;top:88px;width:22px;height:2px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:2002px;top:132px;width:94px;height:4px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:1979px;top:132px;width:58px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:1972px;top:132px;width:22px;height:4px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:1867px;top:168px;width:40px;height:4px;background:rgba(255,255,255,0.22);"></div>
-            <div style="position:absolute;left:1802px;top:204px;width:76px;height:2px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:1797px;top:204px;width:40px;height:3px;background:rgba(232,179,58,0.42);"></div>
-            <div style="position:absolute;left:2007px;top:238px;width:22px;height:3px;background:rgba(232,179,58,0.42);"></div>
-            <div style="position:absolute;left:2056px;top:238px;width:76px;height:4px;background:rgba(255,255,255,0.22);"></div>
-            <div style="position:absolute;left:2067px;top:238px;width:40px;height:3px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:1944px;top:272px;width:58px;height:3px;background:rgba(255,255,255,0.16);"></div>
-            <div style="position:absolute;left:1897px;top:306px;width:94px;height:4px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:1874px;top:306px;width:58px;height:2px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:2102px;top:344px;width:40px;height:2px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:1827px;top:344px;width:94px;height:3px;background:rgba(255,255,255,0.16);"></div>
-            <div style="position:absolute;left:1804px;top:344px;width:58px;height:4px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:2021px;top:380px;width:76px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:1902px;top:414px;width:22px;height:3px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:1951px;top:414px;width:76px;height:4px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:1839px;top:452px;width:58px;height:3px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:1832px;top:452px;width:22px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:1881px;top:452px;width:76px;height:3px;background:rgba(232,179,58,0.42);"></div>
-            <div style="position:absolute;left:2140px;top:0;width:160px;height:500px;background:linear-gradient(90deg,#060810 0%,rgba(6,8,16,0.92) 28%,rgba(6,8,16,0.62) 56%,rgba(6,8,16,0.24) 80%,rgba(6,8,16,0) 100%);"></div>
-            <div style="position:absolute;left:2140px;top:206px;width:120px;height:5px;background:linear-gradient(90deg,rgba(232,179,58,0.30) 0%,rgba(232,179,58,0) 100%);"></div>
-
-            <img draggable="false" :src="catfightStorefront" alt="Catfight Coffee storefront" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:2825px;top:161.5px;width:330px;display:block;" />
-
-            <div style="position:absolute;left:2306px;top:104px;width:104px;height:396px;background-color:#cbb79c;background-image:repeating-linear-gradient(0deg,#cbb79c 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#5d6b7d 13px 31px);"></div>
-            <div style="position:absolute;left:2306px;top:104px;width:104px;height:15px;background:#a8977d;"></div>
-            <div style="position:absolute;left:2418px;top:46px;width:124px;height:454px;background-color:#b9a68d;background-image:repeating-linear-gradient(0deg,#b9a68d 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#4a5568 13px 31px);"></div>
-            <div style="position:absolute;left:2418px;top:46px;width:124px;height:17px;background:#93826c;"></div>
-            <div style="position:absolute;left:2550px;top:132px;width:92px;height:368px;background-color:#d6c8b0;background-image:repeating-linear-gradient(0deg,#d6c8b0 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#5d6b7d 13px 31px);"></div>
-            <div style="position:absolute;left:2550px;top:132px;width:92px;height:14px;background:#b5a68c;"></div>
-
-            <!-- The sidewalk, running past Catfight's block and on to the next. -->
-            <div style="position:absolute;left:2300px;top:446px;width:2020px;height:41px;background:#DFD6D1;"></div>
-            <div style="position:absolute;left:2300px;top:446px;width:2020px;height:3px;background:rgba(43,58,85,0.22);"></div>
-            <div style="position:absolute;left:2300px;top:487px;width:2020px;height:6px;background:#B0A6A2;"></div>
-            <div style="position:absolute;left:2300px;top:493px;width:2020px;height:7px;background:#908684;"></div>
-            <img draggable="false" :src="blockShops" alt="Ice cream, bubble tea, ramen and coffee shops on a block" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:3270px;top:161px;width:620px;height:339px;display:block;" />
-
-            <!-- Back underground: the far tunnel wall, lit the same way. -->
-            <div style="position:absolute;left:3908px;top:0;width:182px;height:500px;background:linear-gradient(90deg,rgba(6,8,16,0) 0%,rgba(6,8,16,0.34) 34%,rgba(6,8,16,0.72) 66%,rgba(6,8,16,0.94) 86%,#060810 100%);"></div>
-            <div style="position:absolute;left:4088px;top:0;width:262px;height:500px;background:#060810;"></div>
-            <div style="position:absolute;left:4088px;top:46px;width:20px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:4133px;top:88px;width:48px;height:3px;background:rgba(232,179,58,0.42);"></div>
-            <div style="position:absolute;left:4234px;top:88px;width:20px;height:2px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:4234px;top:132px;width:76px;height:4px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:4277px;top:132px;width:48px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:4164px;top:132px;width:20px;height:4px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:4165px;top:168px;width:34px;height:4px;background:rgba(255,255,255,0.22);"></div>
-            <div style="position:absolute;left:4224px;top:204px;width:62px;height:2px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:4095px;top:204px;width:34px;height:3px;background:rgba(232,179,58,0.42);"></div>
-            <div style="position:absolute;left:4199px;top:238px;width:20px;height:3px;background:rgba(232,179,58,0.42);"></div>
-            <div style="position:absolute;left:4154px;top:238px;width:62px;height:4px;background:rgba(255,255,255,0.22);"></div>
-            <div style="position:absolute;left:4269px;top:238px;width:34px;height:3px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:4242px;top:272px;width:48px;height:3px;background:rgba(255,255,255,0.16);"></div>
-            <div style="position:absolute;left:4129px;top:306px;width:76px;height:4px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:4172px;top:306px;width:48px;height:2px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:4304px;top:344px;width:34px;height:2px;background:rgba(232,179,58,0.30);"></div>
-            <div style="position:absolute;left:4245px;top:344px;width:76px;height:3px;background:rgba(255,255,255,0.16);"></div>
-            <div style="position:absolute;left:4102px;top:344px;width:48px;height:4px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:4119px;top:380px;width:62px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:4094px;top:414px;width:20px;height:3px;background:rgba(232,179,58,0.54);"></div>
-            <div style="position:absolute;left:4249px;top:414px;width:62px;height:4px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:4137px;top:452px;width:48px;height:3px;background:rgba(232,179,58,0.66);"></div>
-            <div style="position:absolute;left:4266px;top:452px;width:20px;height:2px;background:rgba(255,255,255,0.10);"></div>
-            <div style="position:absolute;left:4179px;top:452px;width:62px;height:3px;background:rgba(232,179,58,0.42);"></div>
-
-            <!-- Platform two: the terminus, everyone waiting together. -->
-            <div style="position:absolute;left:4350px;top:0;width:2280px;height:500px;background:#efece5;background-image:repeating-linear-gradient(0deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px),repeating-linear-gradient(90deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px);"></div>
-            <div style="position:absolute;left:4350px;top:132px;width:2280px;height:26px;background:#2b3340;"></div>
-            <div style="position:absolute;left:4350px;top:360px;width:2280px;height:140px;background:#5f636b;"></div>
-            <div style="position:absolute;left:4350px;top:360px;width:2280px;height:15px;background:#E8B33A;"></div>
-            <div style="position:absolute;left:4350px;top:375px;width:2280px;height:3px;background:rgba(0,0,0,0.22);"></div>
-            <div style="position:absolute;left:4762px;top:0;width:22px;height:400px;background:#39414e;"></div>
-            <div style="position:absolute;left:5070px;top:0;width:22px;height:400px;background:#39414e;"></div>
-            <div style="position:absolute;left:5446px;top:0;width:22px;height:400px;background:#39414e;"></div>
-
-            <div style="position:absolute;left:5154px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
-            <div style="position:absolute;left:5154px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
-            <div style="position:absolute;left:5164px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:5284px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:5374px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
-
-            <div style="position:absolute;left:0;top:0;width:6630px;height:500px;">
-              <img draggable="false" :src="ashly" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4724px;top:275px;width:77px;height:180px;display:block;" />
-              <img draggable="false" :src="catfight1" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4806px;top:360px;width:75px;height:95px;display:block;" />
-              <img draggable="false" :src="meiling" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4864px;top:275px;width:76px;height:180px;display:block;" />
-              <!-- Lulu, between the dog and cat -- earlier in source order than
-                either so both stack in front of her rather than her covering them. -->
-              <img draggable="false" :src="lulu" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4988px;top:275px;width:110px;height:180px;display:block;" />
-              <img draggable="false" :src="luna" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4932px;top:349px;width:80px;height:104px;display:block;" />
-              <img draggable="false" :src="catfight2" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:5070px;top:357px;width:74px;height:96px;display:block;" />
-              <div style="position:absolute;left:4882px;top:235px;width:28px;height:20px;background:#D99A53;animation:ninth-bubble-bob 2.6s ease-in-out 0s infinite;">
-                <div style="position:absolute;left:0;top:100%;width:100%;height:4px;background:#B87C38;transform:skewX(45deg);transform-origin:top left;"></div>
-                <div style="position:absolute;left:100%;top:0;width:4px;height:100%;background:#996326;transform:skewY(45deg);transform-origin:left top;"></div>
-                <div style="position:absolute;left:5px;top:100%;width:13px;height:9px;background:#B87C38;clip-path:polygon(69.2% 0,100% 0,54.3% 100%,23.5% 100%);"></div>
-                <div style="position:absolute;left:5px;top:100%;width:9px;height:9px;background:#D99A53;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
-              </div>
-              <div style="position:absolute;left:4962px;top:307px;width:28px;height:20px;background:#D57E51;animation:ninth-bubble-bob 2.2s ease-in-out 0.5s infinite;">
-                <div style="position:absolute;left:0;top:100%;width:100%;height:4px;background:#B45F34;transform:skewX(45deg);transform-origin:top left;"></div>
-                <div style="position:absolute;left:100%;top:0;width:4px;height:100%;background:#9F4628;transform:skewY(45deg);transform-origin:left top;"></div>
-                <div style="position:absolute;left:5px;top:100%;width:13px;height:9px;background:#B45F34;clip-path:polygon(69.2% 0,100% 0,54.3% 100%,23.5% 100%);"></div>
-                <div style="position:absolute;left:5px;top:100%;width:9px;height:9px;background:#D57E51;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
-              </div>
-              <div style="position:absolute;left:5098px;top:320px;width:28px;height:20px;background:#505052;animation:ninth-bubble-bob 2.9s ease-in-out 1.1s infinite;">
-                <div style="position:absolute;left:0;top:100%;width:100%;height:4px;background:#3A3A3C;transform:skewX(45deg);transform-origin:top left;"></div>
-                <div style="position:absolute;left:100%;top:0;width:4px;height:100%;background:#262628;transform:skewY(45deg);transform-origin:left top;"></div>
-                <div style="position:absolute;left:5px;top:100%;width:13px;height:9px;background:#3A3A3C;clip-path:polygon(69.2% 0,100% 0,54.3% 100%,23.5% 100%);"></div>
-                <div style="position:absolute;left:5px;top:100%;width:9px;height:9px;background:#505052;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
-              </div>
-            </div>
-            <div style="position:absolute;left:5774px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
-            <div style="position:absolute;left:5774px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
-            <div style="position:absolute;left:5784px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:5904px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-            <div style="position:absolute;left:5994px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
-            <div style="position:absolute;left:6066px;top:0;width:22px;height:400px;background:#39414e;"></div>
-
-            <!-- The show's two builders, called out where their own storefronts pass.
-              Back to the original cream card and this one's own orange -- just
-              a bigger mark and bigger, bolder text than the 34px/11px original,
-              both of which read as too small to make out at the size these get
-              scaled to. -->
-            <div style="position:absolute;left:2990px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:246px;height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
-              <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
-              <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
-              <img draggable="false" :src="catfightMark" alt="Catfight Coffee" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
-              <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">PRESENTED BY<br />CATFIGHT COFFEE</div>
-            </div>
-
-            <div style="position:absolute;left:3580px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:246px;height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
-              <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
-              <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
-              <img draggable="false" :src="bagelMark" alt="Bagel²" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
-              <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">PRESENTED BY<br />BAGEL²</div>
-            </div>
-
-            <!-- Darker than the cream cards' orange, with white text -- black
-              on the lighter #E07446 measures fine by contrast ratio alone, but
-              a saturated mid-orange behind small letter-spaced text still reads
-              as muddy. White on this deeper shade is unambiguous. -->
-            <div style="position:absolute;left:4950px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:184px;height:70px;box-sizing:border-box;background:#C4470F;padding:9px 14px;z-index:6;">
-              <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#99380C;transform:skewX(45deg);transform-origin:top left;"></div>
-              <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#7C2D0A;transform:skewY(45deg);transform-origin:left top;"></div>
-              <div style="position:absolute;left:26px;top:100%;width:35px;height:22px;background:#99380C;clip-path:polygon(74.3% 0,100% 0,51% 100%,25.3% 100%);"></div>
-              <div style="position:absolute;left:26px;top:100%;width:26px;height:22px;background:#C4470F;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
-              <div style="font-size:15px;font-weight:900;color:#fff;letter-spacing:0.09em;line-height:1.35;">JOIN THE<br />CONVERSATION</div>
+          <!-- Tunnel mouth into daylight. -->
+          <div style="position:absolute;left:1778px;top:0;width:82px;height:500px;background:#060810;"></div>
+          <div style="position:absolute;left:0;top:0;width:1400px;height:500px;">
+            <div style="position:absolute;left:484px;top:168px;width:300px;background:#0C0F16;box-sizing:border-box;padding:16px 18px;">
+              <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#2A2F36;transform:skewX(45deg);transform-origin:top left;"></div>
+              <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#1A1E24;transform:skewY(45deg);transform-origin:left top;"></div>
+              <div style="font-size:12px;font-weight:900;letter-spacing:0.16em;color:#FFC694;">PODCAST SERIES</div>
+              <div style="height:2px;background:rgba(253,251,247,0.5);margin:13px 0;"></div>
+              <div style="font-size:33px;font-weight:700;letter-spacing:-0.03em;line-height:1.06;color:#FDFBF7;text-wrap:pretty;">Stories of Asian American builders</div>
             </div>
           </div>
 
-          <div ref="lightRef" class="ninth-light"></div>
+          <!-- Between the tunnels: a wall of scattered light, Catfight Coffee's storefront. -->
+          <div style="position:absolute;left:1860px;top:0;width:280px;height:500px;background:#060810;"></div>
+          <div style="position:absolute;left:1790px;top:46px;width:22px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:2049px;top:88px;width:58px;height:3px;background:rgba(232,179,58,0.42);"></div>
+          <div style="position:absolute;left:2042px;top:88px;width:22px;height:2px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:2002px;top:132px;width:94px;height:4px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:1979px;top:132px;width:58px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:1972px;top:132px;width:22px;height:4px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:1867px;top:168px;width:40px;height:4px;background:rgba(255,255,255,0.22);"></div>
+          <div style="position:absolute;left:1802px;top:204px;width:76px;height:2px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:1797px;top:204px;width:40px;height:3px;background:rgba(232,179,58,0.42);"></div>
+          <div style="position:absolute;left:2007px;top:238px;width:22px;height:3px;background:rgba(232,179,58,0.42);"></div>
+          <div style="position:absolute;left:2056px;top:238px;width:76px;height:4px;background:rgba(255,255,255,0.22);"></div>
+          <div style="position:absolute;left:2067px;top:238px;width:40px;height:3px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:1944px;top:272px;width:58px;height:3px;background:rgba(255,255,255,0.16);"></div>
+          <div style="position:absolute;left:1897px;top:306px;width:94px;height:4px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:1874px;top:306px;width:58px;height:2px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:2102px;top:344px;width:40px;height:2px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:1827px;top:344px;width:94px;height:3px;background:rgba(255,255,255,0.16);"></div>
+          <div style="position:absolute;left:1804px;top:344px;width:58px;height:4px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:2021px;top:380px;width:76px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:1902px;top:414px;width:22px;height:3px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:1951px;top:414px;width:76px;height:4px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:1839px;top:452px;width:58px;height:3px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:1832px;top:452px;width:22px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:1881px;top:452px;width:76px;height:3px;background:rgba(232,179,58,0.42);"></div>
+          <div style="position:absolute;left:2140px;top:0;width:160px;height:500px;background:linear-gradient(90deg,#060810 0%,rgba(6,8,16,0.92) 28%,rgba(6,8,16,0.62) 56%,rgba(6,8,16,0.24) 80%,rgba(6,8,16,0) 100%);"></div>
+          <div style="position:absolute;left:2140px;top:206px;width:120px;height:5px;background:linear-gradient(90deg,rgba(232,179,58,0.30) 0%,rgba(232,179,58,0) 100%);"></div>
+
+          <img draggable="false" :src="catfightStorefront" alt="Catfight Coffee storefront" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:2825px;top:161.5px;width:330px;display:block;" />
+
+          <div style="position:absolute;left:2306px;top:104px;width:104px;height:396px;background-color:#cbb79c;background-image:repeating-linear-gradient(0deg,#cbb79c 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#5d6b7d 13px 31px);"></div>
+          <div style="position:absolute;left:2306px;top:104px;width:104px;height:15px;background:#a8977d;"></div>
+          <div style="position:absolute;left:2418px;top:46px;width:124px;height:454px;background-color:#b9a68d;background-image:repeating-linear-gradient(0deg,#b9a68d 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#4a5568 13px 31px);"></div>
+          <div style="position:absolute;left:2418px;top:46px;width:124px;height:17px;background:#93826c;"></div>
+          <div style="position:absolute;left:2550px;top:132px;width:92px;height:368px;background-color:#d6c8b0;background-image:repeating-linear-gradient(0deg,#d6c8b0 0 13px,rgba(0,0,0,0) 13px 35px),repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 13px,#5d6b7d 13px 31px);"></div>
+          <div style="position:absolute;left:2550px;top:132px;width:92px;height:14px;background:#b5a68c;"></div>
+
+          <!-- The sidewalk, running past Catfight's block and on to the next. -->
+          <div style="position:absolute;left:2300px;top:446px;width:2020px;height:41px;background:#DFD6D1;"></div>
+          <div style="position:absolute;left:2300px;top:446px;width:2020px;height:3px;background:rgba(43,58,85,0.22);"></div>
+          <div style="position:absolute;left:2300px;top:487px;width:2020px;height:6px;background:#B0A6A2;"></div>
+          <div style="position:absolute;left:2300px;top:493px;width:2020px;height:7px;background:#908684;"></div>
+          <img draggable="false" :src="blockShops" alt="Ice cream, bubble tea, ramen and coffee shops on a block" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:3270px;top:161px;width:620px;height:339px;display:block;" />
+
+          <!-- Back underground: the far tunnel wall, lit the same way. -->
+          <div style="position:absolute;left:3908px;top:0;width:182px;height:500px;background:linear-gradient(90deg,rgba(6,8,16,0) 0%,rgba(6,8,16,0.34) 34%,rgba(6,8,16,0.72) 66%,rgba(6,8,16,0.94) 86%,#060810 100%);"></div>
+          <div style="position:absolute;left:4088px;top:0;width:262px;height:500px;background:#060810;"></div>
+          <div style="position:absolute;left:4088px;top:46px;width:20px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:4133px;top:88px;width:48px;height:3px;background:rgba(232,179,58,0.42);"></div>
+          <div style="position:absolute;left:4234px;top:88px;width:20px;height:2px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:4234px;top:132px;width:76px;height:4px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:4277px;top:132px;width:48px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:4164px;top:132px;width:20px;height:4px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:4165px;top:168px;width:34px;height:4px;background:rgba(255,255,255,0.22);"></div>
+          <div style="position:absolute;left:4224px;top:204px;width:62px;height:2px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:4095px;top:204px;width:34px;height:3px;background:rgba(232,179,58,0.42);"></div>
+          <div style="position:absolute;left:4199px;top:238px;width:20px;height:3px;background:rgba(232,179,58,0.42);"></div>
+          <div style="position:absolute;left:4154px;top:238px;width:62px;height:4px;background:rgba(255,255,255,0.22);"></div>
+          <div style="position:absolute;left:4269px;top:238px;width:34px;height:3px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:4242px;top:272px;width:48px;height:3px;background:rgba(255,255,255,0.16);"></div>
+          <div style="position:absolute;left:4129px;top:306px;width:76px;height:4px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:4172px;top:306px;width:48px;height:2px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:4304px;top:344px;width:34px;height:2px;background:rgba(232,179,58,0.30);"></div>
+          <div style="position:absolute;left:4245px;top:344px;width:76px;height:3px;background:rgba(255,255,255,0.16);"></div>
+          <div style="position:absolute;left:4102px;top:344px;width:48px;height:4px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:4119px;top:380px;width:62px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:4094px;top:414px;width:20px;height:3px;background:rgba(232,179,58,0.54);"></div>
+          <div style="position:absolute;left:4249px;top:414px;width:62px;height:4px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:4137px;top:452px;width:48px;height:3px;background:rgba(232,179,58,0.66);"></div>
+          <div style="position:absolute;left:4266px;top:452px;width:20px;height:2px;background:rgba(255,255,255,0.10);"></div>
+          <div style="position:absolute;left:4179px;top:452px;width:62px;height:3px;background:rgba(232,179,58,0.42);"></div>
+
+          <!-- Platform two: the terminus, everyone waiting together. -->
+          <div style="position:absolute;left:4350px;top:0;width:2280px;height:500px;background:#efece5;background-image:repeating-linear-gradient(0deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px),repeating-linear-gradient(90deg,rgba(32,38,48,0.10) 0 1px,rgba(0,0,0,0) 1px 22px);"></div>
+          <div style="position:absolute;left:4350px;top:132px;width:2280px;height:26px;background:#2b3340;"></div>
+          <div style="position:absolute;left:4350px;top:360px;width:2280px;height:140px;background:#5f636b;"></div>
+          <div style="position:absolute;left:4350px;top:360px;width:2280px;height:15px;background:#E8B33A;"></div>
+          <div style="position:absolute;left:4350px;top:375px;width:2280px;height:3px;background:rgba(0,0,0,0.22);"></div>
+          <div style="position:absolute;left:4762px;top:0;width:22px;height:400px;background:#39414e;"></div>
+          <div style="position:absolute;left:5070px;top:0;width:22px;height:400px;background:#39414e;"></div>
+          <div style="position:absolute;left:5446px;top:0;width:22px;height:400px;background:#39414e;"></div>
+
+          <div style="position:absolute;left:5154px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
+          <div style="position:absolute;left:5154px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
+          <div style="position:absolute;left:5164px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:5284px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:5374px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
+
+          <div style="position:absolute;left:0;top:0;width:6630px;height:500px;">
+            <img draggable="false" :src="ashly" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4724px;top:275px;width:77px;height:180px;display:block;" />
+            <img draggable="false" :src="catfight1" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4806px;top:360px;width:75px;height:95px;display:block;" />
+            <img draggable="false" :src="meiling" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4864px;top:275px;width:76px;height:180px;display:block;" />
+            <!-- Lulu, between the dog and cat -- earlier in source order than
+              either so both stack in front of her rather than her covering them. -->
+            <img draggable="false" :src="lulu" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4988px;top:275px;width:110px;height:180px;display:block;" />
+            <img draggable="false" :src="luna" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4932px;top:349px;width:80px;height:104px;display:block;" />
+            <img draggable="false" :src="catfight2" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:5070px;top:357px;width:74px;height:96px;display:block;" />
+            <div style="position:absolute;left:4882px;top:235px;width:28px;height:20px;background:#D99A53;animation:ninth-bubble-bob 2.6s ease-in-out 0s infinite;">
+              <div style="position:absolute;left:0;top:100%;width:100%;height:4px;background:#B87C38;transform:skewX(45deg);transform-origin:top left;"></div>
+              <div style="position:absolute;left:100%;top:0;width:4px;height:100%;background:#996326;transform:skewY(45deg);transform-origin:left top;"></div>
+              <div style="position:absolute;left:5px;top:100%;width:13px;height:9px;background:#B87C38;clip-path:polygon(69.2% 0,100% 0,54.3% 100%,23.5% 100%);"></div>
+              <div style="position:absolute;left:5px;top:100%;width:9px;height:9px;background:#D99A53;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
+            </div>
+            <div style="position:absolute;left:4962px;top:307px;width:28px;height:20px;background:#D57E51;animation:ninth-bubble-bob 2.2s ease-in-out 0.5s infinite;">
+              <div style="position:absolute;left:0;top:100%;width:100%;height:4px;background:#B45F34;transform:skewX(45deg);transform-origin:top left;"></div>
+              <div style="position:absolute;left:100%;top:0;width:4px;height:100%;background:#9F4628;transform:skewY(45deg);transform-origin:left top;"></div>
+              <div style="position:absolute;left:5px;top:100%;width:13px;height:9px;background:#B45F34;clip-path:polygon(69.2% 0,100% 0,54.3% 100%,23.5% 100%);"></div>
+              <div style="position:absolute;left:5px;top:100%;width:9px;height:9px;background:#D57E51;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
+            </div>
+            <div style="position:absolute;left:5098px;top:320px;width:28px;height:20px;background:#505052;animation:ninth-bubble-bob 2.9s ease-in-out 1.1s infinite;">
+              <div style="position:absolute;left:0;top:100%;width:100%;height:4px;background:#3A3A3C;transform:skewX(45deg);transform-origin:top left;"></div>
+              <div style="position:absolute;left:100%;top:0;width:4px;height:100%;background:#262628;transform:skewY(45deg);transform-origin:left top;"></div>
+              <div style="position:absolute;left:5px;top:100%;width:13px;height:9px;background:#3A3A3C;clip-path:polygon(69.2% 0,100% 0,54.3% 100%,23.5% 100%);"></div>
+              <div style="position:absolute;left:5px;top:100%;width:9px;height:9px;background:#505052;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
+            </div>
+          </div>
+          <div style="position:absolute;left:5774px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
+          <div style="position:absolute;left:5774px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
+          <div style="position:absolute;left:5784px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:5904px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
+          <div style="position:absolute;left:5994px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
+          <div style="position:absolute;left:6066px;top:0;width:22px;height:400px;background:#39414e;"></div>
+
+          <!-- The show's two builders, called out where their own storefronts pass.
+            Back to the original cream card and this one's own orange -- just
+            a bigger mark and bigger, bolder text than the 34px/11px original,
+            both of which read as too small to make out at the size these get
+            scaled to. -->
+          <div style="position:absolute;left:2990px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:246px;height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
+            <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
+            <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
+            <img draggable="false" :src="catfightMark" alt="Catfight Coffee" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
+            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">PRESENTED BY<br />CATFIGHT COFFEE</div>
+          </div>
+
+          <div style="position:absolute;left:3580px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:246px;height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
+            <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
+            <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
+            <img draggable="false" :src="bagelMark" alt="Bagel²" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
+            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">PRESENTED BY<br />BAGEL²</div>
+          </div>
+
+          <!-- Darker than the cream cards' orange, with white text -- black
+            on the lighter #E07446 measures fine by contrast ratio alone, but
+            a saturated mid-orange behind small letter-spaced text still reads
+            as muddy. White on this deeper shade is unambiguous. -->
+          <div style="position:absolute;left:4950px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:184px;height:70px;box-sizing:border-box;background:#C4470F;padding:9px 14px;z-index:6;">
+            <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#99380C;transform:skewX(45deg);transform-origin:top left;"></div>
+            <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#7C2D0A;transform:skewY(45deg);transform-origin:left top;"></div>
+            <div style="position:absolute;left:26px;top:100%;width:35px;height:22px;background:#99380C;clip-path:polygon(74.3% 0,100% 0,51% 100%,25.3% 100%);"></div>
+            <div style="position:absolute;left:26px;top:100%;width:26px;height:22px;background:#C4470F;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
+            <div style="font-size:15px;font-weight:900;color:#fff;letter-spacing:0.09em;line-height:1.35;">JOIN THE<br />CONVERSATION</div>
+          </div>
         </div>
-      </div>
+
+        <div ref="lightRef" class="ninth-light"></div>
+      </PodcastBezel>
     </div>
 
     <!-- Nothing about the scene says it can be dragged, so say it -- until
@@ -484,30 +474,22 @@ function onDragStart(event) {
   document.addEventListener("pointercancel", up, { signal });
 }
 
-let resizeObserver;
 let intersectionObserver;
 // The scene renders at this many CSS pixels per native (488-wide) pixel --
 // on a phone that's well under 1. onDragStart's move handler divides by it
 // so a finger moving N screen pixels always drags N *native* pixels of
 // scenery, not N pixels of whatever the scene happens to be scaled to.
 let scale = 1;
+// PodcastBezel reports it whenever it refits the frame to its box.
+const onScale = (s) => {
+  scale = s;
+};
 
 onMounted(() => {
   const el = stage.value;
   ready.value = true;
   apply();
   kick();
-
-  // Scales the whole 488x620 scene to whatever box the hero grid gives it --
-  // "contain", not stretch, so nothing in the diorama distorts.
-  const frame = el.querySelector(".ninth-bezel");
-  const fit = () => {
-    scale = Math.min(el.clientWidth / 488, el.clientHeight / 620) || 1;
-    frame.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
-  };
-  resizeObserver = new ResizeObserver(fit);
-  resizeObserver.observe(el);
-  fit();
 
   // Stops while scrolled away, and picks up again on the way back.
   intersectionObserver = new IntersectionObserver(([entry]) => {
@@ -520,7 +502,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   visible = false;
   cancelAnimationFrame(frame);
-  resizeObserver?.disconnect();
   intersectionObserver?.disconnect();
   dragAbort?.abort();
 });
@@ -560,89 +541,6 @@ export default {
 
 .ninth-stage.is-dragging {
   cursor: grabbing;
-}
-
-/* Native size always; JS scales this to fit whatever box .ninth-stage ends
-   up with, so every absolutely-positioned pixel inside stays in step. */
-.ninth-bezel {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 488px;
-  height: 620px;
-  transform: translate(-50%, -50%);
-  transform-origin: center;
-  border: 14px solid #cfcfc9;
-  border-radius: 36px;
-  box-sizing: border-box;
-  background: #0e0e12;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.16), inset 0 0 0 7px #1d2027, inset 0 0 0 9px #8f8f8a;
-  overflow: hidden;
-}
-
-.ninth-header {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 92px;
-  background: #101014;
-  box-sizing: border-box;
-  padding: 0 18px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  z-index: 10;
-}
-
-.ninth-logo {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #ff6319;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 39px;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
-}
-
-.ninth-wordmark {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.ninth-name {
-  font-size: 30px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
-
-.ninth-tag {
-  font-size: 12px;
-  font-weight: 900;
-  /* Lighter than the logo's own orange, and bolder -- that shade as small
-     letter-spaced text on the header's near-black reads low-contrast even
-     lightened alone. Still flagged as hard to read at 11px/800 -- bigger,
-     heavier and lighter still. */
-  color: #ffc694;
-  letter-spacing: 0.18em;
-  line-height: 1;
-}
-
-.ninth-viewport {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 93px;
-  bottom: 0;
-  overflow: hidden;
 }
 
 .ninth-sky {

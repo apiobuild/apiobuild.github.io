@@ -5,23 +5,8 @@
     "image": "https://apiobuild.com/images/podcast-og.png"
   },
   "links": {
-    "listen": [
-      {
-        "name": "Spotify",
-        "icon": "fab fa-spotify",
-        "href": "#"
-      },
-      {
-        "name": "Apple Podcasts",
-        "icon": "fab fa-apple",
-        "href": "#"
-      },
-      {
-        "name": "YouTube",
-        "icon": "fab fa-youtube",
-        "href": "#"
-      }
-    ],
+    "listen": "https://open.spotify.com/show/42BO2WME6FaiBlHKmGeAhf",
+    "episodes": "/podcast/episodes",
     "community": "/podcast/join",
     "suggestGuest": "mailto:luluc@apiobuild.com?subject=Guest%20suggestion"
   },
@@ -114,7 +99,11 @@
       "id": "the-conversation",
       "eyebrow": "The Conversation",
       "title": "Why do they build?",
-      "body": "Giving up the comfort and stability of a 9-5, paychecks, health insurance, a prestigious job title. In exchange for working 24/7, doing anything and everything, and unsolicited comments from family and friends. Listen to stories of builders."
+      "body": "Giving up the comfort and stability of a 9-5, paychecks, health insurance, a prestigious job title. In exchange for working 24/7, doing anything and everything, and unsolicited comments from family and friends. Listen to stories of builders.",
+      "cta": {
+        "label": "Browse Episodes",
+        "link": "episodes"
+      }
     },
     {
       "id": "community",

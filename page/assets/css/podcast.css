@@ -94,6 +94,16 @@
   color: var(--pod-accent);
 }
 
+/* A lime highlight on a name: the hosts in the hero, the guest on an
+   episode. Always the fixed dark text that reads on lime, whatever the
+   ground around it. */
+.podcast-page .pod-mark {
+  background: var(--pod-lime);
+  color: #282b0d;
+  padding: 0.1em 0.3em;
+  font-weight: 600;
+}
+
 .podcast-page .pod-lede {
   color: var(--pod-text-muted);
   font-size: clamp(1.05rem, 1.5vw, 1.15rem);
