@@ -16,10 +16,10 @@
 
           <div class="pod-station-poster">
             <template v-if="station.guest">
-              <div class="pod-station-poster-guest">{{ station.guest }}</div>
+              <div class="pod-station-poster-eyebrow">{{ station.guest }}</div>
               <div class="pod-station-poster-rule"></div>
             </template>
-            <div class="pod-station-poster-eyebrow">{{ station.title }}</div>
+            <div class="pod-station-poster-title">{{ station.title }}</div>
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
@@ -111,7 +111,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 16rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 13.5rem));
 }
 
 /* Fills the frame's viewport, which is 460x499 at the frame's native size.
@@ -215,7 +215,7 @@ export default {
   background: rgba(253, 251, 247, 0.5);
 }
 
-.pod-station-poster-guest {
+.pod-station-poster-title {
   font-size: 24px;
   font-weight: 700;
   line-height: 1.1;
@@ -288,14 +288,13 @@ export default {
   }
 }
 
-/* One column (phones and tablets): one station per screen. The frame takes whatever height the bar
-   and the copy leave, and the copy is trimmed to fit. --pod-bar-h is the sticky bar's measured height, set
-   by the page. */
+/* One column (phones and tablets): one station per screen. The frame takes
+   whatever height the bar and the copy leave (see .pod-station-stage), the
+   copy is trimmed to fit, and scrolling settles on a station at a time. */
 @media (max-width: 60rem) {
   .pod-station {
     scroll-snap-align: start;
     scroll-margin-top: var(--pod-bar-h, 9.5rem);
-    min-height: calc(100svh - var(--pod-bar-h, 9.5rem));
     gap: 0.9rem;
     padding-block: 1rem 1.5rem;
   }

@@ -46,6 +46,17 @@
           </ul>
         </div>
       </div>
+
+      <!-- Phones and tablets have no line map, so the next stop rides in the
+        sticky bar instead, where scrolling can't hide it: the line running
+        on, dashed, into the stop that isn't built yet. -->
+      <p v-if="next" class="pod-shell pod-episodes-next-hint">
+        <span class="pod-episodes-next-hint-name" :lang="next.language.htmlLang">{{ next.station }}</span>
+        <span class="pod-episodes-next-hint-line" aria-hidden="true">
+          <span class="pod-episodes-next-hint-track"></span>
+          <span class="pod-episodes-stop"></span>
+        </span>
+      </p>
     </header>
 
     <!-- The platforms say what the page is; the heading is for screen
@@ -89,16 +100,6 @@
       </nav>
 
       <main class="pod-episodes-stations">
-        <!-- Phones and tablets have no line map, so the next stop is hinted
-          above the platforms instead: the line running on, dashed, into
-          the stop that isn't built yet. -->
-        <p v-if="next" class="pod-episodes-next-hint">
-          <span class="pod-episodes-next-hint-name" :lang="next.language.htmlLang">{{ next.station }}</span>
-          <span class="pod-episodes-next-hint-line" aria-hidden="true">
-            <span class="pod-episodes-next-hint-track"></span>
-            <span class="pod-episodes-stop"></span>
-          </span>
-        </p>
         <PodcastStation
           v-for="station in stations"
           :key="station.id"
@@ -513,9 +514,9 @@ export default {
   letter-spacing: 0.12em;
 }
 
+/* Filled, not bigger: every stop on the line is the same size. */
 .is-current .pod-episodes-stop {
   background: #ff6319;
-  transform: scale(1.3);
 }
 
 .is-current .pod-episodes-stop-name {
@@ -551,7 +552,6 @@ export default {
 
 .pod-episodes-next .pod-episodes-stop {
   position: relative;
-  border-style: dashed;
 }
 
 .pod-episodes-next .pod-episodes-stop-ep {
@@ -578,18 +578,13 @@ export default {
     display: none;
   }
 
-  /* Like a subway line diagram: the next station's name, and under it the line
-     running on, dashed where it isn't built yet, into the stop. The page's
-     first snap point, so snapping onto the first platform doesn't scroll it
-     away under the sticky bar. */
+  /* Like a subway line diagram: the next station's name, and under it the
+     line running on, dashed where it isn't built yet, into the stop. */
   .pod-episodes-next-hint {
-    scroll-snap-align: start;
-    scroll-margin-top: var(--pod-bar-h, 4.5rem);
     display: grid;
     justify-items: center;
     row-gap: 0.35rem;
-    padding-top: 0.9rem;
-    margin-bottom: -0.25rem;
+    padding-bottom: 0.75rem;
     line-height: 1.1;
     text-align: center;
   }
@@ -606,17 +601,16 @@ export default {
   }
 
   .pod-episodes-next-hint-track {
-    width: 5rem;
+    width: 2.75rem;
     height: 4px;
     background:
-      linear-gradient(90deg, #ff6319 0 2rem, transparent 2rem),
-      repeating-linear-gradient(90deg, #ff6319 0 5px, transparent 5px 10px) 2.35rem 0 / calc(100% - 2.35rem) 100%
+      linear-gradient(90deg, #ff6319 0 1rem, transparent 1rem),
+      repeating-linear-gradient(90deg, #ff6319 0 5px, transparent 5px 10px) 1.35rem 0 / calc(100% - 1.35rem) 100%
         no-repeat;
   }
 
   .pod-episodes-next-hint .pod-episodes-stop {
     margin: 0;
-    border-style: dashed;
   }
 }
 
@@ -631,8 +625,9 @@ export default {
   :global(html:has(.pod-episodes)) {
     scroll-snap-type: y proximity;
   }
+  /* Just enough room before the footer, not a whole section's worth. */
   .pod-episodes-body {
-    padding-top: 0;
+    padding-block: 0 1.5rem;
   }
   /* Every station, and the hint above them, is exactly as wide as its
      frame: the frame's height is capped to the screen (see Station.vue),
@@ -641,7 +636,7 @@ export default {
   .pod-episodes-stations {
     gap: 0;
     align-items: center;
-    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 16rem) * 488 / 620)));
+    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 13.5rem) * 488 / 620)));
   }
   .pod-episodes-stations > * {
     width: var(--pod-station-w);
