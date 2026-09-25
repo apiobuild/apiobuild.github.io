@@ -38,7 +38,7 @@
               @mouseenter="highlight = index"
             >
               <span class="pod-episodes-result-station">{{ station.station }}</span>
-              <span class="pod-episodes-result-meta">EP {{ station.number }} · {{ station.title }}</span>
+              <span class="pod-episodes-result-meta">{{ station.title }}</span>
             </li>
             <li v-if="!results.length" class="pod-episodes-result-empty" role="option" aria-disabled="true">
               No station by that name yet.
@@ -69,7 +69,7 @@
                 {{ station.station }}
                 <span v-if="station.language.badge" class="pod-episodes-stop-lang" :lang="station.language.htmlLang">{{ station.language.label }}</span>
               </span>
-              <span class="pod-episodes-stop-ep">EP {{ station.number }}</span>
+              <span class="pod-episodes-stop-ep">{{ station.title }}</span>
             </a>
           </li>
         </ol>
@@ -229,7 +229,7 @@ const results = computed(() => {
   if (!q) return [];
   return stations
     .filter((s) =>
-      [s.station, s.title, s.guest, s.description, `ep ${s.number}`, String(s.number), s.language.label, s.language.searchAs]
+      [s.station, s.title, s.guest, s.description, s.language.label, s.language.searchAs]
         .filter(Boolean)
         .some((field) => field.toLowerCase().includes(q))
     )
@@ -641,7 +641,7 @@ export default {
   .pod-episodes-stations {
     gap: 0;
     align-items: center;
-    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 18rem) * 488 / 620)));
+    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 14.5rem) * 488 / 620)));
   }
   .pod-episodes-stations > * {
     width: var(--pod-station-w);

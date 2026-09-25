@@ -1,11 +1,12 @@
 <template>
   <article :id="station.id" class="pod-station" :class="{ 'is-arrived': arrived }">
-    <!-- The platform, in the same frame as the hero's ride: the station's
-      name heads it where the hero says THE NINTH. Purely scenery -- the
-      name and the poster's text are repeated in the details below, so the
-      whole frame is hidden from assistive tech. -->
+    <!-- The platform, in the same frame as the hero's ride: the episode's
+      title heads it where the hero says THE NINTH, over the station, and
+      the card on the wall says who it's by. It carries the title and guest
+      for sighted readers, so the copy below doesn't repeat them; the title
+      is also in the copy for screen readers, which skip the frame. -->
     <div class="pod-station-stage" aria-hidden="true">
-      <PodcastBezel :name="station.station" :tag="`EP ${pad(station.number)}`">
+      <PodcastBezel :name="station.title" :tag="station.station">
         <div class="pod-station-scene">
           <div class="pod-station-frieze"></div>
           <div class="pod-station-pillar pod-station-pillar-a"></div>
@@ -14,9 +15,11 @@
           <div class="pod-station-floor"></div>
 
           <div class="pod-station-poster">
-            <div class="pod-station-poster-eyebrow">EP {{ pad(station.number) }}</div>
-            <div class="pod-station-poster-rule"></div>
-            <div class="pod-station-poster-guest">{{ station.guest }}</div>
+            <div class="pod-station-poster-eyebrow">{{ station.title }}<template v-if="station.guest"> by</template></div>
+            <template v-if="station.guest">
+              <div class="pod-station-poster-rule"></div>
+              <div class="pod-station-poster-guest">{{ station.guest }}</div>
+            </template>
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
@@ -36,21 +39,20 @@
 
     <div class="pod-station-details">
       <div class="pod-station-copy">
-        <p class="pod-eyebrow">
-          EP {{ pad(station.number) }}<template v-if="date"> · {{ date }}</template>
-          <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
-        </p>
-        <h2 class="pod-station-title" :lang="language.htmlLang">{{ station.title }}</h2>
+        <h2 class="pod-station-title" :lang="language.htmlLang">
+          {{ station.title }}<template v-if="station.guest">, with {{ station.guest }}</template>
+        </h2>
         <p v-if="station.description" class="pod-station-description" :lang="language.htmlLang">
           {{ station.description }}
         </p>
       </div>
 
-      <!-- Guest on the left, Listen on the right, sharing one centre line.
-        The guest never wraps: when a name is too long to share the row,
-        Listen drops to its own line, still on the right. -->
+      <!-- The air date on the left, Listen on the right, sharing one line. -->
       <div class="pod-station-foot">
-        <p v-if="station.guest" class="pod-station-guest">with <span class="pod-mark">{{ station.guest }}</span></p>
+        <p v-if="date || language.badge" class="pod-eyebrow">
+          {{ date }}
+          <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
+        </p>
         <a v-if="live" class="pod-station-listen" :href="station.spotify" target="_blank" rel="noopener">
           <i class="fas fa-play" aria-hidden="true"></i>
           {{ labels.listen }}
@@ -77,8 +79,6 @@ const props = defineProps({
   // onto the platform as it arrives rather than all of them at page load.
   arrived: { type: Boolean, default: false }
 });
-
-const pad = (n) => String(n ?? "").padStart(2, "0");
 
 // "#" or a missing link is an episode that isn't out yet.
 const live = computed(() => !!props.station.spotify && props.station.spotify !== "#");
@@ -111,7 +111,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 18rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 14.5rem));
 }
 
 /* Fills the frame's viewport, which is 460x499 at the frame's native size.
@@ -302,9 +302,6 @@ export default {
   .pod-station-copy {
     gap: 0.35rem;
   }
-  .pod-station-title {
-    font-size: 1.45rem;
-  }
   /* Three lines at most, so a station still fits one screen. */
   .pod-station-description {
     display: -webkit-box;
@@ -314,7 +311,6 @@ export default {
     font-size: 0.9rem;
     line-height: 1.45;
   }
-  .pod-station-guest,
   .pod-station-listen {
     font-size: 0.95rem;
   }
@@ -344,8 +340,14 @@ export default {
   gap: 0.6rem;
 }
 
+/* The frame says it; this is for screen readers. */
 .pod-station-title {
-  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .pod-station-description {
@@ -353,15 +355,6 @@ export default {
   font-size: 1rem;
   line-height: 1.5;
   max-width: 36rem;
-}
-
-.pod-station-guest {
-  min-width: 0;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: var(--pod-text);
 }
 
 .pod-station-listen {
