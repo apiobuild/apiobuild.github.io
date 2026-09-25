@@ -594,7 +594,7 @@ export default {
     position: absolute;
     right: 100%;
     top: 50%;
-    width: 2.75rem;
+    width: 1.5rem;
     height: 4px;
     transform: translateY(-50%);
     background: #ff6319;
