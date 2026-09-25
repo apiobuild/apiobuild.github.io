@@ -572,6 +572,7 @@ export default {
   /* The page's first snap point, so snapping onto the first platform
      doesn't scroll the hint away under the sticky bar. */
   .pod-episodes-next-hint {
+    margin-bottom: -0.25rem;
     scroll-snap-align: start;
     scroll-margin-top: var(--pod-bar-h, 4.5rem);
     display: flex;
@@ -619,8 +620,8 @@ export default {
   }
 }
 
-/* Phone: scrolling settles on one station at a time. */
-@media (max-width: 40rem) {
+/* One column: scrolling settles on one station at a time. */
+@media (max-width: 60rem) {
   :global(html:has(.pod-episodes)) {
     scroll-snap-type: y proximity;
   }

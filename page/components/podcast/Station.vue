@@ -110,7 +110,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 12.5rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 13rem));
 }
 
 /* Fills the frame's viewport. Positions are percentages of it and sizes are
@@ -241,10 +241,10 @@ export default {
   }
 }
 
-/* Phone: one station per screen. The frame takes whatever height the bar
+/* One column (phones and tablets): one station per screen. The frame takes whatever height the bar
    and the copy leave, and the copy is trimmed to fit. --pod-bar-h is the sticky bar's measured height, set
    by the page. */
-@media (max-width: 40rem) {
+@media (max-width: 60rem) {
   .pod-station {
     scroll-snap-align: start;
     scroll-margin-top: var(--pod-bar-h, 9.5rem);
