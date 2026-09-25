@@ -250,13 +250,13 @@ export default {
   right: 10px;
 }
 
-/* Feet on the platform where the hero's riders stand (455 down), a little
-   taller than they are there since this frame is the whole scene. Scaled
-   per character in the config so a cat isn't the size of a person. */
+/* Feet on the platform where the hero's riders stand (455 down), and
+   bigger than they are there: the guest is the point of this platform.
+   Scaled per character in the config so a cat isn't the size of a person. */
 .pod-station-character {
-  left: 290px;
+  left: 284px;
   bottom: 44px;
-  height: calc(210px * var(--pod-character-scale));
+  height: calc(265px * var(--pod-character-scale));
   width: auto;
   pointer-events: none;
   user-select: none;
