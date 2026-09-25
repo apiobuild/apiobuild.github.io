@@ -435,7 +435,12 @@ export default {
 
 /* ---- Body --------------------------------------------------------------- */
 
+/* At least a screen tall under the bar, so the footer waits below the
+   fold until someone scrolls to it. */
 .pod-episodes-body {
+  min-height: calc(100svh - var(--pod-bar-h, 4.5rem));
+  box-sizing: border-box;
+  align-content: start;
   display: grid;
   grid-template-columns: 12rem minmax(0, 1fr);
   gap: 3rem;
