@@ -15,11 +15,11 @@
           <div class="pod-station-floor"></div>
 
           <div class="pod-station-poster">
-            <div class="pod-station-poster-eyebrow">{{ station.title }}<template v-if="station.guest"> by</template></div>
             <template v-if="station.guest">
-              <div class="pod-station-poster-rule"></div>
               <div class="pod-station-poster-guest">{{ station.guest }}</div>
+              <div class="pod-station-poster-rule"></div>
             </template>
+            <div class="pod-station-poster-eyebrow">{{ station.title }}</div>
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
@@ -42,17 +42,17 @@
         <h2 class="pod-station-title" :lang="language.htmlLang">
           {{ station.title }}<template v-if="station.guest">, with {{ station.guest }}</template>
         </h2>
+        <p v-if="date || language.badge" class="pod-eyebrow">
+          {{ date }}
+          <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
+        </p>
         <p v-if="station.description" class="pod-station-description" :lang="language.htmlLang">
           {{ station.description }}
         </p>
       </div>
 
-      <!-- The air date on the left, Listen on the right, sharing one line. -->
+      <!-- Listen, at the bottom right. -->
       <div class="pod-station-foot">
-        <p v-if="date || language.badge" class="pod-eyebrow">
-          {{ date }}
-          <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
-        </p>
         <a v-if="live" class="pod-station-listen" :href="station.spotify" target="_blank" rel="noopener">
           <i class="fas fa-play" aria-hidden="true"></i>
           {{ labels.listen }}
@@ -111,7 +111,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 14.5rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 16rem));
 }
 
 /* Fills the frame's viewport, which is 460x499 at the frame's native size.
