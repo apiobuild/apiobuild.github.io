@@ -46,6 +46,9 @@
           {{ date }}
           <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
         </p>
+        <p v-if="station.headline" class="pod-station-headline" :lang="language.htmlLang">
+          {{ station.headline }}
+        </p>
         <p v-if="station.description" class="pod-station-description" :lang="language.htmlLang">
           {{ station.description }}
         </p>
@@ -111,7 +114,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 13.5rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 15.75rem));
 }
 
 /* Fills the frame's viewport, which is 460x499 at the frame's native size.
@@ -168,7 +171,7 @@ export default {
 /* The hero's dark card, with the same skewed edges standing in for depth. */
 .pod-station-poster {
   left: 78px;
-  top: 172px;
+  top: 96px;
   width: 196px;
   box-sizing: border-box;
   padding: 16px 18px;
@@ -203,9 +206,9 @@ export default {
 }
 
 .pod-station-poster-eyebrow {
-  font-size: 12px;
+  font-size: 17px;
   font-weight: 900;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   color: #ffc694;
 }
 
@@ -301,6 +304,9 @@ export default {
   .pod-station-copy {
     gap: 0.35rem;
   }
+  .pod-station-headline {
+    font-size: 1.45rem;
+  }
   /* Three lines at most, so a station still fits one screen. */
   .pod-station-description {
     display: -webkit-box;
@@ -339,7 +345,8 @@ export default {
   gap: 0.6rem;
 }
 
-/* The frame says it; this is for screen readers. */
+/* The frame says it; this is for screen readers. The visible line under
+   the frame is the optional headline. */
 .pod-station-title {
   position: absolute;
   width: 1px;
@@ -347,6 +354,15 @@ export default {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+.pod-station-headline {
+  font-family: var(--pod-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .pod-station-description {
