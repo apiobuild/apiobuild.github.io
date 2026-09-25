@@ -48,11 +48,15 @@
       </div>
     </header>
 
+    <!-- The platforms say what the page is; the heading is for screen
+      readers, and at every width (the line map it used to head is hidden
+      on phones). -->
+    <h1 class="pod-episodes-title">{{ page.title }}</h1>
+
     <div class="pod-shell pod-episodes-body">
       <!-- The line map: every station as a stop on one line, the one in view
         lit. Doubles as the table of contents. -->
       <nav class="pod-episodes-line" :aria-label="page.title">
-        <h1 class="pod-episodes-title">{{ page.title }}</h1>
         <ol>
           <li
             v-for="station in stations"
@@ -444,8 +448,12 @@ export default {
 }
 
 .pod-episodes-title {
-  font-size: 1.9rem;
-  margin-bottom: 1.5rem;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .pod-episodes-line ol {
