@@ -111,7 +111,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 19.75rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 18rem));
 }
 
 /* Fills the frame's viewport, which is 460x499 at the frame's native size.
