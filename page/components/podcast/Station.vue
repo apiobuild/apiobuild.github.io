@@ -170,8 +170,8 @@ export default {
 
 /* The hero's dark card, with the same skewed edges standing in for depth. */
 .pod-station-poster {
-  left: 78px;
-  top: 96px;
+  left: 70px;
+  top: 40px;
   width: 196px;
   box-sizing: border-box;
   padding: 16px 18px;
@@ -206,9 +206,9 @@ export default {
 }
 
 .pod-station-poster-eyebrow {
-  font-size: 17px;
+  font-size: 22px;
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   color: #ffc694;
 }
 
@@ -257,9 +257,9 @@ export default {
    bigger than they are there: the guest is the point of this platform.
    Scaled per character in the config so a cat isn't the size of a person. */
 .pod-station-character {
-  left: 284px;
-  bottom: 44px;
-  height: calc(265px * var(--pod-character-scale));
+  left: 280px;
+  bottom: 40px;
+  height: calc(320px * var(--pod-character-scale));
   width: auto;
   pointer-events: none;
   user-select: none;

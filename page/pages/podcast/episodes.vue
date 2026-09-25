@@ -534,16 +534,16 @@ export default {
   margin-top: 0.5rem;
 }
 
-/* Track not laid yet: a dashed run from the last aired stop to this one. */
+/* The line running on from the last aired stop into this one. */
 .pod-episodes-next::before {
   content: "";
   position: absolute;
   left: 0.55rem;
-  top: -0.9rem;
-  height: 1.4rem;
+  top: -1.9rem;
+  height: 2.6rem;
   width: 4px;
   margin-left: -2px;
-  background: repeating-linear-gradient(180deg, #ff6319 0 5px, transparent 5px 10px);
+  background: #ff6319;
 }
 
 .pod-episodes-next-stop {
