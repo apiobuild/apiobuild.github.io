@@ -222,7 +222,9 @@ export default {
   width: auto;
   /* At rest it's fully hidden below the screen's edge. */
   translate: 0 56px;
-  transition: translate 0.35s cubic-bezier(0.3, 1.4, 0.5, 1);
+  /* Slides up from below the edge at an even pace, settling with a small
+     overshoot -- a faster, front-loaded curve reads as popping in. */
+  transition: translate 0.6s cubic-bezier(0.34, 0.9, 0.4, 1.12);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
 }
 .pod-langtile-tile:not(.is-shown) {
