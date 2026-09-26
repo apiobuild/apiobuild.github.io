@@ -216,12 +216,12 @@ export default {
     height: calc(100vh - 2 * var(--pod-hero-pad));
     height: calc(100svh - 2 * var(--pod-hero-pad));
     min-height: fit-content;
-    /* The bottom of that first screen is left empty for the language cat,
-       which peeks up at the screen's bottom edge (LangCat.vue): the scene
+    /* The bottom of that first screen is left empty for the language tile,
+       which peeks up at the screen's bottom edge (LangTile.vue): the scene
        and the name sit above it, and the next section still starts below
        the fold. */
     box-sizing: border-box;
-    padding-bottom: var(--pod-cat-room);
+    padding-bottom: var(--pod-tile-room);
   }
 
   /* Grows to fill whatever the column leaves above the name; the scene

@@ -7,7 +7,7 @@
     <!-- The language switch, on the pages that have a Mandarin version. Here
       in the layout, not the pages, so it stays on screen while the page
       swipes to the other language underneath it. -->
-    <PodcastLangCat v-if="podcastHasZh(route.path)" />
+    <PodcastLangTile v-if="podcastHasZh(route.path)" />
   </div>
 </template>
 

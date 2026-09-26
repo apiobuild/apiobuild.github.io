@@ -42,9 +42,9 @@
      added or reordered. */
   --pod-band: clamp(4.5rem, 11vw, 9rem);
 
-  /* The strip at the bottom of the screen the language cat peeks up into
-     (LangCat.vue): its head, its speech bubble and a little air. */
-  --pod-cat-room: 82px;
+  /* The strip at the bottom of the screen the language tile peeks up into
+     (LangTile.vue): the tile and a little air. */
+  --pod-tile-room: 64px;
 
   min-height: 100vh;
   /* Room below the footer, so the last line isn't under the cat at the end

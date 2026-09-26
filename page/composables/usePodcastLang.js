@@ -10,8 +10,8 @@ export const PODCAST_LANGS = {
 };
 
 // The pages that have a Mandarin version: the ones Mandarin speakers come
-// looking for. The rest (the join form) are English only, with no cat and no
-// redirect.
+// looking for. The rest (the join form) are English only, with no language
+// tile and no redirect.
 const ZH_PAGES = ["/podcast", "/podcast/episodes"];
 export const podcastHasZh = (path) =>
   ZH_PAGES.includes(podcastPath(path.split(/[?#]/)[0], "en").replace(/(.)\/$/, "$1"));
@@ -71,7 +71,7 @@ export function podcastDefaultRedirect(path) {
 }
 
 // A redirect that happens before the page (and analytics) loads leaves a
-// note, so the page it lands on can report it (see LangCat.vue).
+// note, so the page it lands on can report it (see LangTile.vue).
 const AUTO_KEY = "podcast-lang-auto";
 export function notePodcastAutoSwitch(method) {
   try {
