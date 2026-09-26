@@ -47,9 +47,6 @@
   --pod-tile-room: 64px;
 
   min-height: 100vh;
-  /* Room below the footer, so the last line isn't under the cat at the end
-     of a scroll. */
-  padding-bottom: 48px;
   /* Grows past Vuetify's one-screen app wrapper instead of shrinking to it. */
   flex-shrink: 0;
   /* A column, so the footer can sit at the bottom of a short page. */

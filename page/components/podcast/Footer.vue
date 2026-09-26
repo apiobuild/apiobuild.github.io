@@ -33,7 +33,9 @@ export default {
 <style scoped>
 .pod-footer {
   border-top: 1px solid var(--pod-rule);
-  padding-block: 3rem;
+  /* Deeper at the bottom, inside the footer's own background, so its last
+     line clears the language tile at the end of a scroll (LangTile.vue). */
+  padding-block: 3rem max(3rem, var(--pod-tile-room));
 }
 
 .pod-footer-inner {
