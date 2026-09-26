@@ -166,11 +166,12 @@ export default {
   outline-offset: 2px;
 }
 
-/* Everything below the screen's edge is cut off here. */
+/* Everything below the screen's edge is cut off here; above it the bubble
+   is free to rise past the box. */
 .pod-langcat-window {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  clip-path: inset(-40px -20px 0 -20px);
 }
 
 /* The cat's head (its collar along the bottom), facing right toward the
@@ -204,19 +205,19 @@ export default {
 }
 
 /* The bubble, built like the ones over the characters on the hero's platform
-   (NinthTrain.vue): the "JOIN THE CONVERSATION" sign's deep orange with white
-   letter-spaced text, a darker isometric edge along the bottom and right, a
-   slanted two-tone tail, and the same gentle bob. */
+   (NinthTrain.vue): one of their lighter oranges with white letter-spaced
+   text, a darker isometric edge along the bottom and right, a slanted
+   two-tone tail, and the same gentle bob. */
 .pod-langcat-say {
   position: absolute;
-  top: 3px;
+  top: -5px;
   left: 9px;
   width: 32px;
   height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #c4470f;
+  background: #d57e51;
   color: #fff;
   font: 900 10px/1 Archivo, "PingFang TC", "Noto Sans TC", sans-serif;
   letter-spacing: 0.09em;
@@ -234,7 +235,7 @@ export default {
   top: 100%;
   width: 100%;
   height: 4px;
-  background: #99380c;
+  background: #b45f34;
   transform: skewX(45deg);
   transform-origin: top left;
 }
@@ -243,14 +244,14 @@ export default {
   top: 0;
   width: 4px;
   height: 100%;
-  background: #7c2d0a;
+  background: #9f4628;
   transform: skewY(45deg);
   transform-origin: left top;
 }
 .pod-langcat-tail {
   position: absolute;
   left: 14px;
-  top: 23px;
+  top: 15px;
   width: 13px;
   height: 9px;
   transform: scale(0);
@@ -267,12 +268,12 @@ export default {
 }
 .pod-langcat-tail::before {
   width: 13px;
-  background: #99380c;
+  background: #b45f34;
   clip-path: polygon(69.2% 0, 100% 0, 54.3% 100%, 23.5% 100%);
 }
 .pod-langcat-tail::after {
   width: 9px;
-  background: #c4470f;
+  background: #d57e51;
   clip-path: polygon(0 0, 100% 0, 34% 100%);
 }
 .pod-langcat.is-up .pod-langcat-say,
