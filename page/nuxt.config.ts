@@ -36,7 +36,17 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       // crawlLinks: true
-      routes: ["/sitemap.xml", "/robots.txt"]
+      routes: [
+        "/sitemap.xml",
+        "/robots.txt",
+        // The podcast's Mandarin pages are aliases of the English ones, so
+        // list them for the static build alongside the pages they mirror.
+        "/podcast",
+        "/podcast/episodes",
+        "/podcast/join",
+        "/podcast/zh",
+        "/podcast/zh/episodes"
+      ]
     }
   },
   site: {

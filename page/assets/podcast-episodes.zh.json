@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "節目 | 九號月台",
+    "description": "九號月台的每一站：亞裔美國創業者的故事，一站一站聽下去。"
+  },
+  "title": "節目",
+  "searchPlaceholder": "搜尋車站、來賓或節目",
+  "listenLabel": "收聽",
+  "comingSoonLabel": "即將推出",
+  "noResultsLabel": "還沒有這個車站。",
+  "nextStopLabel": "下一站",
+  "withGuestLabel": "，來賓 {guest}",
+  "stations": {
+    "boonton": {
+      "headline": "龐克搖滾、萬聖節與咖啡",
+      "description": "Meiling 分享 Catfight 如何從快閃攤位、電商，一路走到新澤西的 Boonton。"
+    }
+  }
+}

@@ -4,7 +4,7 @@
       however far down the line someone has ridden. -->
     <header ref="bar" class="pod-episodes-bar">
       <div class="pod-shell pod-episodes-bar-inner">
-        <NuxtLink class="pod-episodes-back" to="/podcast">
+        <NuxtLink class="pod-episodes-back" :to="content.links.home">
           <i class="fas fa-arrow-left" aria-hidden="true"></i>
           <span class="pod-episodes-bullet" aria-hidden="true">9</span>
           <span>{{ showTitle }}</span>
@@ -41,18 +41,25 @@
               <span class="pod-episodes-result-meta">{{ station.title }}</span>
             </li>
             <li v-if="!results.length" class="pod-episodes-result-empty" role="option" aria-disabled="true">
-              No station by that name yet.
+              {{ page.noResultsLabel }}
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- Phones and tablets have no line map, so the next stop rides in the sticky bar. -->
-      <p v-if="next" class="pod-shell pod-episodes-next-hint">
-        <span class="pod-episodes-next-hint-name" :lang="next.language.htmlLang">{{ next.station }}</span>
-        <span class="pod-episodes-next-hint-line" aria-hidden="true">
-          <span class="pod-episodes-next-hint-track"></span>
-          <span class="pod-episodes-stop"></span>
+      <!-- Phones and tablets have no line map, so a strip of it rides in the
+        sticky bar: the station in view centred and filled, the next stop to
+        its right, labelled as such, the way a train's own line map reads. -->
+      <p v-if="currentStation" class="pod-shell pod-episodes-strip">
+        <span class="pod-episodes-strip-track" aria-hidden="true"></span>
+        <span class="pod-episodes-strip-stop is-current">
+          <span class="pod-episodes-strip-name" :lang="currentStation.language.htmlLang">{{ currentStation.station }}</span>
+          <span class="pod-episodes-stop" aria-hidden="true"></span>
+        </span>
+        <span v-if="next" class="pod-episodes-strip-stop is-next">
+          <span class="pod-episodes-strip-label">{{ page.nextStopLabel }}</span>
+          <span class="pod-episodes-strip-name" :lang="next.language.htmlLang">{{ next.station }}</span>
+          <span class="pod-episodes-stop" aria-hidden="true"></span>
         </span>
       </p>
     </header>
@@ -118,10 +125,19 @@
 // go in assets/episodes/ (or reuse one from assets/ninth-hero/) and are named
 // by filename in the JSON.
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from "vue";
-import content from "~/assets/podcast.json";
-import page from "~/assets/podcast-episodes.json";
 
-definePageMeta({ layout: "podcast" });
+// The Mandarin page (/podcast/zh/episodes) lays podcast-episodes.zh.json over
+// the English labels and stations (see usePodcastContent).
+definePageMeta({
+  layout: "podcast",
+  alias: ["/podcast/zh/episodes"],
+  key: (route) => route.path
+});
+
+const route = useRoute();
+const lang = podcastLangOf(route.path);
+const content = podcastContent(lang);
+const page = podcastEpisodes(lang);
 
 // Same reason as podcast/index.vue: a path arriving as a string from JSON is
 // never seen by the bundler, so glob the folders and look up by filename.
@@ -143,6 +159,7 @@ const resolveLanguage = (code = page.defaultLanguage) => ({
 const allStations = page.stations.map((station) => ({
   ...station,
   character: images[station.character] ?? null,
+  props: (station.props ?? []).map((prop) => ({ ...prop, image: images[prop.image] ?? null })).filter((prop) => prop.image),
   language: resolveLanguage(station.language)
 }));
 
@@ -152,11 +169,17 @@ const stations = allStations.filter((s) => !s.next);
 const next = allStations.find((s) => s.next);
 
 const showTitle = content.hero.title;
-const labels = { listen: page.listenLabel, comingSoon: page.comingSoonLabel };
+const labels = {
+  listen: page.listenLabel,
+  comingSoon: page.comingSoonLabel,
+  withGuest: page.withGuestLabel,
+  dateLocale: PODCAST_LANGS[lang].dateLocale
+};
 
 // ---- Where the rider is --------------------------------------------------
 
 const current = ref(stations[0]?.id);
+const currentStation = computed(() => stations.find((s) => s.id === current.value));
 // Stations whose character has stepped on; never emptied, so scrolling back
 // up doesn't replay every arrival.
 const arrived = reactive(new Set());
@@ -254,7 +277,7 @@ function onSearchKey(event) {
   }
 }
 
-usePodcastHead({ title: page.meta.title, description: page.meta.description });
+usePodcastHead({ title: page.meta.title, description: page.meta.description, path: route.path });
 </script>
 
 <script>
@@ -372,8 +395,10 @@ export default {
   opacity: 0.7;
 }
 
+/* Over the line strip below the search, which comes later on the page. */
 .pod-episodes-results {
   position: absolute;
+  z-index: 5;
   top: calc(100% + 0.5rem);
   left: 0;
   right: 0;
@@ -547,7 +572,7 @@ export default {
   color: #e8b33a;
 }
 
-.pod-episodes-next-hint {
+.pod-episodes-strip {
   display: none;
 }
 
@@ -568,40 +593,88 @@ export default {
     display: none;
   }
 
-  /* The next station's name over the line running into its stop. */
-  .pod-episodes-next-hint {
+  /* Three columns: the current stop in the middle one, the next stop at
+     the right edge, one track through both dots. Every stop has the same
+     three rows -- label, name, dot -- so the names line up and the dots
+     share a row the track can run along. */
+  .pod-episodes-strip {
+    --strip-label: 0.8rem;
+    --strip-name: 1.3rem;
+    --strip-gap: 0.2rem;
+    --strip-dot: 1.1rem;
+    position: relative;
     display: grid;
-    justify-items: center;
-    row-gap: 0.35rem;
-    padding-bottom: 0.75rem;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    padding-block: 0.35rem 0.9rem;
     line-height: 1.1;
-    text-align: center;
   }
 
-  .pod-episodes-next-hint-name {
+  .pod-episodes-strip-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(0.35rem + var(--strip-label) + var(--strip-name) + 2 * var(--strip-gap) + var(--strip-dot) / 2);
+    height: 4px;
+    transform: translateY(-50%);
+    /* Runs in from the stops behind and on past the next one. */
+    background: linear-gradient(90deg, rgba(255, 99, 25, 0), #ff6319 18%, #ff6319 88%, rgba(255, 99, 25, 0));
+  }
+
+  .pod-episodes-strip-stop {
+    position: relative;
+    display: grid;
+    grid-template-rows: var(--strip-label) var(--strip-name) var(--strip-dot);
+    justify-items: center;
+    row-gap: var(--strip-gap);
+    min-width: 0;
+    text-align: center;
+  }
+  .pod-episodes-strip-stop.is-current {
+    grid-column: 2;
+  }
+  /* No label over the stop in view: its name and dot keep to their rows. */
+  .is-current .pod-episodes-strip-name {
+    grid-row: 2;
+  }
+  .pod-episodes-strip-stop.is-next {
+    grid-column: 3;
+    justify-self: end;
+    max-width: 100%;
+  }
+
+  .pod-episodes-strip-name {
+    max-width: 100%;
+    height: var(--strip-name);
+    line-height: var(--strip-name);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-weight: 800;
     font-size: 1.05rem;
     color: var(--pod-text);
   }
-
-  /* The stop is what centres under the name; the track hangs off its left. */
-  .pod-episodes-next-hint-line {
-    position: relative;
-    display: flex;
+  /* The next stop stays quiet next to the one in view. */
+  .is-next .pod-episodes-strip-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--pod-text-muted);
   }
 
-  .pod-episodes-next-hint-track {
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    width: 1.5rem;
-    height: 4px;
-    transform: translateY(-50%);
+  .pod-episodes-strip .pod-episodes-stop {
+    margin: 0;
+  }
+  .is-current .pod-episodes-stop {
     background: #ff6319;
   }
 
-  .pod-episodes-next-hint .pod-episodes-stop {
-    margin: 0;
+  .pod-episodes-strip-label {
+    line-height: var(--strip-label);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #e8b33a;
   }
 }
 

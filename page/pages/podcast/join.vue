@@ -1,7 +1,7 @@
 <template>
   <header class="pod-join-top">
     <div class="pod-shell">
-      <NuxtLink class="pod-join-back" to="/podcast">
+      <NuxtLink class="pod-join-back" :to="content.links.home">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         {{ content.hero.title }}
       </NuxtLink>
@@ -25,14 +25,15 @@
 
 <script setup>
 // The copy, the form's fields and where it sends them all live under "join"
-// in assets/podcast.json, next to the rest of the show's page.
-import content from "~/assets/podcast.json";
-
+// in assets/podcast.json, next to the rest of the show's page. English only:
+// it has no Mandarin version (see podcastHasZh).
 definePageMeta({ layout: "podcast" });
 
+const route = useRoute();
+const content = podcastContent("en");
 const join = content.join;
 
-usePodcastHead({ title: join.meta.title, description: join.meta.description });
+usePodcastHead({ title: join.meta.title, description: join.meta.description, path: route.path });
 </script>
 
 <script>

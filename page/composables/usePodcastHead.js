@@ -1,14 +1,34 @@
 import content from "~/assets/podcast.json";
+import { PODCAST_LANGS, podcastHasZh, podcastLangOf, podcastPath } from "./usePodcastLang";
+
+const SITE = "https://apiobuild.com";
 
 // The title and link-preview tags for a podcast page, with the show's card
-// as the preview image.
-export function usePodcastHead({ title, description }) {
+// as the preview image. `path` is the page's own path: it sets the page's
+// language, and -- for a page with a Mandarin version -- the alternate links
+// that tell search engines the two are the same page in two languages.
+export function usePodcastHead({ title, description, path }) {
+  const lang = podcastLangOf(path);
   // tagPriority beats app.vue's site-wide head, which registers the same tags
   // as "critical" -- without this a podcast page would share the consulting
   // site's title and description in every link preview.
   useHead(
     {
       title,
+      htmlAttrs: { lang: PODCAST_LANGS[lang].htmlLang },
+      link: [
+        { rel: "canonical", href: SITE + path },
+        ...(podcastHasZh(path)
+          ? [
+              ...Object.entries(PODCAST_LANGS).map(([code, { htmlLang }]) => ({
+                rel: "alternate",
+                hreflang: htmlLang,
+                href: SITE + podcastPath(path, code)
+              })),
+              { rel: "alternate", hreflang: "x-default", href: SITE + podcastPath(path, "en") }
+            ]
+          : [])
+      ],
       meta: [
         { property: "og:title", content: title },
         { name: "description", property: "og:description", content: description },

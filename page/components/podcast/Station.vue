@@ -1,5 +1,5 @@
 <template>
-  <article :id="station.id" class="pod-station" :class="{ 'is-arrived': arrived }">
+  <article :id="station.id" class="pod-station" :class="{ 'is-arrived': arrived }" :lang="station.copyLang">
     <!-- The platform in the hero's frame. Decorative: the copy below repeats
       what matters, and carries the title for screen readers. -->
     <div class="pod-station-stage" aria-hidden="true">
@@ -20,6 +20,19 @@
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
+          <!-- Extras on the platform (a pet, a prop), placed in scene pixels
+            from the config: its left edge, how far above the scene's bottom
+            it stands, and its height. -->
+          <img
+            v-for="(prop, index) in station.props"
+            :key="index"
+            class="pod-station-prop"
+            :src="prop.image"
+            :style="{ left: `${prop.left}px`, bottom: `${prop.bottom}px`, height: `${prop.height}px` }"
+            alt=""
+            draggable="false"
+          />
+
           <img
             v-if="station.character"
             class="pod-station-character"
@@ -35,7 +48,7 @@
     <div class="pod-station-details">
       <div class="pod-station-copy">
         <h2 class="pod-station-title" :lang="language.htmlLang">
-          {{ station.title }}<template v-if="station.guest">, with {{ station.guest }}</template>
+          {{ station.title }}<template v-if="station.guest">{{ labels.withGuest.replace("{guest}", station.guest) }}</template>
         </h2>
         <p v-if="date || language.badge" class="pod-eyebrow">
           {{ date }}
@@ -81,7 +94,9 @@ const props = defineProps({
 // "#" or a missing link is an episode that isn't out yet.
 const live = computed(() => !!props.station.spotify && props.station.spotify !== "#");
 
-const date = computed(() => formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }));
+const date = computed(() =>
+  formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }, props.labels.dateLocale)
+);
 </script>
 
 <script>
@@ -214,7 +229,8 @@ export default {
 
 
 /* Feet on the platform; characterScale in the config shrinks a pet. */
-.pod-station-character {
+.pod-station-character,
+.pod-station-prop {
   left: 280px;
   bottom: 40px;
   height: calc(320px * var(--pod-character-scale));
@@ -228,13 +244,23 @@ export default {
     transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.pod-station.is-arrived .pod-station-character {
+.pod-station-prop {
+  left: auto;
+  bottom: auto;
+  height: auto;
+  /* In just after the character. */
+  transition-delay: 0.15s;
+}
+
+.pod-station.is-arrived .pod-station-character,
+.pod-station.is-arrived .pod-station-prop {
   opacity: 1;
   transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pod-station-character {
+  .pod-station-character,
+  .pod-station-prop {
     transition: none;
   }
 }

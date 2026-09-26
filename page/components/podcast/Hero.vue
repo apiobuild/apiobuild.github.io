@@ -5,7 +5,7 @@
         are the first screen. Side by side the group dissolves (display:
         contents) and the name sits over the rest of the copy, beside the scene. -->
       <div class="pod-hero-top">
-        <PodcastNinthTrain class="pod-hero-art" />
+        <PodcastNinthTrain class="pod-hero-art" :scene="hero.scene" />
         <div class="pod-hero-lead">
           <!-- Optional, like the hosts band's heading: the hero reads fine
             without a label when the headline already says who the show is for. -->
@@ -32,13 +32,16 @@
               </span>
             </span>
           </div>
-          <!-- Just the names: the faces beside them already say these are the
-            hosts. One line per name so the comma hugs it instead of picking
+          <!-- "Hosted by" (hero.hostedBy) and the names, highlighted as one
+            line. One line per name so the comma hugs it instead of picking
             up the template's line break as a space. -->
           <p class="pod-hero-hosted">
-            <template v-for="(person, index) in hosts" :key="person.name">
-              <span class="pod-mark">{{ person.name }}</span><template v-if="index < hosts.length - 1">, </template>
-            </template>
+            <span class="pod-mark">
+              <template v-if="hero.hostedBy">{{ `${hero.hostedBy} ` }}</template>
+              <template v-for="(person, index) in hosts" :key="person.name">
+                <strong>{{ person.name }}</strong><template v-if="index < hosts.length - 1">{{ hero.hostSeparator ?? ", " }}</template>
+              </template>
+            </span>
           </p>
         </div>
 
@@ -213,6 +216,12 @@ export default {
     height: calc(100vh - 2 * var(--pod-hero-pad));
     height: calc(100svh - 2 * var(--pod-hero-pad));
     min-height: fit-content;
+    /* The bottom of that first screen is left empty for the language tile,
+       which peeks up at the screen's bottom edge (LangTile.vue): the scene
+       and the name sit above it, and the next section still starts below
+       the fold. */
+    box-sizing: border-box;
+    padding-bottom: var(--pod-tile-room);
   }
 
   /* Grows to fill whatever the column leaves above the name; the scene
@@ -242,6 +251,10 @@ export default {
   .pod-hero-copy {
     max-width: 24rem;
     margin-inline: auto;
+    /* Always the full measure: auto margins alone shrink a block to fit its
+       text, and a shorter line in one language (the Mandarin eyebrow) would
+       narrow it and pull it off the left edge the other language sits on. */
+    width: 100%;
   }
 
   /* .pod-hero-lead's own align-self: end is a *grid* row-alignment rule
@@ -253,6 +266,15 @@ export default {
      context. */
   .pod-hero-lead {
     align-self: auto;
+    /* The name sits on the block's bottom edge, so an eyebrow that's a line
+       shorter in one language never moves the title. */
+    justify-content: flex-end;
+  }
+
+  /* Buttons go to the right on phones and tablets: where a thumb reaches
+     them, and clear of the language cat at the bottom-left. */
+  .pod-hero-actions {
+    align-self: flex-end;
   }
 }
 
@@ -301,8 +323,8 @@ export default {
 /* On a phone the two buttons wrap onto separate lines, where hugging their
    own labels left them different widths against a shared left edge -- a
    ragged pair that reads as a mistake. Stacked, they both take the width of
-   the longer label, so the pair squares off while staying on the left edge
-   the headline and copy sit on. Same breakpoint the hosts band stacks at. */
+   the longer label, so the pair squares off, on the right edge (see above).
+   Same breakpoint the hosts band stacks at. */
 @media (max-width: 32rem) {
   .pod-hero-actions {
     flex-direction: column;
@@ -361,5 +383,15 @@ export default {
 .pod-hero-hosted {
   font-size: 1rem;
   color: var(--pod-text);
+}
+/* "Hosted by" in the regular weight, the names bold; if the line wraps,
+   each line keeps its own highlight. */
+.pod-hero-hosted .pod-mark {
+  font-weight: 400;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.pod-hero-hosted strong {
+  font-weight: 700;
 }
 </style>
