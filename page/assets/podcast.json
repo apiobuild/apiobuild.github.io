@@ -94,7 +94,7 @@
       "tag": "PODCAST SERIES",
       "card": { "eyebrow": "PODCAST SERIES", "title": "Stories of Asian American builders" },
       "presentedBy": "PRESENTED BY",
-      "joinSign": ["JOIN THE", "CONVERSATION"]
+      "joinSign": "JOIN THE\nCONVERSATION"
     },
     "body": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "primaryCta": {

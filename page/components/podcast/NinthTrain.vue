@@ -195,7 +195,7 @@
             <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#7C2D0A;transform:skewY(45deg);transform-origin:left top;"></div>
             <div style="position:absolute;left:26px;top:100%;width:35px;height:22px;background:#99380C;clip-path:polygon(74.3% 0,100% 0,51% 100%,25.3% 100%);"></div>
             <div style="position:absolute;left:26px;top:100%;width:26px;height:22px;background:#C4470F;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
-            <div style="font-size:15px;font-weight:900;color:#fff;letter-spacing:0.09em;line-height:1.35;">{{ scene.joinSign[0] }}<br />{{ scene.joinSign[1] }}</div>
+            <div style="font-size:15px;font-weight:900;color:#fff;letter-spacing:0.09em;line-height:1.35;white-space:pre-line;">{{ scene.joinSign }}</div>
           </div>
         </div>
 

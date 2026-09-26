@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "The Ninth｜亞裔美國創業者的故事",
-    "description": "Lulu 和 Meiling 都是亞裔美國小型企業創業者。她們想一起分享其他亞裔美國人打造引以為傲之事的幕後故事——一家街角咖啡店、一間父母傳下來的餐廳、一款科技產品、一個社群——以及更多。"
+    "description": "Lulu 和 Meiling 是來自台灣的創業家，在美國創業，分享以及邀請來賓分享創業故事，透過九號月台我們彼此鼓勵交流，一起來聽聽每個創業者的故事"
   },
   "hero": {
     "eyebrow": "nine lives,one loyal journey",
@@ -15,17 +15,14 @@
         "title": "亞裔美國創業者的故事"
       },
       "presentedBy": "呈獻",
-      "joinSign": [
-        "加入",
-        "對話"
-      ]
+      "joinSign": "加入對話"
     },
-    "body": "我們是來自台灣的創業家，在美國創業，分享以及邀請來賓分享創業故事，透過九號月台我們彼此鼓勵交流，一起來聽聽每個創業者的故事。",
+    "body": "Lulu 和 Meiling 是來自台灣的創業家，在美國創業，分享以及邀請來賓分享創業故事，透過九號月台我們彼此鼓勵交流，一起來聽聽每個創業者的故事",
     "primaryCta": {
       "label": "立即收聽"
     },
     "secondaryCta": {
-      "label": "加入社群"
+      "label": "Whatsapp"
     }
   }
 }
