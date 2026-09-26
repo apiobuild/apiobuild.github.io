@@ -9,10 +9,11 @@
     :class="{ 'is-up': popped || hovering || switching, 'is-hop': switching }"
     :lang="otherLang === 'zh' ? 'zh-Hant' : 'en'"
     :aria-label="otherLang === 'zh' ? '切換到中文 — Switch to Mandarin' : 'Switch to English — 切換到英文'"
-    @click.prevent="switchLang"
-    @mouseenter="hovering = true"
-    @mouseleave="hovering = false"
-    @focus="hovering = true"
+    @pointerdown="pointerType = $event.pointerType"
+    @click.prevent="onTap"
+    @pointerenter="$event.pointerType === 'mouse' && (hovering = true)"
+    @pointerleave="hovering = false"
+    @focus="onFocus"
     @blur="hovering = false"
   >
     <span class="pod-langcat-window" aria-hidden="true">
@@ -60,6 +61,26 @@ function pop(ms) {
 function onScroll() {
   clearTimeout(scrollTimer);
   scrollTimer = setTimeout(() => pop(3000), 400);
+}
+
+// ---- Tapping ---------------------------------------------------------------
+
+// A mouse shows the cat on hover, so a click always switches. A finger has
+// no hover: while the cat is hidden, the first tap on its corner only brings
+// it up, and a tap while it's showing switches.
+let pointerType = null;
+function onFocus() {
+  // A tap focuses the link too; only the keyboard should raise the cat here.
+  if (pointerType !== "touch") hovering.value = true;
+}
+function onTap() {
+  const touch = pointerType === "touch";
+  pointerType = null;
+  if (touch && !popped.value && !switching.value) {
+    pop(4000);
+    return;
+  }
+  switchLang();
 }
 
 // ---- Switching -------------------------------------------------------------
