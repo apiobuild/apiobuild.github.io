@@ -20,7 +20,17 @@
     @blur="hovering = false"
   >
     <span class="pod-langtile-window" aria-hidden="true">
-      <img class="pod-langtile-tile" :src="`/images/podcast-lang-${otherLang}.png`" alt="" />
+      <!-- Both tiles are always on the page, only the one for the other
+        language shown: swapping one img's src would load the new tile just
+        as it rises, and the old one would come up first. -->
+      <img
+        v-for="code in ['zh', 'en']"
+        :key="code"
+        class="pod-langtile-tile"
+        :class="{ 'is-shown': code === otherLang }"
+        :src="`/images/podcast-lang-${code}.png`"
+        alt=""
+      />
     </span>
   </a>
 </template>
@@ -214,6 +224,9 @@ export default {
   translate: 0 56px;
   transition: translate 0.35s cubic-bezier(0.3, 1.4, 0.5, 1);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+}
+.pod-langtile-tile:not(.is-shown) {
+  visibility: hidden;
 }
 .pod-langtile.is-up .pod-langtile-tile {
   translate: 0 -6px;
