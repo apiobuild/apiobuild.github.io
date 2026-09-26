@@ -5,10 +5,11 @@
   },
   "hero": {
     "eyebrow": "nine lives,one loyal journey",
-    "subtitle": "地鐵九號月台",
+    "title": "地鐵九號月台",
     "hostedBy": "主持人",
     "hostSeparator": "、",
     "scene": {
+      "name": "地鐵九號月台",
       "tag": "PODCAST 節目",
       "card": {
         "eyebrow": "PODCAST 節目",
