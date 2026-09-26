@@ -57,9 +57,9 @@
           <span class="pod-episodes-stop" aria-hidden="true"></span>
         </span>
         <span v-if="next" class="pod-episodes-strip-stop is-next">
+          <span class="pod-episodes-strip-label">{{ page.nextStopLabel }}</span>
           <span class="pod-episodes-strip-name" :lang="next.language.htmlLang">{{ next.station }}</span>
           <span class="pod-episodes-stop" aria-hidden="true"></span>
-          <span class="pod-episodes-strip-label">{{ page.nextStopLabel }}</span>
         </span>
       </p>
     </header>
@@ -591,17 +591,19 @@ export default {
   }
 
   /* Three columns: the current stop in the middle one, the next stop at
-     the right edge, one track through both dots. Every stop is name, dot,
-     label in that order, so the dots share a row the track can run along. */
+     the right edge, one track through both dots. Every stop has the same
+     three rows -- label, name, dot -- so the names line up and the dots
+     share a row the track can run along. */
   .pod-episodes-strip {
+    --strip-label: 0.8rem;
     --strip-name: 1.3rem;
-    --strip-gap: 0.35rem;
+    --strip-gap: 0.2rem;
     --strip-dot: 1.1rem;
     position: relative;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: start;
-    padding-bottom: 0.75rem;
+    padding-block: 0.35rem 0.9rem;
     line-height: 1.1;
   }
 
@@ -609,7 +611,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(var(--strip-name) + var(--strip-gap) + var(--strip-dot) / 2);
+    top: calc(0.35rem + var(--strip-label) + var(--strip-name) + 2 * var(--strip-gap) + var(--strip-dot) / 2);
     height: 4px;
     transform: translateY(-50%);
     /* Runs in from the stops behind and on past the next one. */
@@ -619,6 +621,7 @@ export default {
   .pod-episodes-strip-stop {
     position: relative;
     display: grid;
+    grid-template-rows: var(--strip-label) var(--strip-name) var(--strip-dot);
     justify-items: center;
     row-gap: var(--strip-gap);
     min-width: 0;
@@ -626,6 +629,10 @@ export default {
   }
   .pod-episodes-strip-stop.is-current {
     grid-column: 2;
+  }
+  /* No label over the stop in view: its name and dot keep to their rows. */
+  .is-current .pod-episodes-strip-name {
+    grid-row: 2;
   }
   .pod-episodes-strip-stop.is-next {
     grid-column: 3;
@@ -644,9 +651,10 @@ export default {
     font-size: 1.05rem;
     color: var(--pod-text);
   }
+  /* The next stop stays quiet next to the one in view. */
   .is-next .pod-episodes-strip-name {
-    font-weight: 700;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.85rem;
     color: var(--pod-text-muted);
   }
 
@@ -658,9 +666,10 @@ export default {
   }
 
   .pod-episodes-strip-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    line-height: var(--strip-label);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #e8b33a;
   }
