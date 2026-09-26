@@ -15,6 +15,9 @@
           <h1 class="pod-hero-title">
             <span class="pod-hero-nine" aria-hidden="true">9</span><span>{{ hero.title }}</span>
           </h1>
+          <!-- Optional: a second name under the show's, for a language that
+            calls it something of its own. -->
+          <p v-if="hero.subtitle" class="pod-hero-subtitle">{{ hero.subtitle }}</p>
         </div>
       </div>
 
@@ -286,6 +289,15 @@ export default {
   display: flex;
   align-items: center;
   font-size: clamp(2.5rem, 7vw, 4.75rem);
+}
+
+/* Pulled up against the name, out of the lead's 1.75rem rhythm. */
+.pod-hero-subtitle {
+  margin-top: -1.25rem;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--pod-text);
 }
 
 /* The scene's own badge is 48px against a 30px wordmark there -- circle:text
