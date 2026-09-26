@@ -19,12 +19,12 @@
       <fieldset v-for="group in groups" :key="group.legend ?? group.fields[0].name" class="pod-join-group">
         <legend v-if="group.legend" class="pod-join-legend">
           {{ group.legend }}
-          <span class="pod-join-optional">optional</span>
+          <span class="pod-join-optional">{{ join.optionalLabel }}</span>
         </legend>
         <div v-for="field in group.fields" :key="field.name" class="pod-join-field">
           <label :for="fieldId(field)" :class="{ 'pod-join-sublabel': group.legend }">
             {{ field.label }}
-            <span v-if="!field.required && !group.legend" class="pod-join-optional">optional</span>
+            <span v-if="!field.required && !group.legend" class="pod-join-optional">{{ join.optionalLabel }}</span>
           </label>
           <textarea
             v-if="field.type === 'textarea'"
@@ -55,7 +55,7 @@
       <p v-if="status === 'error'" class="pod-join-error" role="alert">{{ join.error }}</p>
 
       <button class="pod-btn pod-btn-solid pod-join-submit" type="submit" :disabled="status === 'sending'">
-        {{ status === "sending" ? "Sending..." : join.submitLabel }}
+        {{ status === "sending" ? join.sendingLabel : join.submitLabel }}
       </button>
     </form>
   </div>

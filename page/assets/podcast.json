@@ -1,10 +1,11 @@
 {
   "meta": {
-    "title": "The Ninth | apiobuild",
+    "title": "The Ninth",
     "description": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "image": "https://apiobuild.com/images/podcast-og.png"
   },
   "links": {
+    "home": "/podcast",
     "listen": "https://open.spotify.com/show/42BO2WME6FaiBlHKmGeAhf",
     "episodes": "/podcast/episodes",
     "community": "/podcast/join",
@@ -75,6 +76,8 @@
       }
     ],
     "submitLabel": "Request to Join",
+    "sendingLabel": "Sending...",
+    "optionalLabel": "optional",
     "thanks": {
       "title": "Thanks. We're on it.",
       "body": "We will add you shortly. Keep an eye on WhatsApp."
@@ -82,8 +85,17 @@
     "error": "That didn't go through. Try again, or email us at luluc@apiobuild.com."
   },
   "hero": {
-    "eyebrow": "Podcast | Stories from Asian American builders",
+    "eyebrow": "nine lives,one loyal journey",
     "title": "The Ninth",
+    "hostedBy": "Hosted by",
+    "hostSeparator": ", ",
+    "scene": {
+      "name": "THE NINTH",
+      "tag": "PODCAST",
+      "card": { "eyebrow": "PODCAST", "title": "Stories of Asian American builders" },
+      "presentedBy": "PRESENTED BY",
+      "joinSign": "JOIN THE\nCONVERSATION"
+    },
     "body": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "primaryCta": {
       "label": "Listen Now",

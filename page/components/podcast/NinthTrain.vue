@@ -10,7 +10,7 @@
       :class="{ 'is-dragging': dragging }"
       @pointerdown="onDragStart"
     >
-      <PodcastBezel name="THE NINTH" tag="PODCAST SERIES" @scale="onScale">
+      <PodcastBezel :name="scene.name" :tag="scene.tag" @scale="onScale">
         <div ref="skyRef" class="ninth-sky"></div>
 
         <div ref="stripRef" class="ninth-strip">
@@ -40,9 +40,9 @@
             <div style="position:absolute;left:484px;top:168px;width:300px;background:#0C0F16;box-sizing:border-box;padding:16px 18px;">
               <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#2A2F36;transform:skewX(45deg);transform-origin:top left;"></div>
               <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#1A1E24;transform:skewY(45deg);transform-origin:left top;"></div>
-              <div style="font-size:12px;font-weight:900;letter-spacing:0.16em;color:#FFC694;">PODCAST SERIES</div>
+              <div style="font-size:12px;font-weight:900;letter-spacing:0.16em;color:#FFC694;">{{ scene.card.eyebrow }}</div>
               <div style="height:2px;background:rgba(253,251,247,0.5);margin:13px 0;"></div>
-              <div style="font-size:33px;font-weight:700;letter-spacing:-0.03em;line-height:1.06;color:#FDFBF7;text-wrap:pretty;">Stories of Asian American builders</div>
+              <div style="font-size:33px;font-weight:700;letter-spacing:-0.03em;line-height:1.06;color:#FDFBF7;text-wrap:pretty;">{{ scene.card.title }}</div>
             </div>
           </div>
 
@@ -129,13 +129,10 @@
           <div style="position:absolute;left:5070px;top:0;width:22px;height:400px;background:#39414e;"></div>
           <div style="position:absolute;left:5446px;top:0;width:22px;height:400px;background:#39414e;"></div>
 
-          <div style="position:absolute;left:5154px;top:396px;width:148px;height:12px;background:#8a5a33;"></div>
-          <div style="position:absolute;left:5154px;top:412px;width:148px;height:12px;background:#9a663a;"></div>
-          <div style="position:absolute;left:5164px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
-          <div style="position:absolute;left:5284px;top:424px;width:8px;height:26px;background:#3a4350;"></div>
           <div style="position:absolute;left:5374px;top:402px;width:26px;height:48px;background:#2b3340;"></div>
 
-          <div style="position:absolute;left:0;top:0;width:6630px;height:500px;">
+          <!-- The friends, centred in the window at their stop (4720-5180). -->
+          <div style="position:absolute;left:16px;top:0;width:6630px;height:500px;">
             <img draggable="false" :src="ashly" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4724px;top:275px;width:77px;height:180px;display:block;" />
             <img draggable="false" :src="catfight1" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4806px;top:360px;width:75px;height:95px;display:block;" />
             <img draggable="false" :src="meiling" alt="" style="-webkit-user-drag:none;user-drag:none;pointer-events:none;position:absolute;left:4864px;top:275px;width:76px;height:180px;display:block;" />
@@ -179,14 +176,14 @@
             <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
             <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
             <img draggable="false" :src="catfightMark" alt="Catfight Coffee" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
-            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">PRESENTED BY<br />CATFIGHT COFFEE</div>
+            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">{{ scene.presentedBy }}<br />CATFIGHT COFFEE</div>
           </div>
 
           <div style="position:absolute;left:3580px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:246px;height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
             <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
             <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
             <img draggable="false" :src="bagelMark" alt="Bagel²" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
-            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">PRESENTED BY<br />BAGEL²</div>
+            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">{{ scene.presentedBy }}<br />BAGEL²</div>
           </div>
 
           <!-- Darker than the cream cards' orange, with white text -- black
@@ -198,7 +195,7 @@
             <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#7C2D0A;transform:skewY(45deg);transform-origin:left top;"></div>
             <div style="position:absolute;left:26px;top:100%;width:35px;height:22px;background:#99380C;clip-path:polygon(74.3% 0,100% 0,51% 100%,25.3% 100%);"></div>
             <div style="position:absolute;left:26px;top:100%;width:26px;height:22px;background:#C4470F;clip-path:polygon(0 0,100% 0,34% 100%);"></div>
-            <div style="font-size:15px;font-weight:900;color:#fff;letter-spacing:0.09em;line-height:1.35;">JOIN THE<br />CONVERSATION</div>
+            <div style="font-size:15px;font-weight:900;color:#fff;letter-spacing:0.09em;line-height:1.35;white-space:pre-line;">{{ scene.joinSign }}</div>
           </div>
         </div>
 
@@ -227,6 +224,11 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
+
+// The words on the scene, from the page's copy so they follow its language.
+defineProps({
+  scene: { type: Object, required: true }
+});
 import catfightStorefront from "~/assets/ninth-hero/catfight-storefront.webp";
 import blockShops from "~/assets/ninth-hero/block-shops.webp";
 import ashly from "~/assets/ninth-hero/ashly.webp";
