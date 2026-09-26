@@ -4,7 +4,7 @@
       however far down the line someone has ridden. -->
     <header ref="bar" class="pod-episodes-bar">
       <div class="pod-shell pod-episodes-bar-inner">
-        <NuxtLink class="pod-episodes-back" to="/podcast">
+        <NuxtLink class="pod-episodes-back" :to="content.links.home">
           <i class="fas fa-arrow-left" aria-hidden="true"></i>
           <span class="pod-episodes-bullet" aria-hidden="true">9</span>
           <span>{{ showTitle }}</span>
@@ -118,10 +118,19 @@
 // go in assets/episodes/ (or reuse one from assets/ninth-hero/) and are named
 // by filename in the JSON.
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from "vue";
-import content from "~/assets/podcast.json";
-import page from "~/assets/podcast-episodes.json";
 
-definePageMeta({ layout: "podcast" });
+// The Mandarin page (/podcast/zh/episodes) lays podcast-episodes.zh.json over
+// the English labels and stations (see usePodcastContent).
+definePageMeta({
+  layout: "podcast",
+  alias: ["/podcast/zh/episodes"],
+  key: (route) => route.path
+});
+
+const route = useRoute();
+const lang = podcastLangOf(route.path);
+const content = podcastContent(lang);
+const page = podcastEpisodes(lang);
 
 // Same reason as podcast/index.vue: a path arriving as a string from JSON is
 // never seen by the bundler, so glob the folders and look up by filename.
@@ -152,7 +161,12 @@ const stations = allStations.filter((s) => !s.next);
 const next = allStations.find((s) => s.next);
 
 const showTitle = content.hero.title;
-const labels = { listen: page.listenLabel, comingSoon: page.comingSoonLabel };
+const labels = {
+  listen: page.listenLabel,
+  comingSoon: page.comingSoonLabel,
+  withGuest: page.withGuestLabel,
+  dateLocale: PODCAST_LANGS[lang].dateLocale
+};
 
 // ---- Where the rider is --------------------------------------------------
 
@@ -254,7 +268,7 @@ function onSearchKey(event) {
   }
 }
 
-usePodcastHead({ title: page.meta.title, description: page.meta.description });
+usePodcastHead({ title: page.meta.title, description: page.meta.description, path: route.path });
 </script>
 
 <script>

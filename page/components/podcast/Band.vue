@@ -32,4 +32,15 @@ export default {
 .pod-band-cta {
   margin-top: 2rem;
 }
+
+/* On phones and tablets the button goes to the right: where a thumb reaches
+   it, and clear of the language cat at the bottom-left (LangCat.vue). */
+@media (max-width: 60rem) {
+  /* .podcast-page in front outranks podcast.css's .pod-btn display. */
+  .podcast-page .pod-band-cta {
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+  }
+}
 </style>

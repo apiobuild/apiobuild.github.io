@@ -13,10 +13,18 @@
 <script setup>
 // Every word and link on this page lives in assets/podcast.json -- edit the
 // copy, reorder the sections, or point the CTAs somewhere real there, without
-// touching a component.
-import content from "~/assets/podcast.json";
+// touching a component. The Mandarin page (/podcast/zh) is this same page with
+// assets/podcast.zh.json laid over it (see usePodcastContent).
+definePageMeta({
+  layout: "podcast",
+  alias: ["/podcast/zh"],
+  // A fresh page per language, so switching reads the other copy.
+  key: (route) => route.path
+});
 
-definePageMeta({ layout: "podcast" });
+const route = useRoute();
+const lang = podcastLangOf(route.path);
+const content = podcastContent(lang);
 
 // Vite rewrites asset URLs at build time, so a path arriving as a string from
 // JSON is never seen by the bundler and would ship as a dead link. Globbing
@@ -48,7 +56,7 @@ const bands = content.bands.map((band) =>
 // that band rather than a second copy in the JSON.
 const hosts = bands.find((band) => band.type === "hosts")?.people ?? [];
 
-usePodcastHead({ title: content.meta.title, description: content.meta.description });
+usePodcastHead({ title: content.meta.title, description: content.meta.description, path: route.path });
 </script>
 
 <script>

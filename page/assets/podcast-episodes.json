@@ -8,6 +8,7 @@
   "listenLabel": "Listen",
   "comingSoonLabel": "Coming soon",
   "nextStopLabel": "Next stop",
+  "withGuestLabel": ", with {guest}",
   "languages": {
     "en": {
       "label": "English"

@@ -35,7 +35,7 @@
     <div class="pod-station-details">
       <div class="pod-station-copy">
         <h2 class="pod-station-title" :lang="language.htmlLang">
-          {{ station.title }}<template v-if="station.guest">, with {{ station.guest }}</template>
+          {{ station.title }}<template v-if="station.guest">{{ labels.withGuest.replace("{guest}", station.guest) }}</template>
         </h2>
         <p v-if="date || language.badge" class="pod-eyebrow">
           {{ date }}
@@ -81,7 +81,9 @@ const props = defineProps({
 // "#" or a missing link is an episode that isn't out yet.
 const live = computed(() => !!props.station.spotify && props.station.spotify !== "#");
 
-const date = computed(() => formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }));
+const date = computed(() =>
+  formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }, props.labels.dateLocale)
+);
 </script>
 
 <script>
