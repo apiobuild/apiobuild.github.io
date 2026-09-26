@@ -159,6 +159,7 @@ const resolveLanguage = (code = page.defaultLanguage) => ({
 const allStations = page.stations.map((station) => ({
   ...station,
   character: images[station.character] ?? null,
+  props: (station.props ?? []).map((prop) => ({ ...prop, image: images[prop.image] ?? null })).filter((prop) => prop.image),
   language: resolveLanguage(station.language)
 }));
 

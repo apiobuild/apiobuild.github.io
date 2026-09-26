@@ -36,7 +36,11 @@
       "headline": "Punk rock, Halloween and coffee",
       "description": "Meiling shares how Catfight went from pop-ups to e-commerce to Boonton, NJ.",
       "spotify": "https://open.spotify.com/episode/17YHq0WyN8klUV6sEciFqL?si=6nYY3GC0S3GaNPYg1PfPEg",
-      "character": "meiling-boonton.webp"
+      "character": "meiling-boonton.webp",
+      "props": [
+        { "image": "pumpkin.webp", "left": 72, "bottom": 38, "height": 78 },
+        { "image": "catfight1.webp", "left": 168, "bottom": 40, "height": 130 }
+      ]
     }
   ]
 }
