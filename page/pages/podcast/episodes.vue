@@ -47,12 +47,19 @@
         </div>
       </div>
 
-      <!-- Phones and tablets have no line map, so the next stop rides in the sticky bar. -->
-      <p v-if="next" class="pod-shell pod-episodes-next-hint">
-        <span class="pod-episodes-next-hint-name" :lang="next.language.htmlLang">{{ next.station }}</span>
-        <span class="pod-episodes-next-hint-line" aria-hidden="true">
-          <span class="pod-episodes-next-hint-track"></span>
-          <span class="pod-episodes-stop"></span>
+      <!-- Phones and tablets have no line map, so a strip of it rides in the
+        sticky bar: the station in view centred and filled, the next stop to
+        its right, labelled as such, the way a train's own line map reads. -->
+      <p v-if="currentStation" class="pod-shell pod-episodes-strip">
+        <span class="pod-episodes-strip-track" aria-hidden="true"></span>
+        <span class="pod-episodes-strip-stop is-current">
+          <span class="pod-episodes-strip-name" :lang="currentStation.language.htmlLang">{{ currentStation.station }}</span>
+          <span class="pod-episodes-stop" aria-hidden="true"></span>
+        </span>
+        <span v-if="next" class="pod-episodes-strip-stop is-next">
+          <span class="pod-episodes-strip-name" :lang="next.language.htmlLang">{{ next.station }}</span>
+          <span class="pod-episodes-stop" aria-hidden="true"></span>
+          <span class="pod-episodes-strip-label">{{ page.nextStopLabel }}</span>
         </span>
       </p>
     </header>
@@ -171,6 +178,7 @@ const labels = {
 // ---- Where the rider is --------------------------------------------------
 
 const current = ref(stations[0]?.id);
+const currentStation = computed(() => stations.find((s) => s.id === current.value));
 // Stations whose character has stepped on; never emptied, so scrolling back
 // up doesn't replay every arrival.
 const arrived = reactive(new Set());
@@ -561,7 +569,7 @@ export default {
   color: #e8b33a;
 }
 
-.pod-episodes-next-hint {
+.pod-episodes-strip {
   display: none;
 }
 
@@ -582,40 +590,79 @@ export default {
     display: none;
   }
 
-  /* The next station's name over the line running into its stop. */
-  .pod-episodes-next-hint {
+  /* Three columns: the current stop in the middle one, the next stop at
+     the right edge, one track through both dots. Every stop is name, dot,
+     label in that order, so the dots share a row the track can run along. */
+  .pod-episodes-strip {
+    --strip-name: 1.3rem;
+    --strip-gap: 0.35rem;
+    --strip-dot: 1.1rem;
+    position: relative;
     display: grid;
-    justify-items: center;
-    row-gap: 0.35rem;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
     padding-bottom: 0.75rem;
     line-height: 1.1;
-    text-align: center;
   }
 
-  .pod-episodes-next-hint-name {
+  .pod-episodes-strip-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--strip-name) + var(--strip-gap) + var(--strip-dot) / 2);
+    height: 4px;
+    transform: translateY(-50%);
+    /* Runs in from the stops behind and on past the next one. */
+    background: linear-gradient(90deg, rgba(255, 99, 25, 0), #ff6319 18%, #ff6319 88%, rgba(255, 99, 25, 0));
+  }
+
+  .pod-episodes-strip-stop {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    row-gap: var(--strip-gap);
+    min-width: 0;
+    text-align: center;
+  }
+  .pod-episodes-strip-stop.is-current {
+    grid-column: 2;
+  }
+  .pod-episodes-strip-stop.is-next {
+    grid-column: 3;
+    justify-self: end;
+    max-width: 100%;
+  }
+
+  .pod-episodes-strip-name {
+    max-width: 100%;
+    height: var(--strip-name);
+    line-height: var(--strip-name);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-weight: 800;
     font-size: 1.05rem;
     color: var(--pod-text);
   }
-
-  /* The stop is what centres under the name; the track hangs off its left. */
-  .pod-episodes-next-hint-line {
-    position: relative;
-    display: flex;
+  .is-next .pod-episodes-strip-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--pod-text-muted);
   }
 
-  .pod-episodes-next-hint-track {
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    width: 1.5rem;
-    height: 4px;
-    transform: translateY(-50%);
+  .pod-episodes-strip .pod-episodes-stop {
+    margin: 0;
+  }
+  .is-current .pod-episodes-stop {
     background: #ff6319;
   }
 
-  .pod-episodes-next-hint .pod-episodes-stop {
-    margin: 0;
+  .pod-episodes-strip-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e8b33a;
   }
 }
 
