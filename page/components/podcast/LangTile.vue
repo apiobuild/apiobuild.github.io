@@ -53,6 +53,11 @@ const { gtag } = useGtag();
 const trackSwitch = (from, to, method) => useTrackEvent("language_switch", { from, to, method });
 watch(lang, (value) => gtag("set", { page_language: value }), { immediate: true });
 
+// Reading a Mandarin page counts as choosing Mandarin, however the reader got
+// here (a shared link, not only the tile), so leaving for an English-only
+// page (the join form) and coming back returns them to Mandarin.
+onMounted(() => watch(lang, (value) => value === "zh" && savePodcastLangChoice("zh"), { immediate: true }));
+
 // ---- Popping up ------------------------------------------------------------
 
 const popped = ref(false);
@@ -142,7 +147,20 @@ async function switchLang() {
   if (host) await slide(pageParts(host), "0", "-100vw", 260, "cubic-bezier(.6,0,.9,.6)");
   // Hold the incoming page off to the right until its slide starts.
   host?.classList.add("is-swipe-in");
-  await navigateTo(target);
+  try {
+    await navigateTo(target);
+  } catch {
+    // The other page couldn't load in place (say its code failed to
+    // download): put this page back rather than leave the screen empty, and
+    // go there with an ordinary page load instead.
+    host?.classList.remove("is-swipe-in");
+    if (host) pageParts(host).forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()));
+    root.style.overflowX = overflow;
+    dropped.value = false;
+    switching.value = false;
+    window.location.assign(otherPath.value + route.hash);
+    return;
+  }
   await nextTick();
   await new Promise((resolve) => requestAnimationFrame(resolve));
   if (host) {
