@@ -32,14 +32,16 @@
               </span>
             </span>
           </div>
-          <!-- "Hosted by" (hero.hostedBy) and the names. One line per name so
-            the comma hugs it instead of picking up the template's line break
-            as a space. -->
+          <!-- "Hosted by" (hero.hostedBy) and the names, highlighted as one
+            line. One line per name so the comma hugs it instead of picking
+            up the template's line break as a space. -->
           <p class="pod-hero-hosted">
-            <template v-if="hero.hostedBy">{{ `${hero.hostedBy} ` }}</template>
-            <template v-for="(person, index) in hosts" :key="person.name">
-              <span class="pod-mark">{{ person.name }}</span><template v-if="index < hosts.length - 1">{{ hero.hostSeparator ?? ", " }}</template>
-            </template>
+            <span class="pod-mark">
+              <template v-if="hero.hostedBy">{{ `${hero.hostedBy} ` }}</template>
+              <template v-for="(person, index) in hosts" :key="person.name">
+                <strong>{{ person.name }}</strong><template v-if="index < hosts.length - 1">{{ hero.hostSeparator ?? ", " }}</template>
+              </template>
+            </span>
           </p>
         </div>
 
@@ -381,5 +383,15 @@ export default {
 .pod-hero-hosted {
   font-size: 1rem;
   color: var(--pod-text);
+}
+/* "Hosted by" in the regular weight, the names bold; if the line wraps,
+   each line keeps its own highlight. */
+.pod-hero-hosted .pod-mark {
+  font-weight: 400;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.pod-hero-hosted strong {
+  font-weight: 700;
 }
 </style>
