@@ -2,13 +2,14 @@
   <!-- The language switch: a tile hidden below the bottom-left edge of the
     screen that pops up now and then, saying the page's language -- a 紅中
     mahjong tile on the Mandarin pages, Scrabble tiles spelling EN on the
-    English ones. Tapping it flips the tile and swipes the page over to the
-    other language. A real link, so
+    English ones. Tapping it drops the tile out of sight as the page swipes
+    over to the other language, and that language's tile comes up in its
+    place. A real link, so
     it works without JavaScript and search engines find the other pages. -->
   <a
     :href="otherPath"
     class="pod-langtile"
-    :class="{ 'is-up': popped || hovering || switching }"
+    :class="{ 'is-up': (popped || hovering || switching) && !dropped, 'is-dropped': dropped }"
     :lang="otherLang === 'zh' ? 'zh-Hant' : 'en'"
     :aria-label="otherLang === 'zh' ? '切換到中文 — Switch to Mandarin' : 'Switch to English — 切換到英文'"
     @pointerdown="pointerType = $event.pointerType"
@@ -19,7 +20,7 @@
     @blur="hovering = false"
   >
     <span class="pod-langtile-window" aria-hidden="true">
-      <img ref="tile" class="pod-langtile-tile" :src="`/images/podcast-lang-${lang}.png`" alt="" />
+      <img class="pod-langtile-tile" :src="`/images/podcast-lang-${lang}.png`" alt="" />
     </span>
   </a>
 </template>
@@ -44,8 +45,9 @@ watch(lang, (value) => gtag("set", { page_language: value }), { immediate: true 
 
 // ---- Popping up ------------------------------------------------------------
 
-const tile = ref(null);
 const popped = ref(false);
+// Down out of sight while the page swaps languages (see switchLang).
+const dropped = ref(false);
 const hovering = ref(false);
 const switching = ref(false);
 let popTimer = null;
@@ -123,21 +125,16 @@ async function switchLang() {
   const root = document.documentElement;
   const overflow = root.style.overflowX;
   root.style.overflowX = "hidden";
-  // The tile turns edge-on as the page leaves...
-  const turn = (from, to, ms) =>
-    tile.value?.animate([{ transform: `rotateY(${from})` }, { transform: `rotateY(${to})` }], {
-      duration: ms,
-      easing: "ease-in-out",
-      fill: "forwards"
-    }).finished;
-  await Promise.all([host && slide(pageParts(host), "0", "-100vw", 260, "cubic-bezier(.6,0,.9,.6)"), turn("0deg", "90deg", 200)]);
+  // The tile drops out of sight as the page leaves...
+  dropped.value = true;
+  if (host) await slide(pageParts(host), "0", "-100vw", 260, "cubic-bezier(.6,0,.9,.6)");
   // Hold the incoming page off to the right until its slide starts.
   host?.classList.add("is-swipe-in");
   await navigateTo(target);
   await nextTick();
   await new Promise((resolve) => requestAnimationFrame(resolve));
-  // ...and comes back round showing the other language as the new page arrives.
-  const turnedBack = turn("-90deg", "0deg", 260);
+  // ...and the other language's tile comes up as the new page arrives.
+  dropped.value = false;
   if (host) {
     const incoming = pageParts(host);
     const done = slide(incoming, "100vw", "0", 340, "cubic-bezier(.2,.7,.3,1)");
@@ -145,8 +142,6 @@ async function switchLang() {
     await done;
     incoming.forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()));
   }
-  await turnedBack;
-  tile.value?.getAnimations().forEach((animation) => animation.cancel());
   root.style.overflowX = overflow;
   switching.value = false;
   pop(1800);
@@ -204,13 +199,11 @@ export default {
   position: absolute;
   inset: 0;
   clip-path: inset(-20px -20px 0 -20px);
-  perspective: 300px;
 }
 
 /* The tile, facing right toward the page. Both images are cut the same
    height, so the mahjong tile and the wider Scrabble pair sit on the same
-   line. `translate` moves it up and down; `transform` is left free for the
-   flip (see switchLang). */
+   line. */
 .pod-langtile-tile {
   position: absolute;
   left: 6px;
@@ -224,6 +217,10 @@ export default {
 }
 .pod-langtile.is-up .pod-langtile-tile {
   translate: 0 -6px;
+}
+/* Switching: straight down, quicker than it pops up. */
+.pod-langtile.is-dropped .pod-langtile-tile {
+  transition: translate 0.2s ease-in;
 }
 
 /* While switching, the incoming page waits off to the right until its slide
