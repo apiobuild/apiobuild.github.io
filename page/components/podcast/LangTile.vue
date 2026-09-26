@@ -9,7 +9,7 @@
   <a
     :href="otherPath"
     class="pod-langtile"
-    :class="{ 'is-up': (popped || hovering || switching) && !dropped, 'is-dropped': dropped }"
+    :class="{ 'is-up': (popped || hovering || switching) && !dropped, 'is-dropped': dropped, 'is-rising': rising }"
     :lang="otherLang === 'zh' ? 'zh-Hant' : 'en'"
     :aria-label="otherLang === 'zh' ? '切換到中文 — Switch to Mandarin' : 'Switch to English — 切換到英文'"
     @pointerdown="pointerType = $event.pointerType"
@@ -58,6 +58,8 @@ watch(lang, (value) => gtag("set", { page_language: value }), { immediate: true 
 const popped = ref(false);
 // Down out of sight while the page swaps languages (see switchLang).
 const dropped = ref(false);
+// Coming back up, slowly, once the new page has arrived.
+const rising = ref(false);
 const hovering = ref(false);
 const switching = ref(false);
 let popTimer = null;
@@ -143,8 +145,6 @@ async function switchLang() {
   await navigateTo(target);
   await nextTick();
   await new Promise((resolve) => requestAnimationFrame(resolve));
-  // ...and the other language's tile comes up as the new page arrives.
-  dropped.value = false;
   if (host) {
     const incoming = pageParts(host);
     const done = slide(incoming, "100vw", "0", 340, "cubic-bezier(.2,.7,.3,1)");
@@ -153,8 +153,14 @@ async function switchLang() {
     incoming.forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()));
   }
   root.style.overflowX = overflow;
+  // ...and once the new page has settled, the other language's tile slides
+  // slowly up in its place.
+  rising.value = true;
+  dropped.value = false;
+  await new Promise((resolve) => setTimeout(resolve, 1100));
+  rising.value = false;
   switching.value = false;
-  pop(1800);
+  pop(2500);
 }
 
 onMounted(() => {
@@ -233,9 +239,13 @@ export default {
 .pod-langtile.is-up .pod-langtile-tile {
   translate: 0 -6px;
 }
-/* Switching: straight down, quicker than it pops up. */
+/* Switching: straight down, quicker than it pops up... */
 .pod-langtile.is-dropped .pod-langtile-tile {
   transition: translate 0.2s ease-in;
+}
+/* ...and the new tile back up slowly, so the change is seen. */
+.pod-langtile.is-rising .pod-langtile-tile {
+  transition: translate 1.1s cubic-bezier(0.25, 0.8, 0.35, 1);
 }
 
 /* While switching, the incoming page waits off to the right until its slide
