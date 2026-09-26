@@ -1,9 +1,9 @@
 <template>
   <!-- The language switch: a tile hidden below the bottom-left edge of the
-    screen that pops up now and then, saying the page's language -- a 紅中
-    mahjong tile on the Mandarin pages, Scrabble tiles spelling EN on the
-    English ones. Tapping it drops the tile out of sight as the page swipes
-    over to the other language, and that language's tile comes up in its
+    screen that pops up now and then, offering the other language -- a 紅中
+    mahjong tile on the English pages, Scrabble tiles spelling EN on the
+    Mandarin ones. Tapping it drops the tile out of sight as the page swipes
+    over to that language, and the tile for switching back comes up in its
     place. A real link, so
     it works without JavaScript and search engines find the other pages. -->
   <a
@@ -20,7 +20,7 @@
     @blur="hovering = false"
   >
     <span class="pod-langtile-window" aria-hidden="true">
-      <img class="pod-langtile-tile" :src="`/images/podcast-lang-${lang}.png`" alt="" />
+      <img class="pod-langtile-tile" :src="`/images/podcast-lang-${otherLang}.png`" alt="" />
     </span>
   </a>
 </template>
