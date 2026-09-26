@@ -45,8 +45,7 @@ export default defineNuxtConfig({
         "/podcast/episodes",
         "/podcast/join",
         "/podcast/zh",
-        "/podcast/zh/episodes",
-        "/podcast/zh/join"
+        "/podcast/zh/episodes"
       ]
     }
   },

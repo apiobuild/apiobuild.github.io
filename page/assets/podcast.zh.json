@@ -3,84 +3,28 @@
     "title": "The Ninth｜亞裔美國創業者的故事",
     "description": "Lulu 和 Meiling 都是亞裔美國小型企業創業者。她們想一起分享其他亞裔美國人打造引以為傲之事的幕後故事——一家街角咖啡店、一間父母傳下來的餐廳、一款科技產品、一個社群——以及更多。"
   },
-  "join": {
-    "meta": {
-      "title": "加入社群｜The Ninth",
-      "description": "加入 The Ninth 的 WhatsApp 社群：亞裔美國創業者一起聊每週二的新節目，還有那些沒人談、不那麼光鮮的事。"
-    },
-    "eyebrow": "社群",
-    "title": "加入對話",
-    "body": "為了讓群組不被垃圾訊息打擾，請先介紹一下你自己。我們看過你的申請後，就會把你加進 WhatsApp 群組。",
-    "fields": [
-      { "label": "你的名字" },
-      { "label": "WhatsApp 號碼", "hint": "請包含國碼。" },
-      { "label": "你在打造什麼？", "placeholder": "一間咖啡店、家族餐廳、一個 App，或還只是一個想法……" },
-      {
-        "legend": "在哪裡可以找到你？",
-        "fields": [{}, {}, { "label": "網站" }]
-      },
-      { "label": "你是怎麼知道我們的？", "placeholder": "Instagram、朋友介紹、某一集節目……" }
-    ],
-    "submitLabel": "申請加入",
-    "sendingLabel": "送出中……",
-    "optionalLabel": "選填",
-    "thanks": {
-      "title": "謝謝，我們收到了。",
-      "body": "我們會盡快把你加進群組，請留意 WhatsApp。"
-    },
-    "error": "送出失敗。請再試一次，或寫信到 luluc@apiobuild.com。"
-  },
   "hero": {
     "eyebrow": "Podcast｜亞裔美國創業者的故事",
     "hostedBy": "主持人",
     "hostSeparator": "、",
     "scene": {
       "tag": "PODCAST 節目",
-      "card": { "eyebrow": "PODCAST 節目", "title": "亞裔美國創業者的故事" },
+      "card": {
+        "eyebrow": "PODCAST 節目",
+        "title": "亞裔美國創業者的故事"
+      },
       "presentedBy": "呈獻",
-      "joinSign": ["加入", "對話"]
-    },
-    "body": "Lulu 和 Meiling 都是亞裔美國小型企業創業者。她們想一起分享其他亞裔美國人打造引以為傲之事的幕後故事——一家街角咖啡店、一間父母傳下來的餐廳、一款科技產品、一個社群——以及更多。",
-    "primaryCta": { "label": "立即收聽" },
-    "secondaryCta": { "label": "加入社群" }
-  },
-  "bands": [
-    {
-      "eyebrow": "對話",
-      "title": "他們為什麼創業？",
-      "body": "放棄朝九晚五的安穩、固定薪水、健康保險、體面的頭銜，換來全年無休、什麼都得自己來，還有親朋好友不請自來的意見。來聽聽創業者的故事。",
-      "cta": { "label": "瀏覽節目" }
-    },
-    {
-      "eyebrow": "社群",
-      "title": "加入對話，什麼都可以問。",
-      "body": "每週二推出新節目。加入即時討論，帶著你的問題來。認識其他創業者，聊聊那些沒人談、不那麼光鮮的事。",
-      "cta": { "label": "加入社群" }
-    },
-    {
-      "eyebrow": "主持人",
-      "people": [
-        {
-          "role": "科技創業者",
-          "bio": "創辦人，曾任職 Reddit、Square。正在打造 Bagel²，給小型企業用的軟體。"
-        },
-        {
-          "role": "Catfight Coffee 創辦人",
-          "bio": "Meiling 和她的先生創辦了 Catfight Coffee，一個融合龐克搖滾、萬聖節與復古風格的精品咖啡品牌。你可以在網路上、新澤西 Boonton 的門市，以及全美各地的快閃活動找到他們。",
-          "links": [{}, { "name": "Catfight Coffee 的 Google 地圖位置" }]
-        }
+      "joinSign": [
+        "加入",
+        "對話"
       ]
     },
-    {
-      "eyebrow": "來賓",
-      "title": "想聽某個人的故事嗎？",
-      "body": "邀請他們加入對話。再小的成就都值得說，再亂的故事都不嫌亂。我們都想聽。如果那個人是你，或是你認識的人，告訴我們。",
-      "cta": { "label": "推薦來賓" }
+    "body": "Lulu 和 Meiling 都是亞裔美國小型企業創業者。她們想一起分享其他亞裔美國人打造引以為傲之事的幕後故事——一家街角咖啡店、一間父母傳下來的餐廳、一款科技產品、一個社群——以及更多。",
+    "primaryCta": {
+      "label": "立即收聽"
+    },
+    "secondaryCta": {
+      "label": "加入社群"
     }
-  ],
-  "footer": [
-    { "name": "隱私權政策" },
-    { "name": "服務條款" },
-    { "name": "寫信給我們" }
-  ]
+  }
 }

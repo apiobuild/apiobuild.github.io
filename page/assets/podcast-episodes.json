@@ -7,6 +7,7 @@
   "searchPlaceholder": "Find a station, guest or episode",
   "listenLabel": "Listen",
   "comingSoonLabel": "Coming soon",
+  "noResultsLabel": "No station by that name yet.",
   "nextStopLabel": "Next stop",
   "withGuestLabel": ", with {guest}",
   "languages": {

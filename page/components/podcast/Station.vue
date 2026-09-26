@@ -1,5 +1,5 @@
 <template>
-  <article :id="station.id" class="pod-station" :class="{ 'is-arrived': arrived }">
+  <article :id="station.id" class="pod-station" :class="{ 'is-arrived': arrived }" :lang="station.copyLang">
     <!-- The platform in the hero's frame. Decorative: the copy below repeats
       what matters, and carries the title for screen readers. -->
     <div class="pod-station-stage" aria-hidden="true">

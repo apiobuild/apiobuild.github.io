@@ -4,17 +4,18 @@
     the white hero. Keyed on position so reordering podcast.json keeps the
     rhythm, which a per-entry flag would not. -->
   <template v-for="(band, index) in bands" :key="band.id">
-    <PodcastHosts v-if="band.type === 'hosts'" :band="band" :lime="index % 2 === 0" />
-    <PodcastBand v-else :band="band" :links="content.links" :lime="index % 2 === 0" />
+    <PodcastHosts v-if="band.type === 'hosts'" :band="band" :lime="index % 2 === 0" :lang="band.copyLang" />
+    <PodcastBand v-else :band="band" :links="content.links" :lime="index % 2 === 0" :lang="band.copyLang" />
   </template>
-  <PodcastFooter :links="content.footer" />
+  <PodcastFooter :links="content.footer" :lang="content.footerLang" />
 </template>
 
 <script setup>
 // Every word and link on this page lives in assets/podcast.json -- edit the
 // copy, reorder the sections, or point the CTAs somewhere real there, without
 // touching a component. The Mandarin page (/podcast/zh) is this same page with
-// assets/podcast.zh.json laid over it (see usePodcastContent).
+// assets/podcast.zh.json laid over it (see usePodcastContent); sections it
+// leaves out stay in English.
 definePageMeta({
   layout: "podcast",
   alias: ["/podcast/zh"],

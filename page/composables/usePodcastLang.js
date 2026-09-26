@@ -9,6 +9,13 @@ export const PODCAST_LANGS = {
   zh: { prefix: "/podcast/zh", htmlLang: "zh-Hant", dateLocale: "zh-TW" }
 };
 
+// The pages that have a Mandarin version: the ones Mandarin speakers come
+// looking for. The rest (the join form) are English only, with no cat and no
+// redirect.
+const ZH_PAGES = ["/podcast", "/podcast/episodes"];
+export const podcastHasZh = (path) =>
+  ZH_PAGES.includes(podcastPath(path.split(/[?#]/)[0], "en").replace(/(.)\/$/, "$1"));
+
 export const podcastLangOf = (path) =>
   path === "/podcast/zh" || path.startsWith("/podcast/zh/") ? "zh" : "en";
 
@@ -55,7 +62,7 @@ export function browserPrefersChinese() {
 // English pages redirect -- they're the show's default addresses, and a link
 // straight to a Mandarin page is taken at its word.
 export function podcastDefaultRedirect(path) {
-  if (!path.startsWith("/podcast") || podcastLangOf(path) !== "en") return null;
+  if (!podcastHasZh(path) || podcastLangOf(path) !== "en") return null;
   const saved = readPodcastLangChoice();
   if (saved === "zh") return { path: podcastPath(path, "zh"), method: "remembered" };
   if (saved || !browserPrefersChinese()) return null;

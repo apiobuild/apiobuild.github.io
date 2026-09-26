@@ -4,8 +4,10 @@
 // route middleware in the browser for the page it was served with.
 export default defineNuxtRouteMiddleware((to, from) => {
   if (import.meta.server) return;
-  // Once someone is browsing the podcast, their taps on the cat decide.
-  if (from?.path.startsWith("/podcast")) return;
+  // Once someone is browsing pages with the cat, their taps on it decide.
+  // Coming back from an English-only page (the join form) they return to
+  // their own language.
+  if (from && podcastHasZh(from.path)) return;
   const redirect = podcastDefaultRedirect(to.path);
   if (!redirect) return;
   useTrackEvent("language_switch", { from: "en", to: "zh", method: redirect.method });

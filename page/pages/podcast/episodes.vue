@@ -41,7 +41,7 @@
               <span class="pod-episodes-result-meta">{{ station.title }}</span>
             </li>
             <li v-if="!results.length" class="pod-episodes-result-empty" role="option" aria-disabled="true">
-              No station by that name yet.
+              {{ page.noResultsLabel }}
             </li>
           </ul>
         </div>
