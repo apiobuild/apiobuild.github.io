@@ -76,9 +76,11 @@
 }
 
 /* One column width for every band, so the hero, the prose sections and the
-   footer all line up on the same left edge. */
+   footer all line up on the same left edge. The side margins grow with the
+   screen -- 20px on a phone, more on a tablet -- so in-between widths,
+   short of the full column, don't run text right up to the edges. */
 .podcast-page .pod-shell {
-  width: min(100% - 2.5rem, 62rem);
+  width: min(100% - clamp(2.5rem, 8vw, 6rem), 62rem);
   margin-inline: auto;
 }
 
