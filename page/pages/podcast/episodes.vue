@@ -394,8 +394,10 @@ export default {
   opacity: 0.7;
 }
 
+/* Over the line strip below the search, which comes later on the page. */
 .pod-episodes-results {
   position: absolute;
+  z-index: 5;
   top: calc(100% + 0.5rem);
   left: 0;
   right: 0;
