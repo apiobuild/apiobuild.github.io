@@ -229,36 +229,19 @@ export default {
     padding-bottom: var(--pod-tile-room);
   }
 
-  /* Grows to fill whatever the column leaves above the name; the scene
-     itself centers within that (see NinthTrain.vue) rather than sitting
-     pinned to the top of it. The scene is width-bound (portrait, and its
-     column is narrower than it is tall), so on a tall phone it stops
-     growing well short of a 40rem cap regardless -- lowering the cap here
-     is what actually leaves flex-end genuine leftover space to push the
-     whole group down toward the middle of the screen instead of pinning
-     the scene flush to the top with the leftover parked below the hint. A
-     floor so it never vanishes, and a cap so a tablet's scene stays sane
-     and not a wall. */
+  /* Grows to fill whatever the column leaves above the name, as wide as the
+     column allows (it's portrait, so on a phone the width is the limit and
+     on a tablet the height is); the scene centers itself within that (see
+     NinthTrain.vue). A floor so it never vanishes. */
   .pod-hero-inner .pod-hero-art {
     flex: 1 1 0;
     width: 100%;
     min-height: 8rem;
-    max-height: 28rem;
   }
 
-  /* The text stays left-aligned (its normal reading orientation), but as a
-     block it centers on the page like the scene above it: max-width caps it
-     a little wider than the scene's own rendered width (28rem tall * the
-     488:620 aspect ratio) rather than the full column, and margin-inline
-     centers that narrower block, so the *block* lines up with the scene
-     even though the text inside it still starts flush left. */
+  /* The text uses the column's full measure, like the scene above it. */
   .pod-hero-lead,
   .pod-hero-copy {
-    max-width: 24rem;
-    margin-inline: auto;
-    /* Always the full measure: auto margins alone shrink a block to fit its
-       text, and a shorter line in one language (the Mandarin eyebrow) would
-       narrow it and pull it off the left edge the other language sits on. */
     width: 100%;
   }
 
