@@ -360,6 +360,9 @@ export default {
 .pod-episodes-search {
   position: relative;
   flex: 0 1 22rem;
+  /* Otherwise it won't shrink below the input's default width, which on a
+     narrow phone pushes the bar past the screen's right edge. */
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 0.6rem;
