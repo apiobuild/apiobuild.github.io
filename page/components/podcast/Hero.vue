@@ -248,12 +248,16 @@ export default {
 
   /* The name, copy and buttons line up with the frame above them: the
      frame's drawn width, centered, once it has reported it (the full
-     column until then). */
+     column until then). Never narrower than 20rem (or the column): the
+     frame's height is what the name leaves, so a narrow frame would wrap
+     the name taller, shrink the frame further, and so on -- on a short
+     screen (an in-app browser under its toolbar) that loop ends with a
+     thumbnail scene and the name wrapped a word per line. */
   .pod-hero-lead,
   .pod-hero-copy,
   .pod-hero-actions {
     width: 100%;
-    max-width: var(--pod-scene-w, 100%);
+    max-width: max(var(--pod-scene-w, 100%), min(100%, 20rem));
     margin-inline: auto;
     box-sizing: border-box;
   }
