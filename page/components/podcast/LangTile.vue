@@ -255,9 +255,11 @@ export default {
 .pod-langtile-tile:not(.is-shown) {
   visibility: hidden;
 }
-/* Down, level with the episodes page's search bar beside it. */
+/* Down, level with the episodes page's search bar beside it -- a touch
+   above its center, since the tile's thick bottom edge and shadow make it
+   read lower than it is. */
 .pod-langtile.is-up .pod-langtile-tile {
-  translate: 0 10px;
+  translate: 0 7px;
 }
 /* Switching: straight up, quicker than it drops in... */
 .pod-langtile.is-dropped .pod-langtile-tile {
