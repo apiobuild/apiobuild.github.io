@@ -6,6 +6,17 @@
    so the two read as one thing. */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Comfortaa:wght@400;600&display=swap");
 
+/* Ask iPhone browsers not to scale the page's text on their own. Instagram's
+   in-app browser showed it about 1.3-1.4x larger than Safari, which
+   crowded the English hero. Experimental: whether Instagram honours this is
+   untested, and the layout holds up at that size either way. It doesn't
+   block a reader's own pinch-zoom. On the root, and only on podcast pages,
+   so the rest of apiobuild.com is untouched. */
+html:has(.podcast-page) {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 .podcast-page {
   /* The stockoverflow product palette, off the primary and honey ramps in
      that project's Tailwind @theme block. The hero is plain --pod-bg; lime
