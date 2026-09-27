@@ -15,16 +15,25 @@
           <h1 class="pod-hero-title">
             <span class="pod-hero-nine" aria-hidden="true">9</span><span>{{ hero.title }}</span>
           </h1>
-          <!-- Phones only: the first screen is the scene and the name, and the
-            buttons below sit past the fold, so this is the one thing to press
-            before scrolling. Same link as the Listen button further down. -->
+        </div>
+        <!-- Under the name, so on a phone they're on the first screen with
+          the scene rather than past the fold. Side by side they get a grid
+          row of their own under the copy. -->
+        <div class="pod-hero-actions">
           <a
-            class="pod-hero-play"
+            class="pod-btn pod-btn-solid"
             :href="links[hero.primaryCta.link]"
             v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
           >
-            <i class="fas fa-play" aria-hidden="true"></i>
             {{ hero.primaryCta.label }}
+          </a>
+
+          <a
+            class="pod-btn pod-btn-ghost"
+            :href="links[hero.secondaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
+          >
+            {{ hero.secondaryCta.label }}
           </a>
         </div>
       </div>
@@ -54,24 +63,6 @@
               </template>
             </span>
           </p>
-        </div>
-
-        <div class="pod-hero-actions">
-          <a
-            class="pod-btn pod-btn-solid"
-            :href="links[hero.primaryCta.link]"
-            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
-          >
-            {{ hero.primaryCta.label }}
-          </a>
-
-          <a
-            class="pod-btn pod-btn-ghost"
-            :href="links[hero.secondaryCta.link]"
-            v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
-          >
-            {{ hero.secondaryCta.label }}
-          </a>
         </div>
       </div>
     </div>
@@ -155,7 +146,8 @@ export default {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   grid-template-areas:
     "lead art"
-    "copy art";
+    "copy art"
+    "actions art";
   align-content: center;
   column-gap: clamp(2rem, 5vw, 4rem);
   row-gap: 1.75rem;
@@ -191,13 +183,13 @@ export default {
 
 /* One column on tablet down. The first screen is always the scene and the
    name under it, whatever the screen's size: the name holds its height and
-   the scene takes the rest -- a drag scrubs it along the ride. The lede,
-   hosts and buttons follow on scroll. */
+   the scene takes the rest -- a drag scrubs it along the ride. The buttons
+   sit under the name; the lede and hosts follow on scroll. */
 @media (max-width: 60rem) {
   .pod-hero {
     --pod-hero-pad: clamp(1.5rem, 4svh, 3rem);
     padding-top: var(--pod-hero-pad);
-    /* More than the top: the copy column's last button otherwise sits
+    /* More than the top: the copy column's hosts otherwise sit
        right against the band below it, with none of the breathing room
        every other section boundary on the page gets. */
     padding-bottom: calc(var(--pod-hero-pad) * 2);
@@ -223,16 +215,14 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: var(--pod-hero-pad);
+    gap: 1.25rem;
     height: calc(100vh - 2 * var(--pod-hero-pad));
     height: calc(100svh - 2 * var(--pod-hero-pad));
     min-height: fit-content;
-    /* The bottom of that first screen is left empty for the language tile,
-       which peeks up at the screen's bottom edge (LangTile.vue): the scene
-       and the name sit above it, and the next section still starts below
-       the fold. */
+    /* No room held back for the language tile, which peeks up at the
+       screen's bottom-left (LangTile.vue): the buttons, on the right, share
+       that last row with it, and everything spare goes to the scene. */
     box-sizing: border-box;
-    padding-bottom: var(--pod-tile-room);
   }
 
   /* Grows to fill whatever the column leaves above the name; the scene
@@ -286,6 +276,16 @@ export default {
      them, and clear of the language cat at the bottom-left. */
   .pod-hero-actions {
     align-self: flex-end;
+    gap: 0.6rem;
+    margin-top: 0;
+  }
+
+  .pod-hero-actions .pod-btn {
+    padding-block: 0.7rem;
+  }
+
+  .pod-hero-lead {
+    gap: 1rem;
   }
 }
 
@@ -323,45 +323,9 @@ export default {
   font-weight: 900;
   line-height: 1;
 }
-/* Phones and tablets only (the query after these rules). */
-.pod-hero-play {
-  display: none;
-  /* Right, like the buttons below: under a thumb, clear of the language
-     tile at the bottom-left. */
-  align-self: flex-end;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.9rem;
-  padding: 0.6rem 1.2rem 0.6rem 1rem;
-  border-radius: 999px;
-  background: var(--pod-accent);
-  font-weight: 800;
-  font-size: 1rem;
-  line-height: 1.2;
-  transition: background-color 0.2s;
-}
-
-.podcast-page a.pod-hero-play:link,
-.podcast-page a.pod-hero-play:visited {
-  color: #fff;
-}
-
-.podcast-page a.pod-hero-play:hover {
-  background: var(--pod-accent-strong);
-  color: #fff;
-}
-
-.pod-hero-play .fa-play {
-  font-size: 0.85em;
-}
-
-@media (max-width: 60rem) {
-  .pod-hero-play {
-    display: inline-flex;
-  }
-}
 
 .pod-hero-actions {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
