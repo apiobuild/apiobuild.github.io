@@ -30,8 +30,9 @@ defineProps({
 });
 
 // The current scale, for a scene that has to convert screen pixels back to
-// native ones (the hero's drag does).
-const emit = defineEmits(["scale"]);
+// native ones (the hero's drag does), and the frame's drawn width, for a
+// layout that lines up with it (the hero's copy does).
+const emit = defineEmits(["scale", "width"]);
 
 const WIDTH = 488;
 const HEIGHT = 620;
@@ -46,6 +47,7 @@ onMounted(() => {
     const scale = Math.min(el.clientWidth / WIDTH, el.clientHeight / HEIGHT) || 1;
     frame.value.style.transform = `translate(-50%, -50%) scale(${scale})`;
     emit("scale", scale);
+    emit("width", WIDTH * scale);
   };
   resizeObserver = new ResizeObserver(fit);
   resizeObserver.observe(stage.value);

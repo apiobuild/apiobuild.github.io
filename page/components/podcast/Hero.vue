@@ -5,7 +5,7 @@
         are the first screen. Side by side the group dissolves (display:
         contents) and the name sits over the rest of the copy, beside the scene. -->
       <div class="pod-hero-top">
-        <PodcastNinthTrain class="pod-hero-art" :scene="hero.scene" @scale="sceneWidth = 488 * $event" />
+        <PodcastNinthTrain class="pod-hero-art" :scene="hero.scene" @width="sceneWidth = $event" />
         <div class="pod-hero-lead">
           <!-- Optional, like the hosts band's heading: the hero reads fine
             without a label when the headline already says who the show is for. -->
@@ -18,22 +18,24 @@
         </div>
         <!-- Under the name, so on a phone they're on the first screen with
           the scene rather than past the fold. Side by side they get a grid
-          row of their own under the copy. -->
+          row of their own under the copy. Listen last, so it sits on the
+          right (under a thumb) and screen readers meet the two in the order
+          they're shown. -->
         <div class="pod-hero-actions">
-          <a
-            class="pod-btn pod-btn-solid"
-            :href="links[hero.primaryCta.link]"
-            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
-          >
-            {{ hero.primaryCta.label }}
-          </a>
-
           <a
             class="pod-btn pod-btn-ghost"
             :href="links[hero.secondaryCta.link]"
             v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
           >
             {{ hero.secondaryCta.label }}
+          </a>
+
+          <a
+            class="pod-btn pod-btn-solid"
+            :href="links[hero.primaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
+          >
+            {{ hero.primaryCta.label }}
           </a>
         </div>
       </div>
@@ -83,8 +85,8 @@ defineProps({
   hosts: { type: Array, default: () => [] }
 });
 
-// The frame's drawn width (its native 488px times the scale it's fitted
-// at): in one column the name, copy and buttons match it.
+// The frame's drawn width, as PodcastBezel reports it: in one column the
+// name, copy and buttons match it.
 const sceneWidth = ref(0);
 </script>
 
@@ -271,12 +273,9 @@ export default {
   }
 
   /* Buttons go to the right on phones and tablets: where a thumb reaches
-     them, and clear of the language cat at the bottom-left. Listen last in
-     the row, so it lands at the right edge under the thumb (row-reverse:
-     flex-start is the right). */
+     them, and clear of the language cat at the bottom-left. */
   .pod-hero-actions {
-    flex-direction: row-reverse;
-    justify-content: flex-start;
+    justify-content: flex-end;
     flex-wrap: nowrap;
     gap: 0.5rem;
     margin-top: 0;
