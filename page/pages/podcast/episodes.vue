@@ -364,8 +364,9 @@ export default {
      narrow phone pushes the bar past the screen's right edge. */
   min-width: 0;
   /* Stops short of the column's right edge, where the language tile drops
-     down from the top of the screen (LangTile.vue). */
-  margin-right: 2.75rem;
+     down from the top of the screen (LangTile.vue), with the same small gap
+     whichever tile is showing. */
+  margin-right: calc(var(--pod-tile-w) + 0.5rem);
   display: flex;
   align-items: center;
   gap: 0.6rem;

@@ -243,7 +243,7 @@ export default {
   position: absolute;
   right: 0;
   top: 12px;
-  height: 30px;
+  height: var(--pod-tile-h);
   width: auto;
   /* At rest it's fully hidden above the screen's edge. */
   translate: 0 -60px;

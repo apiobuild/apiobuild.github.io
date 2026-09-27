@@ -45,6 +45,11 @@
   /* The strip at the top of the screen the language tile drops down into
      (LangTile.vue): the tile and a little air. */
   --pod-tile-room: 64px;
+  /* The tile's height, and the width of the one showing: the 紅中 tile
+     (83x120) on the English pages, the wider EN pair (144x120) on the
+     Mandarin ones. Things beside it (the episodes search) leave that much. */
+  --pod-tile-h: 30px;
+  --pod-tile-w: calc(var(--pod-tile-h) * 83 / 120);
 
   min-height: 100vh;
   /* Grows past Vuetify's one-screen app wrapper instead of shrinking to it. */
@@ -57,6 +62,10 @@
   font-family: var(--pod-body);
   font-size: 18px;
   line-height: 1.75;
+}
+
+:root[lang="zh-Hant"] .podcast-page {
+  --pod-tile-w: calc(var(--pod-tile-h) * 144 / 120);
 }
 
 .podcast-page h1,
