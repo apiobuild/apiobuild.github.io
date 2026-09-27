@@ -228,12 +228,12 @@ export default {
     height: calc(100vh - 2 * var(--pod-hero-pad));
     height: calc(100svh - 2 * var(--pod-hero-pad));
     min-height: fit-content;
-    /* The bottom of that first screen is left empty for the language tile,
-       which peeks up at the screen's bottom edge (LangTile.vue): the scene,
-       the name and the buttons sit above it, and the next section still
-       starts below the fold. */
+    /* The top of that first screen is left empty for the language tile,
+       which drops down from the screen's top edge (LangTile.vue): the scene
+       starts below it rather than under it. The hero's own padding already
+       covers part of that. */
     box-sizing: border-box;
-    padding-bottom: var(--pod-tile-room);
+    padding-top: max(0px, var(--pod-tile-room) - var(--pod-hero-pad));
   }
 
   /* Grows to fill whatever the column leaves above the name, as wide as the
@@ -277,7 +277,7 @@ export default {
   }
 
   /* Buttons go to the right on phones and tablets: where a thumb reaches
-     them, and clear of the language cat at the bottom-left. */
+     them. */
   .pod-hero-actions {
     justify-content: flex-end;
     flex-wrap: nowrap;

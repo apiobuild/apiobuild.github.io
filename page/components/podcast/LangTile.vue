@@ -1,9 +1,9 @@
 <template>
-  <!-- The language switch: a tile hidden below the bottom-left edge of the
-    screen that pops up now and then, offering the other language -- a 紅中
+  <!-- The language switch: a tile hidden above the top edge of the screen,
+    at the right of the page's column, that drops down now and then, offering the other language -- a 紅中
     mahjong tile on the English pages, Scrabble tiles spelling EN on the
-    Mandarin ones. Tapping it drops the tile out of sight as the page swipes
-    over to that language, and the tile for switching back comes up in its
+    Mandarin ones. Tapping it pulls the tile up out of sight as the page swipes
+    over to that language, and the tile for switching back comes down in its
     place. A real link, so
     it works without JavaScript and search engines find the other pages. -->
   <a
@@ -142,7 +142,7 @@ async function switchLang() {
   const root = document.documentElement;
   const overflow = root.style.overflowX;
   root.style.overflowX = "hidden";
-  // The tile drops out of sight as the page leaves...
+  // The tile goes up out of sight as the page leaves...
   dropped.value = true;
   if (host) await slide(pageParts(host), "0", "-100vw", 260, "cubic-bezier(.6,0,.9,.6)");
   // Hold the incoming page off to the right until its slide starts.
@@ -172,7 +172,7 @@ async function switchLang() {
   }
   root.style.overflowX = overflow;
   // ...and once the new page has settled, the other language's tile slides
-  // slowly up in its place.
+  // slowly down in its place.
   rising.value = true;
   dropped.value = false;
   await new Promise((resolve) => setTimeout(resolve, 1100));
@@ -212,13 +212,14 @@ export default {
 </script>
 
 <style scoped>
-/* Fixed to the bottom-left of the screen (the buttons live on the right),
-   clear of a phone's home-indicator area. */
+/* Fixed to the top of the screen, below a phone's notch, its right edge on
+   the right edge of the page's column (.pod-shell in podcast.css), so on a
+   wide screen it stays over the content rather than out in the corner. */
 .pod-langtile {
   position: fixed;
   z-index: 40;
-  left: 10px;
-  bottom: env(safe-area-inset-bottom, 0px);
+  right: calc((100% - min(100% - clamp(2.5rem, 8vw, 6rem), 62rem)) / 2);
+  top: env(safe-area-inset-top, 0px);
   display: block;
   width: 64px;
   height: var(--pod-tile-room, 82px);
@@ -228,25 +229,25 @@ export default {
   outline-offset: 2px;
 }
 
-/* Everything below the screen's edge is cut off here. */
+/* Everything above the screen's edge is cut off here. */
 .pod-langtile-window {
   position: absolute;
   inset: 0;
-  clip-path: inset(-20px -20px 0 -20px);
+  clip-path: inset(0 -20px -20px -20px);
 }
 
-/* The tile, facing right toward the page. Both images are cut the same
+/* The tile, flush with the column's right edge. Both images are cut the same
    height, so the mahjong tile and the wider Scrabble pair sit on the same
    line. */
 .pod-langtile-tile {
   position: absolute;
-  left: 6px;
-  bottom: 4px;
-  height: 40px;
+  right: 0;
+  top: 12px;
+  height: 30px;
   width: auto;
-  /* At rest it's fully hidden below the screen's edge. */
-  translate: 0 56px;
-  /* Slides up from below the edge at an even pace, settling with a small
+  /* At rest it's fully hidden above the screen's edge. */
+  translate: 0 -60px;
+  /* Slides down from above the edge at an even pace, settling with a small
      overshoot -- a faster, front-loaded curve reads as popping in. */
   transition: translate 0.6s cubic-bezier(0.34, 0.9, 0.4, 1.12);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
@@ -254,14 +255,15 @@ export default {
 .pod-langtile-tile:not(.is-shown) {
   visibility: hidden;
 }
+/* Down, level with the episodes page's search bar beside it. */
 .pod-langtile.is-up .pod-langtile-tile {
-  translate: 0 -6px;
+  translate: 0 10px;
 }
-/* Switching: straight down, quicker than it pops up... */
+/* Switching: straight up, quicker than it drops in... */
 .pod-langtile.is-dropped .pod-langtile-tile {
   transition: translate 0.2s ease-in;
 }
-/* ...and the new tile back up slowly, so the change is seen. */
+/* ...and the new tile back down slowly, so the change is seen. */
 .pod-langtile.is-rising .pod-langtile-tile {
   transition: translate 1.1s cubic-bezier(0.25, 0.8, 0.35, 1);
 }

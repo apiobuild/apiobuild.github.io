@@ -363,6 +363,9 @@ export default {
   /* Otherwise it won't shrink below the input's default width, which on a
      narrow phone pushes the bar past the screen's right edge. */
   min-width: 0;
+  /* Stops short of the column's right edge, where the language tile drops
+     down from the top of the screen (LangTile.vue). */
+  margin-right: 2.75rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -456,7 +459,8 @@ export default {
 
 .pod-episodes-line {
   position: sticky;
-  top: 6rem;
+  /* Just under the sticky bar, however tall it is. */
+  top: calc(var(--pod-bar-h, 4.5rem) + 1.5rem);
   align-self: start;
 }
 

@@ -42,7 +42,7 @@
      added or reordered. */
   --pod-band: clamp(4.5rem, 11vw, 9rem);
 
-  /* The strip at the bottom of the screen the language tile peeks up into
+  /* The strip at the top of the screen the language tile drops down into
      (LangTile.vue): the tile and a little air. */
   --pod-tile-room: 64px;
 
