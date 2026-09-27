@@ -62,11 +62,12 @@
         </p>
       </div>
 
-      <!-- Listen, at the bottom right. -->
+      <!-- Listen, at the bottom right. On a phone it's a round play button
+        beside the headline; the word stays for screen readers. -->
       <div class="pod-station-foot">
         <a v-if="live" class="pod-station-listen" :href="station.spotify" target="_blank" rel="noopener">
           <i class="fas fa-play" aria-hidden="true"></i>
-          {{ labels.listen }}
+          <span class="pod-station-listen-label">{{ labels.listen }}</span>
         </a>
         <span v-else class="pod-station-listen pod-station-soon">{{ labels.comingSoon }}</span>
       </div>
@@ -294,11 +295,43 @@ export default {
   .pod-station-description {
     display: none;
   }
-  .pod-station-listen {
-    font-size: 0.95rem;
+  /* The play button sits to the right of the copy, level with the
+     headline's last line, instead of on a row of its own. Scoped under
+     .pod-station so these win over the base rules further down the file. */
+  .pod-station .pod-station-details {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+  .pod-station .pod-station-copy {
+    flex: 1 1 auto;
+  }
+  .pod-station .pod-station-foot {
+    flex: 0 0 auto;
   }
   .pod-station-listen {
+    font-size: 0.95rem;
     padding: 0.6rem 1.1rem 0.6rem 0.9rem;
+  }
+  /* Just the play icon in an orange circle. */
+  a.pod-station-listen {
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    padding: 0;
+    font-size: 1.15rem;
+  }
+  /* The triangle's visual centre sits left of its box. */
+  a.pod-station-listen .fa-play {
+    margin-left: 0.15em;
+  }
+  .pod-station-listen-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }
 
