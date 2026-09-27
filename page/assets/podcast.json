@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "The Ninth",
+    "title": "Track 9",
     "description": "Lulu and Meiling are both Asian American small business builders. Together, they want to share behind-the-scenes stories of other Asian Americans building something they're proud of — a local coffee shop, a restaurant passed down from their parents, a tech product, a community — and beyond.",
     "image": "https://apiobuild.com/images/podcast-og.png"
   },
@@ -13,8 +13,8 @@
   },
   "join": {
     "meta": {
-      "title": "Join the Community | The Ninth",
-      "description": "Join The Ninth's WhatsApp community: Asian American builders talking through each Tuesday's episode and the not-so-pretty things no one talks about."
+      "title": "Join the Community | Track 9",
+      "description": "Join Track 9's WhatsApp community: Asian American builders talking through each Tuesday's episode and the not-so-pretty things no one talks about."
     },
     "eyebrow": "The Community",
     "title": "Join the conversation",
@@ -86,11 +86,11 @@
   },
   "hero": {
     "eyebrow": "nine lives,one loyal journey",
-    "title": "The Ninth",
+    "title": "Track 9",
     "hostedBy": "Hosted by",
     "hostSeparator": ", ",
     "scene": {
-      "name": "THE NINTH",
+      "name": "TRACK 9",
       "tag": "PODCAST",
       "card": { "eyebrow": "PODCAST", "title": "Stories of Asian American builders" },
       "presentedBy": "PRESENTED BY",

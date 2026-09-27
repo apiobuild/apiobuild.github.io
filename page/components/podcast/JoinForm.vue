@@ -91,8 +91,8 @@ async function submit() {
       body: JSON.stringify({
         ...values,
         access_key: props.join.web3formsAccessKey,
-        subject: `The Ninth: ${values.Name} wants to join`,
-        from_name: "The Ninth",
+        subject: `Track 9: ${values.Name} wants to join`,
+        from_name: "Track 9",
         botcheck: botcheck.value
       })
     });
