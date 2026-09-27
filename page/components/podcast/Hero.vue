@@ -1,11 +1,11 @@
 <template>
   <header class="pod-hero">
-    <div class="pod-shell pod-hero-inner">
+    <div class="pod-shell pod-hero-inner" :style="sceneWidth ? { '--pod-scene-w': `${sceneWidth}px` } : null">
       <!-- The scene and the name are grouped for a phone, where together they
         are the first screen. Side by side the group dissolves (display:
         contents) and the name sits over the rest of the copy, beside the scene. -->
       <div class="pod-hero-top">
-        <PodcastNinthTrain class="pod-hero-art" :scene="hero.scene" />
+        <PodcastNinthTrain class="pod-hero-art" :scene="hero.scene" @scale="sceneWidth = 488 * $event" />
         <div class="pod-hero-lead">
           <!-- Optional, like the hosts band's heading: the hero reads fine
             without a label when the headline already says who the show is for. -->
@@ -70,6 +70,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import nineCoin from "~/assets/podcast-nine-coin.webp";
 
 defineProps({
@@ -81,6 +82,10 @@ defineProps({
   // faces and names only. They stay defined in one place in podcast.json.
   hosts: { type: Array, default: () => [] }
 });
+
+// The frame's drawn width (its native 488px times the scale it's fitted
+// at): in one column the name, copy and buttons match it.
+const sceneWidth = ref(0);
 </script>
 
 <script>
@@ -239,10 +244,16 @@ export default {
     min-height: 8rem;
   }
 
-  /* The text uses the column's full measure, like the scene above it. */
+  /* The name, copy and buttons line up with the frame above them: the
+     frame's drawn width, centered, once it has reported it (the full
+     column until then). */
   .pod-hero-lead,
-  .pod-hero-copy {
+  .pod-hero-copy,
+  .pod-hero-actions {
     width: 100%;
+    max-width: var(--pod-scene-w, 100%);
+    margin-inline: auto;
+    box-sizing: border-box;
   }
 
   /* .pod-hero-lead's own align-self: end is a *grid* row-alignment rule
@@ -260,11 +271,12 @@ export default {
   }
 
   /* Buttons go to the right on phones and tablets: where a thumb reaches
-     them, and clear of the language cat at the bottom-left. */
-  /* Listen last in the row, so it lands at the right edge under the thumb. */
+     them, and clear of the language cat at the bottom-left. Listen last in
+     the row, so it lands at the right edge under the thumb (row-reverse:
+     flex-start is the right). */
   .pod-hero-actions {
-    align-self: flex-end;
     flex-direction: row-reverse;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     gap: 0.5rem;
     margin-top: 0;

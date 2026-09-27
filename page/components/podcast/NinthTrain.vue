@@ -229,6 +229,9 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 defineProps({
   scene: { type: Object, required: true }
 });
+
+// Passed on up, so the hero can size its copy to the frame's drawn width.
+const emit = defineEmits(["scale"]);
 import catfightStorefront from "~/assets/ninth-hero/catfight-storefront.webp";
 import blockShops from "~/assets/ninth-hero/block-shops.webp";
 import ashly from "~/assets/ninth-hero/ashly.webp";
@@ -485,6 +488,7 @@ let scale = 1;
 // PodcastBezel reports it whenever it refits the frame to its box.
 const onScale = (s) => {
   scale = s;
+  emit("scale", s);
 };
 
 onMounted(() => {
