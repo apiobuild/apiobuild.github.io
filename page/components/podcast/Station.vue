@@ -289,14 +289,10 @@ export default {
   .pod-station-headline {
     font-size: 1.25rem;
   }
-  /* Three lines at most, so a station still fits one screen. */
+  /* Headline and Listen only: the description repeats what the frame and
+     the station strip already say, and on a phone it's one thing too many. */
   .pod-station-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-size: 0.9rem;
-    line-height: 1.45;
+    display: none;
   }
   .pod-station-listen {
     font-size: 0.95rem;
