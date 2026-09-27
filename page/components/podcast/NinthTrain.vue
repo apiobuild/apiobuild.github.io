@@ -10,7 +10,7 @@
       :class="{ 'is-dragging': dragging }"
       @pointerdown="onDragStart"
     >
-      <PodcastBezel :name="scene.name" :tag="scene.tag" @scale="onScale">
+      <PodcastBezel :name="scene.name" :tag="scene.tag" @scale="onScale" @width="emit('width', $event)">
         <div ref="skyRef" class="ninth-sky"></div>
 
         <div ref="stripRef" class="ninth-strip">
@@ -229,6 +229,7 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 defineProps({
   scene: { type: Object, required: true }
 });
+
 import catfightStorefront from "~/assets/ninth-hero/catfight-storefront.webp";
 import blockShops from "~/assets/ninth-hero/block-shops.webp";
 import ashly from "~/assets/ninth-hero/ashly.webp";
@@ -486,6 +487,10 @@ let scale = 1;
 const onScale = (s) => {
   scale = s;
 };
+
+// The frame's drawn width, passed on up so the hero can line its copy up
+// with it.
+const emit = defineEmits(["width"]);
 
 onMounted(() => {
   const el = stage.value;

@@ -6,7 +6,7 @@
       <div class="pod-shell pod-episodes-bar-inner">
         <NuxtLink class="pod-episodes-back" :to="content.links.home">
           <i class="fas fa-arrow-left" aria-hidden="true"></i>
-          <span class="pod-episodes-bullet" aria-hidden="true">9</span>
+          <img class="pod-episodes-bullet" :src="nineCoin" alt="" draggable="false" />
           <span>{{ showTitle }}</span>
         </NuxtLink>
 
@@ -125,6 +125,7 @@
 // go in assets/episodes/ (or reuse one from assets/ninth-hero/) and are named
 // by filename in the JSON.
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from "vue";
+import nineCoin from "~/assets/podcast-nine-coin.webp";
 
 // The Mandarin page (/podcast/zh/episodes) lays podcast-episodes.zh.json over
 // the English labels and stations (see usePodcastContent).
@@ -351,15 +352,9 @@ export default {
 }
 
 .pod-episodes-bullet {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 50%;
-  background: #ff6319;
-  color: #fff;
-  font-weight: 900;
+  height: 2rem;
+  width: auto;
+  user-select: none;
 }
 
 .pod-episodes-search {

@@ -1,11 +1,11 @@
 <template>
   <header class="pod-hero">
-    <div class="pod-shell pod-hero-inner">
+    <div class="pod-shell pod-hero-inner" :style="sceneWidth ? { '--pod-scene-w': `${sceneWidth}px` } : null">
       <!-- The scene and the name are grouped for a phone, where together they
         are the first screen. Side by side the group dissolves (display:
         contents) and the name sits over the rest of the copy, beside the scene. -->
       <div class="pod-hero-top">
-        <PodcastNinthTrain class="pod-hero-art" :scene="hero.scene" />
+        <PodcastNinthTrain class="pod-hero-art" :scene="hero.scene" @width="sceneWidth = $event" />
         <div class="pod-hero-lead">
           <!-- Optional, like the hosts band's heading: the hero reads fine
             without a label when the headline already says who the show is for. -->
@@ -13,8 +13,30 @@
           <!-- The scene's own badge, echoed here so the name carries the
             show's mark even for anyone who never touches the scene. -->
           <h1 class="pod-hero-title">
-            <span class="pod-hero-nine" aria-hidden="true">9</span><span>{{ hero.title }}</span>
+            <img class="pod-hero-nine" :src="nineCoin" alt="" draggable="false" /><span>{{ hero.title }}</span>
           </h1>
+        </div>
+        <!-- Under the name, so on a phone they're on the first screen with
+          the scene rather than past the fold. Side by side they get a grid
+          row of their own under the copy. Listen last, so it sits on the
+          right (under a thumb) and screen readers meet the two in the order
+          they're shown. -->
+        <div class="pod-hero-actions">
+          <a
+            class="pod-btn pod-btn-ghost"
+            :href="links[hero.secondaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
+          >
+            {{ hero.secondaryCta.label }}
+          </a>
+
+          <a
+            class="pod-btn pod-btn-solid"
+            :href="links[hero.primaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
+          >
+            {{ hero.primaryCta.label }}
+          </a>
         </div>
       </div>
 
@@ -44,30 +66,15 @@
             </span>
           </p>
         </div>
-
-        <div class="pod-hero-actions">
-          <a
-            class="pod-btn pod-btn-solid"
-            :href="links[hero.primaryCta.link]"
-            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
-          >
-            {{ hero.primaryCta.label }}
-          </a>
-
-          <a
-            class="pod-btn pod-btn-ghost"
-            :href="links[hero.secondaryCta.link]"
-            v-bind="podcastLinkAttrs(links[hero.secondaryCta.link])"
-          >
-            {{ hero.secondaryCta.label }}
-          </a>
-        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import nineCoin from "~/assets/podcast-nine-coin.webp";
+
 defineProps({
   hero: { type: Object, required: true },
   // The whole links map, since a CTA names its destination by key
@@ -77,6 +84,10 @@ defineProps({
   // faces and names only. They stay defined in one place in podcast.json.
   hosts: { type: Array, default: () => [] }
 });
+
+// The frame's drawn width, as PodcastBezel reports it: in one column the
+// name, copy and buttons match it.
+const sceneWidth = ref(0);
 </script>
 
 <script>
@@ -144,7 +155,8 @@ export default {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   grid-template-areas:
     "lead art"
-    "copy art";
+    "copy art"
+    "actions art";
   align-content: center;
   column-gap: clamp(2rem, 5vw, 4rem);
   row-gap: 1.75rem;
@@ -180,13 +192,13 @@ export default {
 
 /* One column on tablet down. The first screen is always the scene and the
    name under it, whatever the screen's size: the name holds its height and
-   the scene takes the rest -- a drag scrubs it along the ride. The lede,
-   hosts and buttons follow on scroll. */
+   the scene takes the rest -- a drag scrubs it along the ride. The buttons
+   sit under the name; the lede and hosts follow on scroll. */
 @media (max-width: 60rem) {
   .pod-hero {
     --pod-hero-pad: clamp(1.5rem, 4svh, 3rem);
     padding-top: var(--pod-hero-pad);
-    /* More than the top: the copy column's last button otherwise sits
+    /* More than the top: the copy column's hosts otherwise sit
        right against the band below it, with none of the breathing room
        every other section boundary on the page gets. */
     padding-bottom: calc(var(--pod-hero-pad) * 2);
@@ -212,49 +224,38 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: var(--pod-hero-pad);
+    gap: 1.25rem;
     height: calc(100vh - 2 * var(--pod-hero-pad));
     height: calc(100svh - 2 * var(--pod-hero-pad));
     min-height: fit-content;
     /* The bottom of that first screen is left empty for the language tile,
-       which peeks up at the screen's bottom edge (LangTile.vue): the scene
-       and the name sit above it, and the next section still starts below
-       the fold. */
+       which peeks up at the screen's bottom edge (LangTile.vue): the scene,
+       the name and the buttons sit above it, and the next section still
+       starts below the fold. */
     box-sizing: border-box;
     padding-bottom: var(--pod-tile-room);
   }
 
-  /* Grows to fill whatever the column leaves above the name; the scene
-     itself centers within that (see NinthTrain.vue) rather than sitting
-     pinned to the top of it. The scene is width-bound (portrait, and its
-     column is narrower than it is tall), so on a tall phone it stops
-     growing well short of a 40rem cap regardless -- lowering the cap here
-     is what actually leaves flex-end genuine leftover space to push the
-     whole group down toward the middle of the screen instead of pinning
-     the scene flush to the top with the leftover parked below the hint. A
-     floor so it never vanishes, and a cap so a tablet's scene stays sane
-     and not a wall. */
+  /* Grows to fill whatever the column leaves above the name, as wide as the
+     column allows (it's portrait, so on a phone the width is the limit and
+     on a tablet the height is); the scene centers itself within that (see
+     NinthTrain.vue). A floor so it never vanishes. */
   .pod-hero-inner .pod-hero-art {
     flex: 1 1 0;
     width: 100%;
     min-height: 8rem;
-    max-height: 28rem;
   }
 
-  /* The text stays left-aligned (its normal reading orientation), but as a
-     block it centers on the page like the scene above it: max-width caps it
-     a little wider than the scene's own rendered width (28rem tall * the
-     488:620 aspect ratio) rather than the full column, and margin-inline
-     centers that narrower block, so the *block* lines up with the scene
-     even though the text inside it still starts flush left. */
+  /* The name, copy and buttons line up with the frame above them: the
+     frame's drawn width, centered, once it has reported it (the full
+     column until then). */
   .pod-hero-lead,
-  .pod-hero-copy {
-    max-width: 24rem;
-    margin-inline: auto;
-    /* Always the full measure: auto margins alone shrink a block to fit its
-       text, and a shorter line in one language (the Mandarin eyebrow) would
-       narrow it and pull it off the left edge the other language sits on. */
+  .pod-hero-copy,
+  .pod-hero-actions {
     width: 100%;
+    max-width: var(--pod-scene-w, 100%);
+    margin-inline: auto;
+    box-sizing: border-box;
   }
 
   /* .pod-hero-lead's own align-self: end is a *grid* row-alignment rule
@@ -274,7 +275,21 @@ export default {
   /* Buttons go to the right on phones and tablets: where a thumb reaches
      them, and clear of the language cat at the bottom-left. */
   .pod-hero-actions {
-    align-self: flex-end;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    margin-top: 0;
+  }
+
+  /* One row, smaller: fits a 375px phone in either language. */
+  .pod-hero-actions .pod-btn {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .pod-hero-lead {
+    gap: 1rem;
   }
 }
 
@@ -288,48 +303,24 @@ export default {
   font-size: clamp(2.5rem, 7vw, 4.75rem);
 }
 
-/* The scene's own badge is 48px against a 30px wordmark there -- circle:text
-   = 1.6, digit:circle = 0.7. Matched here in two steps because CSS's em is
-   parent-relative for font-size but self-relative for every other property:
-   font-size (the digit, sized against the title's) is set first at
-   1.6*0.7 = 1.12em of the title, then width/height (the circle) at
-   1.6/1.12 = 1.43em of THIS element's own now-resolved font-size, landing
-   back at 1.6em of the title either way. Chaining both off the badge's own
-   font-size the simpler-looking way (font-size then width in the same em)
-   compounds instead of matching, which is what undersized it before. */
+/* The show's 9 as a voxel coin, standing on its edge. A touch taller than
+   the flat badge it replaced (1.6em of the title) since the coin is
+   portrait, not round. */
 .pod-hero-nine {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
-  border-radius: 50%;
-  background: #ff6319;
-  color: #fff;
-  font-size: 1.12em;
-  width: 1.43em;
-  height: 1.43em;
-  margin-right: 0.14em;
-  font-weight: 900;
-  line-height: 1;
+  height: 1.8em;
+  width: auto;
+  margin-right: 0.18em;
+  user-select: none;
 }
+
 .pod-hero-actions {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 0.85rem;
   margin-top: 0.5rem;
-}
-
-/* On a phone the two buttons wrap onto separate lines, where hugging their
-   own labels left them different widths against a shared left edge -- a
-   ragged pair that reads as a mistake. Stacked, they both take the width of
-   the longer label, so the pair squares off, on the right edge (see above).
-   Same breakpoint the hosts band stacks at. */
-@media (max-width: 32rem) {
-  .pod-hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
 }
 
 .pod-hero-hosts {
