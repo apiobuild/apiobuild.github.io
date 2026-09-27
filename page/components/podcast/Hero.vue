@@ -15,6 +15,17 @@
           <h1 class="pod-hero-title">
             <span class="pod-hero-nine" aria-hidden="true">9</span><span>{{ hero.title }}</span>
           </h1>
+          <!-- Phones only: the first screen is the scene and the name, and the
+            buttons below sit past the fold, so this is the one thing to press
+            before scrolling. Same link as the Listen button further down. -->
+          <a
+            class="pod-hero-play"
+            :href="links[hero.primaryCta.link]"
+            v-bind="podcastLinkAttrs(links[hero.primaryCta.link])"
+          >
+            <i class="fas fa-play" aria-hidden="true"></i>
+            {{ hero.primaryCta.label }}
+          </a>
         </div>
       </div>
 
@@ -312,6 +323,42 @@ export default {
   font-weight: 900;
   line-height: 1;
 }
+/* Phones and tablets only (the query after these rules). */
+.pod-hero-play {
+  display: none;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding: 0.6rem 1.2rem 0.6rem 1rem;
+  border-radius: 999px;
+  background: var(--pod-accent);
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+  transition: background-color 0.2s;
+}
+
+.podcast-page a.pod-hero-play:link,
+.podcast-page a.pod-hero-play:visited {
+  color: #fff;
+}
+
+.podcast-page a.pod-hero-play:hover {
+  background: var(--pod-accent-strong);
+  color: #fff;
+}
+
+.pod-hero-play .fa-play {
+  font-size: 0.85em;
+}
+
+@media (max-width: 60rem) {
+  .pod-hero-play {
+    display: inline-flex;
+  }
+}
+
 .pod-hero-actions {
   display: flex;
   flex-wrap: wrap;
