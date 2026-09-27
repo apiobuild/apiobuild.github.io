@@ -326,7 +326,9 @@ export default {
 /* Phones and tablets only (the query after these rules). */
 .pod-hero-play {
   display: none;
-  align-self: flex-start;
+  /* Right, like the buttons below: under a thumb, clear of the language
+     tile at the bottom-left. */
+  align-self: flex-end;
   align-items: center;
   gap: 0.5rem;
   margin-top: 0.9rem;
