@@ -13,7 +13,7 @@
           <!-- The scene's own badge, echoed here so the name carries the
             show's mark even for anyone who never touches the scene. -->
           <h1 class="pod-hero-title">
-            <span class="pod-hero-nine" aria-hidden="true">9</span><span>{{ hero.title }}</span>
+            <img class="pod-hero-nine" :src="nineCoin" alt="" draggable="false" /><span>{{ hero.title }}</span>
           </h1>
         </div>
         <!-- Under the name, so on a phone they're on the first screen with
@@ -70,6 +70,8 @@
 </template>
 
 <script setup>
+import nineCoin from "~/assets/podcast-nine-coin.webp";
+
 defineProps({
   hero: { type: Object, required: true },
   // The whole links map, since a CTA names its destination by key
@@ -219,10 +221,12 @@ export default {
     height: calc(100vh - 2 * var(--pod-hero-pad));
     height: calc(100svh - 2 * var(--pod-hero-pad));
     min-height: fit-content;
-    /* No room held back for the language tile, which peeks up at the
-       screen's bottom-left (LangTile.vue): the buttons, on the right, share
-       that last row with it, and everything spare goes to the scene. */
+    /* The bottom of that first screen is left empty for the language tile,
+       which peeks up at the screen's bottom edge (LangTile.vue): the scene,
+       the name and the buttons sit above it, and the next section still
+       starts below the fold. */
     box-sizing: border-box;
+    padding-bottom: var(--pod-tile-room);
   }
 
   /* Grows to fill whatever the column leaves above the name; the scene
@@ -276,12 +280,16 @@ export default {
      them, and clear of the language cat at the bottom-left. */
   .pod-hero-actions {
     align-self: flex-end;
-    gap: 0.6rem;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
     margin-top: 0;
   }
 
+  /* One row, smaller: fits a 375px phone in either language. */
   .pod-hero-actions .pod-btn {
-    padding-block: 0.7rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   .pod-hero-lead {
@@ -299,29 +307,15 @@ export default {
   font-size: clamp(2.5rem, 7vw, 4.75rem);
 }
 
-/* The scene's own badge is 48px against a 30px wordmark there -- circle:text
-   = 1.6, digit:circle = 0.7. Matched here in two steps because CSS's em is
-   parent-relative for font-size but self-relative for every other property:
-   font-size (the digit, sized against the title's) is set first at
-   1.6*0.7 = 1.12em of the title, then width/height (the circle) at
-   1.6/1.12 = 1.43em of THIS element's own now-resolved font-size, landing
-   back at 1.6em of the title either way. Chaining both off the badge's own
-   font-size the simpler-looking way (font-size then width in the same em)
-   compounds instead of matching, which is what undersized it before. */
+/* The show's 9 as a voxel coin, standing on its edge. A touch taller than
+   the flat badge it replaced (1.6em of the title) since the coin is
+   portrait, not round. */
 .pod-hero-nine {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
-  border-radius: 50%;
-  background: #ff6319;
-  color: #fff;
-  font-size: 1.12em;
-  width: 1.43em;
-  height: 1.43em;
-  margin-right: 0.14em;
-  font-weight: 900;
-  line-height: 1;
+  height: 1.8em;
+  width: auto;
+  margin-right: 0.18em;
+  user-select: none;
 }
 
 .pod-hero-actions {
@@ -331,18 +325,6 @@ export default {
   align-items: flex-start;
   gap: 0.85rem;
   margin-top: 0.5rem;
-}
-
-/* On a phone the two buttons wrap onto separate lines, where hugging their
-   own labels left them different widths against a shared left edge -- a
-   ragged pair that reads as a mistake. Stacked, they both take the width of
-   the longer label, so the pair squares off, on the right edge (see above).
-   Same breakpoint the hosts band stacks at. */
-@media (max-width: 32rem) {
-  .pod-hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
 }
 
 .pod-hero-hosts {
