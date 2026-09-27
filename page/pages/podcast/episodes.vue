@@ -332,6 +332,8 @@ export default {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  /* The language tile's resting height is tuned against this padding and
+     the search box's height (LangTile.vue). */
   padding-block: 0.9rem;
 }
 
@@ -460,8 +462,7 @@ export default {
 
 .pod-episodes-line {
   position: sticky;
-  /* Just under the sticky bar, however tall it is. */
-  top: calc(var(--pod-bar-h, 4.5rem) + 1.5rem);
+  top: 6rem;
   align-self: start;
 }
 

@@ -1,15 +1,15 @@
 <template>
   <!-- The language switch: a tile hidden above the top edge of the screen,
-    at the right of the page's column, that drops down now and then, offering the other language -- a 紅中
-    mahjong tile on the English pages, Scrabble tiles spelling EN on the
-    Mandarin ones. Tapping it pulls the tile up out of sight as the page swipes
-    over to that language, and the tile for switching back comes down in its
-    place. A real link, so
-    it works without JavaScript and search engines find the other pages. -->
+    at the right of the page's column, that drops down now and then,
+    offering the other language -- a 紅中 mahjong tile on the English pages,
+    Scrabble tiles spelling EN on the Mandarin ones. Tapping it pulls the
+    tile up out of sight as the page swipes over to that language, and the
+    tile for switching back comes down in its place. A real link, so it
+    works without JavaScript and search engines find the other pages. -->
   <a
     :href="otherPath"
     class="pod-langtile"
-    :class="{ 'is-up': (popped || hovering || switching) && !dropped, 'is-dropped': dropped, 'is-rising': rising }"
+    :class="{ 'is-up': (popped || hovering || switching) && !stowed, 'is-stowed': stowed, 'is-returning': returning }"
     :lang="otherLang === 'zh' ? 'zh-Hant' : 'en'"
     :aria-label="otherLang === 'zh' ? '切換到中文 — Switch to Mandarin' : 'Switch to English — 切換到英文'"
     @pointerdown="pointerType = $event.pointerType"
@@ -61,10 +61,10 @@ onMounted(() => watch(lang, (value) => value === "zh" && savePodcastLangChoice("
 // ---- Popping up ------------------------------------------------------------
 
 const popped = ref(false);
-// Down out of sight while the page swaps languages (see switchLang).
-const dropped = ref(false);
-// Coming back up, slowly, once the new page has arrived.
-const rising = ref(false);
+// Up out of sight while the page swaps languages (see switchLang).
+const stowed = ref(false);
+// Coming back down, slowly, once the new page has arrived.
+const returning = ref(false);
 const hovering = ref(false);
 const switching = ref(false);
 let popTimer = null;
@@ -143,7 +143,7 @@ async function switchLang() {
   const overflow = root.style.overflowX;
   root.style.overflowX = "hidden";
   // The tile goes up out of sight as the page leaves...
-  dropped.value = true;
+  stowed.value = true;
   if (host) await slide(pageParts(host), "0", "-100vw", 260, "cubic-bezier(.6,0,.9,.6)");
   // Hold the incoming page off to the right until its slide starts.
   host?.classList.add("is-swipe-in");
@@ -156,7 +156,7 @@ async function switchLang() {
     host?.classList.remove("is-swipe-in");
     if (host) pageParts(host).forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()));
     root.style.overflowX = overflow;
-    dropped.value = false;
+    stowed.value = false;
     switching.value = false;
     window.location.assign(otherPath.value + route.hash);
     return;
@@ -173,10 +173,10 @@ async function switchLang() {
   root.style.overflowX = overflow;
   // ...and once the new page has settled, the other language's tile slides
   // slowly down in its place.
-  rising.value = true;
-  dropped.value = false;
+  returning.value = true;
+  stowed.value = false;
   await new Promise((resolve) => setTimeout(resolve, 1100));
-  rising.value = false;
+  returning.value = false;
   switching.value = false;
   pop(2500);
 }
@@ -218,11 +218,11 @@ export default {
 .pod-langtile {
   position: fixed;
   z-index: 40;
-  right: calc((100% - min(100% - clamp(2.5rem, 8vw, 6rem), 62rem)) / 2);
+  right: calc((100% - var(--pod-shell-w)) / 2);
   top: env(safe-area-inset-top, 0px);
   display: block;
   width: 64px;
-  height: var(--pod-tile-room, 82px);
+  height: var(--pod-tile-room);
 }
 .pod-langtile:focus-visible {
   outline: 2px solid var(--pod-lime);
@@ -257,16 +257,18 @@ export default {
 }
 /* Down, level with the episodes page's search bar beside it -- a touch
    above its center, since the tile's thick bottom edge and shadow make it
-   read lower than it is. */
+   read lower than it is. Tuned by eye against that bar's padding and the
+   search box's height (.pod-episodes-bar-inner in episodes.vue): change
+   those and this wants another look. */
 .pod-langtile.is-up .pod-langtile-tile {
   translate: 0 7px;
 }
 /* Switching: straight up, quicker than it drops in... */
-.pod-langtile.is-dropped .pod-langtile-tile {
+.pod-langtile.is-stowed .pod-langtile-tile {
   transition: translate 0.2s ease-in;
 }
 /* ...and the new tile back down slowly, so the change is seen. */
-.pod-langtile.is-rising .pod-langtile-tile {
+.pod-langtile.is-returning .pod-langtile-tile {
   transition: translate 1.1s cubic-bezier(0.25, 0.8, 0.35, 1);
 }
 

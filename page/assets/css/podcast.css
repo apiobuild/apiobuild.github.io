@@ -42,12 +42,19 @@
      added or reordered. */
   --pod-band: clamp(4.5rem, 11vw, 9rem);
 
+  /* The column width every band shares (.pod-shell below), also where the
+     language tile lines up its right edge (LangTile.vue). 100% resolves
+     where it's used: the parent there, the screen for the fixed tile. */
+  --pod-shell-w: min(100% - clamp(2.5rem, 8vw, 6rem), 62rem);
+
   /* The strip at the top of the screen the language tile drops down into
      (LangTile.vue): the tile and a little air. */
   --pod-tile-room: 64px;
   /* The tile's height, and the width of the one showing: the 紅中 tile
      (83x120) on the English pages, the wider EN pair (144x120) on the
-     Mandarin ones. Things beside it (the episodes search) leave that much. */
+     Mandarin ones. Things beside it (the episodes search) leave that much.
+     The ratios are the two PNGs' sizes (public/images/podcast-lang-*.png):
+     replace an image and update its numbers here. */
   --pod-tile-h: 30px;
   --pod-tile-w: calc(var(--pod-tile-h) * 83 / 120);
 
@@ -86,7 +93,7 @@
    screen -- 20px on a phone, more on a tablet -- so in-between widths,
    short of the full column, don't run text right up to the edges. */
 .podcast-page .pod-shell {
-  width: min(100% - clamp(2.5rem, 8vw, 6rem), 62rem);
+  width: var(--pod-shell-w);
   margin-inline: auto;
 }
 
