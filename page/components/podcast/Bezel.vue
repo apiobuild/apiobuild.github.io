@@ -7,7 +7,7 @@
   <div ref="stage" class="pod-bezel-stage">
     <div ref="frame" class="pod-bezel">
       <div class="pod-bezel-header">
-        <div class="pod-bezel-logo">9</div>
+        <img class="pod-bezel-logo" :src="nineCoin" alt="" draggable="false" />
         <div class="pod-bezel-wordmark">
           <div class="pod-bezel-name">{{ name }}</div>
           <div class="pod-bezel-tag">{{ tag }}</div>
@@ -22,6 +22,7 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
+import nineCoin from "~/assets/podcast-nine-coin.webp";
 
 defineProps({
   name: { type: String, required: true },
@@ -104,18 +105,10 @@ export default {
 }
 
 .pod-bezel-logo {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #ff6319;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 62px;
+  width: auto;
   flex-shrink: 0;
-  font-size: 39px;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
+  user-select: none;
 }
 
 .pod-bezel-wordmark {

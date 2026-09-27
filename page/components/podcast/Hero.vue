@@ -278,8 +278,10 @@ export default {
 
   /* Buttons go to the right on phones and tablets: where a thumb reaches
      them, and clear of the language cat at the bottom-left. */
+  /* Listen last in the row, so it lands at the right edge under the thumb. */
   .pod-hero-actions {
     align-self: flex-end;
+    flex-direction: row-reverse;
     flex-wrap: nowrap;
     gap: 0.5rem;
     margin-top: 0;
