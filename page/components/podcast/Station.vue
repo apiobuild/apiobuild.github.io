@@ -120,7 +120,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 15.75rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - var(--pod-station-copy-h, 15.75rem)));
 }
 
 /* The frame's 460x499 viewport, drawn in the same pixels as the hero's

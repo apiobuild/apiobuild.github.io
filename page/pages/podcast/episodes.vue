@@ -703,11 +703,15 @@ export default {
   .pod-episodes-body {
     padding-block: 0 1.5rem;
   }
-  /* Each station (and the hint) is as wide as its height-capped frame, centred. */
+  /* Each station (and the hint) is as wide as its height-capped frame, centred.
+     The cap leaves room under the frame for the copy: on a phone just the
+     date and a two-line headline with the play button beside it (no
+     description), so the frame can take the column's full width. */
   .pod-episodes-stations {
     gap: 0;
     align-items: center;
-    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - 15.75rem) * 488 / 620)));
+    --pod-station-copy-h: 9rem;
+    --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - var(--pod-station-copy-h, 15.75rem)) * 488 / 620)));
   }
   .pod-episodes-stations > * {
     width: var(--pod-station-w);
