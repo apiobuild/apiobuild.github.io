@@ -57,8 +57,10 @@
           <span class="pod-episodes-stop" aria-hidden="true"></span>
         </span>
         <span v-if="next" class="pod-episodes-strip-stop is-next">
-          <span class="pod-episodes-strip-label">{{ page.nextStopLabel }}</span>
-          <span class="pod-episodes-strip-name" :lang="next.language.htmlLang">{{ next.station }}</span>
+          <span class="pod-episodes-strip-name">
+            <span class="pod-episodes-strip-label">{{ page.nextStopLabel }}</span>
+            <span :lang="next.language.htmlLang">{{ next.station }}</span>
+          </span>
           <span class="pod-episodes-stop" aria-hidden="true"></span>
         </span>
       </p>
@@ -598,19 +600,20 @@ export default {
   }
 
   /* Three columns: the current stop in the middle one, the next stop at
-     the right edge, one track through both dots. Every stop has the same
-     three rows -- label, name, dot -- so the names line up and the dots
-     share a row the track can run along. */
+     the right edge, one thin track through both dots. Every stop has the
+     same two rows -- name, dot -- so the names line up and the dots share a
+     row the track can run along. Kept small and quiet: it's a wayfinding
+     aid, and on a phone every rem it takes comes out of the station below. */
   .pod-episodes-strip {
-    --strip-label: 0.8rem;
-    --strip-name: 1.3rem;
-    --strip-gap: 0.2rem;
-    --strip-dot: 1.1rem;
+    --strip-name: 1.1rem;
+    --strip-gap: 0.15rem;
+    --strip-dot: 0.7rem;
     position: relative;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
+    column-gap: 0.75rem;
     align-items: start;
-    padding-block: 0.35rem 0.9rem;
+    padding-block: 0.25rem 0.6rem;
     line-height: 1.1;
   }
 
@@ -618,8 +621,9 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(0.35rem + var(--strip-label) + var(--strip-name) + 2 * var(--strip-gap) + var(--strip-dot) / 2);
-    height: 4px;
+    top: calc(0.25rem + var(--strip-name) + var(--strip-gap) + var(--strip-dot) / 2);
+    height: 2px;
+    opacity: 0.7;
     transform: translateY(-50%);
     /* Runs in from the stops behind and on past the next one. */
     background: linear-gradient(90deg, rgba(255, 99, 25, 0), #ff6319 18%, #ff6319 88%, rgba(255, 99, 25, 0));
@@ -628,7 +632,7 @@ export default {
   .pod-episodes-strip-stop {
     position: relative;
     display: grid;
-    grid-template-rows: var(--strip-label) var(--strip-name) var(--strip-dot);
+    grid-template-rows: var(--strip-name) var(--strip-dot);
     justify-items: center;
     row-gap: var(--strip-gap);
     min-width: 0;
@@ -636,10 +640,6 @@ export default {
   }
   .pod-episodes-strip-stop.is-current {
     grid-column: 2;
-  }
-  /* No label over the stop in view: its name and dot keep to their rows. */
-  .is-current .pod-episodes-strip-name {
-    grid-row: 2;
   }
   .pod-episodes-strip-stop.is-next {
     grid-column: 3;
@@ -654,31 +654,38 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-weight: 800;
-    font-size: 1.05rem;
+    font-weight: 700;
+    font-size: 0.9rem;
     color: var(--pod-text);
   }
   /* The next stop stays quiet next to the one in view. */
   .is-next .pod-episodes-strip-name {
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--pod-text-muted);
   }
 
   .pod-episodes-strip .pod-episodes-stop {
+    box-sizing: border-box;
+    width: var(--strip-dot);
+    height: var(--strip-dot);
     margin: 0;
+    border-width: 2px;
   }
   .is-current .pod-episodes-stop {
     background: #ff6319;
   }
 
+  /* Read out, not shown: the hollow ring and the quieter name already say
+     "next", and a visible label either took a row of its own or, inline,
+     crowded the two names and truncated the next one on a phone. */
   .pod-episodes-strip-label {
-    line-height: var(--strip-label);
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #e8b33a;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }
 
