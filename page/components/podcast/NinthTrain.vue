@@ -172,18 +172,18 @@
             a bigger mark and bigger, bolder text than the 34px/11px original,
             both of which read as too small to make out at the size these get
             scaled to. -->
-          <div style="position:absolute;left:2990px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:246px;height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
+          <div style="position:absolute;left:2990px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;min-width:246px;min-height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
             <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
             <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
             <img draggable="false" :src="catfightMark" alt="Catfight Coffee" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
-            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">{{ scene.presentedBy }}<br />CATFIGHT COFFEE</div>
+            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;white-space:nowrap;">{{ scene.presentedBy }}<br />CATFIGHT COFFEE</div>
           </div>
 
-          <div style="position:absolute;left:3580px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:246px;height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
+          <div style="position:absolute;left:3580px;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;min-width:246px;min-height:70px;box-sizing:border-box;background:#EDE9E0;padding:9px 14px;z-index:6;">
             <div style="position:absolute;left:0;top:100%;width:100%;height:9px;background:#ded7c8;transform:skewX(45deg);transform-origin:top left;"></div>
             <div style="position:absolute;left:100%;top:0;width:9px;height:100%;background:#c4bcab;transform:skewY(45deg);transform-origin:left top;"></div>
             <img draggable="false" :src="bagelMark" alt="Bagel²" style="width:42px;height:44px;object-fit:contain;display:block;flex-shrink:0;" />
-            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;">{{ scene.presentedBy }}<br />BAGEL²</div>
+            <div style="font-size:15px;font-weight:800;color:#141414;letter-spacing:0.09em;line-height:1.35;white-space:nowrap;">{{ scene.presentedBy }}<br />BAGEL²</div>
           </div>
 
           <!-- Darker than the cream cards' orange, with white text -- black

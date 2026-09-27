@@ -287,7 +287,7 @@ export default {
     gap: 0.35rem;
   }
   .pod-station-headline {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
   }
   /* Three lines at most, so a station still fits one screen. */
   .pod-station-description {
@@ -340,7 +340,7 @@ export default {
 .pod-station-headline {
   font-family: var(--pod-display);
   font-weight: 800;
-  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-wrap: balance;
