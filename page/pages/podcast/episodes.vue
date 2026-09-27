@@ -332,6 +332,8 @@ export default {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  /* The language tile's resting height is tuned against this padding and
+     the search box's height (LangTile.vue). */
   padding-block: 0.9rem;
 }
 
@@ -363,6 +365,10 @@ export default {
   /* Otherwise it won't shrink below the input's default width, which on a
      narrow phone pushes the bar past the screen's right edge. */
   min-width: 0;
+  /* Stops short of the column's right edge, where the language tile drops
+     down from the top of the screen (LangTile.vue), with the same small gap
+     whichever tile is showing. */
+  margin-right: calc(var(--pod-tile-w) + 0.5rem);
   display: flex;
   align-items: center;
   gap: 0.6rem;

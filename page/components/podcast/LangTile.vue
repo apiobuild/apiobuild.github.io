@@ -1,15 +1,15 @@
 <template>
-  <!-- The language switch: a tile hidden below the bottom-left edge of the
-    screen that pops up now and then, offering the other language -- a 紅中
-    mahjong tile on the English pages, Scrabble tiles spelling EN on the
-    Mandarin ones. Tapping it drops the tile out of sight as the page swipes
-    over to that language, and the tile for switching back comes up in its
-    place. A real link, so
-    it works without JavaScript and search engines find the other pages. -->
+  <!-- The language switch: a tile hidden above the top edge of the screen,
+    at the right of the page's column, that drops down now and then,
+    offering the other language -- a 紅中 mahjong tile on the English pages,
+    Scrabble tiles spelling EN on the Mandarin ones. Tapping it pulls the
+    tile up out of sight as the page swipes over to that language, and the
+    tile for switching back comes down in its place. A real link, so it
+    works without JavaScript and search engines find the other pages. -->
   <a
     :href="otherPath"
     class="pod-langtile"
-    :class="{ 'is-up': (popped || hovering || switching) && !dropped, 'is-dropped': dropped, 'is-rising': rising }"
+    :class="{ 'is-up': (popped || hovering || switching) && !stowed, 'is-stowed': stowed, 'is-returning': returning }"
     :lang="otherLang === 'zh' ? 'zh-Hant' : 'en'"
     :aria-label="otherLang === 'zh' ? '切換到中文 — Switch to Mandarin' : 'Switch to English — 切換到英文'"
     @pointerdown="pointerType = $event.pointerType"
@@ -61,10 +61,10 @@ onMounted(() => watch(lang, (value) => value === "zh" && savePodcastLangChoice("
 // ---- Popping up ------------------------------------------------------------
 
 const popped = ref(false);
-// Down out of sight while the page swaps languages (see switchLang).
-const dropped = ref(false);
-// Coming back up, slowly, once the new page has arrived.
-const rising = ref(false);
+// Up out of sight while the page swaps languages (see switchLang).
+const stowed = ref(false);
+// Coming back down, slowly, once the new page has arrived.
+const returning = ref(false);
 const hovering = ref(false);
 const switching = ref(false);
 let popTimer = null;
@@ -142,8 +142,8 @@ async function switchLang() {
   const root = document.documentElement;
   const overflow = root.style.overflowX;
   root.style.overflowX = "hidden";
-  // The tile drops out of sight as the page leaves...
-  dropped.value = true;
+  // The tile goes up out of sight as the page leaves...
+  stowed.value = true;
   if (host) await slide(pageParts(host), "0", "-100vw", 260, "cubic-bezier(.6,0,.9,.6)");
   // Hold the incoming page off to the right until its slide starts.
   host?.classList.add("is-swipe-in");
@@ -156,7 +156,7 @@ async function switchLang() {
     host?.classList.remove("is-swipe-in");
     if (host) pageParts(host).forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()));
     root.style.overflowX = overflow;
-    dropped.value = false;
+    stowed.value = false;
     switching.value = false;
     window.location.assign(otherPath.value + route.hash);
     return;
@@ -172,11 +172,11 @@ async function switchLang() {
   }
   root.style.overflowX = overflow;
   // ...and once the new page has settled, the other language's tile slides
-  // slowly up in its place.
-  rising.value = true;
-  dropped.value = false;
+  // slowly down in its place.
+  returning.value = true;
+  stowed.value = false;
   await new Promise((resolve) => setTimeout(resolve, 1100));
-  rising.value = false;
+  returning.value = false;
   switching.value = false;
   pop(2500);
 }
@@ -212,41 +212,42 @@ export default {
 </script>
 
 <style scoped>
-/* Fixed to the bottom-left of the screen (the buttons live on the right),
-   clear of a phone's home-indicator area. */
+/* Fixed to the top of the screen, below a phone's notch, its right edge on
+   the right edge of the page's column (.pod-shell in podcast.css), so on a
+   wide screen it stays over the content rather than out in the corner. */
 .pod-langtile {
   position: fixed;
   z-index: 40;
-  left: 10px;
-  bottom: env(safe-area-inset-bottom, 0px);
+  right: calc((100% - var(--pod-shell-w)) / 2);
+  top: env(safe-area-inset-top, 0px);
   display: block;
   width: 64px;
-  height: var(--pod-tile-room, 82px);
+  height: var(--pod-tile-room);
 }
 .pod-langtile:focus-visible {
   outline: 2px solid var(--pod-lime);
   outline-offset: 2px;
 }
 
-/* Everything below the screen's edge is cut off here. */
+/* Everything above the screen's edge is cut off here. */
 .pod-langtile-window {
   position: absolute;
   inset: 0;
-  clip-path: inset(-20px -20px 0 -20px);
+  clip-path: inset(0 -20px -20px -20px);
 }
 
-/* The tile, facing right toward the page. Both images are cut the same
+/* The tile, flush with the column's right edge. Both images are cut the same
    height, so the mahjong tile and the wider Scrabble pair sit on the same
    line. */
 .pod-langtile-tile {
   position: absolute;
-  left: 6px;
-  bottom: 4px;
-  height: 40px;
+  right: 0;
+  top: 12px;
+  height: var(--pod-tile-h);
   width: auto;
-  /* At rest it's fully hidden below the screen's edge. */
-  translate: 0 56px;
-  /* Slides up from below the edge at an even pace, settling with a small
+  /* At rest it's fully hidden above the screen's edge. */
+  translate: 0 -60px;
+  /* Slides down from above the edge at an even pace, settling with a small
      overshoot -- a faster, front-loaded curve reads as popping in. */
   transition: translate 0.6s cubic-bezier(0.34, 0.9, 0.4, 1.12);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
@@ -254,15 +255,20 @@ export default {
 .pod-langtile-tile:not(.is-shown) {
   visibility: hidden;
 }
+/* Down, level with the episodes page's search bar beside it -- a touch
+   above its center, since the tile's thick bottom edge and shadow make it
+   read lower than it is. Tuned by eye against that bar's padding and the
+   search box's height (.pod-episodes-bar-inner in episodes.vue): change
+   those and this wants another look. */
 .pod-langtile.is-up .pod-langtile-tile {
-  translate: 0 -6px;
+  translate: 0 7px;
 }
-/* Switching: straight down, quicker than it pops up... */
-.pod-langtile.is-dropped .pod-langtile-tile {
+/* Switching: straight up, quicker than it drops in... */
+.pod-langtile.is-stowed .pod-langtile-tile {
   transition: translate 0.2s ease-in;
 }
-/* ...and the new tile back up slowly, so the change is seen. */
-.pod-langtile.is-rising .pod-langtile-tile {
+/* ...and the new tile back down slowly, so the change is seen. */
+.pod-langtile.is-returning .pod-langtile-tile {
   transition: translate 1.1s cubic-bezier(0.25, 0.8, 0.35, 1);
 }
 
