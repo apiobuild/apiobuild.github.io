@@ -6,6 +6,13 @@
    so the two read as one thing. */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Comfortaa:wght@400;600&display=swap");
 
+/* Ask iPhone browsers (Instagram's in-app one included) not to enlarge the
+   page's text on their own. Podcast pages only; pinch-zoom still works. */
+html:has(.podcast-page) {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 .podcast-page {
   /* The stockoverflow product palette, off the primary and honey ramps in
      that project's Tailwind @theme block. The hero is plain --pod-bg; lime

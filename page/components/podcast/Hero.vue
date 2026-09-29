@@ -276,24 +276,18 @@ export default {
     justify-content: flex-end;
   }
 
-  /* Buttons go to the right on phones and tablets: where a thumb reaches
-     them. */
-  .pod-hero-actions {
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    margin-top: 0;
-  }
-
-  /* One row, smaller: fits a 375px phone in either language. */
-  .pod-hero-actions .pod-btn {
-    padding: 0.6rem 1.1rem;
-    font-size: 0.9rem;
-    white-space: nowrap;
-  }
-
   .pod-hero-lead {
     gap: 1rem;
+  }
+
+  /* Smaller and tighter than the desktop eyebrow: at full size the English
+     line only just fits a phone, and any enlarged text (an in-app browser
+     following the phone's text size) wraps it onto a second, double-height
+     line that eats into the scene. */
+  .pod-hero .pod-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
   }
 }
 
@@ -325,6 +319,24 @@ export default {
   align-items: flex-start;
   gap: 0.85rem;
   margin-top: 0.5rem;
+}
+
+/* Phones and tablets: the buttons share a row, Listen on the right under a
+   thumb, each growing to fill it; if they don't fit, each takes a full row.
+   After the base rule so it wins. */
+@media (max-width: 60rem) {
+  .pod-hero-actions {
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-top: 0;
+  }
+
+  .pod-hero-actions .pod-btn {
+    flex: 1 1 auto;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
 }
 
 .pod-hero-hosts {

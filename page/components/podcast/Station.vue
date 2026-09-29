@@ -3,7 +3,7 @@
     <!-- The platform in the hero's frame. Decorative: the copy below repeats
       what matters, and carries the title for screen readers. -->
     <div class="pod-station-stage" aria-hidden="true">
-      <PodcastBezel :name="station.title" :tag="station.station">
+      <PodcastBezel :name="labels.frameName" :tag="labels.frameTag">
         <div class="pod-station-scene">
           <div class="pod-station-frieze"></div>
           <div class="pod-station-pillar pod-station-pillar-a"></div>
@@ -12,11 +12,11 @@
           <div class="pod-station-floor"></div>
 
           <div class="pod-station-poster">
-            <template v-if="station.guest">
-              <div class="pod-station-poster-eyebrow">{{ station.guest }}</div>
-              <div class="pod-station-poster-rule"></div>
-            </template>
             <div class="pod-station-poster-title">{{ station.title }}</div>
+            <template v-if="station.guest">
+              <div class="pod-station-poster-rule"></div>
+              <div class="pod-station-poster-guest">{{ station.guest }}</div>
+            </template>
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
@@ -62,20 +62,25 @@
         </p>
       </div>
 
-      <!-- Listen, at the bottom right. -->
+      <!-- Listen and Share, at the bottom right. On a phone they're round
+        buttons beside the headline; the words stay for screen readers. -->
       <div class="pod-station-foot">
         <a v-if="live" class="pod-station-listen" :href="station.spotify" target="_blank" rel="noopener">
           <i class="fas fa-play" aria-hidden="true"></i>
-          {{ labels.listen }}
+          <span class="pod-station-button-label">{{ labels.listen }}</span>
         </a>
         <span v-else class="pod-station-listen pod-station-soon">{{ labels.comingSoon }}</span>
+        <button v-if="live" type="button" class="pod-station-share" @click="share">
+          <i class="fas fa-arrow-up-from-bracket" aria-hidden="true"></i>
+          <span class="pod-station-button-label">{{ labels.share }}</span>
+        </button>
       </div>
     </div>
   </article>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { formatAirDate } from "~/utils/airDate";
 
 const props = defineProps({
@@ -97,6 +102,55 @@ const live = computed(() => !!props.station.spotify && props.station.spotify !==
 const date = computed(() =>
   formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }, props.labels.dateLocale)
 );
+
+// ---- Share ---------------------------------------------------------------
+
+// The station's share card (scripts/share-cards.mjs), fetched as it scrolls
+// into view rather than on tap: iPhones drop a share that waits after the
+// tap for its file. Stays null until an image arrives, so a dev server,
+// which has no cards and answers with a page, never hands one out.
+let cardFile = null;
+let cardRequested = false;
+watch(
+  () => props.arrived,
+  (arrived) => {
+    if (!arrived || !live.value || cardRequested) return;
+    cardRequested = true;
+    fetch(props.station.shareCard)
+      .then((res) => (res.ok && res.headers.get("content-type")?.startsWith("image/") ? res.blob() : null))
+      .then((blob) => {
+        if (blob) cardFile = new File([blob], `${props.station.id}.jpg`, { type: blob.type });
+      })
+      .catch(() => {});
+  },
+  { immediate: true }
+);
+
+// The card and the Spotify link to the share sheet, where Instagram, WhatsApp
+// and the rest live. Until the card is in, or without file sharing, just the
+// link. With no share sheet (most desktop browsers), the card downloads, or
+// Spotify opens if there's no card.
+async function share() {
+  const text = `${props.station.headline}\n${props.station.spotify}`;
+  useTrackEvent("share", { content_type: "episode", item_id: props.station.id });
+  try {
+    if (cardFile && navigator.canShare?.({ files: [cardFile] })) {
+      await navigator.share({ files: [cardFile], text });
+    } else if (navigator.share) {
+      await navigator.share({ title: props.station.title, text: props.station.headline, url: props.station.spotify });
+    } else if (cardFile) {
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(cardFile);
+      link.download = cardFile.name;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    } else {
+      window.open(props.station.spotify, "_blank", "noopener");
+    }
+  } catch {
+    // Closing the share sheet rejects; nothing to do.
+  }
+}
 </script>
 
 <script>
@@ -119,7 +173,7 @@ export default {
 .pod-station-stage {
   width: 100%;
   aspect-ratio: 488 / 620;
-  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - 15.75rem));
+  max-height: max(15rem, calc(100svh - var(--pod-bar-h, 4.5rem) - var(--pod-station-copy-h, 15.75rem)));
 }
 
 /* The frame's 460x499 viewport, drawn in the same pixels as the hero's
@@ -207,7 +261,7 @@ export default {
   transform-origin: left top;
 }
 
-.pod-station-poster-eyebrow {
+.pod-station-poster-guest {
   font-size: 18px;
   font-weight: 900;
   letter-spacing: 0.06em;
@@ -282,27 +336,71 @@ export default {
     scroll-margin-top: var(--pod-bar-h, 9.5rem);
     gap: 0.9rem;
     padding-block: 1rem 1.5rem;
+    /* A screen tall under the bar: the frame centred in the room above the
+       copy, and the copy at the bottom. */
+    box-sizing: border-box;
+    min-height: calc(100svh - var(--pod-bar-h, 4.5rem));
+  }
+  .pod-station-stage {
+    margin-block: auto;
   }
   .pod-station-copy {
     gap: 0.35rem;
   }
   .pod-station-headline {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
   }
-  /* Three lines at most, so a station still fits one screen. */
+  /* Headline and the buttons only: on a phone the description is one thing
+     too many. */
   .pod-station-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-size: 0.9rem;
-    line-height: 1.45;
+    display: none;
+  }
+  /* The play button sits to the right of the copy, level with the
+     headline's last line, instead of on a row of its own. Scoped under
+     .pod-station so these win over the base rules further down the file. */
+  .pod-station .pod-station-details {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+  .pod-station .pod-station-copy {
+    flex: 1 1 auto;
+  }
+  .pod-station .pod-station-foot {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: 0.6rem;
   }
   .pod-station-listen {
     font-size: 0.95rem;
-  }
-  .pod-station-listen {
     padding: 0.6rem 1.1rem 0.6rem 0.9rem;
+  }
+  /* Just the play icon in an orange circle. */
+  a.pod-station-listen {
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    padding: 0;
+    font-size: 1.15rem;
+  }
+  /* The triangle's visual centre sits left of its box. */
+  a.pod-station-listen .fa-play {
+    margin-left: 0.15em;
+  }
+  /* Share, a smaller outlined circle after it. */
+  .pod-station .pod-station-share {
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+  }
+  .pod-station-button-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }
 
@@ -340,7 +438,7 @@ export default {
 .pod-station-headline {
   font-family: var(--pod-display);
   font-weight: 800;
-  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -380,6 +478,28 @@ export default {
 
 .pod-station-listen .fa-play {
   font-size: 0.85em;
+}
+
+.pod-station-share {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border: 2px solid var(--pod-rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pod-text);
+  font: inherit;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.pod-station-share:hover {
+  border-color: var(--pod-accent);
 }
 
 .pod-station-soon {
