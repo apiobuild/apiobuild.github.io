@@ -3,7 +3,7 @@
     <!-- The platform in the hero's frame. Decorative: the copy below repeats
       what matters, and carries the title for screen readers. -->
     <div class="pod-station-stage" aria-hidden="true">
-      <PodcastBezel :name="station.title" :tag="station.station">
+      <PodcastBezel :name="labels.frameName" :tag="labels.frameTag">
         <div class="pod-station-scene">
           <div class="pod-station-frieze"></div>
           <div class="pod-station-pillar pod-station-pillar-a"></div>
@@ -12,11 +12,11 @@
           <div class="pod-station-floor"></div>
 
           <div class="pod-station-poster">
-            <template v-if="station.guest">
-              <div class="pod-station-poster-eyebrow">{{ station.guest }}</div>
-              <div class="pod-station-poster-rule"></div>
-            </template>
             <div class="pod-station-poster-title">{{ station.title }}</div>
+            <template v-if="station.guest">
+              <div class="pod-station-poster-rule"></div>
+              <div class="pod-station-poster-guest">{{ station.guest }}</div>
+            </template>
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>
 
@@ -253,7 +253,7 @@ export default {
   transform-origin: left top;
 }
 
-.pod-station-poster-eyebrow {
+.pod-station-poster-guest {
   font-size: 18px;
   font-weight: 900;
   letter-spacing: 0.06em;

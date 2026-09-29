@@ -179,6 +179,9 @@ const labels = {
   share: page.shareLabel,
   comingSoon: page.comingSoonLabel,
   withGuest: page.withGuestLabel,
+  // Every platform's frame carries the show's name, as the hero's does.
+  frameName: content.hero.scene.name,
+  frameTag: content.hero.scene.tag,
   dateLocale: PODCAST_LANGS[lang].dateLocale
 };
 
