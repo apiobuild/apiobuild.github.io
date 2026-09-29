@@ -283,6 +283,13 @@ export default {
     scroll-margin-top: var(--pod-bar-h, 9.5rem);
     gap: 0.9rem;
     padding-block: 1rem 1.5rem;
+    /* A screen tall under the bar: the frame centred in the room above the
+       copy, and the copy at the bottom. */
+    box-sizing: border-box;
+    min-height: calc(100svh - var(--pod-bar-h, 4.5rem));
+  }
+  .pod-station-stage {
+    margin-block: auto;
   }
   .pod-station-copy {
     gap: 0.35rem;
