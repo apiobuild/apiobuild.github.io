@@ -321,13 +321,9 @@ export default {
   margin-top: 0.5rem;
 }
 
-/* After the base rule, not in the tablet-down block above: that block comes
-   first in the file, so at equal specificity the base rule's wrap, gap and
-   margin used to win and these never applied. Buttons share the row, Listen
-   on the right under a thumb. Each grows to fill, so if they don't fit one
-   row (a long label, or text enlarged by an in-app browser) each takes a
-   full-width row of its own instead of stacking ragged against the right
-   edge. */
+/* Phones and tablets: the buttons share a row, Listen on the right under a
+   thumb, each growing to fill it; if they don't fit, each takes a full row.
+   After the base rule so it wins. */
 @media (max-width: 60rem) {
   .pod-hero-actions {
     align-items: stretch;

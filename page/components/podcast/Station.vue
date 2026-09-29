@@ -106,38 +106,46 @@ const date = computed(() =>
 // ---- Share ---------------------------------------------------------------
 
 // The station's share card (scripts/share-cards.mjs), fetched as it scrolls
-// into view rather than on tap: iPhones drop a share that waits too long
-// after the tap for its file. Null where there's no card (a dev server).
-let card = null;
+// into view rather than on tap: iPhones drop a share that waits after the
+// tap for its file. Stays null until an image arrives, so a dev server,
+// which has no cards and answers with a page, never hands one out.
+let cardFile = null;
+let cardRequested = false;
 watch(
   () => props.arrived,
   (arrived) => {
-    if (!arrived || !live.value || card) return;
-    card = fetch(props.station.shareImage)
-      .then((res) => (res.ok ? res.blob() : null))
-      .then((blob) => blob && new File([blob], `${props.station.id}.jpg`, { type: blob.type || "image/jpeg" }))
-      .catch(() => null);
+    if (!arrived || !live.value || cardRequested) return;
+    cardRequested = true;
+    fetch(props.station.shareCard)
+      .then((res) => (res.ok && res.headers.get("content-type")?.startsWith("image/") ? res.blob() : null))
+      .then((blob) => {
+        if (blob) cardFile = new File([blob], `${props.station.id}.jpg`, { type: blob.type });
+      })
+      .catch(() => {});
   },
   { immediate: true }
 );
 
 // The card and the Spotify link to the share sheet, where Instagram, WhatsApp
-// and the rest live. Without file sharing, just the link; with no share
-// sheet at all (most desktop browsers), the card downloads.
+// and the rest live. Until the card is in, or without file sharing, just the
+// link. With no share sheet (most desktop browsers), the card downloads, or
+// Spotify opens if there's no card.
 async function share() {
-  const file = await card;
   const text = `${props.station.headline}\n${props.station.spotify}`;
   useTrackEvent("share", { content_type: "episode", item_id: props.station.id });
   try {
-    if (file && navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file], text });
+    if (cardFile && navigator.canShare?.({ files: [cardFile] })) {
+      await navigator.share({ files: [cardFile], text });
     } else if (navigator.share) {
       await navigator.share({ title: props.station.title, text: props.station.headline, url: props.station.spotify });
-    } else {
+    } else if (cardFile) {
       const link = document.createElement("a");
-      link.href = props.station.shareImage;
-      link.download = `${props.station.id}.jpg`;
+      link.href = URL.createObjectURL(cardFile);
+      link.download = cardFile.name;
       link.click();
+      URL.revokeObjectURL(link.href);
+    } else {
+      window.open(props.station.spotify, "_blank", "noopener");
     }
   } catch {
     // Closing the share sheet rejects; nothing to do.
@@ -342,8 +350,8 @@ export default {
   .pod-station-headline {
     font-size: 1.25rem;
   }
-  /* Headline and Listen only: the description repeats what the frame and
-     the station strip already say, and on a phone it's one thing too many. */
+  /* Headline and the buttons only: on a phone the description is one thing
+     too many. */
   .pod-station-description {
     display: none;
   }

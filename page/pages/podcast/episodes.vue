@@ -165,7 +165,7 @@ const allStations = page.stations.map((station) => ({
   props: (station.props ?? []).map((prop) => ({ ...prop, image: images[prop.image] ?? null })).filter((prop) => prop.image),
   language: resolveLanguage(station.language),
   // Its share card, made at build time by scripts/share-cards.mjs.
-  shareImage: `/podcast/share/${station.id}${lang === "en" ? "" : `.${lang}`}.jpg`
+  shareCard: `/podcast/share/${station.id}${lang === "en" ? "" : `.${lang}`}.jpg`
 }));
 
 // "next": true marks the episode that's coming but not out. It gets no
