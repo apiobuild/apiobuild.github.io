@@ -62,21 +62,25 @@
         </p>
       </div>
 
-      <!-- Listen, at the bottom right. On a phone it's a round play button
-        beside the headline; the word stays for screen readers. -->
+      <!-- Listen and Share, at the bottom right. On a phone they're round
+        buttons beside the headline; the words stay for screen readers. -->
       <div class="pod-station-foot">
         <a v-if="live" class="pod-station-listen" :href="station.spotify" target="_blank" rel="noopener">
           <i class="fas fa-play" aria-hidden="true"></i>
-          <span class="pod-station-listen-label">{{ labels.listen }}</span>
+          <span class="pod-station-button-label">{{ labels.listen }}</span>
         </a>
         <span v-else class="pod-station-listen pod-station-soon">{{ labels.comingSoon }}</span>
+        <button v-if="live" type="button" class="pod-station-share" @click="share">
+          <i class="fas fa-arrow-up-from-bracket" aria-hidden="true"></i>
+          <span class="pod-station-button-label">{{ labels.share }}</span>
+        </button>
       </div>
     </div>
   </article>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { formatAirDate } from "~/utils/airDate";
 
 const props = defineProps({
@@ -98,6 +102,47 @@ const live = computed(() => !!props.station.spotify && props.station.spotify !==
 const date = computed(() =>
   formatAirDate(props.station.date, { month: "short", day: "numeric", year: "numeric" }, props.labels.dateLocale)
 );
+
+// ---- Share ---------------------------------------------------------------
+
+// The station's share card (scripts/share-cards.mjs), fetched as it scrolls
+// into view rather than on tap: iPhones drop a share that waits too long
+// after the tap for its file. Null where there's no card (a dev server).
+let card = null;
+watch(
+  () => props.arrived,
+  (arrived) => {
+    if (!arrived || !live.value || card) return;
+    card = fetch(props.station.shareImage)
+      .then((res) => (res.ok ? res.blob() : null))
+      .then((blob) => blob && new File([blob], `${props.station.id}.jpg`, { type: blob.type || "image/jpeg" }))
+      .catch(() => null);
+  },
+  { immediate: true }
+);
+
+// The card and the Spotify link to the share sheet, where Instagram, WhatsApp
+// and the rest live. Without file sharing, just the link; with no share
+// sheet at all (most desktop browsers), the card downloads.
+async function share() {
+  const file = await card;
+  const text = `${props.station.headline}\n${props.station.spotify}`;
+  useTrackEvent("share", { content_type: "episode", item_id: props.station.id });
+  try {
+    if (file && navigator.canShare?.({ files: [file] })) {
+      await navigator.share({ files: [file], text });
+    } else if (navigator.share) {
+      await navigator.share({ title: props.station.title, text: props.station.headline, url: props.station.spotify });
+    } else {
+      const link = document.createElement("a");
+      link.href = props.station.shareImage;
+      link.download = `${props.station.id}.jpg`;
+      link.click();
+    }
+  } catch {
+    // Closing the share sheet rejects; nothing to do.
+  }
+}
 </script>
 
 <script>
@@ -315,6 +360,8 @@ export default {
   }
   .pod-station .pod-station-foot {
     flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: 0.6rem;
   }
   .pod-station-listen {
     font-size: 0.95rem;
@@ -332,7 +379,14 @@ export default {
   a.pod-station-listen .fa-play {
     margin-left: 0.15em;
   }
-  .pod-station-listen-label {
+  /* Share, a smaller outlined circle after it. */
+  .pod-station .pod-station-share {
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+  }
+  .pod-station-button-label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -416,6 +470,28 @@ export default {
 
 .pod-station-listen .fa-play {
   font-size: 0.85em;
+}
+
+.pod-station-share {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border: 2px solid var(--pod-rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pod-text);
+  font: inherit;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.pod-station-share:hover {
+  border-color: var(--pod-accent);
 }
 
 .pod-station-soon {

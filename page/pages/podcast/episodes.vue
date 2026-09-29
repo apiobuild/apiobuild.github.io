@@ -163,7 +163,9 @@ const allStations = page.stations.map((station) => ({
   ...station,
   character: images[station.character] ?? null,
   props: (station.props ?? []).map((prop) => ({ ...prop, image: images[prop.image] ?? null })).filter((prop) => prop.image),
-  language: resolveLanguage(station.language)
+  language: resolveLanguage(station.language),
+  // Its share card, made at build time by scripts/share-cards.mjs.
+  shareImage: `/podcast/share/${station.id}${lang === "en" ? "" : `.${lang}`}.jpg`
 }));
 
 // "next": true marks the episode that's coming but not out. It gets no
@@ -174,6 +176,7 @@ const next = allStations.find((s) => s.next);
 const showTitle = content.hero.title;
 const labels = {
   listen: page.listenLabel,
+  share: page.shareLabel,
   comingSoon: page.comingSoonLabel,
   withGuest: page.withGuestLabel,
   dateLocale: PODCAST_LANGS[lang].dateLocale
@@ -705,12 +708,13 @@ export default {
   }
   /* Each station (and the hint) is as wide as its height-capped frame, centred.
      The cap leaves room under the frame for the copy: on a phone just the
-     date and a two-line headline with the play button beside it (no
-     description), so the frame can take the column's full width. */
+     date and a headline of up to three lines with the play and share
+     buttons beside it (no description), so the frame can take the column's
+     full width. */
   .pod-episodes-stations {
     gap: 0;
     align-items: center;
-    --pod-station-copy-h: 9rem;
+    --pod-station-copy-h: 10.5rem;
     --pod-station-w: min(100%, max(11.8rem, calc((100svh - var(--pod-bar-h, 4.5rem) - var(--pod-station-copy-h, 15.75rem)) * 488 / 620)));
   }
   .pod-episodes-stations > * {
