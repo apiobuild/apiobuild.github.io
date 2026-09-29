@@ -387,11 +387,11 @@ export default {
   a.pod-station-listen .fa-play {
     margin-left: 0.15em;
   }
-  /* Share, a smaller outlined circle after it. */
+  /* Share, an outlined circle the same size after it. */
   .pod-station .pod-station-share {
     justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 3.25rem;
+    height: 3.25rem;
     padding: 0;
   }
   .pod-station-button-label {
