@@ -540,7 +540,17 @@ export default {
   letter-spacing: 0.12em;
 }
 
-/* Filled, not bigger: every stop on the line is the same size. */
+/* Aired stops are filled; only the next stop stays hollow. */
+.pod-episodes-line li .pod-episodes-stop {
+  background: #ff6319;
+}
+
+/* The one in view gets a halo, not a bigger dot: every stop on the line is
+   the same size. */
+.pod-episodes-line li.is-current .pod-episodes-stop {
+  box-shadow: 0 0 0 4px rgba(255, 99, 25, 0.35);
+}
+
 .is-current .pod-episodes-stop {
   background: #ff6319;
 }
