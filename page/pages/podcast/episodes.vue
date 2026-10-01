@@ -736,6 +736,8 @@ export default {
 @media (max-width: 60rem) {
   .pod-episodes-body {
     padding-block: 0 1.5rem;
+    /* The screen as it is now, address bar or not (see Station.vue). */
+    min-height: calc(100dvh - var(--pod-bar-h, 4.5rem));
   }
   /* Each station (and the hint) is as wide as its height-capped frame, centred.
      The cap leaves room under the frame for the copy: on a phone just the
