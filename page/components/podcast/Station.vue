@@ -349,9 +349,14 @@ export default {
     gap: 0.9rem;
     padding-block: 1rem 1.5rem;
     /* A screen tall under the bar: the frame centred in the room above the
-       copy, and the copy at the bottom. */
+       copy, and the copy at the bottom. dvh, not svh: once the browser's
+       address bar slides away on scroll, svh is short of the screen by the
+       bar's height and the next station shows under this one. The frame
+       stays capped by svh (above), so it doesn't resize as the bar comes
+       and goes; the room around it does. */
     box-sizing: border-box;
     min-height: calc(100svh - var(--pod-bar-h, 4.5rem));
+    min-height: calc(100dvh - var(--pod-bar-h, 4.5rem));
   }
   .pod-station-stage {
     margin-block: auto;
