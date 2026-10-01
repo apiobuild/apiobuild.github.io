@@ -615,6 +615,17 @@ export default {
   scroll-snap-type: y proximity;
 }
 
+/* On desktop, always: a wheel or trackpad flick lands on the next station.
+   The footer is a stop too, or it could never be scrolled to. */
+@media (min-width: 60.01rem) {
+  :global(html:has(.pod-episodes)) {
+    scroll-snap-type: y mandatory;
+  }
+  :global(.pod-episodes .pod-footer) {
+    scroll-snap-align: end;
+  }
+}
+
 /* One column: the line map gives way. */
 @media (max-width: 60rem) {
   .pod-episodes-body {
