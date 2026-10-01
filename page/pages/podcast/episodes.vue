@@ -73,6 +73,19 @@
       <!-- The line map: every station as a stop on one line, the one in view
         lit. Doubles as the table of contents. -->
       <nav class="pod-episodes-line" :aria-label="page.title">
+        <!-- The coming-next episode has no platform yet, so it lives only
+          here: an unfilled stop at the top of the line, above the newest,
+          so the line reads newest to oldest down the page like the platforms. -->
+        <div v-if="next" class="pod-episodes-next">
+          <div class="pod-episodes-next-stop">
+            <span class="pod-episodes-stop" aria-hidden="true"></span>
+            <span class="pod-episodes-stop-name">
+              {{ next.station }}
+              <span v-if="next.language.badge" class="pod-episodes-stop-lang" :lang="next.language.htmlLang">{{ next.language.label }}</span>
+            </span>
+            <span class="pod-episodes-stop-ep">{{ page.nextStopLabel }}</span>
+          </div>
+        </div>
         <ol>
           <li
             v-for="station in stations"
@@ -89,19 +102,6 @@
             </a>
           </li>
         </ol>
-
-        <!-- The coming-next episode has no platform yet, so it lives only
-          here: an unfilled stop at the end of the line. -->
-        <div v-if="next" class="pod-episodes-next">
-          <div class="pod-episodes-next-stop">
-            <span class="pod-episodes-stop" aria-hidden="true"></span>
-            <span class="pod-episodes-stop-name">
-              {{ next.station }}
-              <span v-if="next.language.badge" class="pod-episodes-stop-lang" :lang="next.language.htmlLang">{{ next.language.label }}</span>
-            </span>
-            <span class="pod-episodes-stop-ep">{{ page.nextStopLabel }}</span>
-          </div>
-        </div>
       </nav>
 
       <main class="pod-episodes-stations">
@@ -468,10 +468,16 @@ export default {
   padding-block: 2rem;
 }
 
+/* Held in the middle of the screen under the bar while the stations scroll. */
 .pod-episodes-line {
   position: sticky;
-  top: 6rem;
+  top: var(--pod-bar-h, 4.5rem);
   align-self: start;
+  box-sizing: border-box;
+  height: calc(100svh - var(--pod-bar-h, 4.5rem));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pod-episodes-title {
@@ -540,7 +546,17 @@ export default {
   letter-spacing: 0.12em;
 }
 
-/* Filled, not bigger: every stop on the line is the same size. */
+/* Aired stops are filled; only the next stop stays hollow. */
+.pod-episodes-line li .pod-episodes-stop {
+  background: #ff6319;
+}
+
+/* The one in view gets a halo, not a bigger dot: every stop on the line is
+   the same size. */
+.pod-episodes-line li.is-current .pod-episodes-stop {
+  box-shadow: 0 0 0 4px rgba(255, 99, 25, 0.35);
+}
+
 .is-current .pod-episodes-stop {
   background: #ff6319;
 }
@@ -553,16 +569,16 @@ export default {
 /* ---- The next stop ---- */
 .pod-episodes-next {
   position: relative;
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-/* The line running on from the last aired stop into this one. */
+/* The line running on from this stop down into the newest aired one. */
 .pod-episodes-next::before {
   content: "";
   position: absolute;
   left: 0.55rem;
-  top: -1.9rem;
-  height: 2.6rem;
+  top: 1rem;
+  bottom: -1.9rem;
   width: 4px;
   margin-left: -2px;
   background: #ff6319;
@@ -588,10 +604,26 @@ export default {
   display: none;
 }
 
+/* A station per screen (see Station.vue), so no gap between them. */
 .pod-episodes-stations {
   display: flex;
   flex-direction: column;
-  gap: clamp(4rem, 9vw, 7rem);
+}
+
+/* Scrolling settles on one station at a time. */
+:global(html:has(.pod-episodes)) {
+  scroll-snap-type: y proximity;
+}
+
+/* On desktop, always: a wheel or trackpad flick lands on the next station.
+   The footer is a stop too, or it could never be scrolled to. */
+@media (min-width: 60.01rem) {
+  :global(html:has(.pod-episodes)) {
+    scroll-snap-type: y mandatory;
+  }
+  :global(.pod-episodes .pod-footer) {
+    scroll-snap-align: end;
+  }
 }
 
 /* One column: the line map gives way. */
@@ -701,11 +733,7 @@ export default {
   }
 }
 
-/* One column: scrolling settles on one station at a time. */
 @media (max-width: 60rem) {
-  :global(html:has(.pod-episodes)) {
-    scroll-snap-type: y proximity;
-  }
   .pod-episodes-body {
     padding-block: 0 1.5rem;
   }

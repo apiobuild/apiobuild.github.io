@@ -37,7 +37,7 @@
             v-if="station.character"
             class="pod-station-character"
             :src="station.character"
-            :style="{ '--pod-character-scale': station.characterScale ?? 1 }"
+            :style="{ '--pod-character-scale': station.characterScale ?? 1, left: station.characterLeft != null ? `${station.characterLeft}px` : null }"
             alt=""
             draggable="false"
           />
@@ -282,7 +282,8 @@ export default {
 }
 
 
-/* Feet on the platform; characterScale in the config shrinks a pet. */
+/* Feet on the platform; characterScale in the config shrinks a pet, and
+   characterLeft moves the character in from the right. */
 .pod-station-character,
 .pod-station-prop {
   left: 280px;
@@ -319,13 +320,24 @@ export default {
   }
 }
 
-/* Desktop: the portrait platform sits beside its copy instead of above it. */
+/* Desktop: the portrait platform sits beside its copy instead of above it,
+   a station per screen as on a phone, the frame capped well short of it. */
 @media (min-width: 60.01rem) {
   .pod-station {
     display: grid;
-    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 2.5rem;
+    box-sizing: border-box;
+    min-height: calc(100svh - var(--pod-bar-h, 4.5rem));
+    padding-block: 1.5rem;
+    scroll-snap-align: start;
+    scroll-margin-top: var(--pod-bar-h, 4.5rem);
+  }
+  .pod-station-stage {
+    width: auto;
+    height: min(calc(100svh - var(--pod-bar-h, 4.5rem) - 8rem), 30rem);
+    max-height: none;
   }
 }
 
