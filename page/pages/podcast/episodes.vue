@@ -73,6 +73,19 @@
       <!-- The line map: every station as a stop on one line, the one in view
         lit. Doubles as the table of contents. -->
       <nav class="pod-episodes-line" :aria-label="page.title">
+        <!-- The coming-next episode has no platform yet, so it lives only
+          here: an unfilled stop at the top of the line, above the newest,
+          so the line reads newest to oldest down the page like the platforms. -->
+        <div v-if="next" class="pod-episodes-next">
+          <div class="pod-episodes-next-stop">
+            <span class="pod-episodes-stop" aria-hidden="true"></span>
+            <span class="pod-episodes-stop-name">
+              {{ next.station }}
+              <span v-if="next.language.badge" class="pod-episodes-stop-lang" :lang="next.language.htmlLang">{{ next.language.label }}</span>
+            </span>
+            <span class="pod-episodes-stop-ep">{{ page.nextStopLabel }}</span>
+          </div>
+        </div>
         <ol>
           <li
             v-for="station in stations"
@@ -89,19 +102,6 @@
             </a>
           </li>
         </ol>
-
-        <!-- The coming-next episode has no platform yet, so it lives only
-          here: an unfilled stop at the end of the line. -->
-        <div v-if="next" class="pod-episodes-next">
-          <div class="pod-episodes-next-stop">
-            <span class="pod-episodes-stop" aria-hidden="true"></span>
-            <span class="pod-episodes-stop-name">
-              {{ next.station }}
-              <span v-if="next.language.badge" class="pod-episodes-stop-lang" :lang="next.language.htmlLang">{{ next.language.label }}</span>
-            </span>
-            <span class="pod-episodes-stop-ep">{{ page.nextStopLabel }}</span>
-          </div>
-        </div>
       </nav>
 
       <main class="pod-episodes-stations">
@@ -553,16 +553,16 @@ export default {
 /* ---- The next stop ---- */
 .pod-episodes-next {
   position: relative;
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-/* The line running on from the last aired stop into this one. */
+/* The line running on from this stop down into the newest aired one. */
 .pod-episodes-next::before {
   content: "";
   position: absolute;
   left: 0.55rem;
-  top: -1.9rem;
-  height: 2.6rem;
+  top: 1rem;
+  bottom: -1.9rem;
   width: 4px;
   margin-left: -2px;
   background: #ff6319;

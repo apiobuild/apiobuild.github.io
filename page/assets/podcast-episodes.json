@@ -29,6 +29,19 @@
       "next": true
     },
     {
+      "id": "edgewater",
+      "station": "Edgewater, NJ",
+      "date": "2026-09-30",
+      "title": "Building Bagel²",
+      "guest": "Lulu",
+      "headline": "From Square to Bagel²",
+      "description": "Lulu shares how she's building Bagel²: small business AI so business owners can all finally take a vacation.",
+      "spotify": "https://open.spotify.com/episode/76KnaOmGHelG24dvYXzjtr?si=D_Qd8ehDSyaNYxm6TAGaKg",
+      "character": "lulu-edgewater.webp",
+      "characterScale": 0.92,
+      "characterLeft": 100
+    },
+    {
       "id": "boonton",
       "station": "Boonton, NJ",
       "date": "2026-09-24",

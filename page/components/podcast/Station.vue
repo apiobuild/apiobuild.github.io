@@ -37,7 +37,7 @@
             v-if="station.character"
             class="pod-station-character"
             :src="station.character"
-            :style="{ '--pod-character-scale': station.characterScale ?? 1 }"
+            :style="{ '--pod-character-scale': station.characterScale ?? 1, left: station.characterLeft != null ? `${station.characterLeft}px` : null }"
             alt=""
             draggable="false"
           />
@@ -282,7 +282,8 @@ export default {
 }
 
 
-/* Feet on the platform; characterScale in the config shrinks a pet. */
+/* Feet on the platform; characterScale in the config shrinks a pet, and
+   characterLeft moves the character in from the right. */
 .pod-station-character,
 .pod-station-prop {
   left: 280px;

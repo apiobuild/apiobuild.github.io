@@ -12,6 +12,10 @@
   "nextStopLabel": "下一站",
   "withGuestLabel": "，來賓 {guest}",
   "stations": {
+    "edgewater": {
+      "headline": "從 Square 到 Bagel²",
+      "description": "Lulu 分享她怎麼打造 Bagel²：給小店的 AI，讓老闆們終於都能去度假。"
+    },
     "boonton": {
       "headline": "龐克搖滾、萬聖節與咖啡",
       "description": "Meiling 分享 Catfight 如何從快閃攤位、電商，一路走到新澤西的 Boonton。"
