@@ -468,10 +468,16 @@ export default {
   padding-block: 2rem;
 }
 
+/* Held in the middle of the screen under the bar while the stations scroll. */
 .pod-episodes-line {
   position: sticky;
-  top: 6rem;
+  top: var(--pod-bar-h, 4.5rem);
   align-self: start;
+  box-sizing: border-box;
+  height: calc(100svh - var(--pod-bar-h, 4.5rem));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pod-episodes-title {
@@ -598,10 +604,15 @@ export default {
   display: none;
 }
 
+/* A station per screen (see Station.vue), so no gap between them. */
 .pod-episodes-stations {
   display: flex;
   flex-direction: column;
-  gap: clamp(4rem, 9vw, 7rem);
+}
+
+/* Scrolling settles on one station at a time. */
+:global(html:has(.pod-episodes)) {
+  scroll-snap-type: y proximity;
 }
 
 /* One column: the line map gives way. */
@@ -711,11 +722,7 @@ export default {
   }
 }
 
-/* One column: scrolling settles on one station at a time. */
 @media (max-width: 60rem) {
-  :global(html:has(.pod-episodes)) {
-    scroll-snap-type: y proximity;
-  }
   .pod-episodes-body {
     padding-block: 0 1.5rem;
   }
