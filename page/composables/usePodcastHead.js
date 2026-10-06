@@ -3,6 +3,12 @@ import { PODCAST_LANGS, podcastHasZh, podcastLangOf, podcastPath } from "./usePo
 
 const SITE = "https://apiobuild.com";
 
+// A page's address as GitHub Pages serves it: /podcast/episodes is the
+// folder podcast/episodes/, and asking for it without the slash gets a
+// redirect. Search engines treat a canonical or alternate link that
+// redirects as a page that isn't there, so these all end in a slash.
+const pageUrl = (path) => SITE + path.replace(/\/$/, "") + "/";
+
 // The title and link-preview tags for a podcast page, with the show's card
 // as the preview image. `path` is the page's own path: it sets the page's
 // language, and -- for a page with a Mandarin version -- the alternate links
@@ -17,15 +23,15 @@ export function usePodcastHead({ title, description, path }) {
       title,
       htmlAttrs: { lang: PODCAST_LANGS[lang].htmlLang },
       link: [
-        { rel: "canonical", href: SITE + path },
+        { rel: "canonical", href: pageUrl(path) },
         ...(podcastHasZh(path)
           ? [
               ...Object.entries(PODCAST_LANGS).map(([code, { htmlLang }]) => ({
                 rel: "alternate",
                 hreflang: htmlLang,
-                href: SITE + podcastPath(path, code)
+                href: pageUrl(podcastPath(path, code))
               })),
-              { rel: "alternate", hreflang: "x-default", href: SITE + podcastPath(path, "en") }
+              { rel: "alternate", hreflang: "x-default", href: pageUrl(podcastPath(path, "en")) }
             ]
           : [])
       ],
