@@ -54,7 +54,18 @@ export default defineNuxtConfig({
     name: "apiobuild",
     description:
       "apiobuild's mission is to create cost-effective technology tailored to the needs of small to medium-sized businesses. Technology is changing rapidly, and we understand that small businesses can struggle to keep up. Our solutions enable your business to grow and adapt to changes with manageable cost and resources while maintaining compliance with the highest industry standards. We strive to be your technology partner, driving your business's success every step of the way.",
-    defaultLocale: "en"
+    defaultLocale: "en",
+    // GitHub Pages serves every page as a folder, redirecting /consulting to
+    // /consulting/, so the sitemap lists the addresses that don't redirect.
+    trailingSlash: true
+  },
+  robots: {
+    rules: [
+      { UserAgent: "*" },
+      { Disallow: "" },
+      { BlankLine: true },
+      { Sitemap: "https://apiobuild.com/sitemap.xml" }
+    ]
   },
   content: {
     contentHead: false,
