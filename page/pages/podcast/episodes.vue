@@ -134,7 +134,10 @@ import nineCoin from "~/assets/podcast-nine-coin.webp";
 definePageMeta({
   layout: "podcast",
   alias: ["/podcast/zh/episodes"],
-  key: (route) => route.path
+  key: (route) => route.path,
+  // An address with a station in it lands on that station (see onMounted);
+  // the router's own scroll to the top would come after and undo it.
+  scrollToTop: (to) => !to.hash
 });
 
 const route = useRoute();
