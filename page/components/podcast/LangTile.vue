@@ -128,7 +128,10 @@ async function switchLang() {
   // `force`: the Mandarin pages are aliases of the English ones, and the
   // router counts an alias and its original as the same location -- without
   // it, switching would be skipped as a redundant navigation.
-  const target = { path: otherPath.value, hash: route.hash, force: true };
+  // The hash from the address bar, not the router: the episodes page moves it
+  // to the station in view without telling the router.
+  const hash = window.location.hash;
+  const target = { path: otherPath.value, hash, force: true };
   savePodcastLangChoice(to);
   trackSwitch(from, to, "tile");
 
@@ -158,7 +161,7 @@ async function switchLang() {
     root.style.overflowX = overflow;
     stowed.value = false;
     switching.value = false;
-    window.location.assign(otherPath.value + route.hash);
+    window.location.assign(otherPath.value + hash);
     return;
   }
   await nextTick();

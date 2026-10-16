@@ -208,13 +208,15 @@ onMounted(() => {
   barObserver.observe(bar.value);
 
   // A band across the middle of the screen: whichever station crosses it is
-  // the one you're at.
+  // the one you're at, and the address follows it, so switching language or
+  // copying the link keeps your place.
   observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         current.value = entry.target.id;
         arrived.add(entry.target.id);
+        history.replaceState(history.state, "", `#${entry.target.id}`);
       }
     },
     { rootMargin: "-40% 0px -50% 0px" }
