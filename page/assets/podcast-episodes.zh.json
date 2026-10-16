@@ -12,6 +12,10 @@
   "nextStopLabel": "下一站",
   "withGuestLabel": "，來賓 {guest}",
   "stations": {
+    "edison": {
+      "headline": "從 Teazzi 到 Machapresso 和 Paris Baguette",
+      "description": "Ashley 分享她怎麼從 Teazzi 手搖飲加盟店起步，打造出自己的抹茶品牌 Machapresso，以及接下來即將在 Jersey City 新開幕的 Paris Baguette。"
+    },
     "edgewater": {
       "headline": "從 Square 到 Bagel²",
       "description": "Lulu 分享她怎麼打造 Bagel²：給小店的 AI，讓老闆們終於都能去度假。"
