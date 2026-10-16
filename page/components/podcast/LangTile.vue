@@ -142,9 +142,11 @@ async function switchLang() {
 
   switching.value = true;
   const host = document.querySelector(".pod-langtile")?.parentElement;
-  const root = document.documentElement;
-  const overflow = root.style.overflowX;
-  root.style.overflowX = "hidden";
+  // Nothing sideways can be scrolled to while the pages slide: clip, not
+  // hidden, which still lets the incoming page scroll to its station (see
+  // episodes.vue) sideways too, while it's held off to the right.
+  const overflow = host?.style.overflowX;
+  if (host) host.style.overflowX = "clip";
   // The tile goes up out of sight as the page leaves...
   stowed.value = true;
   if (host) await slide(pageParts(host), "0", "-100vw", 260, "cubic-bezier(.6,0,.9,.6)");
@@ -158,7 +160,7 @@ async function switchLang() {
     // go there with an ordinary page load instead.
     host?.classList.remove("is-swipe-in");
     if (host) pageParts(host).forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()));
-    root.style.overflowX = overflow;
+    if (host) host.style.overflowX = overflow;
     stowed.value = false;
     switching.value = false;
     window.location.assign(otherPath.value + hash);
@@ -173,7 +175,7 @@ async function switchLang() {
     await done;
     incoming.forEach((el) => el.getAnimations().forEach((animation) => animation.cancel()));
   }
-  root.style.overflowX = overflow;
+  if (host) host.style.overflowX = overflow;
   // ...and once the new page has settled, the other language's tile slides
   // slowly down in its place.
   returning.value = true;
