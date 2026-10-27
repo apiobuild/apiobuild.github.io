@@ -4,18 +4,17 @@
 // The share button on each station (components/podcast/Station.vue) hands
 // the card to the phone's share sheet.
 //
-// Run locally after the static build whenever an episode is added, then
-// commit the cards:
+// Run after the static build:
 //   npx nuxt build --preset github_pages && node scripts/share-cards.mjs
-// Cards land in public/podcast/share/<id>.jpg (<id>.zh.jpg for the Mandarin
-// page), so the next build serves them.
+// Cards land in .output/public/podcast/share/<id>.jpg (<id>.zh.jpg for the
+// Mandarin page).
 import { createServer } from "node:http";
 import { mkdir, readFile, stat } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { chromium } from "playwright";
 
 const ROOT = new URL("../.output/public/", import.meta.url).pathname;
-const OUT = new URL("../public/podcast/share/", import.meta.url).pathname;
+const OUT = join(ROOT, "podcast/share");
 const PAGES = { "": "/podcast/episodes", ".zh": "/podcast/zh/episodes" };
 
 const TYPES = {

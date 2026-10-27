@@ -14,7 +14,8 @@ defaults:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Playwright 1.56 doesn't support ubuntu-latest (26.04) yet.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
@@ -26,6 +27,10 @@ jobs:
       # Pick your own package manager and build script
       - run: npm install
       - run: npx nuxt build --preset github_pages
+      # One share image per episode (scripts/share-cards.mjs), taken from the
+      # built episodes page.
+      - run: npx playwright install --with-deps chromium
+      - run: npm run share-cards
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
