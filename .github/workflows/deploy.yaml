@@ -14,7 +14,8 @@ defaults:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Playwright 1.56 doesn't support ubuntu-latest (26.04) yet.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
