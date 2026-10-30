@@ -29,6 +29,18 @@
       "next": true
     },
     {
+      "id": "brooklyn",
+      "station": "Brooklyn, NY",
+      "date": "2026-10-29",
+      "title": "Nine Treasures Creamery",
+      "guest": "Kim",
+      "headline": "From a fast-casual chain in China to Asian-flavored ice cream",
+      "description": "Kim shares her story from running a fast-casual chain in China to finding her identity through Nine Treasures Creamery’s Asian-flavored ice cream after moving back to the U.S.",
+      "spotify": "https://open.spotify.com/episode/1bpEldgdO9w0BXTKlZtnOV?si=rkNzFwlORqakvBD1VXZUCw",
+      "character": "kim-brooklyn.webp",
+      "characterLeft": 210
+    },
+    {
       "id": "edison",
       "station": "Edison, NJ",
       "date": "2026-10-15",
