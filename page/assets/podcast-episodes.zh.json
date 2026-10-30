@@ -12,6 +12,10 @@
   "nextStopLabel": "下一站",
   "withGuestLabel": "，來賓 {guest}",
   "stations": {
+    "brooklyn": {
+      "headline": "從中國連鎖輕食到亞洲風味冰淇淋",
+      "description": "Kim 分享她從在中國經營連鎖輕食餐廳，到搬回美國後，透過 Nine Treasures Creamery 的亞洲風味冰淇淋找到自我的認同。"
+    },
     "edison": {
       "headline": "從 Teazzi 到 Machapresso 和 Paris Baguette",
       "description": "Ashley 分享她怎麼從 Teazzi 手搖飲加盟店起步，打造出自己的抹茶品牌 Machapresso，以及接下來即將在 Jersey City 新開幕的 Paris Baguette。"
