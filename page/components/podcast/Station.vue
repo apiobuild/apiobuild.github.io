@@ -12,10 +12,10 @@
           <div class="pod-station-floor"></div>
 
           <div class="pod-station-poster">
-            <div class="pod-station-poster-title">{{ station.title }}</div>
-            <template v-if="station.guest">
+            <div class="pod-station-poster-title">{{ station.posterTitle || station.title }}</div>
+            <template v-if="station.posterSubtitle || station.guest">
               <div class="pod-station-poster-rule"></div>
-              <div class="pod-station-poster-guest">{{ station.guest }}</div>
+              <div class="pod-station-poster-guest">{{ station.posterSubtitle || station.guest }}</div>
             </template>
             <span v-if="language.badge" class="pod-station-lang" :lang="language.htmlLang">{{ language.label }}</span>
           </div>

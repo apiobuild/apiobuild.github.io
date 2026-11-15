@@ -29,6 +29,19 @@
       "next": true
     },
     {
+      "id": "newark",
+      "station": "Newark, NJ",
+      "date": "2026-11-15",
+      "title": "Acey Slade",
+      "posterTitle": "Punk Rock Star",
+      "posterSubtitle": "Acey Slade",
+      "headline": "From church choir to punk rock and Catfight Coffee",
+      "description": "Acey shares his journey from church choir to touring with Dope, Murderdolls, and Joan Jett, and how he and Meiling built Catfight Coffee when the pandemic put their careers on pause.",
+      "spotify": "https://open.spotify.com/episode/4gLQH5OjLotZeV1X8IHNxx",
+      "character": "acey-newark.webp",
+      "characterLeft": 210
+    },
+    {
       "id": "brooklyn",
       "station": "Brooklyn, NY",
       "date": "2026-10-29",

@@ -12,6 +12,10 @@
   "nextStopLabel": "下一站",
   "withGuestLabel": "，來賓 {guest}",
   "stations": {
+    "newark": {
+      "headline": "從教會詩班到龐克搖滾與 Catfight Coffee",
+      "description": "Acey 分享他從教會詩班起步，到隨 Dope、Murderdolls 和 Joan Jett 巡演的歷程，以及當疫情讓他和 Meiling 的事業按下暫停鍵時，兩人如何一起創立 Catfight Coffee。"
+    },
     "brooklyn": {
       "headline": "從中國連鎖輕食到亞洲風味冰淇淋",
       "description": "Kim 分享她從在中國經營連鎖輕食餐廳，到搬回美國後，透過 Nine Treasures Creamery 的亞洲風味冰淇淋找到自我的認同。"
