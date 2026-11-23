@@ -29,6 +29,18 @@
       "next": true
     },
     {
+      "id": "hamburg",
+      "station": "Hamburg, NJ",
+      "date": "2026-11-22",
+      "title": "Bucha Booch",
+      "guest": "Heather Lancaster",
+      "headline": "From yoga instructor to Bucha Booch",
+      "description": "Heather shares her journey from yoga instructor to Bucha Booch. How she turned a pandemic kitchen experiment into a kombucha business. She's planning to open a café and brewery in Hamburg, New Jersey soon. Stay tuned.",
+      "spotify": "https://open.spotify.com/episode/7rPlAlPZceg0KmqzGx8sAm",
+      "character": "heather-hamburg.webp",
+      "characterLeft": 270
+    },
+    {
       "id": "newark",
       "station": "Newark, NJ",
       "date": "2026-11-15",
